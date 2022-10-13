@@ -1,0 +1,55 @@
+/*------Базовые стили------------------------------------------------------------------------------------------------*/
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+
+img {
+  vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+html,
+body {
+  height: 100%;
+  line-height: 1;
+  font-size: 18px;
+  background-color: #FBFBFC;
+  font-family: Inter;
+}
+._container {
+  max-width: 1328px;
+  padding: 0 15px;
+  margin: 0 auto;
+  box-sizing: content-box;
+}
+button {
+  font-family: Inter;
+}
+
+body::-webkit-scrollbar {
+  width: 8px;               /* ширина всей полосы прокрутки */
+}
+body::-webkit-scrollbar-track {
+  background: rgba(54, 59, 77, 0.1);        /* цвет зоны отслеживания */
+}
+body::-webkit-scrollbar-thumb {
+  background-color: gray;    /* цвет бегунка */
+  border-radius: 20px;       /* округлось бегунка */
+  /* отступ вокруг бегунка */
+}
+
