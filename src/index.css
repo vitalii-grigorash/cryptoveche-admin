@@ -28,7 +28,7 @@ body {
   height: 100%;
   line-height: 1;
   font-size: 18px;
-  background-color: #FBFBFC;
+  background-color: #E5E5E5;
   font-family: Inter;
 }
 ._container {
@@ -52,4 +52,3 @@ body::-webkit-scrollbar-thumb {
   border-radius: 20px;       /* округлось бегунка */
   /* отступ вокруг бегунка */
 }
-
