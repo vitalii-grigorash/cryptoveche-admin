@@ -1,4 +1,4 @@
-/*------Контейнер для страницы авторизации----------------------------------------------------------------------------*/
+/*------Общий контейнер для страницы авторизации----------------------------------------------------------------------------*/
 .wrapper-auth {
     position: absolute;
     top: 50%;
@@ -29,81 +29,231 @@
     color: rgba(54, 59, 77, 0.9);
     margin-bottom: 1.7em;
 }
+/*------Стилизация блока с инпутом выбора ролей-----------------------------------------------------------------------*/
 .auth-form__select-role {
     display: flex;
     flex-direction: column;
     gap: 0.8em;
+    margin-bottom: 1.7em;
 }
-.my-profile-form__time-zone-select-container {
+.select-role__label {
+    color: rgba(54, 59, 77, 0.9);
+    font-weight: 400;
+    line-height: 133%;
+}
+.select-role__time-zone-select-container {
     display: flex;
     position: relative;
     width: 100%;
-    height: 48px;
-    margin: 16px auto 0 0;
+    height: 2.6em;
+    margin: 0 auto;
     border: 0.5px solid rgba(54, 59, 77, 0.3);
     box-sizing: border-box;
     border-radius: 8px;
     cursor: pointer;
 }
-.my-profile-form__time-zone-select-value {
-    font-size: 16px;
-    line-height: 22px;
+.select-role__time-zone-select-value {
+    line-height: 133%;
     color: rgba(54, 59, 77, 0.9);
     opacity: 0.9;
-    margin: auto auto auto 24px;
+    margin: auto auto auto 1.3em;
     max-width: 250px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-.my-profile-form__time-zone-select-arrow {
-    width: 16px;
-    height: 16px;
+.select-role__time-zone-select-arrow {
+    width: 0.8em;
+    height: 0.8em;
     object-fit: cover;
-    margin: auto 24px auto auto;
+    margin: auto 1.3em auto auto;
 }
-.my-profile-form__time-zone-options-container {
+/*.select-role__time-zone-options-container {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    position: absolute;*/
+/*    background: #FFFFFF;*/
+/*    overflow-y: scroll;*/
+/*    top: 58px;*/
+/*    left: -1px;*/
+/*    width: 100%;*/
+/*    max-height: 200px;*/
+/*    box-shadow: 0 4px 8px rgba(54, 59, 77, 0.1);*/
+/*    border: 0.5px solid rgba(54, 59, 77, 0.2);*/
+/*    border-radius: 4px;*/
+/*    box-sizing: border-box;*/
+/*    padding: 0 24px 24px;*/
+/*    cursor: default;*/
+/*    z-index: 9;*/
+/*}*/
+/*.select-role__time-zone-options-container::-webkit-scrollbar {*/
+/*    width: 4px;*/
+/*    background: #FFFFFF;*/
+/*    border-radius: 4px;*/
+/*}*/
+/*.select-role__time-zone-options-container::-webkit-scrollbar-thumb {*/
+/*    background: #CFD4DD;*/
+/*    border-radius: 4px;*/
+/*}*/
+/*.select-role__time-zone-option {*/
+/*    line-height: 24px;*/
+/*    color: #363B4D;*/
+/*    opacity: 0.9;*/
+/*    margin: 24px auto 0 0;*/
+/*}*/
+/*.select-role__time-zone-option:hover {*/
+/*    cursor: pointer;*/
+/*    opacity: 0.6;*/
+/*}*/
+/*------Контейнер для блока с инпутами логин и пароль-----------------------------------------------------------------*/
+.auth-form__username {
     display: flex;
     flex-direction: column;
-    position: absolute;
-    background: #FFFFFF;
-    overflow-y: scroll;
-    top: 58px;
-    left: -1px;
+    gap: 0.8em;
+    margin-bottom: 1.7em;
+}
+.username__label {
+    color: rgba(54, 59, 77, 0.9);
+    font-weight: 400;
+    line-height: 133%;
+}
+.username__field-username {
     width: 100%;
-    max-height: 200px;
-    box-shadow: 0 4px 8px rgba(54, 59, 77, 0.1);
-    border: 0.5px solid rgba(54, 59, 77, 0.2);
-    border-radius: 4px;
+    height: 2.6em;
+    padding: 0.8em 0 0.8em 1.3em;
+    font-size: 1em;
+    border: 0.5px solid rgba(54, 59, 77, 0.3);
     box-sizing: border-box;
-    padding: 0 24px 24px;
-    cursor: default;
-    z-index: 9;
+    border-radius: 8px;
+    outline: none;
+    color: rgba(54, 59, 77, 0.9);
 }
-.my-profile-form__time-zone-options-container::-webkit-scrollbar {
-    width: 4px;
-    background: #FFFFFF;
+.auth-form__password {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    margin-bottom: 1.3em;
+}
+.password__label {
+    color: rgba(54, 59, 77, 0.9);
+    font-weight: 400;
+    line-height: 133%;
+ }
+.password__field-pass {
+    width: 100%;
+    height: 2.6em;
+    padding: 0.8em 0 0.8em 1.3em;
+    font-size: 1em;
+    border: 0.5px solid rgba(54, 59, 77, 0.3);
+    box-sizing: border-box;
+    border-radius: 8px;
+    outline: none;
+    color: rgba(54, 59, 77, 0.9);
+}
+/*------Контейнер для блока с ссылкой забыли пароль-------------------------------------------------------------------*/
+.auth-form__link-forget-pass {
+    display: flex;
+    margin-bottom: 2.2em;
+}
+.link-forget-pass__link-page-forget {
+    color: #0084FE;
+    line-height: 156%;
+    font-weight: 400;
+}
+/*------Контейнер для блока с чекбоксом запомнить меня----------------------------------------------------------------*/
+.auth-form__remember-me {
+    display: inline-flex;
+    gap: 0.8em;
+    margin-bottom: 2.6em;
+}
+.remember-me__label {
+    line-height: 133%;
+    font-weight: 400;
+    color: rgba(54, 59, 77, 0.9);
+}
+.remember-me__checkbox_container {
+    position: relative;
+    width: 1.1em;
+    height: 1.1em;
+}
+.remember-me__checkbox_container input {
+    position: absolute;
+    opacity: 0;
+}
+.remember-me__checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1.1em;
+    width: 1.1em;
+    background-color: #FFFFFF;
+    border-color: #CACCCF;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 2px;
+}
+.remember-me__checkbox_container:hover input ~ .remember-me__checkmark {
+    background-color: #ccc;
+}
+.remember-me__checkbox_container input:checked ~ .remember-me__checkmark {
+    background-color: #0084FE;
+}
+.remember-me__checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.remember-me__checkbox_container input:checked ~ .remember-me__checkmark:after {
+    display: block;
+}
+.remember-me__checkbox_container .remember-me__checkmark:after {
+    left: 0.3em;
+    top: 0.2em;
+    width: 0.4em;
+    height: 0.4em;
+    border: solid white;
+    border-width: 0 1px 1px 0;
+    /*-webkit-transform: rotate(45deg);*/
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+/*------Контейнер для блока с кнопкой войти---------------------------------------------------------------------------*/
+.auth-form__button-enter {
+    display: flex;
+    flex-direction: row;
+    gap: 1.7em;
+    align-items: center;
+}
+.button-enter__btn-enter {
+    background: #0084FE;
+    width: 7.4em;
+    height: 3.1em;
+    color: #FFFFFF;
+    line-height: 133%;
+    font-weight: 500;
+    font-size: 1em;
     border-radius: 4px;
-}
-.my-profile-form__time-zone-options-container::-webkit-scrollbar-thumb {
-    background: #CFD4DD;
-    border-radius: 4px;
-}
-.my-profile-form__time-zone-option {
-    line-height: 24px;
-    color: #363B4D;
-    opacity: 0.9;
-    margin: 24px auto 0 0;
-}
-.my-profile-form__time-zone-option:hover {
     cursor: pointer;
-    opacity: 0.6;
+}
+.button-enter__btn-enter:hover {
+    background: #FFFFFF;
+    color: #0084FE;
+    border: 1px solid #0084FE;
+}
+.button-enter__link-gosuslugi {
+    color: #0084FE;
+    line-height: 156%;
+    font-weight: 400;
+}
+.auth-form__mobile-link-reg {
+    display: none;
 }
 /*------Контейнер для блока с лого и кнопкой зарегистрироваться-------------------------------------------------------*/
 .auth-main-block__reg-btn-logotype {
      display: flex;
      flex-direction: column;
-     justify-content: flex-end;
+     justify-content: space-between;
+     position: relative;
      background: #373C4E;
      padding: 4.1em 1.3em 4.1em 1.3em;
      width: 17.5vw;
@@ -113,16 +263,225 @@
 .reg-btn-logotype__logo {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 21.3em;
 }
 .logo__cryptoveche-logotype {
-    width: 11.667vw;
-    height: 100%;
+    object-fit: cover;
+    width: 80%;
 }
-
+.reg-btn-logotype__title-reg-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.title-reg-block__title {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    color: #FFFFFF;
+    font-size: 1.3em;
+    font-weight: 400;
+    line-height: 133%;
+    margin-bottom: 1.7em;
+}
+.title-reg-block__question-account {
+    text-align: right;
+    color: #FFFFFF;
+    font-size: 0.8em;
+    font-weight: 500;
+    line-height: 150%;
+    margin-bottom: 0.8em;
+}
+.title-reg-block__reg-btn {
+    display: flex;
+    justify-content: flex-end;
+}
+.reg-btn__registration-button {
+    background: #FFFFFF;
+    border-radius: 4px;
+    color: #4569FF;
+    font-weight: 500;
+    font-size: 0.9em;
+    line-height: 150%;
+    width: 80%;
+    height: 3.3em;
+    cursor: pointer;
+    z-index: 4;
+}
+.reg-btn-logotype__background-image {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 90%;
+    left: 0;
+    bottom: 0;
+}
+.reg-btn-logotype__background-image-mobile {
+    display: none;
+}
 /*-----Адаптивная версия----------------------------------------------------------------------------------------------*/
 @media (max-width: 1570px) {
     .wrapper-auth {
+        font-size: 14px;
+    }
+}
+@media (max-width: 1215px) {
+    .wrapper-auth {
+        font-size: 12px;
+    }
+}
+@media (max-width: 1010px) {
+    .wrapper-auth {
         font-size: 10px;
     }
+}
+@media (max-width: 830px) {
+    .wrapper-auth {
+        font-size: 8px;
+    }
+}
+@media (max-width: 670px) {
+    .wrapper-auth {
+        font-size: 6px;
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 500px) {
+    .wrapper-auth {
+        top: 50%;
+    }
+    .auth-main-block {
+        flex-direction: column-reverse;
+        min-width: 375px;
+        min-height: 667px;
+        justify-content: flex-end;
+        border-radius: 16px;
+    }
+    .reg-btn-logotype__title-reg-block {
+        display: none;
+    }
+    .auth-main-block__reg-btn-logotype {
+        width: 100%;
+        border-radius: 0;
+        min-height: 145px;
+        padding-top: 48px;
+        -webkit-border-top-left-radius: 16px;
+        -webkit-border-top-right-radius: 16px;
+    }
+    .reg-btn-logotype__logo {
+        justify-content: flex-start;
+    }
+    .logo__cryptoveche-logotype {
+        width: 55%;
+        margin-left: 24px;
+    }
+    .reg-btn-logotype__background-image {
+        display: none;
+    }
+    .reg-btn-logotype__background-image-mobile {
+        position: absolute;
+        display: flex;
+        object-fit: cover;
+        width: 50%;
+        height: 100%;
+        right: 0;
+        top: 0;
+    }
+    .auth-form__title {
+        font-size: 21px;
+        margin-bottom: 24px;
+        font-weight: 500;
+        line-height: 138%;
+    }
+    .auth-main-block__auth-form {
+        padding: 24px 16px 5px 16px;
+        width: 100%;
+        border-radius: 16px;
+        margin: 0 auto;
+    }
+    .select-role__label, .username__label, .password__label {
+        font-size: 16px;
+        line-height: 138%;
+    }
+    .auth-form__select-role, .auth-form__username, .auth-form__password {
+        gap: 8px;
+    }
+    .auth-form__select-role, .auth-form__username {
+        margin-bottom: 16px;
+    }
+    .auth-form__password {
+        margin-bottom: 8px;
+    }
+    .auth-form__link-forget-pass {
+        margin-bottom: 24px;
+    }
+    .link-forget-pass__link-page-forget {
+        color: #373C4E;
+        font-size: 14px;
+        line-height: 171%;
+    }
+    .select-role__time-zone-select-container, .username__field-username, .password__field-pass {
+        height: 40px;
+        font-size: 16px;
+    }
+    .auth-form__remember-me {
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+    .remember-me__label {
+        font-size: 16px;
+        line-height: 138%;
+    }
+    .remember-me__checkmark {
+        width: 20px;
+        height: 20px;
+    }
+    .remember-me__checkbox_container {
+        width: 20px;
+        height: 20px;
+    }
+    .remember-me__checkbox_container .remember-me__checkmark:after {
+        left: 4px;
+        top: 3px;
+        width: 7px;
+        height: 7px;
+    }
+    .auth-form__button-enter {
+        margin-bottom: 16px;
+        gap: 12px;
+    }
+    .button-enter__btn-enter {
+        width: 132px;
+        height: 40px;
+        font-size: 16px;
+        line-height: 150%;
+    }
+    .button-enter__link-gosuslugi {
+        display: flex;
+        width: 194px;
+        height: 40px;
+        border: 1px solid #0084FE;
+        border-radius: 4px;
+        font-size: 16px;
+        text-decoration: none;
+        justify-content: center;
+        align-items: center;
+    }
+    .auth-form__mobile-link-reg {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        justify-content: center;
+        align-items: center;
+    }
+    .mobile-link-reg__question-info {
+        color: rgba(54, 59, 77, 0.9);
+        font-size: 16px;
+        line-height: 162%;
+    }
+    .mobile-link-reg__link-reg-page {
+        color: #0084FE;
+        font-size: 14px;
+        line-height: 171%;
+    }
+
 }

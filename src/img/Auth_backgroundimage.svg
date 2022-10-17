@@ -1,0 +1,17 @@
+<svg width="336" height="792" viewBox="0 0 336 792" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_2589_8000" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="336" height="792">
+<rect width="336" height="792" fill="white"/>
+</mask>
+<g mask="url(#mask0_2589_8000)">
+<path opacity="0.1" d="M226.396 579.853L112 471.184V362.929L226.396 471.301L454.899 254.768V363.14L226.396 579.853Z" fill="white"/>
+<path opacity="0.1" d="M226.396 579.856L112 471.187V362.931L226.396 471.304V579.856Z" fill="white"/>
+<path opacity="0.09" d="M228.44 363.446V255.312L336 153.792L343.196 147V255.312L228.44 363.446Z" fill="white"/>
+<path opacity="0.18" d="M-1.34972 900.036L-115.4 792.563V685.499L-1.34972 792.679L226.462 578.527V685.707L-1.34972 900.036Z" fill="white"/>
+<g opacity="0.07">
+<path d="M-2.5 687.367V579.233L112.255 470.921V579.233L-2.5 687.367Z" fill="white"/>
+</g>
+<g opacity="0.3">
+<path d="M340.796 899.834L226.4 792.361V685.297L340.796 792.476L569.299 578.325V685.505L340.796 899.834Z" fill="white"/>
+</g>
+</g>
+</svg>
