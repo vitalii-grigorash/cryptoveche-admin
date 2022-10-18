@@ -5,9 +5,11 @@ import show_pass_icon from '../../img/Auth_show_pass_icon.svg';
 import hide_pass_icon from '../../img/Auth_hidden_pass.svg';
 import auth_background_image from '../../img/Auth_backgroundimage.svg';
 import auth_background_mobile from '../../img/Auth_background_mobile.svg';
+import {Link, useNavigate} from "react-router-dom";
 
 const Auth = () => {
 
+    const linkButtonRegPage = useNavigate();
 
     return (
         <div className="wrapper-auth">
@@ -50,7 +52,7 @@ const Auth = () => {
                     </div>
                     <div className="auth-form__mobile-link-reg">
                         <span className="mobile-link-reg__question-info">Ещё нет аккаунта?</span>
-                        <a className="mobile-link-reg__link-reg-page" href={'/'}>Зарегистрироваться</a>
+                        <Link to={'/reg'} className="mobile-link-reg__link-reg-page">Зарегистрироваться</Link>
                     </div>
                 </div>
                 <div className="auth-main-block__reg-btn-logotype">
@@ -67,7 +69,7 @@ const Auth = () => {
                             Еще нет аккаунта?
                         </div>
                         <div className="title-reg-block__reg-btn">
-                            <button className="reg-btn__registration-button" >Зарегистрироваться</button>
+                            <button className="reg-btn__registration-button" onClick={() => linkButtonRegPage('/reg')}>Зарегистрироваться</button>
                         </div>
                     </div>
                     <img alt={'картинка в блоке с лого'} className="reg-btn-logotype__background-image" src={auth_background_image}/>

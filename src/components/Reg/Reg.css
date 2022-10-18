@@ -1,0 +1,509 @@
+/*------Общий контейнер для страницы регистрации----------------------------------------------------------------------*/
+.wrapper-reg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+}
+.reg-main-block {
+    display: flex;
+    flex-direction: row;
+    background: #FFFFFF;
+    width: 57.5vw;
+    height: 100%;
+    box-shadow: 0 3px 16px rgba(54, 58, 72, 0.08);
+    border-radius: 8px;
+}
+.reg-main-block__red-star-heading_span {
+    color: #FF4970;
+}
+/*------Контейнер для блока с лого и кнопкой войти--------------------------------------------------------------------*/
+.reg-main-block__auth-btn-logotype {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    background: #373C4E;
+    padding: 4.1em 1.3em 4.1em 1.3em;
+    width: 17.5vw;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+}
+.auth-btn-logotype__logo {
+    display: flex;
+    justify-content: flex-start;
+}
+.logo__cryptoveche-logotype {
+    object-fit: cover;
+    width: 80%;
+}
+.auth-btn-logotype__title-reg-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.auth-btn-logotype__title {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    color: #FFFFFF;
+    font-size: 1.3em;
+    font-weight: 400;
+    line-height: 133%;
+    margin-bottom: 1.7em;
+}
+.title-auth-block__question-account {
+    text-align: left;
+    color: #FFFFFF;
+    font-size: 0.8em;
+    font-weight: 500;
+    line-height: 150%;
+    margin-bottom: 0.8em;
+}
+.title-auth-block__auth-btn {
+    display: flex;
+    justify-content: flex-start;
+}
+.auth-btn__auth-button {
+    background: #FFFFFF;
+    border-radius: 4px;
+    color: #4569FF;
+    font-weight: 500;
+    font-size: 0.9em;
+    line-height: 150%;
+    width: 40%;
+    height: 3.3em;
+    cursor: pointer;
+    z-index: 4;
+}
+.auth-btn-logotype__background-image {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 90%;
+    left: 0;
+    bottom: 0;
+}
+.auth-btn-logotype__background-image-mobile {
+    display: none;
+}
+/*------Контейнер для блока с инпутами--------------------------------------------------------------------------------*/
+.reg-main-block__reg-form {
+    padding: 4.1em 3.1em 4.1em 3.1em;
+    width: 40vw;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+}
+.reg-form__title {
+    display: flex;
+    margin-bottom: 1.7em;
+    align-items: center;
+    gap: 19px;
+}
+.reg-form__title-row-back {
+    display: none;
+}
+.reg-form__title-row-back.active {
+    display: inherit;
+    cursor: pointer;
+}
+.reg-form__title-reg {
+    font-weight: 600;
+    font-size: 1.8em;
+    line-height: 125%;
+    color: rgba(54, 59, 77, 0.9);
+}
+/*------Стилизация блока с инпутом ФИО--------------------------------------------------------------------------------*/
+.reg-form__username-reg-fields {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.8em;
+    margin-bottom: 1.7em;
+}
+.username-reg-fields__surname, .username-reg-fields__first-name, .username-reg-fields__middle-name {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+}
+.surname__label, .first-name__label, .middle-name__label {
+    color: rgba(54, 59, 77, 0.9);
+    line-height: 133%;
+    font-weight: 400;
+}
+.surname__field, .first-name__field, .middle-name__field {
+    width: 100%;
+    height: 2.6em;
+    padding: 0.6em 0 0.6em 1.3em;
+    font-size: 1em;
+    border: 0.5px solid rgba(54, 59, 77, 0.3);
+    box-sizing: border-box;
+    border-radius: 8px;
+    outline: none;
+    color: rgba(54, 59, 77, 0.9);
+}
+/*------Стилизация блока с инпутом email------------------------------------------------------------------------------*/
+.reg-form__e-mail-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    margin-bottom: 1.7em;
+}
+.e-mail-field__label {
+    color: rgba(54, 59, 77, 0.9);
+    line-height: 133%;
+    font-weight: 400;
+}
+.e-mail-field__field {
+    width: 100%;
+    height: 2.6em;
+    padding: 0.6em 0 0.6em 1.3em;
+    font-size: 1em;
+    border: 0.5px solid rgba(54, 59, 77, 0.3);
+    box-sizing: border-box;
+    border-radius: 8px;
+    outline: none;
+    color: rgba(54, 59, 77, 0.9);
+}
+/*------Стилизация блока с инпутом придумайте пароль------------------------------------------------------------------*/
+.reg-form__set-password {
+    display: flex;
+    flex-direction: row;
+    gap: 0.8em;
+    margin-bottom: 1.7em;
+}
+.set-password__set-pass, .set-password__repeat-pass {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    width: 100%;
+}
+.set-pass__set-pass-label, .set-pass__repeat-pass-label {
+    color: rgba(54, 59, 77, 0.9);
+    line-height: 133%;
+    font-weight: 400;
+}
+.set-pass__set-pass-field, .set-pass__repeat-pass-field {
+    width: 100%;
+    height: 2.6em;
+    padding: 0.6em 0 0.6em 1.3em;
+    font-size: 1em;
+    border: 0.5px solid rgba(54, 59, 77, 0.3);
+    box-sizing: border-box;
+    border-radius: 8px;
+    outline: none;
+    color: rgba(54, 59, 77, 0.9);
+}
+/*------Стилизация блока с выбором часового пояса---------------------------------------------------------------------*/
+.reg-form__time-zone-main-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.7em;
+    gap: 0.8em;
+}
+.reg-form__time-zone-main-container.active {
+    display: none;
+}
+.reg-form__time-zone-heading {
+    line-height: 24px;
+    color: rgba(54, 59, 77, 0.9);
+    opacity: 0.9;
+    margin: 0 auto 0 0;
+}
+.reg-form__time-zone-select-container {
+    display: flex;
+    position: relative;
+    width: 50%;
+    height: 2.6em;
+    border: 0.5px solid rgba(54, 59, 77, 0.3);
+    box-sizing: border-box;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.reg-form__time-zone-select-value {
+    line-height: 133%;
+    color: rgba(54, 59, 77, 0.9);
+    opacity: 0.9;
+    margin: auto auto auto 1.3em;
+    max-width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.reg-form__time-zone-select-arrow {
+    width: 1vw;
+    height: 1vh;
+    object-fit: cover;
+    margin: auto 1.33em auto auto;
+}
+.reg-form__time-zone-options-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background: #FFFFFF;
+    overflow-y: scroll;
+    top: 3.22em;
+    left: -1px;
+    width: 100%;
+    max-height: 11em;
+    box-shadow: 0 4px 8px rgba(54, 59, 77, 0.1);
+    border: 0.5px solid rgba(54, 59, 77, 0.2);
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 0 1.33em 1.33em;
+    cursor: default;
+    z-index: 9;
+}
+.reg-form__time-zone-options-container::-webkit-scrollbar {
+    width: 0.22em;
+    background: #FFFFFF;
+    border-radius: 4px;
+}
+.reg-form__time-zone-options-container::-webkit-scrollbar-thumb {
+    background: #CFD4DD;
+    border-radius: 4px;
+}
+.reg-form__time-zone-option {
+    line-height: 1.33em;
+    color: #363B4D;
+    opacity: 0.9;
+    margin: 1.33em auto 0 0;
+}
+.reg-form__time-zone-option:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+.reg-form__select-time-zone {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+}
+.reg-form__select-time-zone select {
+    background-color: white;
+    position: absolute;
+    left: 10em;
+    top: 2px;
+    cursor: pointer;
+    outline: none;
+    width: 60px;
+}
+.reg-form__select-time-zone span {
+    z-index: 3;
+}
+.reg-form__select-time-zone__red-star-icon {
+    display: none;
+}
+/*------Стилизация блока с чекбоксом и политикой-----------------------------------------------------------------------*/
+.reg-form__politic-checkbox {
+    display: inline-flex;
+    gap: 0.8em;
+    margin-bottom: 2.6em;
+}
+.politic-checkbox__label {
+    line-height: 156%;
+    font-weight: 400;
+    color: rgba(54, 59, 77, 0.9);
+    font-size: 1em;
+}
+.politic-checkbox__label-link {
+    color: #4569FF;
+    font-size: 1em;
+}
+/*------Стилизация блока с кнопкой зарегестрироваться-----------------------------------------------------------------*/
+.reg-form__reg-button {
+    display: flex;
+}
+.reg-button__button {
+    background: #0084FE;
+    width: 13em;
+    height: 3.1em;
+    color: #FFFFFF;
+    line-height: 133%;
+    font-weight: 500;
+    font-size: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.reg-button__button:hover {
+    background: #FFFFFF;
+    color: #0084FE;
+    border: 1px solid #0084FE;
+}
+/*-------Блок с кнопкой Продожить для мобильной версии----------------------------------------------------------------*/
+.reg-block__button-next-page {
+    display: none;
+}
+.reg-block__button-next-page.active {
+    display: none;
+}
+/*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
+@media (max-width: 1570px) {
+    .wrapper-reg {
+        font-size: 14px;
+    }
+}
+@media (max-width: 1215px) {
+    .wrapper-reg {
+        font-size: 12px;
+    }
+}
+@media (max-width: 1010px) {
+    .wrapper-reg {
+        font-size: 10px;
+    }
+}
+@media (max-width: 830px) {
+    .wrapper-reg {
+        font-size: 8px;
+    }
+}
+@media (max-width: 670px) {
+    .wrapper-reg {
+        font-size: 6px;
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 500px) {
+    .wrapper-reg {
+        top: 0;
+        left: 0;
+        transform: translate(0, 0);
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+    }
+    .reg-main-block {
+        flex-direction: column;
+        min-width: 375px;
+        max-height: 667px;
+        justify-content: flex-start;
+        border-radius: 16px;
+        margin: 0 auto;
+    }
+    .auth-btn-logotype__title-reg-block {
+        display: none;
+    }
+
+    .reg-main-block__auth-btn-logotype {
+        width: 100%;
+        border-radius: 0;
+        min-height: 110px;
+        padding-top: 48px;
+        -webkit-border-top-left-radius: 16px;
+        -webkit-border-top-right-radius: 16px;
+    }
+
+    .auth-btn-logotype__logo {
+        justify-content: flex-start;
+    }
+
+    .logo__cryptoveche-logotype {
+        width: 55%;
+        margin-left: 24px;
+    }
+
+    .auth-btn-logotype__background-image {
+        display: none;
+    }
+
+    .auth-btn-logotype__background-image-mobile {
+        position: absolute;
+        display: flex;
+        object-fit: cover;
+        width: 50%;
+        height: 100%;
+        right: 0;
+        top: 0;
+    }
+    .reg-form__title {
+        margin-bottom: 24px;
+    }
+    .reg-form__title-reg {
+        font-size: 26px;
+        font-weight: 500;
+        line-height: 131%;
+    }
+    .reg-main-block__reg-form {
+        padding: 24px 16px 0 16px;
+        width: 100%;
+        border-radius: 16px;
+        margin: 0 auto;
+    }
+    .reg-form__username-reg-fields {
+        flex-direction: column;
+    }
+    .surname__label, .first-name__label, .middle-name__label {
+        color: rgba(54, 59, 77, 0.9);
+        line-height: 138%;
+        font-weight: 400;
+        font-size: 16px;
+    }
+    .username-reg-fields__surname, .username-reg-fields__first-name, .username-reg-fields__middle-name {
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+    .surname__field, .first-name__field, .middle-name__field {
+        height: 40px;
+        font-size: 16px;
+    }
+    .reg-block__button-next-page {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 24px;
+    }
+    .reg-block__button-next-page__label {
+        color: rgba(54, 59, 77, 0.4);
+        font-size: 14px;
+        line-height: 22px;
+        font-weight: 400;
+        margin-bottom: 4px;
+    }
+    .reg-block__button-next-page__btn {
+        background-color: #0084FE;
+        border-radius: 4px;
+        margin: 0 auto 8px auto;
+        width: 343px;
+        height: 40px;
+        color: #FFFFFF;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+        cursor: pointer;
+    }
+    .reg-block__button-next-page__link-auth {
+        display: inline-flex;
+        justify-content: center;
+        gap: 4px;
+    }
+    .button-next-page__link {
+        color: rgba(54, 59, 77, 0.9);
+        font-size: 16px;
+        line-height: 138%;
+    }
+    .button-next-page__link-auth {
+        color: #0084FE;
+        font-size: 16px;
+        line-height: 138%;
+    }
+    .reg-form__time-zone-main-container {
+        margin-bottom: 20px;
+    }
+    .reg-form__time-zone-select-container {
+        width: 100%;
+        height: 40px;
+        font-size: 16px;
+
+    }
+    .reg-form__time-zone-heading {
+        font-size: 16px;
+    }
+
+}

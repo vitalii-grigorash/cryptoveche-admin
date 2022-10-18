@@ -1,0 +1,106 @@
+[
+  {
+    "LABEL": "(UTC-11) American Samoa",
+    "VALUE": "-11"
+  },
+  {
+    "LABEL": "(UTC-10) USA - Hawaii",
+    "VALUE": "-10"
+  },
+  {
+    "LABEL": "(UTC-9) USA - Alaska",
+    "VALUE": "-9"
+  },
+  {
+    "LABEL": "(UTC-8) USA - Nevada",
+    "VALUE": "-8"
+  },
+  {
+    "LABEL": "(UTC-7) USA - Idaho",
+    "VALUE": "-7"
+  },
+  {
+    "LABEL": "(UTC-6) Central Time Zone",
+    "VALUE": "-6"
+  },
+  {
+    "LABEL": "(UTC-5) USA - Florida",
+    "VALUE": "-5"
+  },
+  {
+    "LABEL": "(UTC-4) Chile",
+    "VALUE": "-4"
+  },
+  {
+    "LABEL": "(UTC-3) Greenland",
+    "VALUE": "-3"
+  },
+  {
+    "LABEL": "(UTC-2) Brazil",
+    "VALUE": "-2"
+  },
+  {
+    "LABEL": "(UTC-1) Cape Verde",
+    "VALUE": "-1"
+  },
+  {
+    "LABEL": "(UTC+0) United Kingdom",
+    "VALUE": "0"
+  },
+  {
+    "LABEL": "(UTC+1) Central European Time",
+    "VALUE": "1"
+  },
+  {
+    "LABEL": "(UTC+2) Eastern European Time",
+    "VALUE": "2"
+  },
+  {
+    "LABEL": "(UTC+3) Russia - Moscow - Moscow Time",
+    "VALUE": "3"
+  },
+  {
+    "LABEL": "(UTC+4) Russia - Samara",
+    "VALUE": "4"
+  },
+  {
+    "LABEL": "(UTC+5) Russia - Yekaterinburg",
+    "VALUE": "5"
+  },
+  {
+    "LABEL": "(UTC+6) Russia - Omsk",
+    "VALUE": "6"
+  },
+  {
+    "LABEL": "(UTC+7) Russia - Krasnoyarsk",
+    "VALUE": "7"
+  },
+  {
+    "LABEL": "(UTC+8) Russia - Irkutsk",
+    "VALUE": "8"
+  },
+  {
+    "LABEL": "(UTC+9) Russia - Yakutsk",
+    "VALUE": "9"
+  },
+  {
+    "LABEL": "(UTC+10) Russia - Vladivostok",
+    "VALUE": "10"
+  },
+  {
+    "LABEL": "(UTC+11) Russia - Magadan",
+    "VALUE": "11"
+  },
+  {
+    "LABEL": "(UTC+12) Russia - Kamchatka",
+    "VALUE": "12"
+  },
+  {
+    "LABEL": "(UTC+13) Samoa",
+    "VALUE": "13"
+  },
+  {
+    "LABEL": "(UTC+14) Kiribati (Line Islands)",
+    "VALUE": "+14"
+  }
+]
