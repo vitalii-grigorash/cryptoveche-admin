@@ -23,11 +23,46 @@
     -webkit-border-bottom-left-radius: 8px;
 }
 .auth-form__title {
+    display: flex;
+    margin-bottom: 1.7em;
+    justify-content: space-between;
+    align-items: center;
+}
+.title__auth {
     font-weight: 600;
     font-size: 1.8em;
     line-height: 125%;
     color: rgba(54, 59, 77, 0.9);
-    margin-bottom: 1.7em;
+}
+.title__change-lang {
+    display: flex;
+    gap: 8px;
+}
+.change-lang__russian {
+    font-size: 0.8em;
+    cursor: pointer;
+    color: rgba(54, 59, 77, 0.9);
+    font-weight: 400;
+    line-height: 143%;
+}
+.change-lang__russian.active {
+    font-size: 0.8em;
+    cursor: pointer;
+    color: #0084FE;
+    border-bottom: 1px solid #0084FE;
+}
+.change-lang__english {
+    font-size: 0.8em;
+    cursor: pointer;
+    color: rgba(54, 59, 77, 0.9);
+    font-weight: 400;
+    line-height: 143%;
+}
+.change-lang__english.active {
+    font-size: 0.8em;
+    cursor: pointer;
+    color: #0084FE;
+    border-bottom: 1px solid #0084FE;
 }
 /*------Стилизация блока с инпутом выбора ролей-----------------------------------------------------------------------*/
 .auth-form__select-role {
@@ -133,6 +168,15 @@
     flex-direction: column;
     gap: 0.8em;
     margin-bottom: 1.3em;
+    position: relative;
+}
+.auth-form__icon-pass {
+    position: absolute;
+    width: 1.2em;
+    height: 1em;
+    cursor: pointer;
+    right: 1.22em;
+    top: 3em;
 }
 .password__label {
     color: rgba(54, 59, 77, 0.9);
@@ -149,6 +193,15 @@
     border-radius: 8px;
     outline: none;
     color: rgba(54, 59, 77, 0.9);
+}
+.auth-form__error-message {
+    position: absolute;
+    font-size: 0.7em;
+    line-height: 143%;
+    color: #FF4970;
+    right: 0;
+    top: 7em;
+    display: none;
 }
 /*------Контейнер для блока с ссылкой забыли пароль-------------------------------------------------------------------*/
 .auth-form__link-forget-pass {
@@ -397,10 +450,18 @@
         top: 0;
     }
     .auth-form__title {
-        font-size: 21px;
         margin-bottom: 24px;
+    }
+    .title__auth {
         font-weight: 500;
         line-height: 138%;
+        font-size: 21px;
+    }
+    .change-lang__russian {
+        font-size: 14px;
+    }
+    .change-lang__english {
+        font-size: 14px;
     }
     .auth-main-block__auth-form {
         padding: 24px 16px 5px 16px;
@@ -425,7 +486,7 @@
         margin-bottom: 24px;
     }
     .link-forget-pass__link-page-forget {
-        color: #373C4E;
+        color: #0084FE;
         font-size: 14px;
         line-height: 171%;
     }
@@ -493,5 +554,13 @@
         font-size: 14px;
         line-height: 171%;
     }
-
+    .auth-form__error-message {
+        font-size: 10px;
+    }
+    .auth-form__icon-pass {
+        width: 20px;
+        height: 15px;
+        top: 45px;
+        right: 15px;
+    }
 }

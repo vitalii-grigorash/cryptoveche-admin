@@ -121,6 +121,19 @@
     justify-content: space-between;
     gap: 0.8em;
     margin-bottom: 1.7em;
+    position: relative;
+}
+.reg-form__username-reg-fields.active {
+    display: none;
+}
+.reg-form__username-reg-fields__error-message {
+    position: absolute;
+    font-size: 0.7em;
+    line-height: 143%;
+    color: #FF4970;
+    right: 0;
+    top: 7em;
+    display: none;
 }
 .username-reg-fields__surname, .username-reg-fields__first-name, .username-reg-fields__middle-name {
     display: flex;
@@ -149,6 +162,20 @@
     flex-direction: column;
     gap: 0.8em;
     margin-bottom: 1.7em;
+    position: relative;
+}
+.reg-form__e-mail-field__error-message {
+    position: absolute;
+    font-size: 0.7em;
+    line-height: 143%;
+    color: #FF4970;
+    right: 0;
+    top: 7em;
+    display: none;
+}
+.reg-form__e-mail-field.active {
+    display: flex;
+    flex-direction: column;
 }
 .e-mail-field__label {
     color: rgba(54, 59, 77, 0.9);
@@ -172,12 +199,27 @@
     flex-direction: row;
     gap: 0.8em;
     margin-bottom: 1.7em;
+    position: relative;
+}
+.reg-form__set-password__error-message {
+    position: absolute;
+    font-size: 0.7em;
+    line-height: 143%;
+    color: #FF4970;
+    right: 0;
+    top: 7em;
+    display: none;
+}
+.reg-form__set-password.active {
+    display: flex;
+    flex-direction: column;
 }
 .set-password__set-pass, .set-password__repeat-pass {
     display: flex;
     flex-direction: column;
     gap: 0.8em;
     width: 100%;
+    position: relative;
 }
 .set-pass__set-pass-label, .set-pass__repeat-pass-label {
     color: rgba(54, 59, 77, 0.9);
@@ -201,8 +243,18 @@
     flex-direction: column;
     margin-bottom: 1.7em;
     gap: 0.8em;
+    position: relative;
 }
 .reg-form__time-zone-main-container.active {
+    display: none;
+}
+.reg-form__time-zone-main-container__error-message {
+    position: absolute;
+    font-size: 0.7em;
+    line-height: 143%;
+    color: #FF4970;
+    left: 0;
+    top: 7em;
     display: none;
 }
 .reg-form__time-zone-heading {
@@ -214,7 +266,7 @@
 .reg-form__time-zone-select-container {
     display: flex;
     position: relative;
-    width: 50%;
+    width: 49%;
     height: 2.6em;
     border: 0.5px solid rgba(54, 59, 77, 0.3);
     box-sizing: border-box;
@@ -311,6 +363,11 @@
     color: #4569FF;
     font-size: 1em;
 }
+.reg-form__politic-checkbox.active {
+    display: flex;
+    margin-bottom: 24px;
+    gap: 16px;
+}
 /*------Стилизация блока с кнопкой зарегестрироваться-----------------------------------------------------------------*/
 .reg-form__reg-button {
     display: flex;
@@ -331,11 +388,23 @@
     color: #0084FE;
     border: 1px solid #0084FE;
 }
+.reg-form__reg-button.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+}
 /*-------Блок с кнопкой Продожить для мобильной версии----------------------------------------------------------------*/
 .reg-block__button-next-page {
     display: none;
 }
 .reg-block__button-next-page.active {
+    display: none;
+}
+.reg-block__button-next-page__link-auth {
+    display: none;
+}
+.reg-block__button-next-page__label {
     display: none;
 }
 /*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
@@ -438,17 +507,33 @@
     .reg-form__username-reg-fields {
         flex-direction: column;
     }
-    .surname__label, .first-name__label, .middle-name__label {
+    .surname__label,
+    .first-name__label,
+    .middle-name__label,
+    .e-mail-field__label,
+    .set-pass__set-pass-label,
+    .set-pass__repeat-pass-label
+    {
         color: rgba(54, 59, 77, 0.9);
         line-height: 138%;
         font-weight: 400;
         font-size: 16px;
     }
-    .username-reg-fields__surname, .username-reg-fields__first-name, .username-reg-fields__middle-name {
+    .username-reg-fields__surname,
+    .username-reg-fields__first-name,
+    .username-reg-fields__middle-name,
+    .reg-form__e-mail-field.active,
+    .set-password__set-pass,
+    .set-password__repeat-pass {
         gap: 8px;
         margin-bottom: 16px;
     }
-    .surname__field, .first-name__field, .middle-name__field {
+    .surname__field,
+    .first-name__field,
+    .middle-name__field,
+    .e-mail-field__field,
+    .set-pass__set-pass-field,
+    .set-pass__repeat-pass-field {
         height: 40px;
         font-size: 16px;
     }
@@ -457,9 +542,9 @@
         flex-direction: column;
         text-align: center;
         width: 100%;
-        margin-bottom: 24px;
     }
     .reg-block__button-next-page__label {
+        display: initial;
         color: rgba(54, 59, 77, 0.4);
         font-size: 14px;
         line-height: 22px;
@@ -477,6 +562,11 @@
         font-weight: 500;
         line-height: 24px;
         cursor: pointer;
+    }
+    .reg-block__button-next-page__btn:hover {
+        background: #FFFFFF;
+        color: #0084FE;
+        border: 1px solid #0084FE;
     }
     .reg-block__button-next-page__link-auth {
         display: inline-flex;
@@ -500,10 +590,55 @@
         width: 100%;
         height: 40px;
         font-size: 16px;
-
     }
     .reg-form__time-zone-heading {
         font-size: 16px;
     }
-
+    .reg-form__time-zone-options-container {
+        max-height: 110px;
+    }
+    .reg-form__time-zone-select-arrow {
+        width: 13px;
+        height: 8px;
+    }
+    .reg-form__politic-checkbox {
+        display: none;
+    }
+    .reg-form__reg-button {
+        display: none;
+    }
+    .reg-button__button {
+        height: 40px;
+        width: 100%;
+        font-size: 16px;
+        line-height: 150%;
+    }
+    .reg-form__e-mail-field {
+        display: none;
+    }
+    .reg-form__set-password {
+        display: none;
+    }
+    .politic-checkbox__label {
+        font-size: 16px;
+        line-height: 138%;
+    }
+    .politic-checkbox__label-link {
+        text-decoration: none;
+    }
+    .reg-form__e-mail-field__error-message {
+       font-size: 10px;
+    }
+    .reg-form__set-password__error-message {
+        font-size: 10px;
+        top: 160px;
+    }
+    .reg-form__username-reg-fields__error-message {
+        font-size: 10px;
+        top: 255px;
+    }
+    .reg-form__time-zone-main-container__error-message {
+        font-size: 10px;
+        left: 225px;
+    }
 }

@@ -1,22 +1,47 @@
 import '../Auth/Auth.css';
 import cryptoveche_logo from '../../img/Auth_logotype_crypto.svg';
 import row_input_select_role from '../../img/Auth_icon_row_select_role.svg';
-import show_pass_icon from '../../img/Auth_show_pass_icon.svg';
-import hide_pass_icon from '../../img/Auth_hidden_pass.svg';
+import hide_pass_icon from '../../img/Auth_show_pass_icon.svg';
+import show_pass_icon from '../../img/Auth_hidden_pass.svg';
 import auth_background_image from '../../img/Auth_backgroundimage.svg';
 import auth_background_mobile from '../../img/Auth_background_mobile.svg';
 import {Link, useNavigate} from "react-router-dom";
+import {useState} from "react";
 
 const Auth = () => {
 
     const linkButtonRegPage = useNavigate();
+    const [showPass, setShowPass] = useState(false);
+    const [typePass, setTypePass] = useState('password');
+    const [changeLanguage, setChangeLanguage] = useState(false);
+
+    function showHidePass() {
+        if(typePass === 'password') {
+            setTypePass('text')
+            setShowPass(true)
+        } else {
+            setTypePass('password')
+            setShowPass(false)
+        }
+    }
+
+   function changeLangEng () {
+            setChangeLanguage(true)
+   }
+    function changeLangRus () {
+            setChangeLanguage(false)
+    }
 
     return (
         <div className="wrapper-auth">
             <div className="auth-main-block">
                 <div className="auth-main-block__auth-form">
                     <div className="auth-form__title">
-                        Авторизация
+                        <span className="title__auth">Авторизация</span>
+                        <div className="title__change-lang">
+                            <span onClick={() => changeLangEng()} className={changeLanguage ? "change-lang__russian active" : "change-lang__russian"}>РУС</span>
+                            <span onClick={() => changeLangRus()} className={changeLanguage ? "change-lang__english" : "change-lang__english active"}>ENG</span>
+                        </div>
                     </div>
                     <div className="auth-form__select-role">
                         <label className="select-role__label">Войти как</label>
@@ -34,7 +59,9 @@ const Auth = () => {
                     </div>
                     <div className="auth-form__password">
                         <label className="password__label">Пароль</label>
-                        <input type={"password"} className="password__field-pass"/>
+                        <input type={typePass} className="password__field-pass"/>
+                        <img onClick={() => showHidePass()} className="auth-form__icon-pass" alt={'иконка скрыть/показать пароль'} src={showPass ? show_pass_icon : hide_pass_icon} />
+                        <span className="auth-form__error-message">Неверно введено имя пользователя или пароль</span>
                     </div>
                     <div className="auth-form__link-forget-pass">
                         <a className="link-forget-pass__link-page-forget" href={'/'}>Забыли пароль?</a>
