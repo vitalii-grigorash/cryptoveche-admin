@@ -23,7 +23,7 @@ const AuthForgetPass = (props) => {
     return (
             <div className="wrapper-forget-pass">
                 <div className="forget-pass-main-block">
-                    <div className="forget-pass-main-block__forget-pass-form">
+                    <div className={activeModal ? "forget-pass-main-block__forget-pass-form active" : "forget-pass-main-block__forget-pass-form"}>
                         <div className="forget-pass-form__title">
                             <div className="forget-pass-form__title-row-back">
                                 <Link to={'/auth'}><img className="forget-pass-form__row-back" src={rowBackAuthPage} alt={'стрелочка для возврата'} /></Link>
@@ -44,7 +44,7 @@ const AuthForgetPass = (props) => {
                             <button onClick={onSendEmailClick} className="btn-forget-pass__btn-send">{constants.AUTH_FORGET_PASS.AUTH_FORGET_PASS_BTN}</button>
                         </div>
                     </div>
-                    <div className="forget-pass-main-block__logotype-forget-pass">
+                    <div className={activeModal ? "forget-pass-main-block__logotype-forget-pass active" : "forget-pass-main-block__logotype-forget-pass" }>
                         <div className="logotype-forget-pass__logo">
                             <img className="logo__cryptoveche-logotype" alt={'логотип'} src={cryptoveche_logo}/>
                         </div>
@@ -55,7 +55,11 @@ const AuthForgetPass = (props) => {
                         <img alt={'картинка в блоке с лого мобильная версия'} className="logotype-forget-pass__background-image-mobile" src={auth_background_mobile}/>
                     </div>
                 </div>
-                <AuthForgetPassModal constants={constants} active={activeModal}/>
+                <AuthForgetPassModal
+                    constants={constants}
+                    handleLangChange={handleLangChange}
+                    changeLanguageBtn={changeLanguageBtn}
+                    active={activeModal}/>
             </div>
     )
 }

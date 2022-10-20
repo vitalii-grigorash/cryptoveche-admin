@@ -106,6 +106,7 @@
     object-fit: cover;
     width: 80%;
     pointer-events: none;
+    z-index: 4;
 }
 .logotype-forget-pass__title {
     display: flex;
@@ -123,9 +124,9 @@
     /*width: 685px;*/
     /*height: 753px;*/
     width: 35.677vw;
-    height: 100%;
-    left: -6.4em;
-    top: 6.1em;
+    height: 120%;
+    left: -6.1em;
+    top: 0.1em;
     bottom: 0;
     pointer-events: none;
 }
@@ -191,6 +192,10 @@
         -webkit-border-top-left-radius: 16px;
         -webkit-border-top-right-radius: 16px;
     }
+    .forget-pass-main-block__logotype-forget-pass.active {
+        border-radius: 16px;
+        height: 100%;
+    }
     .logotype-forget-pass__logo {
         justify-content: flex-start;
     }
@@ -249,6 +254,9 @@
        border-radius: 4px;
        font-size: 16px;
        line-height: 124%;
+   }
+   .forget-pass-main-block__forget-pass-form.active {
+       display: none;
    }
 }
 
