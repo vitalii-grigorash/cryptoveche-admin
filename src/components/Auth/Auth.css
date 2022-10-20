@@ -5,6 +5,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 18px;
+    overflow: auto;
 }
 .auth-main-block {
     display: flex;
@@ -13,14 +14,14 @@
     width: 57.5vw;
     height: 100%;
     box-shadow: -3px 0 8px rgba(54, 58, 72, 0.1);
-    border-radius: 8px;
+    border-radius: 0.4em;
 }
 /*------Контейнер для блока с инпутами--------------------------------------------------------------------------------*/
 .auth-main-block__auth-form {
     padding: 4.1em 3.1em 4.1em 3.1em;
     width: 40vw;
-    -webkit-border-top-left-radius: 8px;
-    -webkit-border-bottom-left-radius: 8px;
+    -webkit-border-top-left-radius: 0.4em;
+    -webkit-border-bottom-left-radius: 0.4em;
 }
 .auth-form__title {
     display: flex;
@@ -36,7 +37,7 @@
 }
 .title__change-lang {
     display: flex;
-    gap: 8px;
+    gap: 0.4em;
 }
 .change-lang__russian {
     font-size: 0.8em;
@@ -84,7 +85,7 @@
     margin: 0 auto;
     border: 0.5px solid rgba(54, 59, 77, 0.3);
     box-sizing: border-box;
-    border-radius: 8px;
+    border-radius: 0.4em;
     cursor: pointer;
 }
 .select-role__time-zone-select-value {
@@ -155,11 +156,11 @@
 .username__field-username {
     width: 100%;
     height: 2.6em;
-    padding: 0.8em 0 0.8em 1.3em;
+    padding: 0.8em 1.3em 0.8em 1.3em;
     font-size: 1em;
     border: 0.5px solid rgba(54, 59, 77, 0.3);
     box-sizing: border-box;
-    border-radius: 8px;
+    border-radius: 0.4em;
     outline: none;
     color: rgba(54, 59, 77, 0.9);
 }
@@ -186,11 +187,11 @@
 .password__field-pass {
     width: 100%;
     height: 2.6em;
-    padding: 0.8em 0 0.8em 1.3em;
+    padding: 0.8em 2.5em 0.8em 1.3em;
     font-size: 1em;
     border: 0.5px solid rgba(54, 59, 77, 0.3);
     box-sizing: border-box;
-    border-radius: 8px;
+    border-radius: 0.4em;
     outline: none;
     color: rgba(54, 59, 77, 0.9);
 }
@@ -228,6 +229,7 @@
     position: relative;
     width: 1.1em;
     height: 1.1em;
+    cursor: pointer;
 }
 .remember-me__checkbox_container input {
     position: absolute;
@@ -307,6 +309,7 @@
      flex-direction: column;
      justify-content: space-between;
      position: relative;
+     overflow: hidden;
      background: #373C4E;
      padding: 4.1em 1.3em 4.1em 1.3em;
      width: 17.5vw;
@@ -320,6 +323,7 @@
 .logo__cryptoveche-logotype {
     object-fit: cover;
     width: 80%;
+    pointer-events: none;
 }
 .reg-btn-logotype__title-reg-block {
     display: flex;
@@ -335,6 +339,7 @@
     font-weight: 400;
     line-height: 133%;
     margin-bottom: 1.7em;
+    z-index: 4;
 }
 .title-reg-block__question-account {
     text-align: right;
@@ -343,6 +348,7 @@
     font-weight: 500;
     line-height: 150%;
     margin-bottom: 0.8em;
+    z-index: 4;
 }
 .title-reg-block__reg-btn {
     display: flex;
@@ -363,13 +369,18 @@
 .reg-btn-logotype__background-image {
     position: absolute;
     object-fit: cover;
-    width: 100%;
-    height: 90%;
-    left: 0;
+    /*width: 685px;*/
+    /*height: 753px;*/
+    width: 35.677vw;
+    height: 100%;
+    left: -6.4em;
+    top: 6.1em;
     bottom: 0;
+    pointer-events: none;
 }
 .reg-btn-logotype__background-image-mobile {
     display: none;
+    pointer-events: none;
 }
 /*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
 @media (max-width: 1570px) {
@@ -414,7 +425,7 @@
     .auth-main-block {
         flex-direction: column-reverse;
         min-width: 375px;
-        max-height: 667px;
+        height: 667px;
         justify-content: flex-end;
         border-radius: 16px;
         margin: 0 auto;
@@ -457,10 +468,19 @@
         line-height: 138%;
         font-size: 21px;
     }
+    .title__change-lang {
+        gap: 8px;
+    }
     .change-lang__russian {
         font-size: 14px;
     }
     .change-lang__english {
+        font-size: 14px;
+    }
+    .change-lang__russian.active {
+        font-size: 14px;
+    }
+    .change-lang__english.active {
         font-size: 14px;
     }
     .auth-main-block__auth-form {
@@ -490,7 +510,17 @@
         font-size: 14px;
         line-height: 171%;
     }
-    .select-role__time-zone-select-container, .username__field-username, .password__field-pass {
+   .username__field-username {
+       height: 40px;
+       font-size: 16px;
+        padding: 9px 16px 9px 16px;
+    }
+    .password__field-pass {
+        height: 40px;
+        font-size: 16px;
+        padding: 9px 38px 9px 16px;
+    }
+    .select-role__time-zone-select-container{
         height: 40px;
         font-size: 16px;
     }

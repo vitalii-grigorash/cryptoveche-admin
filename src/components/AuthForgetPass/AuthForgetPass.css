@@ -1,0 +1,254 @@
+/*------Общий контейнер для страницы забыи пароль---------------------------------------------------------------------*/
+.wrapper-forget-pass {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    overflow: auto;
+}
+.forget-pass-main-block {
+    display: flex;
+    flex-direction: row;
+    background: #FFFFFF;
+    width: 57.5vw;
+    height: 100%;
+    box-shadow: -3px 0 8px rgba(54, 58, 72, 0.1);
+    border-radius: 0.4em;
+}
+/*------Контейнер для блока с инпутом и кнопкой-----------------------------------------------------------------------*/
+.forget-pass-main-block__forget-pass-form {
+    padding: 5.8em 3.7em 5.8em 3.7em;
+    width: 40vw;
+    -webkit-border-top-left-radius: 0.4em;
+    -webkit-border-bottom-left-radius: 0.4em;
+}
+.forget-pass-form__title {
+    display: flex;
+    margin-bottom: 2.66em;
+    justify-content: space-between;
+    align-items: center;
+}
+.forget-pass-form__title-row-back {
+    display: flex;
+    align-items: center;
+}
+.forget-pass-form__row-back {
+    cursor: pointer;
+    margin-right: 2em;
+    width: 1.3em;
+    height: 0.88em;
+}
+.forget-pass-form__label {
+    font-weight: 600;
+    font-size: 1.8em;
+    line-height: 125%;
+    color: rgba(54, 59, 77, 0.9);
+}
+.forget-pass-form__rule {
+    color: rgba(54, 59, 77, 0.9);
+    line-height: 156%;
+    font-size: 1em;
+    font-weight: 400;
+    margin-bottom: 1.3em;
+}
+.forget-pass-form__field-forget-pass {
+    display: flex;
+    margin-bottom: 2.6em;
+    opacity: 0.4;
+}
+.field-forget-pass__email {
+    border: 0.5px solid rgba(54, 59, 77, 0.6);
+    border-radius: 0.4em;
+    padding: 0.8em 1.3em 0.8em 1.3em;
+    font-size: 1em;
+    line-height: 133%;
+    outline: none;
+    width: 100%;
+    height: 3.1em;
+}
+.forget-pass-form__btn-forget-pass {
+    display: flex;
+}
+.btn-forget-pass__btn-send {
+    width: 9.7em;
+    height: 3.11em;
+    color: #FFFFFF;
+    background: #0084FE;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    line-height: 133%;
+}
+.btn-forget-pass__btn-send:hover {
+    background: #FFFFFF;
+    color: #0084FE;
+    border: 1px solid #0084FE;
+}
+/*------Контейнер для блока с логотипом-------------------------------------------------------------------------------*/
+.forget-pass-main-block__logotype-forget-pass {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    background: #373C4E;
+    padding: 4.5em 1.6em 5.8em 1.8em;
+    width: 17.5vw;
+    -webkit-border-top-right-radius: 0.4em;
+    -webkit-border-bottom-right-radius: 0.4em;
+}
+.logotype-forget-pass__logo {
+    display: flex;
+    justify-content: flex-end;
+}
+.logo__cryptoveche-logotype {
+    object-fit: cover;
+    width: 80%;
+    pointer-events: none;
+}
+.logotype-forget-pass__title {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    color: #FFFFFF;
+    font-size: 1.3em;
+    font-weight: 400;
+    line-height: 133%;
+    z-index: 4;
+}
+.logotype-forget-pass__background-image {
+    position: absolute;
+    object-fit: cover;
+    /*width: 685px;*/
+    /*height: 753px;*/
+    width: 35.677vw;
+    height: 100%;
+    left: -6.4em;
+    top: 6.1em;
+    bottom: 0;
+    pointer-events: none;
+}
+.logotype-forget-pass__background-image-mobile {
+    display: none;
+}
+/*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
+@media (max-width: 1570px) {
+    .wrapper-forget-pass {
+        font-size: 14px;
+    }
+}
+@media (max-width: 1215px) {
+    .wrapper-forget-pass {
+        font-size: 12px;
+    }
+}
+@media (max-width: 1010px) {
+    .wrapper-forget-pass {
+        font-size: 10px;
+    }
+}
+@media (max-width: 830px) {
+    .wrapper-forget-pass {
+        font-size: 8px;
+    }
+}
+@media (max-width: 670px) {
+    .wrapper-forget-pass {
+        font-size: 6px;
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 500px) {
+    .wrapper-forget-pass {
+        top: 0;
+        left: 0;
+        transform: translate(0, 0);
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+    }
+    .forget-pass-main-block {
+        flex-direction: column-reverse;
+        min-width: 375px;
+        height: 667px;
+        justify-content: flex-end;
+        border-radius: 16px;
+        margin: 0 auto;
+    }
+    .logotype-forget-pass__title {
+        display: none;
+    }
+    .forget-pass-main-block__logotype-forget-pass {
+        width: 100%;
+        border-radius: 0;
+        min-height: 340px;
+        padding-top: 48px;
+        -webkit-border-top-left-radius: 16px;
+        -webkit-border-top-right-radius: 16px;
+    }
+    .logotype-forget-pass__logo {
+        justify-content: flex-start;
+    }
+    .logo__cryptoveche-logotype {
+        width: 55%;
+        margin-left: 24px;
+    }
+    .logotype-forget-pass__background-image {
+        display: none;
+    }
+    .logotype-forget-pass__background-image-mobile {
+        position: absolute;
+        display: flex;
+        object-fit: cover;
+        width: 70%;
+        height: 100%;
+        right: 0;
+        top: 0;
+    }
+    .forget-pass-form__label {
+        font-size: 26px;
+        line-height: 131%;
+    }
+    .forget-pass-main-block__forget-pass-form {
+        padding: 24px 16px 5px 16px;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .forget-pass-form__row-back {
+        width: 18px;
+        height: 12px;
+    }
+    .forget-pass-form__title {
+        margin-bottom: 24px;
+    }
+    .forget-pass-form__rule {
+        font-size: 16px;
+        line-height: 162%;
+        margin-bottom: 24px;
+    }
+   .forget-pass-form__field-forget-pass {
+       margin-bottom: 24px;
+       opacity: 0.9;
+   }
+   .field-forget-pass__email {
+       height: 40px;
+       border-radius: 8px;
+       font-size: 16px;
+       line-height: 138%;
+       color: rgba(54, 59, 77, 0.9);
+       padding: 9px 16px 9px 16px;
+   }
+   .btn-forget-pass__btn-send {
+       width: 100%;
+       height: 40px;
+       border-radius: 4px;
+       font-size: 16px;
+       line-height: 124%;
+   }
+}
+

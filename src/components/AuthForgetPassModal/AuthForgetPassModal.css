@@ -1,0 +1,96 @@
+/*------Основной стиль модального окна--------------------------------------------------------------------------------*/
+.auth-forget-pass-modal {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+    z-index: 6;
+    font-size: 18px;
+}
+/*-----Активация модального окна при клике------------------------------------------------------------------------------*/
+.auth-forget-pass-modal.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+}
+/*------Стилизация самого модального окна-----------------------------------------------------------------------------*/
+.auth-forget-pass-modal__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.2em;
+    padding: 2.6em 2.2em 2.6em 2.2em;
+    width: 28.542vw;
+    max-height: 328px;
+    border-radius: 0.4em;
+    background-color: #FFFFFF;
+}
+/*------Стилизация заголовка модального окна--------------------------------------------------------------------------*/
+.auth-forget-pass-modal__content-title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.7em;
+    line-height: 125%;
+    color: rgba(54, 59, 77, 0.9);
+}
+/*-------Стилизация информации модального окна------------------------------------------------------------------------*/
+.auth-forget-pass-modal__content-info {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1em;
+    line-height: 156%;
+    color: #363B4D;
+    opacity: 0.9;
+}
+/*------Стилизация кнопки модального окна-----------------------------------------------------------------------------*/
+.auth-forget-pass-modal__content-btn {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1em;
+    line-height: 133%;
+    width: 12.1em;
+    height: 3.1em;
+    border-radius: 4px;
+    color: #FFFFFF;
+    background-color: #0084FE;
+    cursor: pointer;
+}
+.auth-forget-pass-modal__content-btn:hover {
+    background: #FFFFFF;
+    color: #0084FE;
+    border: 1px solid #0084FE;
+}
+/*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
+@media (max-width: 1570px) {
+    .auth-forget-pass-modal {
+        font-size: 14px;
+    }
+}
+@media (max-width: 1215px) {
+    .auth-forget-pass-modal {
+        font-size: 12px;
+    }
+}
+@media (max-width: 1010px) {
+    .auth-forget-pass-modal {
+        font-size: 10px;
+    }
+}
+@media (max-width: 830px) {
+    .auth-forget-pass-modal {
+        font-size: 8px;
+    }
+}
+@media (max-width: 670px) {
+    .auth-forget-pass-modal {
+        font-size: 6px;
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/

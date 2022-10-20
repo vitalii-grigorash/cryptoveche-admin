@@ -5,6 +5,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 18px;
+    overflow: auto;
 }
 .reg-main-block {
     display: flex;
@@ -13,7 +14,7 @@
     width: 57.5vw;
     height: 100%;
     box-shadow: 0 3px 16px rgba(54, 58, 72, 0.08);
-    border-radius: 8px;
+    border-radius: 0.4em;
 }
 .reg-main-block__red-star-heading_span {
     color: #FF4970;
@@ -24,11 +25,12 @@
     flex-direction: column;
     justify-content: space-between;
     position: relative;
+    overflow: hidden;
     background: #373C4E;
     padding: 4.1em 1.3em 4.1em 1.3em;
     width: 17.5vw;
-    -webkit-border-top-left-radius: 8px;
-    -webkit-border-bottom-left-radius: 8px;
+    -webkit-border-top-left-radius: 0.4em;
+    -webkit-border-bottom-left-radius: 0.4em;
 }
 .auth-btn-logotype__logo {
     display: flex;
@@ -37,6 +39,7 @@
 .logo__cryptoveche-logotype {
     object-fit: cover;
     width: 80%;
+    pointer-events: none;
 }
 .auth-btn-logotype__title-reg-block {
     display: flex;
@@ -52,6 +55,7 @@
     font-weight: 400;
     line-height: 133%;
     margin-bottom: 1.7em;
+    z-index: 4;
 }
 .title-auth-block__question-account {
     text-align: left;
@@ -60,6 +64,7 @@
     font-weight: 500;
     line-height: 150%;
     margin-bottom: 0.8em;
+    z-index: 4;
 }
 .title-auth-block__auth-btn {
     display: flex;
@@ -80,10 +85,14 @@
 .auth-btn-logotype__background-image {
     position: absolute;
     object-fit: cover;
-    width: 100%;
-    height: 90%;
-    left: 0;
+    /*width: 685px;*/
+    /*height: 753px;*/
+    width: 35.677vw;
+    height: 100%;
+    left: -6.4em;
+    top: 7.7em;
     bottom: 0;
+    pointer-events: none;
 }
 .auth-btn-logotype__background-image-mobile {
     display: none;
@@ -92,14 +101,14 @@
 .reg-main-block__reg-form {
     padding: 4.1em 3.1em 4.1em 3.1em;
     width: 40vw;
-    -webkit-border-top-left-radius: 8px;
-    -webkit-border-bottom-left-radius: 8px;
+    -webkit-border-top-left-radius: 0.4em;
+    -webkit-border-bottom-left-radius: 0.4em;
 }
 .reg-form__title {
     display: flex;
     margin-bottom: 1.7em;
+    justify-content: space-between;
     align-items: center;
-    gap: 19px;
 }
 .reg-form__title-row-back {
     display: none;
@@ -107,7 +116,11 @@
 .reg-form__title-row-back.active {
     display: inherit;
     cursor: pointer;
+    margin-right: 19px;
 }
+.reg-form__title__row-title{
+    display: flex;
+ }
 .reg-form__title-reg {
     font-weight: 600;
     font-size: 1.8em;
@@ -148,11 +161,11 @@
 .surname__field, .first-name__field, .middle-name__field {
     width: 100%;
     height: 2.6em;
-    padding: 0.6em 0 0.6em 1.3em;
+    padding: 0.6em 1.3em 0.6em 1.3em;
     font-size: 1em;
     border: 0.5px solid rgba(54, 59, 77, 0.3);
     box-sizing: border-box;
-    border-radius: 8px;
+    border-radius: 0.4em;
     outline: none;
     color: rgba(54, 59, 77, 0.9);
 }
@@ -185,11 +198,11 @@
 .e-mail-field__field {
     width: 100%;
     height: 2.6em;
-    padding: 0.6em 0 0.6em 1.3em;
+    padding: 0.6em 1.3em 0.6em 1.3em;
     font-size: 1em;
     border: 0.5px solid rgba(54, 59, 77, 0.3);
     box-sizing: border-box;
-    border-radius: 8px;
+    border-radius: 0.4em;
     outline: none;
     color: rgba(54, 59, 77, 0.9);
 }
@@ -229,11 +242,11 @@
 .set-pass__set-pass-field, .set-pass__repeat-pass-field {
     width: 100%;
     height: 2.6em;
-    padding: 0.6em 0 0.6em 1.3em;
+    padding: 0.6em 2.7em 0.6em 1.3em;
     font-size: 1em;
     border: 0.5px solid rgba(54, 59, 77, 0.3);
     box-sizing: border-box;
-    border-radius: 8px;
+    border-radius: 0.4em;
     outline: none;
     color: rgba(54, 59, 77, 0.9);
 }
@@ -270,7 +283,7 @@
     height: 2.6em;
     border: 0.5px solid rgba(54, 59, 77, 0.3);
     box-sizing: border-box;
-    border-radius: 8px;
+    border-radius: 0.4em;
     cursor: pointer;
 }
 .reg-form__time-zone-select-value {
@@ -450,7 +463,7 @@
     .reg-main-block {
         flex-direction: column;
         min-width: 375px;
-        max-height: 667px;
+        height: 667px;
         justify-content: flex-start;
         border-radius: 16px;
         margin: 0 auto;
@@ -492,6 +505,11 @@
     }
     .reg-form__title {
         margin-bottom: 24px;
+
+    }
+    .reg-form__title-row-back.active {
+
+
     }
     .reg-form__title-reg {
         font-size: 26px;
@@ -531,11 +549,16 @@
     .surname__field,
     .first-name__field,
     .middle-name__field,
-    .e-mail-field__field,
+    .e-mail-field__field {
+        height: 40px;
+        font-size: 16px;
+        padding: 9px 16px 9px 16px;
+    }
     .set-pass__set-pass-field,
     .set-pass__repeat-pass-field {
         height: 40px;
         font-size: 16px;
+        padding: 9px 38px 9px 16px;
     }
     .reg-block__button-next-page {
         display: flex;
