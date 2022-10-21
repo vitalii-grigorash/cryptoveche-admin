@@ -1,0 +1,158 @@
+/*------Основной стиль модального окна--------------------------------------------------------------------------------*/
+.reg-complete-modal {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+    z-index: 6;
+    font-size: 18px;
+}
+/*-----Активация модального окна при клике------------------------------------------------------------------------------*/
+.reg-complete-modal.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+}
+/*------Стилизация самого модального окна-----------------------------------------------------------------------------*/
+.reg-complete-modal__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.2em;
+    padding: 2.6em 2.2em 2.6em 2.2em;
+    width: 28.542vw;
+    max-height: 322px;
+    border-radius: 0.4em;
+    background-color: #FFFFFF;
+}
+.reg-complete-modal__content-title-change-lang {
+    display: none;
+}
+/*------Стилизация заголовка модального окна--------------------------------------------------------------------------*/
+.reg-complete-modal__content-title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.7em;
+    line-height: 125%;
+    color: rgba(54, 59, 77, 0.9);
+}
+/*-------Стилизация информации модального окна------------------------------------------------------------------------*/
+.reg-complete-modal__icon-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 11px;
+}
+.reg-complete-modal__icon {
+    display: none;
+}
+.reg-complete-modal__content-info {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.2em;
+    line-height: 156%;
+    color: #363B4D;
+    opacity: 0.9;
+}
+/*------Стилизация кнопки модального окна-----------------------------------------------------------------------------*/
+.reg-complete-modal__content-btn {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1em;
+    line-height: 133%;
+    width: 12.1em;
+    height: 3.1em;
+    border-radius: 4px;
+    color: #FFFFFF;
+    background-color: #0084FE;
+    cursor: pointer;
+}
+.reg-complete-modal__content-btn:hover {
+    background: #FFFFFF;
+    color: #0084FE;
+    border: 1px solid #0084FE;
+}
+/*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
+@media (max-width: 1570px) {
+    .reg-complete-modal {
+        font-size: 14px;
+    }
+}
+@media (max-width: 1215px) {
+    .reg-complete-modal {
+        font-size: 12px;
+    }
+}
+@media (max-width: 1010px) {
+    .reg-complete-modal {
+        font-size: 10px;
+    }
+}
+@media (max-width: 830px) {
+    .reg-complete-modal {
+        font-size: 8px;
+    }
+}
+@media (max-width: 670px) {
+    .reg-complete-modal {
+        font-size: 6px;
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 500px) {
+    .reg-complete-modal {
+        background-color: initial;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+        top: 228px;
+        left: 0;
+    }
+    .reg-complete-modal__content {
+        min-width: 375px;
+        border-radius: 16px;
+        padding: 24px 16px 24px 16px;
+    }
+    .reg-complete-modal__content-title {
+        font-size: 26px;
+        line-height: 100%;
+        font-weight: 500;
+    }
+    .reg-complete-modal__icon-content {
+        margin-bottom: 24px;
+    }
+    .reg-complete-modal__content-info {
+        font-size: 18px;
+        line-height: 114%;
+        font-weight: 500;
+        white-space: nowrap;
+    }
+    .reg-complete-modal__content-btn {
+        width: 100%;
+        height: 40px;
+        font-size: 16px;
+        line-height: 124%;
+        font-weight: 500;
+    }
+    .reg-complete-modal__content-title-change-lang {
+        visibility: initial;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 24px
+    }
+    .reg-complete-modal__icon {
+        display: inherit;
+    }
+}

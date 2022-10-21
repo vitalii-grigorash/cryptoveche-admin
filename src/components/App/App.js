@@ -1,10 +1,11 @@
-import Auth from "../Auth/Auth";
 import { Route, Routes} from "react-router-dom";
 import React, {useState, useEffect} from "react";
 import Reg from "../Reg/Reg";
 import * as en from '../../utils/Localization/En/constants';
 import * as ru from '../../utils/Localization/Ru/constants';
 import AuthForgetPass from "../AuthForgetPass/AuthForgetPass";
+import Auth from "../Auth/Auth";
+import AuthSetPass from "../AuthSetPass/AuthSetPass";
 
 function App() {
 
@@ -55,6 +56,11 @@ function App() {
                 changeLanguageBtn={changeLanguageBtn}
             />}/>
             <Route path={'/forget-pass'} element={<AuthForgetPass
+                handleLangChange={handleLangChange}
+                constants={constants}
+                changeLanguageBtn={changeLanguageBtn}
+            />}/>
+            <Route path={'/rstpwd'} element={<AuthSetPass
                 handleLangChange={handleLangChange}
                 constants={constants}
                 changeLanguageBtn={changeLanguageBtn}

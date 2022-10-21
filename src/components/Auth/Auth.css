@@ -555,6 +555,7 @@
         height: 40px;
         font-size: 16px;
         line-height: 150%;
+        font-weight: 500;
     }
     .button-enter__link-gosuslugi {
         display: flex;

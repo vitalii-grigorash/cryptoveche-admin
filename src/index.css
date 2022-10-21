@@ -4,3 +4,6 @@
 @import url(./components/Reg/Reg.css);
 @import url(./components/AuthForgetPass/AuthForgetPass.css);
 @import url(./components/AuthForgetPassModal/AuthForgetPassModal.css);
+@import url(./components/AuthSetPass/AuthSetPass.css);
+@import url(./components/AuthSetPassModal/AuthSetPassModal.css);
+@import url(./components/RegСompleteModal/RegСompleteModal.css);

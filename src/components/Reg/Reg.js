@@ -8,6 +8,7 @@ import timeZone from '../../utils/TimeZoneData/TimeZoneRu.json';
 import {Link, useNavigate } from "react-router-dom";
 import show_pass_icon from "../../img/Auth_hidden_pass.svg";
 import hide_pass_icon from "../../img/Auth_show_pass_icon.svg";
+import RegCompleteModal from "../RegСompleteModal/RegСompleteModal";
 
 const Reg = (props) => {
 
@@ -26,6 +27,7 @@ const Reg = (props) => {
     const [typePass, setTypePass] = useState('password');
     const [showRepeatPass, setShowRepeatPass] = useState(false);
     const [typeRepeatPass, setTypeRepeatPass] = useState('password');
+    const [activeModal, setActiveModal] = useState(false);
 
     function onSelectTimeZoneClick(location) {
         setTimeZoneValue(location.VALUE);
@@ -68,10 +70,15 @@ const Reg = (props) => {
         }
     }
 
+    function handleSubmit(e) {
+        e.preventDefault();
+        setActiveModal(true)
+    }
+
     return (
         <div className="wrapper-reg">
             <div className="reg-main-block">
-                <div className="reg-main-block__auth-btn-logotype">
+                <div className={activeModal ? "reg-main-block__auth-btn-logotype active" : "reg-main-block__auth-btn-logotype"}>
                     <div className="auth-btn-logotype__logo">
                         <img className="logo__cryptoveche-logotype" alt={'логотип'} src={cryptoveche_logo}/>
                     </div>
@@ -87,9 +94,9 @@ const Reg = (props) => {
                         </div>
                     </div>
                     <img alt={'картинка в блоке с лого'} className="auth-btn-logotype__background-image" src={auth_background_image}/>
-                    <img alt={'картинка в блоке с лого мобильная версия'} className="auth-btn-logotype__background-image-mobile" src={auth_background_mobile}/>
+                    <img alt={'картинка в блоке с лого мобильная версия'} className={activeModal ? "auth-btn-logotype__background-image-mobile active" : "auth-btn-logotype__background-image-mobile" } src={auth_background_mobile}/>
                 </div>
-                 <form className="reg-main-block__reg-form">
+                 <form className={activeModal ? "reg-main-block__reg-form active" : "reg-main-block__reg-form"} onSubmit={handleSubmit}>
                      <div className="reg-form__title">
                          <div className="reg-form__title__row-title">
                              <img onClick={e => mobileHideElem(e)} className={showHideElem ? "reg-form__title-row-back active" : "reg-form__title-row-back"} alt={'стрелочка для возврата'} src={row_back_page}/>
@@ -157,8 +164,8 @@ const Reg = (props) => {
                              {constants.REG.REG_POLITIC_INFO_PART2}</span>
                      </div>
                      <div className={showHideElem ? "reg-form__reg-button active" : "reg-form__reg-button"}>
-                         <span className="reg-block__button-next-page__label">Шаг 2 из 2, почти готово!</span>
-                         <button className="reg-button__button">{constants.REG.REG_REG_BTN}</button>
+                         <span className="reg-block__button-next-page__label">{constants.REG.REG_ALMOST_READY_MOBILE}</span>
+                         <button type={'submit'} className="reg-button__button">{constants.REG.REG_REG_BTN}</button>
                      </div>
                  </form>
                 {/*-Кнопка для мобильной версии-*/}
@@ -166,10 +173,15 @@ const Reg = (props) => {
                     <span className="reg-block__button-next-page__label">{constants.REG.REG_STEP_MOBILE}</span>
                     <button className="reg-block__button-next-page__btn" type={"button"} onClick={e => mobileShowElem(e)}>{constants.REG.REG_NEXT_PAGE_MOBILE}</button>
                 </div>
-                <div className="reg-block__button-next-page__link-auth">
+                <div className={activeModal ? "reg-block__button-next-page__link-auth active" : "reg-block__button-next-page__link-auth"}>
                     <span className="button-next-page__link">{constants.REG.REG_QUESTION_ACCOUNT}</span><Link className="button-next-page__link-auth" to={'/auth'}>{constants.REG.REG_ENTER_BTN}</Link>
                 </div>
             </div>
+            <RegCompleteModal
+                constants={constants}
+                handleLangChange={handleLangChange}
+                changeLanguageBtn={changeLanguageBtn}
+                active={activeModal}/>
         </div>
     )
 }

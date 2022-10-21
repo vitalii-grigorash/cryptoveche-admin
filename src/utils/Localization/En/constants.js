@@ -18,9 +18,20 @@ export const constants = {
         AUTH_FORGET_PASS_NOTE: "Пожалуйста, укажите e-mail, который Вы использовали для входа в личный кабинет, и мы пришлем Вам ссылку для смены пароля.",
         AUTH_FORGET_PASS_BTN: "Отправить",
         AUTH_FORGET_PASS_LOGO_TITLE: "Панель управления системой электронных голосований",
+        AUTH_FORGET_PASS_ERROR: "Поле заполнено некорректно",
         AUTH_FORGET_PASS_MODAL_TITLE: "Почти готово!",
         AUTH_FORGET_PASS_MODAL_INFO: "На вашу электронную почту отправлена инструкция по смене пароля",
         AUTH_FORGET_PASS_MODAL_BTN: "На страницу входа"
+    },
+    AUTH_SET_PASS: {
+        AUTH_SET_PASS_TITLE: "Установка пароля",
+        AUTH_SET_PASS_NEW_PASS: "Новый пароль",
+        AUTH_SET_PASS_REPEAT_PASS: "Повторите новый пароль",
+        AUTH_SET_PASS_SAVE_BTN: "Сохранить",
+        AUTH_SET_PASS_ERROR: "Пароли не совпадают",
+        AUTH_SET_PASS_LOGO_TITLE: "Панель управления системой электронных голосований",
+        AUTH_SET_PASS_MODAL_INFO: "Ваш пароль успешно изменен!",
+        AUTH_SET_PASS_MODAL_BTN: "На страницу входа"
     },
     REG: {
         REG_TITLE: "Регистрация",
@@ -45,5 +56,10 @@ export const constants = {
         REG_ERROR_EMAIL: "Неверный формат почты",
         REG_ERROR_PASS: "Пароли не совпадают",
         REG_ERROR_TIMEZONE: "Выберите часовой пояс"
+    },
+    REG_COMPLETE_MODAL: {
+        REG_COMPLETE_MODAL_INFO: "Вы успешно прошли регистрацию!",
+        REG_COMPLETE_MODAL_BTN: "На главную",
+        REG_COMPLETE_MODAL_TITLE: "Регистрация"
     }
 }

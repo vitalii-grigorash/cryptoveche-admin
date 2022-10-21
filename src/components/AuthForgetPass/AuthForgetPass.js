@@ -39,6 +39,7 @@ const AuthForgetPass = (props) => {
                         </div>
                         <div className="forget-pass-form__field-forget-pass">
                             <input className="field-forget-pass__email" placeholder={'E-mail'}/>
+                            <p className="forget-pass-form__error-message">{constants.AUTH_FORGET_PASS.AUTH_FORGET_PASS_ERROR}</p>
                         </div>
                         <div className="forget-pass-form__btn-forget-pass">
                             <button onClick={onSendEmailClick} className="btn-forget-pass__btn-send">{constants.AUTH_FORGET_PASS.AUTH_FORGET_PASS_BTN}</button>
