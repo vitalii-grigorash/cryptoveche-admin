@@ -9,6 +9,7 @@ import {Link, useNavigate } from "react-router-dom";
 import show_pass_icon from "../../img/Auth_hidden_pass.svg";
 import hide_pass_icon from "../../img/Auth_show_pass_icon.svg";
 import RegCompleteModal from "../RegСompleteModal/RegСompleteModal";
+import RegPasswordRequireModal from "../RegPasswordRequireModal/RegPasswordRequireModal";
 
 const Reg = (props) => {
 
@@ -28,6 +29,7 @@ const Reg = (props) => {
     const [showRepeatPass, setShowRepeatPass] = useState(false);
     const [typeRepeatPass, setTypeRepeatPass] = useState('password');
     const [activeModal, setActiveModal] = useState(false);
+    const [passwordRequireModalActive, setPasswordRequireModalActive] = useState(false);
 
     function onSelectTimeZoneClick(location) {
         setTimeZoneValue(location.VALUE);
@@ -138,6 +140,7 @@ const Reg = (props) => {
                             <input type={typeRepeatPass} className="set-pass__repeat-pass-field"/>
                              <img onClick={() => showHideRepeatPass()} className="auth-form__icon-pass" alt={'иконка скрыть/показать пароль'} src={showRepeatPass ? show_pass_icon : hide_pass_icon} />
                          </div>
+                         <RegPasswordRequireModal active={passwordRequireModalActive} setActive={setPasswordRequireModalActive}/>
                          <span className="reg-form__set-password__error-message">{constants.REG.REG_ERROR_PASS}</span>
                      </div>
                          <div className={showHideElem ? 'reg-form__time-zone-main-container active' : 'reg-form__time-zone-main-container'}>
