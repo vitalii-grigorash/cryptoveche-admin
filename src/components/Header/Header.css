@@ -1,0 +1,305 @@
+/*------Основной стиль для header-------------------------------------------------------------------------------------*/
+.header {
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 50;
+    background-color: #373C4E;
+    font-size: 16px;
+}
+.header__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 5em;
+    color: #FFFFFF;
+    position: relative;
+    margin-bottom: 2.2em;
+    font-size: 1em;
+}
+/*------Контейнер для блоков с логотипом и кнопками-ссылками на страницы----------------------------------------------*/
+.header__logotype-link-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+/*------Контейнер для блока с логотипом-------------------------------------------------------------------------------*/
+.logotype-link-buttons__logo {
+    margin-right: 3.5em;
+    width: 2.1em;
+    height: 2.1em;
+    cursor: pointer;
+}
+/*------Контейнер для блоков с организацией---------------------------------------------------------------------------*/
+.logotype-link-buttons__organizations {
+    color: #FFFFFF;
+    line-height: 124%;
+    margin-right: 3em;
+    cursor: pointer;
+    padding: 1.75em 0 1.75em 0;
+    border-bottom: 4px solid #373C4E;
+}
+.logotype-link-buttons__organizations:hover {
+    border-bottom: 4px solid #4569FF;
+}
+.logotype-link-buttons__organizations.active {
+    border-bottom: 4px solid #4569FF;
+}
+/*------Контейнер для блоков с кнопкой Добавить-----------------------------------------------------------------------*/
+.logotype-link-buttons__add-button {
+    border: 1px solid #FFFFFF;
+    width: 8.8em;
+    height: 2.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.25em;
+    position: relative;
+    cursor: pointer;
+    padding: 0.5em 2.1em 0.5em 1.5em;
+}
+.logotype-link-buttons__label-add-button {
+    line-height: 124%;
+    color: #FFFFFF;
+    font-size: 1em;
+}
+.add-button__row-btn-open-list {
+    margin-left: 0.8em;
+    width: 0.7em;
+    height: 0.7em;
+}
+.logotype-link-buttons__select-list-buttons {
+    position: absolute;
+    top: 4.125em;
+    left: 0;
+    background-color: #4A4F60;
+    color: #FFFFFF;
+    box-sizing: content-box;
+    border-radius: 2px;
+    line-height: 124%;
+    display: flex;
+    flex-direction: column;
+    width: 13.75em;
+}
+.logotype-link-buttons__select-list-buttons.hidden {
+    display: none;
+}
+.logotype-link-buttons__select-list-buttons a:nth-child(1) {
+    padding: 1em 0 1em 1em;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.logotype-link-buttons__select-list-buttons a:nth-child(2) {
+    padding: 1em 0 1em 1em;
+    border-bottom: 1px solid #61687E;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.logotype-link-buttons__select-list-buttons a:nth-child(3) {
+    padding: 1em 0 1em 1em;
+    border-bottom: 1px solid #61687E;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.logotype-link-buttons__select-list-buttons a:nth-child(4) {
+    padding: 1em 0 1em 1em;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.logotype-link-buttons__select-list-buttons a:nth-child(1):hover,
+.logotype-link-buttons__select-list-buttons a:nth-child(2):hover,
+.logotype-link-buttons__select-list-buttons a:nth-child(3):hover,
+.logotype-link-buttons__select-list-buttons a:nth-child(4):hover {
+    background-color: #0084FE;
+    border-radius: 2px;
+}
+/*------Контейнер для блока с поиском,настройками и моим профилем-----------------------------------------------------*/
+.header__search-setting-myprofile {
+    display: flex;
+    flex-direction: row;
+    font-size: 1em;
+    align-items: center;
+    gap: 2.7em;
+    border-bottom: 4px solid #373C4E;
+    padding: 1.75em 0 1.75em 0;
+}
+.header__search-setting-myprofile:hover {
+    border-bottom: 4px solid #4569FF;
+}
+.header__search-setting-myprofile.active {
+    border-bottom: 4px solid #4569FF;
+}
+/*------Контейнер для блоков с поиском--------------------------------------------------------------------------------*/
+.search-setting-myprofile__search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+.search-setting-myprofile__icon-search {
+    margin-right: 0.687em;
+    width: 1.125em;
+    height: 1.125em;
+}
+/*------Контейнер для блока с настройками-----------------------------------------------------------------------------*/
+.search-setting-myprofile__settings {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+.search-setting-myprofile__icon-settings {
+    width: 1.18em;
+    height: 1.18em;
+}
+/*------Контейнер для блока с моим профилем---------------------------------------------------------------------------*/
+.search-setting-myprofile__myprofile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+.search-setting-myprofile__icon-myprofile {
+    margin-right: 0.687em;
+    width: 1.125em;
+    height: 1.125em;
+}
+.search-setting-myprofile__label-myprofile, .search-setting-myprofile__label-search {
+    color: #FFFFFF;
+    line-height: 103%;
+}
+.search-setting-myprofile__myprofile-modal-exit {
+    position: absolute;
+    top: 3.6em;
+    left: -4.3em;
+    background-color: #4A4F60;
+    color: #FFFFFF;
+    box-sizing: content-box;
+    border-radius: 2px;
+    line-height: 124%;
+    display: flex;
+    flex-direction: column;
+    width: 13.75em;
+}
+.search-setting-myprofile__myprofile-modal-exit.hidden {
+    display: none;
+}
+.myprofile-modal-exit__icon {
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: 0.75em;
+}
+.search-setting-myprofile__myprofile-modal-exit a:nth-child(1) {
+    padding: 1em 0 1em 1em;
+    border-bottom: 1px solid #61687E;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.search-setting-myprofile__myprofile-modal-exit a:nth-child(2) {
+    padding: 1em 0 1em 1em;
+    color: #FFFFFF;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+.search-setting-myprofile__myprofile-modal-exit a:nth-child(1):hover,
+.search-setting-myprofile__myprofile-modal-exit a:nth-child(2):hover {
+    background-color: #0084FE;
+    border-radius: 2px;
+}
+/*------Стилизация блока с кнопкой бургер-меню и формой для поиска в мобильной версии---------------------------------*/
+.header-burger-menu {
+    position: absolute;
+    width: 100%;
+    display: none;
+    flex-direction: row;
+    gap: 15px;
+    z-index: 1;
+    padding: 16px 16px 16px 16px;
+}
+.header-burger-menu__button {
+    width: 32px;
+    height: 32px;
+    position: relative;
+    cursor: pointer;
+    background-color: #373C4E;
+    border-radius: 100%;
+    z-index: 2;
+}
+.header-burger-menu__button:before {
+    content: '';
+    position: absolute;
+    top: 11px;
+    left: 9px;
+    background-color: #FFFFFF;
+    width: 13px;
+    height: 1px;
+}
+.header-burger-menu__button span {
+    position: absolute;
+    top: 15px;
+    left: 9px;
+    background-color: #FFFFFF;
+    width: 8px;
+    height: 1px;
+}
+.header-burger-menu__button:after {
+    content: '';
+    position: absolute;
+    bottom: 12px;
+    left: 9px;
+    background-color: #FFFFFF;
+    width: 13px;
+    height: 1px;
+}
+.header-burger-menu__input-search {
+    width: 100%;
+    height: 32px;
+    background-color: rgba(54, 59, 77, 0.05);
+    border-radius: 4px;
+    outline: none;
+    padding: 7px 0 7px 40px;
+    color: rgba(54, 59, 77, 0.6)
+}
+.header-burger-menu img {
+    position: absolute;
+    z-index: 5;
+    top: 26px;
+    left: 79px;
+}
+/*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
+@media (max-width: 1010px) {
+    .header {
+        font-size: 12px;
+    }
+}
+@media (max-width: 830px) {
+    .header{
+        font-size: 10px;
+    }
+}
+@media (max-width: 670px) {
+    .header {
+        font-size: 8px;
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 375px) {
+    .header__container {
+        min-height: 64px;
+        margin-bottom: 8px;
+        background-color: #FBFBFC;
+    }
+    .header__logotype-link-buttons {
+        display: none;
+    }
+    .header__search-setting-myprofile {
+        display: none;
+    }
+    .header-burger-menu {
+        display: flex;
+        align-items: center;
+    }
+}

@@ -6,11 +6,13 @@ import * as ru from '../../utils/Localization/Ru/constants';
 import AuthForgetPass from "../AuthForgetPass/AuthForgetPass";
 import Auth from "../Auth/Auth";
 import AuthSetPass from "../AuthSetPass/AuthSetPass";
+import Header from "../Header/Header";
 
 function App() {
 
     const [constants, setConstants] = useState(ru.constants);
     const [changeLanguageBtn, setChangeLanguageBtn] = useState(false);
+    const [isLoggedIn, setLoggedIn] = useState(true);
 
     function handleLangChange(value) {
         const lang = {
@@ -45,6 +47,10 @@ function App() {
 
   return (
     <div className="app">
+        {isLoggedIn && (
+            <Header/>
+        )
+        }
         <Routes>
             <Route path={'/auth'} element={<Auth
                 handleLangChange={handleLangChange}
