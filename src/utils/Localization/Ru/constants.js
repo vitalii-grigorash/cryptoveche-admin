@@ -61,5 +61,40 @@ export const constants = {
         REG_COMPLETE_MODAL_INFO: "Вы успешно прошли регистрацию!",
         REG_COMPLETE_MODAL_BTN: "На главную",
         REG_COMPLETE_MODAL_TITLE: "Регистрация"
+    },
+    HEADER: {
+        HEADER_ORG: "Организации",
+        HEADER_ADD_BTN: "Добавить",
+        HEADER_ADD_ORG: "Организацию",
+        HEADER_MYPROFILE_MODAL: "Мой профиль",
+        HEADER_MYPROFILE_MODAI_EXIT: "Выйти",
+        HEADER_BURGER_ADD_BTN: "Добавить",
+        HEADER_BURGER_ORG: "Организации",
+        HEADER_BURGER_ADD_ORG: "Организацию",
+        HEADER_BURGER_POLITIC: "Политика конфидициальности",
+        HEADER_BURGER_EXIT: "Выйти"
+    },
+    FOOTER: {
+        FOOTER_COPI_INFO_PART1: "Система",
+        FOOTER_COPI_INFO_PART2: "разработана Центром",
+        FOOTER_COPI_INFO_PART3: "технологий распределенных",
+        FOOTER_COPI_INFO_PART4: "реестров СПбГУ.",
+        FOOTER_COPI_INFO_PART5: "Все права защищены.",
+        FOOTER_MAP_SITE: "Карта сайта",
+        FOOTER_MAIN_PAGE: "Главная",
+        FOOTER_VOTES: "Голосования",
+        FOOTER_USERS: "Пользователи",
+        FOOTER_ORG: "Организации",
+        FOOTER_SETTINGS: "Настройки",
+        FOOTER_LANG: "Язык",
+        FOOTER_SELECT_LANG_RU: "Русский",
+        FOOTER_SELECT_LANG_EN: "Английский",
+        FOOTER_SIZE_FONT: "Размер шрифта",
+        FOOTER_SELECT_SIZE: "Стандартный",
+        FOOTER_TIME_ZONE: "Часовой пояс",
+        FOOTER_SELECT_TIME_ZONE: "GMT+03:00",
+        FOOTER_SUPPORT: "Поддержка",
+        FOOTER_POLITIC: "Политика конфиденциальности",
+        FOOTER_MAIL_SUPPORT: "support@dltc.spbu.ru"
     }
 }

@@ -7,6 +7,7 @@ import AuthForgetPass from "../AuthForgetPass/AuthForgetPass";
 import Auth from "../Auth/Auth";
 import AuthSetPass from "../AuthSetPass/AuthSetPass";
 import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 function App() {
 
@@ -48,9 +49,8 @@ function App() {
   return (
     <div className="app">
         {isLoggedIn && (
-            <Header/>
-        )
-        }
+            <Header constants={constants}/>
+        )}
         <Routes>
             <Route path={'/auth'} element={<Auth
                 handleLangChange={handleLangChange}
@@ -72,6 +72,14 @@ function App() {
                 changeLanguageBtn={changeLanguageBtn}
             />}/>
         </Routes>
+
+
+        {isLoggedIn && (
+            <Footer
+                handleLangChange={handleLangChange}
+                constants={constants}
+                changeLanguageBtn={changeLanguageBtn}
+            />)}
     </div>
   );
 }

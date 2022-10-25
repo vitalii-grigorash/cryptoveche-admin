@@ -1,0 +1,195 @@
+/*------Основной стиль для footer-------------------------------------------------------------------------------------*/
+.footer {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    font-size: 18px;
+}
+.footer__container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 15.4em;
+    position: relative;
+    border-top: 1px rgba(54, 59, 77, 0.1) solid;
+    padding-top: 4.8em;
+}
+/*------Контейнер для блока с логотипом------------------------------------------------------------------------------*/
+.footer__logotype {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
+.footer__logotype-logo {
+    width: 8.7em;
+    height: 1.7em;
+    margin-bottom: 2.2em;
+}
+.footer__logotype p {
+    font-size: 0.8em;
+    line-height: 134%;
+    color: #4A4F5F;
+    opacity: 70%;
+}
+/*------Контейнер для блока с картой сайта----------------------------------------------------------------------------*/
+.footer__map-site {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
+.footer__map-site-title {
+    font-weight: 600;
+    line-height: 110%;
+    font-size: 1em;
+    color: #4A4F5F;
+    opacity: 80%;
+    margin-bottom: 2.2em;
+}
+.footer__map-site p {
+    line-height: 110%;
+    font-size: 1em;
+    color: #4A4F5F;
+    opacity: 70%;
+}
+.footer__map-site p:nth-child(2) {
+    margin-bottom: 1.7em;
+    cursor: pointer;
+}
+.footer__map-site p:nth-child(5) {
+    margin-bottom: 1.7em;
+    cursor: pointer;
+}
+.map-site__votes {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1.7em;
+    cursor: pointer;
+}
+.map-site__votes-row {
+    margin-left: 0.4em;
+    width: 0.5em;
+    height: 1em;
+}
+.map-site__users {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1.7em;
+    cursor: pointer;
+}
+.map-site__users-row {
+    margin-left: 0.4em;
+    width: 0.5em;
+    height: 1em;
+}
+/*------Контейнер для блока с настройками-----------------------------------------------------------------------------*/
+.footer__settings {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    width: 10em;
+}
+.footer__settings-title {
+    font-weight: 600;
+    line-height: 110%;
+    font-size: 1em;
+    color: #4A4F5F;
+    opacity: 80%;
+    margin-bottom: 2.2em;
+}
+.settings__select-lang {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1.7em;
+}
+.select-lang__type-lang {
+    margin: 0 0.4em 0 0.4em;
+    cursor: pointer;
+    position: relative;
+    max-width: 5.8em;
+}
+.type-lang__list {
+    display: none;
+}
+.type-lang__list.active {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+ }
+.select-lang__type-lang.active {
+    width: 5.8em;
+}
+.select-lang__row {
+    cursor: pointer;
+    width: 0.5em;
+    height: 1em;
+}
+.type-lang__en {
+    display: none;
+}
+.type-lang__en.active {
+   display: initial;
+}
+.type-lang__ru {
+   display: none;
+}
+.type-lang__ru.active {
+    display: initial;
+}
+.settings__select-fonts {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1.7em;
+    white-space: nowrap;
+}
+.select-fonts__type-font {
+    margin: 0 0.4em 0 0.4em;
+    cursor: pointer;
+    position: relative;
+}
+/*------Контейнер для блока с поддержкой------------------------------------------------------------------------------*/
+.footer__support {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
+.footer__support-title {
+    font-weight: 600;
+    line-height: 110%;
+    font-size: 1em;
+    color: #4A4F5F;
+    opacity: 80%;
+    margin-bottom: 2.2em;
+}
+.footer__support a {
+    color: #4A4F5F;
+    line-height: 110%;
+    opacity: 70%;
+    cursor: pointer;
+    text-decoration: none;
+}
+.footer__support a:nth-child(2) {
+    margin-bottom: 1.7em;
+}
+/*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
+@media (max-width: 1570px) {
+    .footer {
+        font-size: 16px;
+    }
+}
+@media (max-width: 1080px) {
+    .settings__select-fonts  {
+        flex-direction: column;
+    }
+}
+@media (max-width: 830px) {
+    .footer {
+        font-size: 12px;
+    }
+}
+@media (max-width: 670px) {
+    .footer {
+        font-size: 10px;
+    }
+}

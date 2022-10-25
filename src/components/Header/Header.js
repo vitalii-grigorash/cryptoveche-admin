@@ -10,7 +10,11 @@ import {Link, useLocation} from "react-router-dom";
 import HeaderBurgerMenu from "../HeaderBurgerMenu/HeaderBurgerMenu";
 
 
-const Header = () => {
+const Header = (props) => {
+
+    const {
+        constants
+    } = props;
 
     const [activeAddButton, setActiveAddButton] = useState(false);
     const [activeMyProfile, setActiveMyProfile] = useState(false);
@@ -25,6 +29,7 @@ const Header = () => {
     function showMyProfileModal() {
         setActiveMyProfile(true)
     }
+
     useOnClickOutsideModal(activeAddButton, () => setActiveAddButton(false));
     useOnClickOutsideModal(activeMyProfile, () => setActiveMyProfile(false));
 
@@ -63,15 +68,15 @@ const Header = () => {
             <div className="header__container _container">
                 <div className="header__logotype-link-buttons">
                     <img alt={'логотип'} className="logotype-link-buttons__logo" src={headerLogo} />
-                    <span className={pathname === '/' ? "logotype-link-buttons__organizations active" : "logotype-link-buttons__organizations"}>Организации</span>
+                    <span className={pathname === '/' ? "logotype-link-buttons__organizations active" : "logotype-link-buttons__organizations"}>{constants.HEADER.HEADER_ORG}</span>
                     <div onClick={showAddButtonList} className="logotype-link-buttons__add-button">
-                        <p className="logotype-link-buttons__label-add-button">Добавить</p>
+                        <p className="logotype-link-buttons__label-add-button">{constants.HEADER.HEADER_ADD_BTN}</p>
                         <img alt={'стрелочка для кнопки'} className="add-button__row-btn-open-list" src={headerRowBtn}/>
                         <div className={activeAddButton ? "logotype-link-buttons__select-list-buttons" : "logotype-link-buttons__select-list-buttons hidden"}>
                             {/*<Link to={'#'}>Голосование</Link>*/}
                             {/*<Link to={'#'}>Группу пользователей</Link>*/}
                             {/*<Link to={'#'}>Шаблон голосования</Link>*/}
-                            <Link to={'/auth'}>Организацию</Link>
+                            <Link to={'/auth'}>{constants.HEADER.HEADER_ADD_ORG}</Link>
                         </div>
                     </div>
                 </div>
@@ -87,13 +92,13 @@ const Header = () => {
                         <img alt={'иконка мой профиль'} src={headerMyprofileIcon} className="search-setting-myprofile__icon-myprofile"/>
                         <p className="search-setting-myprofile__label-myprofile">Иванов И.И</p>
                         <div className={activeMyProfile ? "search-setting-myprofile__myprofile-modal-exit" : "search-setting-myprofile__myprofile-modal-exit hidden"}>
-                            <Link to={'#'}>Мой профиль</Link>
-                            <Link to={'#'}><img alt={'иконка выхода'} src={headerExitIcon} className="myprofile-modal-exit__icon"/>Выйти</Link>
+                            <Link to={'#'}>{constants.HEADER.HEADER_MYPROFILE_MODAL}</Link>
+                            <Link to={'#'}><img alt={'иконка выхода'} src={headerExitIcon} className="myprofile-modal-exit__icon"/>{constants.HEADER.HEADER_MYPROFILE_MODAI_EXIT}</Link>
                         </div>
                     </div>
                 </div>
             </div>
-            <HeaderBurgerMenu active={burgerMenuActive} setActive={setBurgerMenuActive}/>
+            <HeaderBurgerMenu constants={constants} active={burgerMenuActive} setActive={setBurgerMenuActive}/>
         </div>
     )
 }
