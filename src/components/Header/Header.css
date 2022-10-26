@@ -58,6 +58,7 @@
     position: relative;
     cursor: pointer;
     padding: 0.5em 2.1em 0.5em 1.5em;
+    z-index: 55;
 }
 .logotype-link-buttons__label-add-button {
     line-height: 124%;

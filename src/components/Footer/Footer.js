@@ -1,6 +1,7 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useState} from "react";
 import footerLogo from '../../img/FooterLogo.svg';
 import footerRowSelect from '../../img/FooterRowSelect.svg';
+import footerLogoMobile from '../../img/FooterLogoMobile.svg';
 
 const Footer = (props) => {
 
@@ -32,6 +33,9 @@ const Footer = (props) => {
     return (
         <div className="footer">
             <div className="footer__container _container">
+                <div className="footer__logotype-mobile">
+                    <img alt={'логотип'} src={footerLogoMobile} />
+                </div>
                 <div className="footer__logotype">
                     <img alt={'логотип'} src={footerLogo} className="footer__logotype-logo"/>
                     <p>©2019-2022.{constants.FOOTER.FOOTER_COPI_INFO_PART1}</p>
@@ -66,19 +70,20 @@ const Footer = (props) => {
                         </div>
                         <img alt={'стрелка'} src={footerRowSelect} className={"select-lang__row"}/>
                     </div>
-                    <div className="settings__select-fonts">
-                        <p>{constants.FOOTER.FOOTER_SIZE_FONT}:</p>
-                        <div className="select-fonts__type-font">
-                            <p>{constants.FOOTER.FOOTER_SELECT_SIZE}</p>
-                        </div>
-                        <img alt={'стрелка'} src={footerRowSelect} className={"select-lang__row"}/>
-                    </div>
-                    <div>
-                        <p>{constants.FOOTER.FOOTER_TIME_ZONE}:</p>
-                        <div>
-                            <p>{constants.FOOTER.FOOTER_SELECT_TIME_ZONE}</p>
-                        </div>
-                    </div>
+                    {/*<div className="settings__select-fonts">*/}
+                    {/*    <p>{constants.FOOTER.FOOTER_SIZE_FONT}:</p>*/}
+                    {/*    <div className="select-fonts__type-font">*/}
+                    {/*        <p>{constants.FOOTER.FOOTER_SELECT_SIZE}</p>*/}
+                    {/*    </div>*/}
+                    {/*    <img alt={'стрелка'} src={footerRowSelect} className={"select-fonts__row"}/>*/}
+                    {/*</div>*/}
+                    {/*<div className="settings__select-timezone">*/}
+                    {/*    <p>{constants.FOOTER.FOOTER_TIME_ZONE}:</p>*/}
+                    {/*    <div className="select-timezone__type-timezone">*/}
+                    {/*        <p>{constants.FOOTER.FOOTER_SELECT_TIME_ZONE}</p>*/}
+                    {/*    </div>*/}
+                    {/*     <img alt={'стрелка'} src={footerRowSelect} className={"select-timezone__row"}/>  */}
+                    {/*</div>*/}
                 </div>
                 <div className="footer__support">
                     <h3 className="footer__support-title">{constants.FOOTER.FOOTER_SUPPORT}</h3>

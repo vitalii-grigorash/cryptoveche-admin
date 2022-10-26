@@ -1,10 +1,11 @@
 /*------Основной стиль для footer-------------------------------------------------------------------------------------*/
 .footer {
-    position: absolute;
+    /*position: absolute;*/
     width: 100%;
     left: 0;
     bottom: 0;
     font-size: 18px;
+    position: relative;
 }
 .footer__container {
     display: flex;
@@ -21,6 +22,7 @@
     display: flex;
     flex-direction: column;
     align-self: flex-start;
+    width: 12em;
 }
 .footer__logotype-logo {
     width: 8.7em;
@@ -33,11 +35,15 @@
     color: #4A4F5F;
     opacity: 70%;
 }
+.footer__logotype-mobile {
+    display: none;
+}
 /*------Контейнер для блока с картой сайта----------------------------------------------------------------------------*/
 .footer__map-site {
     display: flex;
     flex-direction: column;
     align-self: flex-start;
+    width: 7.8em;
 }
 .footer__map-site-title {
     font-weight: 600;
@@ -88,7 +94,7 @@
     display: flex;
     flex-direction: column;
     align-self: flex-start;
-    width: 10em;
+    width: 15em;
 }
 .footer__settings-title {
     font-weight: 600;
@@ -102,6 +108,8 @@
     display: flex;
     flex-direction: row;
     margin-bottom: 1.7em;
+    color: #4A4F5F;
+    opacity: 70%;
 }
 .select-lang__type-lang {
     margin: 0 0.4em 0 0.4em;
@@ -142,17 +150,47 @@
     flex-direction: row;
     margin-bottom: 1.7em;
     white-space: nowrap;
+    color: #4A4F5F;
+    opacity: 70%;
 }
 .select-fonts__type-font {
     margin: 0 0.4em 0 0.4em;
+    display: flex;
     cursor: pointer;
     position: relative;
+    line-height: 100%;
+}
+.select-fonts__row {
+    cursor: pointer;
+    width: 0.5em;
+    height: 1em;
+}
+.settings__select-timezone {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1.7em;
+    white-space: nowrap;
+    color: #4A4F5F;
+    opacity: 70%;
+}
+.select-timezone__type-timezone {
+    margin: 0 0.4em 0 0.4em;
+    display: flex;
+    cursor: pointer;
+    position: relative;
+    line-height: 110%;
+}
+.select-timezone__row {
+    cursor: pointer;
+    width: 0.5em;
+    height: 1em;
 }
 /*------Контейнер для блока с поддержкой------------------------------------------------------------------------------*/
 .footer__support {
     display: flex;
     flex-direction: column;
     align-self: flex-start;
+    width: 10em;
 }
 .footer__support-title {
     font-weight: 600;
@@ -178,18 +216,82 @@
         font-size: 16px;
     }
 }
-@media (max-width: 1080px) {
-    .settings__select-fonts  {
-        flex-direction: column;
+@media (max-width: 1120px) {
+    .footer {
+        font-size: 12px;
+    }
+    .footer__settings {
+        width: 10em;
     }
 }
 @media (max-width: 830px) {
     .footer {
-        font-size: 12px;
-    }
-}
-@media (max-width: 670px) {
-    .footer {
         font-size: 10px;
     }
+}
+@media (max-width: 700px) {
+    .footer {
+        font-size: 8px;
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 500px) {
+    .footer{
+        position: relative;
+    }
+    .footer__container {
+        flex-direction: column-reverse;
+        padding: 28px 16px 24px 16px;
+        max-height: 832px;
+    }
+    .footer__logotype-logo {
+        display: none;
+    }
+    .footer__logotype-mobile {
+        display: flex;
+        margin-bottom: 28px;
+        width: 100%;
+    }
+    .footer__map-site,
+    .footer__settings {
+        border-bottom: 1px rgba(54, 59, 77, 0.1) solid;
+        margin-bottom: 24px;
+        width: 100%;
+    }
+    .footer__support {
+        border-bottom: 1px rgba(54, 59, 77, 0.1) solid;
+        margin-bottom: 24px;
+        width: 100%;
+        padding-bottom: 16px;
+    }
+    .footer__logotype {
+        width: 100%;
+    }
+    .footer__logotype p {
+        font-size: 15px;
+    }
+    .footer__map-site p:nth-child(2) {
+        font-size: 15px;
+        line-height: 121%;
+    }
+    .settings__select-lang {
+        font-size: 15px;
+        line-height: 121%;
+    }
+    .footer__support a {
+        font-size: 15px;
+        line-height: 121%;
+    }
+    .footer__map-site-title,
+    .footer__settings-title,
+    .footer__support-title {
+        font-size: 16px;
+        line-height: 124%;
+        font-weight: 500;
+        margin-bottom: 16px;
+    }
+    .footer__support{order: 1}
+    .footer__settings{order: 2}
+    .footer__map-site{order: 3}
+    .footer__logotype-mobile{order: 4}
 }

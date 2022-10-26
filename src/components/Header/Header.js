@@ -6,7 +6,7 @@ import headerSettingIcon from '../../img/HeaderSettingIcon.svg';
 import headerSearchIcon from '../../img/HeaderSearchIcon.svg';
 import headerSearchIconMobile from '../../img/HeaderSeachIconMobile.svg';
 import headerExitIcon from '../../img/HeaderExitIcon.svg';
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import HeaderBurgerMenu from "../HeaderBurgerMenu/HeaderBurgerMenu";
 
 
@@ -20,7 +20,7 @@ const Header = (props) => {
     const [activeMyProfile, setActiveMyProfile] = useState(false);
     const [burgerMenuActive, setBurgerMenuActive] = useState(false);
     const { pathname } = useLocation();
-
+    const linkButtonOrgPage = useNavigate();
 
     function showAddButtonList() {
         setActiveAddButton(true)
@@ -68,7 +68,7 @@ const Header = (props) => {
             <div className="header__container _container">
                 <div className="header__logotype-link-buttons">
                     <img alt={'логотип'} className="logotype-link-buttons__logo" src={headerLogo} />
-                    <span className={pathname === '/' ? "logotype-link-buttons__organizations active" : "logotype-link-buttons__organizations"}>{constants.HEADER.HEADER_ORG}</span>
+                    <span onClick={() => linkButtonOrgPage('/')} className={pathname === '/' ? "logotype-link-buttons__organizations active" : "logotype-link-buttons__organizations"}>{constants.HEADER.HEADER_ORG}</span>
                     <div onClick={showAddButtonList} className="logotype-link-buttons__add-button">
                         <p className="logotype-link-buttons__label-add-button">{constants.HEADER.HEADER_ADD_BTN}</p>
                         <img alt={'стрелочка для кнопки'} className="add-button__row-btn-open-list" src={headerRowBtn}/>
@@ -76,7 +76,7 @@ const Header = (props) => {
                             {/*<Link to={'#'}>Голосование</Link>*/}
                             {/*<Link to={'#'}>Группу пользователей</Link>*/}
                             {/*<Link to={'#'}>Шаблон голосования</Link>*/}
-                            <Link to={'/auth'}>{constants.HEADER.HEADER_ADD_ORG}</Link>
+                            <Link to={'/'}>{constants.HEADER.HEADER_ADD_ORG}</Link>
                         </div>
                     </div>
                 </div>

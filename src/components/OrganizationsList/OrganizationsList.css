@@ -1,0 +1,22 @@
+/*------Основной контейнер--------------------------------------------------------------------------------------------*/
+.container__organisation-list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 6.2em;
+    min-height: calc(45vh - 80px);
+    font-size: 18px;
+}
+/*------Контейнер для блока с пагинацией и сортировкий----------------------------------------------------------------*/
+.organisation-list__sort-pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1.7em;
+}
+/*------Контейнер для блока с пагинацией и сортировкий----------------------------------------------------------------*/
+/*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
+@media (max-width: 1570px) {
+    .container__organisation-list  {
+        min-height: calc(65vh - 80px);
+    }
+}

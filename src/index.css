@@ -11,3 +11,7 @@
 @import url(./components/Header/Header.css);
 @import url(./components/HeaderBurgerMenu/HeaderBurgerMenu.css);
 @import url(./components/Footer/Footer.css);
+@import url(./components/GeneralTitleAllPages/GeneralTitleAllPages.css);
+@import url(./components/OrganizationsList/OrganizationsList.css);
+@import url(./components/SortingBlock/SortingBlock.css);
+@import url(./components/PaginationBlock/PaginationBlock.css);

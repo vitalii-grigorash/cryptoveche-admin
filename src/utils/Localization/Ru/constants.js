@@ -96,5 +96,10 @@ export const constants = {
         FOOTER_SUPPORT: "Поддержка",
         FOOTER_POLITIC: "Политика конфиденциальности",
         FOOTER_MAIL_SUPPORT: "support@dltc.spbu.ru"
+    },
+    GENERAL_TITLE: {
+        GENERAL_TITLE_TITLENAME: "Список организаций",
+        GENERAL_TITLE_FIRTSLETTER: "АдминистраторКриптовече",
+        GENERAL_TITLE_SECONDLETTER: "Организация"
     }
 }

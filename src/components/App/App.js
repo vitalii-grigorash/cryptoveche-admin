@@ -1,4 +1,4 @@
-import { Route, Routes} from "react-router-dom";
+import {Route, Routes, useLocation} from "react-router-dom";
 import React, {useState, useEffect} from "react";
 import Reg from "../Reg/Reg";
 import * as en from '../../utils/Localization/En/constants';
@@ -8,12 +8,14 @@ import Auth from "../Auth/Auth";
 import AuthSetPass from "../AuthSetPass/AuthSetPass";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import OrganizationsList from "../OrganizationsList/OrganizationsList";
 
 function App() {
 
     const [constants, setConstants] = useState(ru.constants);
     const [changeLanguageBtn, setChangeLanguageBtn] = useState(false);
     const [isLoggedIn, setLoggedIn] = useState(true);
+    const { pathname } = useLocation();
 
     function handleLangChange(value) {
         const lang = {
@@ -46,9 +48,11 @@ function App() {
         }
     }, []);
 
+
+
   return (
     <div className="app">
-        {isLoggedIn && (
+        {pathname ==='/' && isLoggedIn && (
             <Header constants={constants}/>
         )}
         <Routes>
@@ -71,10 +75,12 @@ function App() {
                 constants={constants}
                 changeLanguageBtn={changeLanguageBtn}
             />}/>
+            <Route exact path={'/'} element={<OrganizationsList
+                constants={constants}
+            />}
+            />
         </Routes>
-
-
-        {isLoggedIn && (
+        {pathname === '/' && isLoggedIn && (
             <Footer
                 handleLangChange={handleLangChange}
                 constants={constants}

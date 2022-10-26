@@ -1,0 +1,25 @@
+/*------Основной контейнер--------------------------------------------------------------------------------------------*/
+.container__sorting-block {
+    display: flex;
+    flex-direction: row;
+    font-size: 16px;
+    align-items: center;
+}
+.sorting-block__sorting-label {
+    line-height: 124%;
+    color: #363B4D;
+    opacity: 60%;
+    margin-right: 0.5em;
+}
+.sorting-block__sorting-type {
+    line-height: 124%;
+    opacity: 60%;
+    color: #363B4D;
+    font-weight: 500;
+    margin-right: 0.4em;
+}
+.sorting-block__icon-decrement {
+    margin-right: 0.6em;
+    width: 1.1em;
+    height: 0.75em;
+}
