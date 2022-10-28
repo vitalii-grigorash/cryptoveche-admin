@@ -101,5 +101,25 @@ export const constants = {
         GENERAL_TITLE_TITLENAME: "Список организаций",
         GENERAL_TITLE_FIRTSLETTER: "АдминистраторКриптовече",
         GENERAL_TITLE_SECONDLETTER: "Организация"
+    },
+    SORTING_BLOCK: {
+        SORTING_BLOCK_LABEL: "Сортировать по:",
+        SORTING_BLOCK_TYPE_SORT: "Количеству транзакций"
+    },
+    PAGINATION: {
+        PAGINATION_SHOW_LABEL: "Показать",
+        PAGINATION_PAGE_FROM_PAGE: "из",
+        PAGINATION_SEARCH: "Поиск"
+    },
+    ORGANIZATIONS_LIST: {
+        ORGANIZATIONS_LIST_NAME_ORG: "Название организации",
+        ORGANIZATIONS_LIST_SECRETARY: "Секретари",
+        ORGANIZATIONS_LIST_GROUP_USERS: "Группы пользователей",
+        ORGANIZATIONS_LIST_VOTES: "Голосования",
+        ORGANIZATIONS_LIST_ACTIVE_VOTES: "Активные голосования",
+        ORGANIZATIONS_LIST_TEMPLATES: "Шаблоны",
+        ORGANIZATIONS_LIST_ACTIONS: "Действия",
+        ORGANIZATIONS_LIST_EDIT_BTN: "РЕДАКТИРОВАТЬ",
+        ORGANIZATIONS_LIST_EDIT_BTN_MOBILE: "Редактировать"
     }
 }

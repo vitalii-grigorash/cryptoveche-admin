@@ -11,6 +11,7 @@
     flex-direction: row;
     gap: 0.8em;
     margin-bottom: 1.5em;
+    align-items: center;
 }
 .page-info__first-letter {
     line-height: 118%;
@@ -24,6 +25,10 @@
     font-size: 0.7em;
     color: #363B4D;
     opacity: 40%;
+}
+.general-title-allpages__row {
+    width: 0.3em;
+    height: 0.8em;
 }
 /*------Контейнер для блока с заголовком------------------------------------------------------------------------------*/
 .general-title-allpages__title-name{
@@ -46,12 +51,28 @@
     .container__general-title-allpages{
         font-size: 14px;
     }
-    .footer__settings {
-        width: 10em;
-    }
 }
 @media (max-width: 830px) {
     .container__general-title-allpages {
         font-size: 12px;
+    }
+}
+@media (max-width: 600px) {
+    .container__general-title-allpages  {
+        font-size: 6px;
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 500px) {
+    .container__general-title-allpages {
+        font-size: 16px;
+    }
+    .general-title-allpages__page-info {
+        display: none;
+    }
+    .title-name__title {
+        font-size: 22px;
+        line-height: 113%;
+        font-weight: 500;
     }
 }

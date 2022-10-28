@@ -23,3 +23,34 @@
     width: 1.1em;
     height: 0.75em;
 }
+.sorting-block__icon-row {
+    width: 0.8em;
+    height: 0.8em;
+}
+/*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
+@media (max-width: 1570px) {
+    .container__sorting-block {
+        font-size: 14px;
+    }
+}
+@media (max-width: 1120px) {
+    .container__sorting-block {
+        font-size: 12px;
+    }
+}
+@media (max-width: 900px) {
+    .container__sorting-block {
+        font-size: 10px;
+    }
+}
+@media (max-width: 700px) {
+    .container__sorting-block {
+        font-size: 8px;
+    }
+}
+@media (max-width: 600px) {
+    .container__sorting-block {
+        font-size: 6px;
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/

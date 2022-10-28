@@ -12,15 +12,15 @@ const PaginationBlock = (props) => {
         eventsSearchInput,
         btnActiveVotes,
         btnArchiveVotes,
-        onChoiceClick,
-        selectedResultsShow,
         pageCount,
         showPrevResults,
-        showNextResults
+        showNextResults,
+        constants
     } = props;
 
     const [isOptionsActive, setOptionsActive] = useState(false);
     const [allPages, setAllPages] = useState(0);
+    const [selectedResultsShow, setSelectedResultsShow] = useState(5);
 
     // useEffect(() => {
     //     const pages = sortList.length / selectedResultsShow
@@ -43,6 +43,10 @@ const PaginationBlock = (props) => {
     //     ]
     // );
 
+    function onChoiceClick(value) {
+            setSelectedResultsShow(value);
+    }
+
     function handleShowOptionsContainer() {
         if (isOptionsActive) {
             setOptionsActive(false);
@@ -54,7 +58,7 @@ const PaginationBlock = (props) => {
     return (
         <div className='navigation-menu__pagination-search-block'>
             <div className='pagination-search-block__show-page' onClick={handleShowOptionsContainer}>
-                <p className="pagination-search-block__text">Показать</p>
+                <p className="pagination-search-block__text">{constants.PAGINATION.PAGINATION_SHOW_LABEL}</p>
                 <div className="pagination-search-block__arrow-count-page">
                     {selectedResultsShow} <div className="pagination-search-block__arrow" />
                 </div>
@@ -79,19 +83,19 @@ const PaginationBlock = (props) => {
                 )}
             </div>
             <div className='pagination-search-block__change-page'>
-                <span className="change-page__counter-page">{pageCount} из {allPages}</span>
+                <span className="change-page__counter-page">1 {constants.PAGINATION.PAGINATION_PAGE_FROM_PAGE} 1</span>
                 <span className="change-page__rows">
-                    <img alt='стрелка переключатель страниц' src={changeRowLeft} onClick={showPrevResults} />
-                    <img alt='стрелка переключатель страниц' src={changeRowRight} onClick={showNextResults} />
+                    <img alt='стрелка переключатель страниц' src={changeRowLeft} onClick={showPrevResults} className="change-page__rows-left" />
+                    <img alt='стрелка переключатель страниц' src={changeRowRight} onClick={showNextResults} className="change-page__rows-right"/>
                 </span>
             </div>
             <div className='pagination-search-block__search-table'>
-                <img className='search-table__search-table-icon' alt='иконка поиска' src={paginationSeacrhIcon} />
+                <img className='search-table__search-table-icon' alt='иконка поиска' src={paginationSeacrhIcon}/>
                 {btnActiveVotes ? (
                     <input
                         type="text"
                         name="searchInput"
-                        placeholder='Поиск'
+                        placeholder={constants.PAGINATION.PAGINATION_SEARCH}
                         // value={eventsSearchActive.value}
                         // onChange={eventsSearchActive.onChange}
                     />
@@ -99,7 +103,7 @@ const PaginationBlock = (props) => {
                     <input
                         type="text"
                         name="searchInput"
-                        placeholder='Поиск'
+                        placeholder={constants.PAGINATION.PAGINATION_SEARCH}
                         // value={eventsSearchArchive.value}
                         // onChange={eventsSearchArchive.onChange}
                     />

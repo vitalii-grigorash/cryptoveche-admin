@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import burgerMenuLogo from "../../img/HeaderBurgerMenu_logo.svg";
 import burgerMenuIconRow from '../../img/HeaderRowButton.svg';
 // import burger_menu_icon_search from '../../img/HeaderBurgerMenu_icon_search.svg';
@@ -16,9 +16,27 @@ const HeaderBurgerMenu = ({ active, setActive, handleLogout, constants }) => {
         }
     }
 
+    useOnClickOutsideModal(active, () => setActive(false));
+
+    function useOnClickOutsideModal(active, handler) {
+        useEffect(() => {
+            const listener = (e) => {
+                if (!active) {
+                    return;
+                }
+                handler(e);
+            };
+            document.addEventListener('click', listener);
+            return function () {
+                document.removeEventListener('click', listener);
+            };
+        }, [active, handler])
+    }
+
+
     return (
         <div className={active ? 'burger-menu active' : 'burger-menu'} onClick={() => setActive(false)}>
-            <div className='blur' />
+            {/*<div className='blur' />*/}
             <div className={active ? 'burger-menu__content active' : 'burger-menu__content'} onClick={e => e.stopPropagation()}>
                 <div className='burger-menu__logotype-block'>
                     <img alt={'Logo'} src={burgerMenuLogo} />

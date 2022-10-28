@@ -2,7 +2,7 @@
 .container__organisation-list {
     display: flex;
     flex-direction: column;
-    margin-bottom: 6.2em;
+    margin-bottom: 9em;
     min-height: calc(45vh - 80px);
     font-size: 18px;
 }
@@ -13,10 +13,368 @@
     justify-content: space-between;
     margin-bottom: 1.7em;
 }
-/*------Контейнер для блока с пагинацией и сортировкий----------------------------------------------------------------*/
+/*------Контейнер для блока таблицей-------------+---------------------------------------------------------------------*/
+.organisation-list__table-organisations {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.7em;
+    box-shadow: -3px 0 8px rgba(54, 58, 72, 0.1);
+    border-top-left-radius:  1.33em;
+    border-top-right-radius: 1.33em;
+    font-size: 1em;
+    background-color: #FFFFFF;
+}
+.organisation-list__show-more {
+    display: none;
+}
+/*------Контейнер для блока c заголовками таблицы---------------------------------------------------------------------*/
+.table-organisations-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top-left-radius: 1.33em;
+    border-top-right-radius: 1.33em;
+    padding: 1.11em 1.33em 1.11em 1.33em;
+}
+.table-organisations-header__name-org {
+    line-height: 129%;
+    color: #363B4D;
+    opacity: 60%;
+    width: 11.3em;
+}
+.table-organisations-header__secret {
+    line-height: 129%;
+    color: #363B4D;
+    opacity: 60%;
+    width: 5.38em;
+}
+.table-organisations-header__group-users {
+    line-height: 129%;
+    color: #363B4D;
+    opacity: 60%;
+    width: 11.38em;
+}
+.table-organisations-header__votes {
+    line-height: 129%;
+    color: #363B4D;
+    opacity: 60%;
+    width: 6.38em;
+}
+.table-organisations-header__active-votes {
+    line-height: 129%;
+    color: #363B4D;
+    opacity: 60%;
+    width: 11.5em;
+}
+.table-organisations-header__templates {
+    line-height: 129%;
+    color: #363B4D;
+    opacity: 60%;
+    width: 4.72em;
+
+}
+.table-organisations-header__actions {
+    line-height: 129%;
+    color: #363B4D;
+    opacity: 60%;
+    width: 9em;
+}
+/*------Контейнер для блока c колонками таблицы-----------------------------------------------------------------------*/
+.table-organisations-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1.11em 1.33em 1.11em 1.33em;
+    border-top: 1px solid rgba(54, 59, 77, 0.1);
+}
+.table-organisations-row__name-org {
+    width: 11.3em;
+    word-break: break-word;
+    white-space: break-spaces;
+    color: #363B4D;
+    opacity: 90%;
+    line-height: 110%;
+}
+.table-organisations-row__num-secret {
+    width: 5.38em;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    color: #363B4D;
+    opacity: 90%;
+    line-height: 110%;
+}
+.num-secret-mobile {
+    display: none;
+}
+.table-organisations-row__group-users {
+    width: 11.38em;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    color: #363B4D;
+    opacity: 90%;
+    line-height: 110%;
+}
+.group-users-mobile {
+    display: none;
+}
+.table-organisations-row__votes {
+    width: 6.38em;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    color: #363B4D;
+    opacity: 90%;
+    line-height: 110%;
+}
+.votes-mobile {
+    display: none;
+}
+.table-organisations-row__active-votes {
+    width: 11.5em;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    color: #363B4D;
+    opacity: 90%;
+    line-height: 110%;
+}
+.active-votes-mobile {
+    display: none;
+}
+.table-organisations-row__templates {
+    width: 4.72em;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    color: #363B4D;
+    opacity: 90%;
+    line-height: 110%;
+}
+.templates-mobile {
+    display: none;
+}
+.table-organisations-row__action {
+    width: 9.38em;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    cursor: pointer;
+    gap: 0.6em;
+    line-height: 124%;
+}
+.table-organisations-row__icon-edit {
+    width: 1em;
+    height: 1em;
+}
+.table-organisations-row__edit-btn {
+    color: #0084FE;
+    font-size: 0.8em;
+    line-height: 124%;
+}
+.table-organisations-row__edit-btn-mobile {
+    display: none;
+}
+/*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
+.organisation-list__table-organisations-mobile {
+    display: none;
+}
+.table-organisations-mobile-search-input {
+    display: none;
+}
 /*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
 @media (max-width: 1570px) {
     .container__organisation-list  {
+        font-size: 16px;
         min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 1120px) {
+    .container__organisation-list  {
+        font-size: 12px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 830px) {
+    .container__organisation-list  {
+        font-size: 8px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 600px) {
+    .container__organisation-list  {
+        font-size: 6px;
+        min-height: calc(65vh - 80px);
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 500px) {
+    .container__organisation-list {
+        margin-bottom: 36px;
+    }
+    .organisation-list__sort-pagination, .organisation-list__second-pagination {
+        display: none;
+    }
+    .organisation-list__table-organisations {
+        border-radius: 16px;
+        padding: 16px 0 16px 0;
+    }
+    .table-organisations-row:last-child {
+        border-bottom: none;
+    }
+    .table-organisations-header {
+        display: none;
+      }
+    .table-organisations-row {
+        font-size: 16px;
+        justify-content: stretch;
+        flex-wrap: wrap;
+        border-bottom: 1px solid rgba(54, 59, 77, 0.1);
+        border-top: none;
+        margin: 0 15px;
+        padding: 24px 0 24px 0;
+        box-sizing: content-box;
+    }
+    .table-organisations-row__name-org {
+        width: 375px;
+        font-weight: 500;
+        margin-bottom: 16px;
+        line-height: 145%;
+    }
+    .table-organisations-row__num-secret {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        border-right: 0.5px solid rgba(54, 59, 77, 0.4);
+        font-size: 14px;
+        line-height: 114%;
+        margin-right: 16px;
+        width: 100px;
+        margin-bottom: 16px;
+        word-break: break-word;
+    }
+    .num-secret-mobile {
+        display: initial;
+        color: rgba(54, 59, 77, 0.4);
+        font-weight: 500;
+        line-height: 130%;
+    }
+    .table-organisations-row__group-users {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        font-size: 14px;
+        line-height: 118%;
+        margin-bottom: 16px;
+        word-break: break-word;
+    }
+    .group-users-mobile {
+        display: initial;
+        color: rgba(54, 59, 77, 0.4);
+        font-weight: 500;
+        line-height: 130%;
+    }
+    .table-organisations-row__votes {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        border-right: 0.5px solid rgba(54, 59, 77, 0.4);
+        font-size: 14px;
+        line-height: 118%;
+        margin-right: 16px;
+        width: 100px;
+        word-break: break-word;
+        margin-bottom: 16px;
+    }
+    .votes-mobile {
+        display: initial;
+        color: rgba(54, 59, 77, 0.4);
+        font-weight: 500;
+        line-height: 130%;
+    }
+    .table-organisations-row__active-votes {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        font-size: 14px;
+        line-height: 118%;
+        word-break: break-word;
+        margin-bottom: 16px;
+    }
+    .active-votes-mobile {
+        display: initial;
+        color: rgba(54, 59, 77, 0.4);
+        font-weight: 500;
+        line-height: 130%;
+    }
+    .table-organisations-row__templates {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        font-size: 14px;
+        line-height: 118%;
+        word-break: break-word;
+        margin-bottom: 16px;
+        width: 100px;
+    }
+    .templates-mobile {
+        display: initial;
+        color: rgba(54, 59, 77, 0.4);
+        font-weight: 500;
+        line-height: 130%;
+    }
+    .table-organisations-row__action {
+        width: 100%;
+        height: 48px;
+        background-color: #0084FE;
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+    }
+    .table-organisations-row__edit-btn {
+        display: none;
+    }
+    .table-organisations-row__icon-edit {
+        display: none;
+    }
+    .table-organisations-row__edit-btn-mobile {
+        color: #FBFBFC;
+        display: initial;
+        font-weight: 400;
+        line-height: 124%;
+    }
+    .table-organisations-mobile-search-input {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: relative;
+        opacity: 60%;
+        margin: 0 15px;
+    }
+    .mobile-search-input {
+        height: 24px;
+        outline: none;
+        color: #363B4D;
+        width: 163px;
+        background-color: rgba(54, 59, 77, 0.05);
+        border-radius: 4px;
+        padding: 0 0 0 22px;
+     }
+    .table-organisations-mobile-search-icon {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        left: 5px;
+    }
+    .organisation-list__show-more {
+        display: initial;
+        font-size: 16px;
+        margin: 0 16px;
+        line-height: 124%;
+        color: #0084FE;
+        font-weight: 300;
+        cursor: pointer;
+        padding-top: 12px;
     }
 }
