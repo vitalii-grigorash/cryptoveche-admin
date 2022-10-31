@@ -30,6 +30,7 @@ body {
   font-size: 18px;
   background-color: #FBFBFC;
   font-family: Inter;
+  overflow-y: scroll;
 }
 ._container {
   max-width: 92.222vw;
@@ -51,4 +52,9 @@ body::-webkit-scrollbar-thumb {
   background-color: gray;    /* цвет бегунка */
   border-radius: 20px;       /* округлось бегунка */
   /* отступ вокруг бегунка */
+}
+@media (max-width: 375px) {
+  html, body  {
+    overflow-y: initial;
+  }
 }

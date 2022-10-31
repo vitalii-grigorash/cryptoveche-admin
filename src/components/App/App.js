@@ -9,6 +9,7 @@ import AuthSetPass from "../AuthSetPass/AuthSetPass";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import OrganizationsList from "../OrganizationsList/OrganizationsList";
+import AddNewOrganization from "../AddNewOrganization/AddNewOrganization";
 
 function App() {
 
@@ -49,10 +50,9 @@ function App() {
     }, []);
 
 
-
   return (
     <div className="app">
-        {pathname ==='/' && isLoggedIn && (
+        {isLoggedIn && (
             <Header constants={constants}/>
         )}
         <Routes>
@@ -77,10 +77,12 @@ function App() {
             />}/>
             <Route exact path={'/'} element={<OrganizationsList
                 constants={constants}
-            />}
-            />
+            />}/>
+            <Route path={'/add-org-page'} element={<AddNewOrganization
+                constants={constants}
+            />}/>
         </Routes>
-        {pathname === '/' && isLoggedIn && (
+        {isLoggedIn && (
             <Footer
                 handleLangChange={handleLangChange}
                 constants={constants}

@@ -15,7 +15,7 @@ const Auth = (props) => {
         changeLanguageBtn
     } = props;
 
-    const linkButtonRegPage = useNavigate();
+    const linkButton = useNavigate();
     const [showPass, setShowPass] = useState(false);
     const [typePass, setTypePass] = useState('password');
 
@@ -71,7 +71,7 @@ const Auth = (props) => {
                         <span className="remember-me__label">{constants.AUTH.AUTH_REMEMBER_ME}</span>
                     </div>
                     <div className="auth-form__button-enter">
-                        <button className="button-enter__btn-enter">{constants.AUTH.AUTH_ENTER_BTN}</button>
+                        <button onClick={() => linkButton('/')} className="button-enter__btn-enter">{constants.AUTH.AUTH_ENTER_BTN}</button>
                         <a className="button-enter__link-gosuslugi" href={'/'}>{constants.AUTH.AUTH_ENTER_LINK_GOSUSLUGI}</a>
                     </div>
                     <div className="auth-form__mobile-link-reg">
@@ -91,7 +91,7 @@ const Auth = (props) => {
                             {constants.AUTH.AUTH_QUESTION_ACCOUNT}
                         </div>
                         <div className="title-reg-block__reg-btn">
-                            <button className="reg-btn__registration-button" onClick={() => linkButtonRegPage('/reg')}>{constants.AUTH.AUTH_REG_BTN}</button>
+                            <button className="reg-btn__registration-button" onClick={() => linkButton('/reg')}>{constants.AUTH.AUTH_REG_BTN}</button>
                         </div>
                     </div>
                     <img alt={'картинка в блоке с лого'} className="reg-btn-logotype__background-image" src={auth_background_image}/>

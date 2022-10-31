@@ -41,9 +41,9 @@ const OrganizationsList = (props) => {
     return (
         <div className="container__organisation-list _container">
             <GeneralTitleAllPages
-                titleName={constants.GENERAL_TITLE.GENERAL_TITLE_TITLENAME}
+                titleName={constants.GENERAL_TITLE.GENERAL_TITLE_TITLENAME_ORG}
                 firstLetter={constants.GENERAL_TITLE.GENERAL_TITLE_FIRTSLETTER}
-                secondLetter={constants.GENERAL_TITLE.GENERAL_TITLE_SECONDLETTER}
+                secondLetter={constants.GENERAL_TITLE.GENERAL_TITLE_SECONDLETTER_ORG}
             />
             <div className="organisation-list__sort-pagination">
                 <SortingBlock

@@ -150,3 +150,28 @@
     }
 }
 /*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 500px) {
+    .pagination-search-block__text {
+            font-size: 12px;
+    }
+    .pagination-search-block__arrow-count-page {
+        font-size: 12px;
+    }
+    .pagination-search-block__options-container {
+        font-size: 12px;
+    }
+    .pagination-search-block__change-page {
+        gap: 4px;
+    }
+    .change-page__counter-page {
+        font-size: 10px;
+    }
+    .pagination-search-block__search-table input {
+        font-size: 12px;
+        width: 100%;
+        padding: 0 12px 0 24px;
+    }
+    .search-table__search-table-icon {
+        top: 10px;
+    }
+}

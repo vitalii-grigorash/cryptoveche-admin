@@ -76,7 +76,7 @@ const Header = (props) => {
                             {/*<Link to={'#'}>Голосование</Link>*/}
                             {/*<Link to={'#'}>Группу пользователей</Link>*/}
                             {/*<Link to={'#'}>Шаблон голосования</Link>*/}
-                            <Link to={'/'}>{constants.HEADER.HEADER_ADD_ORG}</Link>
+                            <Link to={'/add-org-page'}>{constants.HEADER.HEADER_ADD_ORG}</Link>
                         </div>
                     </div>
                 </div>

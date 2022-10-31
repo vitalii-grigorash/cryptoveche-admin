@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 9em;
-    min-height: calc(45vh - 80px);
+    min-height: calc(49vh - 80px);
     font-size: 18px;
 }
 /*------Контейнер для блока с пагинацией и сортировкий----------------------------------------------------------------*/
@@ -198,13 +198,13 @@
 }
 @media (max-width: 830px) {
     .container__organisation-list  {
-        font-size: 8px;
+        font-size: 10px;
         min-height: calc(65vh - 80px);
     }
 }
 @media (max-width: 600px) {
     .container__organisation-list  {
-        font-size: 6px;
+        font-size: 8px;
         min-height: calc(65vh - 80px);
     }
 }
@@ -268,6 +268,7 @@
         line-height: 118%;
         margin-bottom: 16px;
         word-break: break-word;
+        width: 180px;
     }
     .group-users-mobile {
         display: initial;
@@ -301,6 +302,7 @@
         line-height: 118%;
         word-break: break-word;
         margin-bottom: 16px;
+        width: 180px;
     }
     .active-votes-mobile {
         display: initial;

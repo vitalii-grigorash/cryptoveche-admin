@@ -98,9 +98,11 @@ export const constants = {
         FOOTER_MAIL_SUPPORT: "support@dltc.spbu.ru"
     },
     GENERAL_TITLE: {
-        GENERAL_TITLE_TITLENAME: "Список организаций",
+        GENERAL_TITLE_TITLENAME_ORG: "Список организаций",
         GENERAL_TITLE_FIRTSLETTER: "АдминистраторКриптовече",
-        GENERAL_TITLE_SECONDLETTER: "Организация"
+        GENERAL_TITLE_SECONDLETTER_ORG: "Организация",
+        GENERAL_TITLE_TITLENAME_ADD_ORG: "Добавление новой организации",
+        GENERAL_TITLE_SECONDLETTER_GROUP_USERS: "Группы пользователей"
     },
     SORTING_BLOCK: {
         SORTING_BLOCK_LABEL: "Сортировать по:",
@@ -121,5 +123,26 @@ export const constants = {
         ORGANIZATIONS_LIST_ACTIONS: "Действия",
         ORGANIZATIONS_LIST_EDIT_BTN: "РЕДАКТИРОВАТЬ",
         ORGANIZATIONS_LIST_EDIT_BTN_MOBILE: "Редактировать"
+    },
+    ADD_NEW_ORG: {
+        ADD_NEW_ORG_NAME_ORG: "Название организации",
+        ADD_NEW_ORG_PLACEHOLDER_NAME: "Введите название организации",
+        ADD_NEW_ORG_IMPORT_EXCEL_BTN: "Импорт пользователей из Excel",
+        ADD_NEW_ORG_ADD_USERS_MAIL_BTN: "Добавить пользователей по E-mail",
+        ADD_NEW_ORG_ADD_USERS_MAIL_BTN_MOBILE: "Добавить пользователей",
+        ADD_NEW_ORG_MAIL_ADDRESS_USERS: "Почтовые адреса пользователей",
+        ADD_NEW_ORG_MAIL_ADDRESS_USERS_RULE: "(по одному на каждую строчку для каждого пользователя)",
+        ADD_NEW_ORG_SEARCH_USERS_BASE_BTN: "Найти в базе пользователей",
+        ADD_NEW_ORG_E_MAIL_SUPPORT: "E-mail поддержки",
+        ADD_NEW_ORG_E_MAIL_SUPPORT_PLACEHOLDER: "Введите E-mail поддержки",
+        ADD_NEW_ORG_NOTE: "Примечание",
+        ADD_NEW_ORG_INPUT_NOTE: "Введите примечание",
+        ADD_NEW_ORG_SAVE_BTN: "Сохранить",
+        ADD_NEW_ORG_SUPERUSER: "Суперпользователь",
+        ADD_NEW_ORG_DELETE_BTN: "УДАЛИТЬ",
+        ADD_NEW_ORG_DELETE_BTN_MOBILE: "Удалить",
+        ADD_NEW_ORG_BLOCK_BTN: "Заблокировать",
+        ADD_NEW_ORG_UNBLOCK_BTN: "Разблокировать",
+        ADD_NEW_ORG_SHOW_MORE_BTN: "ПОКАЗАТЬ ЕЩЁ"
     }
 }

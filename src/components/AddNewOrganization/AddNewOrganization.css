@@ -1,0 +1,621 @@
+/*------Основной контейнер--------------------------------------------------------------------------------------------*/
+.container__add-new-organization {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(49vh - 80px);
+    font-size: 18px;
+}
+/*------Контейнер для основного блока с контентом---------------------------------------------------------------------*/
+.add-new-organization {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 6.2em;
+    background-color: #FFFFFF;
+    box-shadow: -3px 0 8px rgba(54, 58, 72, 0.1);
+    border-radius: 0.8em;
+    padding: 1.77em 1.77em;
+}
+/*------Контейнер для блока с инпутом названия организации------------------------------------------------------------*/
+.add-new-organization__name-org-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.88em;
+    margin-bottom: 1.77em;
+}
+.name-org-input__label-name-org {
+    line-height: 110%;
+    font-weight: 400;
+    color: #363B4D;
+    opacity: 90%;
+ }
+.name-org-input__field {
+    line-height: 110%;
+    height: 2.66em;
+    outline: none;
+    border: 0.5px solid rgba(54, 59, 77, 0.2);
+    border-radius: 0.44em;
+    padding: 0.66em 1.33em 0.66em 1.33em;
+    color: #363B4D;
+    opacity: 90%;
+    font-size: 1em;
+}
+.name-org-input__field::placeholder {
+    color: #363B4D;
+    opacity: 40%;
+}
+.name-org-input__red-star {
+    color: #FF4970;
+}
+/*------Контейнер для блока с кнопками импорт excel и добавить e-mail-------------------------------------------------*/
+.add-new-organization__import-excel-add-email-buttons {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1.77em;
+    gap: 0.88em;
+    align-items: center;
+}
+.import-excel-add-email-buttons__import-excel-btn {
+    display: flex;
+    flex-direction: row;
+    gap: 0.66em;
+    align-items: center;
+    font-size: 0.88em;
+    color: #4ED4A9;
+    border: 1px solid #4ED4A9;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0.66em 1.66em 0.66em 1.66em;
+    height: 2.66em;
+}
+.import-excel-btn__excel-icon {
+    width: 1.33em;
+    height: 1.33em;
+}
+.import-excel-add-email-buttons__add-email-btn {
+    display: flex;
+    flex-direction: row;
+    gap: 0.66em;
+    align-items: center;
+    font-size: 0.88em;
+    color: #0084FE;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0.66em 1.66em 0.66em 1.66em;
+    border: 1px solid #0084FE;
+    height: 2.66em;
+}
+.add-email-btn__email-icon {
+    width: 1.33em;
+    height: 0.88em;
+}
+.add-email-btn__button-mobile {
+    display: none;
+}
+/*------Контейнер для блока с почтовыми адресами пользователей--------------------------------------------------------*/
+.add-new-organization__mail-addresses-users {
+    display: flex;
+    flex-direction: column;
+    gap: 0.88em;
+    margin-bottom: 1.77em;
+}
+.mail-addresses-users__label-mail {
+    font-size: 1em;
+    color: #363B4D;
+    opacity: 90%;
+}
+.mail-addresses-users__label-rule {
+    opacity: 40%;
+    line-height: 120%;
+    font-size: 0.88em;
+}
+.mail-addresses-users__input-field {
+    outline: none;
+    font-size: 1em;
+    color: #363B4D;
+    border: 0.5px solid rgba(54, 59, 77, 0.2);
+    border-radius: 0.44em;
+    line-height: 110%;
+    opacity: 90%;
+    padding: 0.88em 1.33em 0.88em 1.33em;
+    height: 7.11em;
+    resize: none;
+}
+.mail-addresses-users__search-base-users {
+    font-size: 0.88em;
+    line-height: 124%;
+    cursor: pointer;
+    color: #0084FE;
+    background-color: #FFFFFF;
+    width: 17em;
+    height: 2.66em;
+    border: 1px solid  #0084FE;
+    border-radius: 4px;
+}
+.mail-addresses-users__search-base-users:hover {
+    background-color: #0084FE;
+    color: #FFFFFF;
+}
+/*------Контейнер для верхней пагинации-------------------------------------------------------------------------------*/
+.add-new-organization__top-pagination {
+    margin-bottom: 0.88em;
+}
+/*------Контейнер для таблицы c пользователями-------------------------------------------------------------------------*/
+.add-new-organization__table-list-users {
+    display: flex;
+    flex-direction: column;
+    border-radius: 1.33em;
+    border: 0.5px solid rgba(54, 59, 77, 0.2);
+    margin-bottom: 0.88em;
+}
+.add-new-organization__table-list-users div:last-child {
+    border-bottom: none;
+}
+.table-list-users__icon-lock {
+    display: none;
+}
+.table-list-users__icon-lock.active {
+    display: initial;
+}
+.table-list-users__show-more-mobile {
+    display: none;
+}
+.table-list-users {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 1.33em 0 1.33em;;
+    border-bottom: 0.5px solid rgba(54, 59, 77, 0.2);
+}
+.table-list-users__name-user-icon-lock {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    width: 21.3em;
+}
+.table-list-users__column-name {
+    width: 100%;
+    line-height: 129%;
+    color: #363B4D;
+    opacity: 90%;
+    min-height: 3.55em;
+    display: flex;
+    align-items: center;
+    border-right: 0.5px solid rgba(54, 59, 77, 0.2);
+    word-break: break-word;
+    white-space: break-spaces;
+    margin-right: 2.38em;
+    padding-right: 1.77em;
+}
+.table-list-users__column-e-mail {
+    width: 23.55em;
+    line-height: 129%;
+    color: #363B4D;
+    opacity: 90%;
+    min-height: 3.55em;
+    display: flex;
+    align-items: center;
+    border-right: 0.5px solid rgba(54, 59, 77, 0.2);
+    word-break: break-word;
+    white-space: break-spaces;
+    margin-right: 2.38em;
+    padding-right: 2.3em;
+}
+.table-list-users__column-checkbox-superuser {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.88em;
+    width: 15.72em;
+    min-height: 3.55em;
+    border-right: 0.5px solid rgba(54, 59, 77, 0.2);
+    margin-right: 2em;
+    padding-right: 1.9em;
+}
+.column-checkbox-superuser__label {
+    font-size: 0.88em;
+    line-height: 124%;
+    color: #363B4D;
+    opacity: 90%;
+}
+.table-list-users__checkbox_container {
+    position: relative;
+    width: 1.1em;
+    height: 1.1em;
+    cursor: pointer;
+}
+.table-list-users__checkbox_container input {
+    position: absolute;
+    opacity: 0;
+}
+.table-list-users__checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1.1em;
+    width: 1.1em;
+    background-color: #FFFFFF;
+    border-color: #0084FE;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 2px;
+}
+.table-list-users__checkbox_container:hover input ~ .table-list-users__checkmark {
+    background-color: #FFFFFF;
+}
+.table-list-users__checkbox_container input:checked ~ .table-list-users__checkmark {
+    background-color: #0084FE;
+}
+.table-list-users__checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.table-list-users__checkbox_container input:checked ~ .table-list-users__checkmark:after {
+    display: block;
+}
+.table-list-users__checkbox_container .table-list-users__checkmark:after {
+    left: 0.3em;
+    top: 0.2em;
+    width: 0.4em;
+    height: 0.4em;
+    border: solid white;
+    border-width: 0 1px 1px 0;
+    /*-webkit-transform: rotate(45deg);*/
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.table-list-users__delete-icon-button {
+    width: 9.61em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.72em;
+    min-height: 3.55em;
+    margin: 0 auto;
+    cursor: pointer;
+}
+.delete-icon-button__delete-btn {
+    color: #FF4970;
+    line-height: 134%;
+    font-size: 0.88em;
+}
+.delete-icon-button__icon-delete {
+    width: 0.77em;
+    height: 0.77em ;
+}
+.delete-icon-button__block-unblock-btn {
+    display: none;
+}
+.delete-icon-button__delete-btn-mobile {
+    display: none;
+}
+/*------Контейнер для нижней пагинации--------------------------------------------------------------------------------*/
+.add-new-organization__bottom-pagination {
+    margin-bottom: 1.77em;
+}
+/*------Контейнер инпута с e-mail поддержки---------------------------------------------------------------------------*/
+.add-new-organization__e-mail-support {
+    display: flex;
+    flex-direction: column;
+    gap: 0.88em;
+    margin-bottom: 1.77em;
+}
+.e-mail-support__e-mail-label {
+    line-height: 110%;
+    font-weight: 400;
+    color: #363B4D;
+    opacity: 90%;
+}
+.e-mail-support__field {
+    line-height: 110%;
+    height: 2.66em;
+    outline: none;
+    border: 0.5px solid rgba(54, 59, 77, 0.2);
+    border-radius: 0.44em;
+    padding: 0.66em 1.33em 0.66em 1.33em;
+    color: #363B4D;
+    opacity: 90%;
+    font-size: 1em;
+}
+.e-mail-support__field::placeholder {
+    color: #363B4D;
+    opacity: 40%;
+}
+.e-mail-support__red-star {
+    color: #FF4970;
+}
+/*------Контейнер инпута с примечаниями-------------------------------------------------------------------------------*/
+.add-new-organization__note-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.88em;
+    margin-bottom: 1.77em;
+}
+.note-input__note-label {
+    line-height: 110%;
+    font-weight: 400;
+    color: #363B4D;
+    opacity: 90%;
+}
+.note-input__field {
+    line-height: 110%;
+    height: 7.11em;
+    outline: none;
+    border: 0.5px solid rgba(54, 59, 77, 0.2);
+    border-radius: 0.44em;
+    padding: 0.88em 1.33em 0.88em 1.33em;
+    color: #363B4D;
+    opacity: 90%;
+    font-size: 1em;
+    resize: none;
+}
+.note-input__field::placeholder {
+    color: #363B4D;
+    opacity: 40%;
+}
+.note-input__red-star {
+    color: #FF4970;
+}
+/*------Контейнер для кнопки сохранить--------------------------------------------------------------------------------*/
+.add-new-organization__save-button {
+    display: flex;
+}
+.save-button__add-new-org-save-btn {
+    border-radius: 4px;
+    background-color: #0084FE;
+    width: 15em;
+    height: 3.11em;
+    color: #FFFFFF;
+    line-height: 110%;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 1em;
+}
+.save-button__add-new-org-save-btn:hover {
+    background-color: #FFFFFF;
+    color: #0084FE;
+    border: 1px solid #0084FE;
+}
+/*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
+@media (max-width: 1570px) {
+    .container__add-new-organization  {
+        font-size: 16px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 1120px) {
+    .container__add-new-organization  {
+        font-size: 12px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 830px) {
+    .container__add-new-organization  {
+        font-size: 10px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 600px) {
+    .container__add-new-organization  {
+        font-size: 8px;
+        min-height: calc(65vh - 80px);
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 500px) {
+    .container__add-new-organization {
+        margin-bottom: 0;
+    }
+    .add-new-organization {
+        padding: 16px 16px;
+    }
+    .add-new-organization__name-org-input {
+        margin-bottom: 16px;
+    }
+    .name-org-input__label-name-org {
+        font-size: 16px;
+        line-height: 114%;
+    }
+    .name-org-input__field {
+        font-size: 16px;
+        padding: 13px 16px 13px 16px;
+        line-height: 114%;
+        height: 48px;
+        border: 1px solid rgba(54, 59, 77, 0.4);
+    }
+    .add-new-organization__import-excel-add-email-buttons {
+        flex-direction: column;
+        margin-bottom: 16px;
+        gap: 16px;
+    }
+    .import-excel-add-email-buttons__import-excel-btn {
+        width: 100%;
+        height: 48px;
+        font-size: 16px;
+        padding: 12px 13px 12px 13px;
+    }
+   .import-excel-add-email-buttons__add-email-btn {
+       width: 100%;
+       height: 48px;
+       font-size: 16px;
+       padding: 12px 41px 12px 39px;
+   }
+    .mail-addresses-users__label-rule {
+        display: none;
+    }
+    .add-email-btn__button-desktop {
+        display: none;
+    }
+    .add-email-btn__button-mobile {
+        display: initial;
+    }
+    .add-new-organization__mail-addresses-users {
+        gap: 0;
+        margin-bottom: 19px;
+    }
+    .mail-addresses-users__label-mail {
+        font-size: 16px;
+        line-height: 114%;
+        margin-bottom: 8px;
+    }
+    .mail-addresses-users__input-field {
+        margin-bottom: 16px;
+        border: 1px solid rgba(54, 59, 77, 0.4);
+        font-size: 18px;
+        padding: 12px 12px;
+    }
+    .mail-addresses-users__search-base-users {
+        width: 100%;
+        height: 48px;
+        font-size: 16px;
+        line-height: 124%;
+    }
+    .add-new-organization__top-pagination {
+        margin-bottom: 24px;
+    }
+    .add-new-organization__bottom-pagination {
+        display: none;
+    }
+    .add-new-organization__table-list-users {
+        margin-bottom: 16px;
+        border: none;
+    }
+    .table-list-users {
+        flex-direction: column;
+        padding: 0;
+        border-bottom: 0.5px solid rgba(54, 59, 77, 0.2);
+        margin-bottom: 24px;
+    }
+    .table-list-users__name-user-icon-lock {
+        width: 100%;
+        margin-bottom: 8px;
+        height: 21px;
+    }
+    .table-list-users__column-name {
+        border: none;
+        width: 100%;
+        font-size: 16px;
+        line-height: 114%;
+        margin-right: 0;
+        padding-right: 0;
+        min-height: 0;
+    }
+    .table-list-users__column-e-mail {
+        border: none;
+        width: 100%;
+        font-size: 14px;
+        line-height: 114%;
+        margin-right: 0;
+        padding-right: 0;
+        min-height: 0;
+        margin-bottom: 16px;
+        color: rgba(54, 59, 77, 0.4);
+    }
+    .table-list-users__column-checkbox-superuser {
+        border: none;
+        width: 100%;
+        font-size: 14px;
+        line-height: 114%;
+        margin-right: 0;
+        padding-right: 0;
+        min-height: 0;
+        margin-bottom: 16px;
+    }
+    .column-checkbox-superuser__label {
+        font-size: 16px;
+        margin-left: 12px;
+    }
+    .table-list-users__checkmark {
+        width: 24px;
+        height: 24px;
+        top: -6px;
+    }
+    .table-list-users__checkbox_container .table-list-users__checkmark:after {
+        width: 11px;
+        height: 8px;
+        top: 6px;
+    }
+    .table-list-users__delete-icon-button {
+        width: 100%;
+        display: flex;
+        margin-right: 0;
+        padding-right: 0;
+        min-height: 0;
+        margin-bottom: 16px;
+        justify-content: space-between;
+    }
+    .delete-icon-button__delete-btn,
+    .delete-icon-button__icon-delete {
+        display: none;
+    }
+    .delete-icon-button__delete-btn-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #FF4970;
+        width: 151px;
+        height: 48px;
+        font-size: 16px;
+        border: 1px solid #FF4970;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .delete-icon-button__block-unblock-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 152px;
+        height: 48px;
+        font-size: 16px;
+        border: 1px solid rgba(54, 59, 77, 0.9);
+        border-radius: 4px;
+        cursor: pointer;
+        opacity: 90%;
+    }
+    .add-new-organization__e-mail-support {
+        margin-bottom: 32px;
+    }
+    .e-mail-support__e-mail-label {
+        font-size: 16px;
+        line-height: 114%;
+        margin-bottom: 8px;
+    }
+    .e-mail-support__field {
+        font-size: 16px;
+        padding: 13px 16px 13px 16px;
+        line-height: 114%;
+        height: 48px;
+        border: 1px solid rgba(54, 59, 77, 0.4);
+    }
+    .add-new-organization__note-input {
+        margin-bottom: 16px;
+    }
+    .note-input__note-label {
+        font-size: 16px;
+        line-height: 114%;
+        margin-bottom: 8px;
+    }
+    .note-input__field {
+        font-size: 16px;
+        padding: 13px 16px 13px 16px;
+        line-height: 114%;
+        height: 128px;
+        border: 1px solid rgba(54, 59, 77, 0.4);
+    }
+    .save-button__add-new-org-save-btn {
+        width: 100%;
+        height: 56px;
+        font-size: 18px;
+       line-height: 110%;
+        margin-bottom: 8px;
+    }
+    .table-list-users__show-more-mobile {
+        display: initial;
+        font-size: 16px;
+        font-weight: 300;
+        color: #0084FE;
+        cursor: pointer;
+    }
+}

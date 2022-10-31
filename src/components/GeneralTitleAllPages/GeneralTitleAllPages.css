@@ -59,19 +59,20 @@
 }
 @media (max-width: 600px) {
     .container__general-title-allpages  {
-        font-size: 6px;
+        font-size: 10px;
     }
 }
 /*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
 @media (max-width: 500px) {
     .container__general-title-allpages {
         font-size: 16px;
+        margin-bottom: 14px;
     }
     .general-title-allpages__page-info {
         display: none;
     }
     .title-name__title {
-        font-size: 22px;
+        font-size: 20px;
         line-height: 113%;
         font-weight: 500;
     }
