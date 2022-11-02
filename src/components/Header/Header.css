@@ -162,10 +162,12 @@
     cursor: pointer;
     position: relative;
 }
+
 .search-setting-myprofile__icon-myprofile {
     margin-right: 0.687em;
     width: 1.125em;
     height: 1.125em;
+    cursor: pointer;
 }
 .search-setting-myprofile__label-myprofile, .search-setting-myprofile__label-search {
     color: #FFFFFF;
@@ -183,6 +185,8 @@
     display: flex;
     flex-direction: column;
     width: 13.75em;
+    cursor: pointer;
+    z-index: 22;
 }
 .search-setting-myprofile__myprofile-modal-exit.hidden {
     display: none;
@@ -191,12 +195,14 @@
     width: 1.5em;
     height: 1.5em;
     margin-right: 0.75em;
+    cursor: pointer;
 }
 .search-setting-myprofile__myprofile-modal-exit a:nth-child(1) {
     padding: 1em 0 1em 1em;
     border-bottom: 1px solid #61687E;
     color: #FFFFFF;
     text-decoration: none;
+    cursor: pointer;
 }
 .search-setting-myprofile__myprofile-modal-exit a:nth-child(2) {
     padding: 1em 0 1em 1em;
@@ -204,6 +210,7 @@
     text-decoration: none;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 .search-setting-myprofile__myprofile-modal-exit a:nth-child(1):hover,
 .search-setting-myprofile__myprofile-modal-exit a:nth-child(2):hover {

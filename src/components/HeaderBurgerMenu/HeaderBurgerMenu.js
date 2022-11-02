@@ -2,11 +2,12 @@ import React, {useEffect, useState} from "react";
 import burgerMenuLogo from "../../img/HeaderBurgerMenu_logo.svg";
 import burgerMenuIconRow from '../../img/HeaderRowButton.svg';
 // import burger_menu_icon_search from '../../img/HeaderBurgerMenu_icon_search.svg';
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const HeaderBurgerMenu = ({ active, setActive, handleLogout, constants }) => {
 
     const [activeAddOrg, setActiveAddOrg] = useState(false);
+    const linkPage = useNavigate();
 
     function showAddOrg() {
         if (activeAddOrg === false) {
@@ -14,6 +15,19 @@ const HeaderBurgerMenu = ({ active, setActive, handleLogout, constants }) => {
         } else {
             setActiveAddOrg(false)
         }
+    }
+
+    useEffect(() => {
+        if (active === true) {
+            setActiveAddOrg(false)
+        } else {
+            setActiveAddOrg(true)
+        }
+    }, [active])
+
+    function closeModal() {
+        linkPage(('/add-org-page'))
+        setActive(false)
     }
 
     useOnClickOutsideModal(active, () => setActive(false));
@@ -33,7 +47,6 @@ const HeaderBurgerMenu = ({ active, setActive, handleLogout, constants }) => {
         }, [active, handler])
     }
 
-
     return (
         <div className={active ? 'burger-menu active' : 'burger-menu'} onClick={() => setActive(false)}>
             {/*<div className='blur' />*/}
@@ -45,13 +58,13 @@ const HeaderBurgerMenu = ({ active, setActive, handleLogout, constants }) => {
                 <div className='burger-menu__link-page'>
                     <Link to={'/'} onClick={() => setActive(false)}>{constants.HEADER.HEADER_BURGER_ORG}</Link>
                     {/*<Link to={'/votes-page'} onClick={() => setActive(false)}>Голосования</Link>*/}
-                    {/*<Link to={'/my-profile'} onClick={() => setActive(false)}>Мой профиль</Link>*/}
+                    <Link to={'/my-profile'} onClick={() => setActive(false)}>Мой профиль</Link>
                 </div>
                 <div className="burger-menu__add-button">
                     <div onClick={showAddOrg} className="burger-menu__add-button-label-row">
                         <p>{constants.HEADER.HEADER_BURGER_ADD_BTN}</p><img alt={'иконка стрелочка'} src={burgerMenuIconRow} className={activeAddOrg ? "burger-menu__add-button-row active" : "burger-menu__add-button-row"}/>
                     </div>
-                    <p className={activeAddOrg ? "burger-menu__add-button-org active" : "burger-menu__add-button-org"}>{constants.HEADER.HEADER_BURGER_ADD_ORG}</p>
+                    <p onClick={closeModal} className={activeAddOrg ? "burger-menu__add-button-org active" : "burger-menu__add-button-org"}>{constants.HEADER.HEADER_BURGER_ADD_ORG}</p>
                 </div>
                 {/* <div className={'burger-menu__toggle-font'}>
                         <span>Увеличить шрифт</span>

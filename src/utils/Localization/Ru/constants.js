@@ -102,7 +102,8 @@ export const constants = {
         GENERAL_TITLE_FIRTSLETTER: "АдминистраторКриптовече",
         GENERAL_TITLE_SECONDLETTER_ORG: "Организация",
         GENERAL_TITLE_TITLENAME_ADD_ORG: "Добавление новой организации",
-        GENERAL_TITLE_SECONDLETTER_GROUP_USERS: "Группы пользователей"
+        GENERAL_TITLE_SECONDLETTER_GROUP_USERS: "Группы пользователей",
+        GENERAL_TITLE_TITLENAME_PROFILE: "Профиль пользователя"
     },
     SORTING_BLOCK: {
         SORTING_BLOCK_LABEL: "Сортировать по:",
@@ -144,5 +145,24 @@ export const constants = {
         ADD_NEW_ORG_BLOCK_BTN: "Заблокировать",
         ADD_NEW_ORG_UNBLOCK_BTN: "Разблокировать",
         ADD_NEW_ORG_SHOW_MORE_BTN: "ПОКАЗАТЬ ЕЩЁ"
+    },
+    PROFILE_USER: {
+        PROFILE_USER_EDIT_BTN: "Редактировать профиль",
+        PROFILE_USER_ORG_GROUP_USERS: "Организации и группы пользователя",
+        PROFILE_USER_VOTES: "Голосования",
+        PROFILE_USER_STATUS_VOTING: "Голосующий",
+        PROFILE_USER_STATUS_OBSERVER: "Наблюдатель",
+        PROFILE_USER_STATUS_SECRETARY: "Секретарь",
+        PROFILE_USER_SHOW_ALL: "ПОКАЗАТЬ ПОЛНОСТЬЮ",
+        PROFILE_USER_SAVE_BTN: "Сохранить изменения",
+        PROFILE_USER_CHANGE_PERSONAL_DATA: "Изменить личные данные",
+        PROFILE_USER_SURNAME: "Фамилия",
+        PROFILE_USER_NAME: "Имя",
+        PROFILE_USER_MIDDLE_NAME: "Отчество",
+        PROFILE_USER_CHANGE_TIMEZONE: "Изменить часовой пояс",
+        PROFILE_USER_CHANGE_PASS: "Изменить пароль",
+        PROFILE_USER_PASS: "Пароль",
+        PROFILE_USER_NEW_PASS: "Новый пароль",
+        PROFILE_USER_REPEAT_PASS: "Повторите новый пароль"
     }
 }

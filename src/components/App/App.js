@@ -10,6 +10,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import OrganizationsList from "../OrganizationsList/OrganizationsList";
 import AddNewOrganization from "../AddNewOrganization/AddNewOrganization";
+import ProfileUser from "../ProfileUser/ProfileUser";
 
 function App() {
 
@@ -79,6 +80,9 @@ function App() {
                 constants={constants}
             />}/>
             <Route path={'/add-org-page'} element={<AddNewOrganization
+                constants={constants}
+            />}/>
+            <Route path={'/profile-user'} element={<ProfileUser
                 constants={constants}
             />}/>
         </Routes>

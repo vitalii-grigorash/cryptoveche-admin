@@ -80,7 +80,7 @@ const Header = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="header__search-setting-myprofile">
+                <div className={pathname === '/profile-user' ? "header__search-setting-myprofile active" : "header__search-setting-myprofile"}>
                     {/*<div className="search-setting-myprofile__search">*/}
                     {/*    <img alt={'иконка поиска'} src={headerSearchIcon} className="search-setting-myprofile__icon-search" />*/}
                     {/*    <p className="search-setting-myprofile__label-search">Поиск</p>*/}
@@ -92,7 +92,7 @@ const Header = (props) => {
                         <img alt={'иконка мой профиль'} src={headerMyprofileIcon} className="search-setting-myprofile__icon-myprofile"/>
                         <p className="search-setting-myprofile__label-myprofile">Иванов И.И</p>
                         <div className={activeMyProfile ? "search-setting-myprofile__myprofile-modal-exit" : "search-setting-myprofile__myprofile-modal-exit hidden"}>
-                            <Link to={'#'}>{constants.HEADER.HEADER_MYPROFILE_MODAL}</Link>
+                            <Link to={'/profile-user'}>{constants.HEADER.HEADER_MYPROFILE_MODAL}</Link>
                             <Link to={'#'}><img alt={'иконка выхода'} src={headerExitIcon} className="myprofile-modal-exit__icon"/>{constants.HEADER.HEADER_MYPROFILE_MODAI_EXIT}</Link>
                         </div>
                     </div>

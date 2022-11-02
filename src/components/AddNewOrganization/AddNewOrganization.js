@@ -14,8 +14,12 @@ const AddNewOrganization = (props) => {
 
     const [activeBlock, setActiveBlock] = useState(true);
 
-    const onActiveBlock = (i) => {
-
+    const onActiveBlock = () => {
+        if (activeBlock === true) {
+           setActiveBlock(false)
+        } else {
+            setActiveBlock(true)
+        }
     }
 
     const testUsersObj = [
@@ -28,7 +32,6 @@ const AddNewOrganization = (props) => {
             email: "maria.timoshina98@yandex.ru"
         }
     ]
-
 
 
     return (
@@ -76,7 +79,7 @@ const AddNewOrganization = (props) => {
                                     <p className="table-list-users__column-e-mail">{el.email}</p>
                                     <div className="table-list-users__column-checkbox-superuser">
                                         <label className='table-list-users__checkbox_container'>
-                                            <input defaultChecked={true} type="checkbox"/>
+                                            <input defaultChecked={false} type="checkbox"/>
                                             <span className='table-list-users__checkmark'/>
                                         </label>
                                         <p className="column-checkbox-superuser__label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_SUPERUSER}</p>

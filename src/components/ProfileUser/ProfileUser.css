@@ -1,0 +1,349 @@
+/*------Основной контейнер--------------------------------------------------------------------------------------------*/
+.container__profile-user {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(40vh - 180px);
+    font-size: 18px;
+    margin-bottom: 6.22em;
+}
+/*------Контейнер для основного блока с контентом---------------------------------------------------------------------*/
+.profile-user {
+    display: flex;
+    flex-direction: row;
+    gap: 0.88em;
+}
+/*------Контейнер для блока с данными пользователя(короткая версия)---------------------------------------------------*/
+.profile-user__personal-data-user {
+    display: flex;
+    flex-direction: column;
+    padding: 1.33em 1.33em;
+    box-shadow: -1px 0 8px rgba(54, 58, 72, 0.07);
+    background-color: #FFFFFF;
+    border-radius: 1.33em;
+    max-width: 24em;
+}
+.personal-data-user__main-data-user.active {
+    display: none;
+}
+.personal-data-user__icon-photo {
+    width: 21.33em;
+    height: 7.11em;
+    margin-bottom: 0.88em;
+    flex-wrap: wrap;
+}
+.personal-data-user__main-data-user {
+    display: flex;
+    flex-direction: column;
+    word-break: break-word;
+}
+.main-data-user__username {
+    line-height: 100%;
+    margin-bottom: 0.44em;
+    font-weight: 600;
+    color: #363B4D;
+    opacity: 90%;
+}
+.main-data-user__email {
+    font-size: 0.88em;
+    color: rgba(54, 59, 77, 0.4);
+    line-height: 124%;
+    margin-bottom: 0.88em;
+}
+.main-data-user__timezone {
+    display: inline-flex;
+    gap: 0.5em;
+    margin-bottom: 1.77em;
+}
+.main-data-user__timezone-icon {
+    width: 0.72em;
+    height: 0.72em;
+}
+.main-data-user__timezone-current {
+    font-size: 0.77em;
+    color: #4569FF;
+    line-height: 118%;
+}
+.main-data-user__edit-button {
+    cursor: pointer;
+    font-size: 0.88em;
+    line-height: 124%;
+    color: #0084FE;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    border: 1px solid #0084FE;
+    height: 3em;
+}
+.main-data-user__edit-button:hover {
+    background-color: #0084FE;
+    color: #FFFFFF;
+}
+/*------Контейнер для блока с редактированием данных пользователя-----------------------------------------------------*/
+.personal-data-user__edit-main-data-user {
+    display: none;
+}
+.personal-data-user__edit-main-data-user.active {
+    display: flex;
+    flex-direction: column;
+}
+.edit-main-data-user__email {
+    font-size: 0.88em;
+    line-height: 124%;
+    color: rgba(54, 59, 77, 0.4);
+    margin-bottom: 1.33em;
+}
+.edit-main-data-user__title-change-data {
+    font-size: 1em;
+    font-weight: 600;
+    color: #363B4D;
+    line-height: 110%;
+    margin-bottom: 1.33em;
+    opacity: 90%;
+}
+.edit-main-data-user__surname {
+    display: flex;
+    flex-direction: column;
+    gap: 0.88em;
+    margin-bottom: 0.88em;
+}
+.edit-main-data-user__name {
+    display: flex;
+    flex-direction: column;
+    gap: 0.88em;
+    margin-bottom: 0.88em;
+}
+.edit-main-data-user__middle-name {
+    display: flex;
+    flex-direction: column;
+    gap: 0.88em;
+    margin-bottom: 1.77em;
+}
+.edit-main-data-user__surname-label,
+.edit-main-data-user__name-label,
+.edit-main-data-user__middle-name-label {
+    font-size: 1em;
+    color: rgba(54, 59, 77, 0.9);
+    line-height: 133%;
+}
+.edit-main-data-user__surname-field-input,
+.edit-main-data-user__name-field-input,
+.edit-main-data-user__middle-name-field-input {
+    border-radius: 0.44em;
+    border: 0.5px solid rgba(54, 59, 77, 0.2);
+    outline: none;
+    color: #363B4D;
+    opacity: 90%;
+    line-height: 133%;
+    font-size: 1em;
+    padding: 0.66em 1.33em;
+    height: 2.66em;
+}
+/*------Стилизация блока с выбором часового пояса---------------------------------------------------------------------*/
+.edit-main-data-user__time-zone-main-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.77em;
+    gap: 0.8em;
+    position: relative;
+}
+.edit-main-data-user__time-zone-main-container.active {
+    display: none;
+}
+.edit-main-data-user__time-zone-main-container__error-message {
+    position: absolute;
+    font-size: 0.7em;
+    line-height: 143%;
+    color: #FF4970;
+    left: 0;
+    top: 7em;
+    display: none;
+}
+.edit-main-data-user__time-zone-heading {
+    line-height: 133%;
+    color: rgba(54, 59, 77, 0.9);
+    margin: 0 auto 0 0;
+    font-weight: 600;
+    opacity: 90%;
+}
+.edit-main-data-user__time-zone-select-container {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 2.66em;
+    border: 0.5px solid rgba(54, 59, 77, 0.2);
+    box-sizing: border-box;
+    border-radius: 0.4em;
+    cursor: pointer;
+}
+.edit-main-data-user__time-zone-select-value {
+    line-height: 133%;
+    color: rgba(54, 59, 77, 0.9);
+    opacity: 0.9;
+    margin: auto auto auto 1.3em;
+    max-width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.edit-main-data-user__time-zone-select-arrow {
+    width: 1vw;
+    height: 1vh;
+    object-fit: cover;
+    margin: auto 1.33em auto auto;
+}
+.edit-main-data-user__time-zone-options-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background: #FFFFFF;
+    overflow-y: scroll;
+    top: 3.22em;
+    left: -1px;
+    width: 100%;
+    max-height: 11em;
+    box-shadow: 0 4px 8px rgba(54, 59, 77, 0.1);
+    border: 0.5px solid rgba(54, 59, 77, 0.2);
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 0 1.33em 1.33em;
+    cursor: default;
+    z-index: 9;
+}
+.edit-main-data-user__time-zone-options-container::-webkit-scrollbar {
+    width: 0.22em;
+    background: #FFFFFF;
+    border-radius: 4px;
+}
+.edit-main-data-user__time-zone-options-container::-webkit-scrollbar-thumb {
+    background: #CFD4DD;
+    border-radius: 4px;
+}
+.edit-main-data-user__time-zone-option {
+    line-height: 1.33em;
+    color: #363B4D;
+    opacity: 0.9;
+    margin: 1.33em auto 0 0;
+}
+.edit-main-data-user__time-zone-option:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+.edit-main-data-user__select-time-zone {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+}
+.edit-main-data-user__select-time-zone select {
+    background-color: white;
+    position: absolute;
+    left: 10em;
+    top: 2px;
+    cursor: pointer;
+    outline: none;
+    width: 60px;
+}
+.edit-main-data-user__select-time-zone span {
+    z-index: 3;
+}
+.edit-main-data-user__select-time-zone__red-star-icon {
+    display: none;
+}
+/*------Контейнер для блока с паролем---------------------------------------------------------------------------------*/
+.edit-main-data-user__title-change-pass {
+    margin-bottom: 1.33em;
+    font-weight: 600;
+    font-size: 1em;
+    color: #363B4D;
+    opacity: 90%;
+}
+.edit-main-data-user__pass {
+    display: flex;
+    flex-direction: column;
+    gap: 0.88em;
+    margin-bottom: 0.88em;
+    position: relative;
+}
+.edit-main-data-user__new-pass {
+    display: flex;
+    flex-direction: column;
+    gap: 0.88em;
+    margin-bottom: 0.88em;
+    position: relative;
+}
+.edit-main-data-user__repeat-pass {
+    display: flex;
+    flex-direction: column;
+    gap: 0.88em;
+    margin-bottom: 1.77em;
+    position: relative;
+}
+.edit-main-data-user__pass-label,
+.edit-main-data-user__new-pass-label,
+.edit-main-data-user__repeat-pass-label {
+    font-size: 1em;
+    color: rgba(54, 59, 77, 0.9);
+    line-height: 133%;
+}
+.edit-main-data-user__pass-input,
+.edit-main-data-user__new-pass-input,
+.edit-main-data-user__repeat-pass-input {
+    border-radius: 0.44em;
+    border: 0.5px solid rgba(54, 59, 77, 0.2);
+    outline: none;
+    color: #363B4D;
+    opacity: 90%;
+    line-height: 133%;
+    font-size: 1em;
+    padding: 0.66em 1.33em;
+    height: 2.66em;
+}
+.edit-main-data-user__button-save {
+    cursor: pointer;
+    font-size: 0.88em;
+    line-height: 124%;
+    color: #0084FE;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    border: 1px solid #0084FE;
+    height: 3em;
+}
+.edit-main-data-user__button-save:hover {
+    background-color: #0084FE;
+    color: #FFFFFF;
+}
+.edit-main-data-user__pass-icon-show {
+    position: absolute;
+    width: 1.22em;
+    height: 0.83em;
+    bottom: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+.edit-main-data-user__repeat-pass-icon-show {
+    position: absolute;
+    width: 1.22em;
+    height: 0.83em;
+    bottom: 0.83em;
+    right: 0.83em;
+    cursor: pointer;
+}
+.edit-main-data-user__new-pass-icon-show {
+    position: absolute;
+    width: 1.22em;
+    height: 0.83em;
+    bottom: 0.83em;
+    right: 0.83em;
+    cursor: pointer;
+}
+/*------Контейнер для блока с организациями и голосованиями-----------------------------------------------------------*/
+.profile-user__organizations-groups-users-votes {
+    display: flex;
+    flex-direction: column;
+    padding: 1.33em 1.33em;
+    box-shadow: -1px 0 8px rgba(54, 58, 72, 0.07);
+    background-color: #FFFFFF;
+    border-radius: 1.33em;
+    width: 100%;
+    align-self: flex-start;
+}
+
