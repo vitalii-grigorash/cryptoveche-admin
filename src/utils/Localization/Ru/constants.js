@@ -149,6 +149,7 @@ export const constants = {
     PROFILE_USER: {
         PROFILE_USER_EDIT_BTN: "Редактировать профиль",
         PROFILE_USER_ORG_GROUP_USERS: "Организации и группы пользователя",
+        PROFILE_USER_ACTIVITY_IN_USER_GROUPS: "Членство в группах пользователей",
         PROFILE_USER_VOTES: "Голосования",
         PROFILE_USER_STATUS_VOTING: "Голосующий",
         PROFILE_USER_STATUS_OBSERVER: "Наблюдатель",

@@ -104,15 +104,16 @@ const ProfileUser = (props) => {
                     </div>
                 </div>
                 <div className="profile-user__organizations-groups-users-votes">
-                    <div>
+                    <div className="organizations-groups-users-votes__title-btn">
                         <p>{constants.PROFILE_USER.PROFILE_USER_ORG_GROUP_USERS}</p>
                     </div>
                     <div>
                         <div>
                             <h3>Санкт-Петербургский государственный университет</h3>
-                            <img src={iconStarSecretary} alt={'иконка звезда'} />
+                            <div>
+                                <img src={iconStarSecretary} alt={'иконка звезда'} />
+                            </div>
                         </div>
-
                     </div>
                 </div>
             </div>
