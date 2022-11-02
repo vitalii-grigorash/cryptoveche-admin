@@ -1,23 +1,31 @@
-import {Route, Routes, useLocation} from "react-router-dom";
-import React, {useState, useEffect} from "react";
-import Reg from "../Reg/Reg";
+import React, { useState, useEffect } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { config } from '../../config';
 import * as en from '../../utils/Localization/En/constants';
 import * as ru from '../../utils/Localization/Ru/constants';
-import AuthForgetPass from "../AuthForgetPass/AuthForgetPass";
 import Auth from "../Auth/Auth";
-import AuthSetPass from "../AuthSetPass/AuthSetPass";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import OrganizationsList from "../OrganizationsList/OrganizationsList";
 import AddNewOrganization from "../AddNewOrganization/AddNewOrganization";
 import ProfileUser from "../ProfileUser/ProfileUser";
+import * as UserAuth from '../../Api/Auth';
+// import Reg from "../Reg/Reg";
+// import AuthSetPass from "../AuthSetPass/AuthSetPass";
+// import AuthForgetPass from "../AuthForgetPass/AuthForgetPass";
 
 function App() {
 
+    const navigate = useNavigate();
     const [constants, setConstants] = useState(ru.constants);
     const [changeLanguageBtn, setChangeLanguageBtn] = useState(false);
-    const [isLoggedIn, setLoggedIn] = useState(true);
-    const { pathname } = useLocation();
+    const [isLoggedIn, setLoggedIn] = useState(false);
+    const [isRememberMe, setRememberMe] = useState(true);
+    const [currentUser, setCurrentUser] = useState({});
+    const [userName, setUserName] = useState('');
+    const [isAuthFormValid, setAuthFormValid] = useState(true);
+    const [authErrorMessage, setAuthErrorMessage] = useState('');
+    // const { pathname } = useLocation();
 
     function handleLangChange(value) {
         const lang = {
@@ -50,49 +58,135 @@ function App() {
         }
     }, []);
 
+    function handleRememberMe() {
+        if (isRememberMe) {
+            setRememberMe(false);
+        } else {
+            setRememberMe(true);
+        }
+    }
 
-  return (
-    <div className="app">
-        {isLoggedIn && (
-            <Header constants={constants}/>
-        )}
-        <Routes>
-            <Route path={'/auth'} element={<Auth
-                handleLangChange={handleLangChange}
-                constants={constants}
-                changeLanguageBtn={changeLanguageBtn}/>}/>
-            <Route path={'/reg'} element={<Reg
-                handleLangChange={handleLangChange}
-                constants={constants}
-                changeLanguageBtn={changeLanguageBtn}
-            />}/>
-            <Route path={'/forget-pass'} element={<AuthForgetPass
-                handleLangChange={handleLangChange}
-                constants={constants}
-                changeLanguageBtn={changeLanguageBtn}
-            />}/>
-            <Route path={'/rstpwd'} element={<AuthSetPass
-                handleLangChange={handleLangChange}
-                constants={constants}
-                changeLanguageBtn={changeLanguageBtn}
-            />}/>
-            <Route exact path={'/'} element={<OrganizationsList
-                constants={constants}
-            />}/>
-            <Route path={'/add-org-page'} element={<AddNewOrganization
-                constants={constants}
-            />}/>
-            <Route path={'/profile-user'} element={<ProfileUser
-                constants={constants}
-            />}/>
-        </Routes>
-        {isLoggedIn && (
-            <Footer
-                handleLangChange={handleLangChange}
-                constants={constants}
-                changeLanguageBtn={changeLanguageBtn}
-            />)}
-    </div>
-  );
+    function addCurrentUser(user) {
+        setCurrentUser(user);
+    }
+
+    const userDefaultName = {
+        lastName: "Неизвестный",
+        firstName: "Пользователь"
+    }
+
+    function createUserName(user) {
+        const firstName = function () {
+            if (user.first_name === "" || user.first_name === undefined) {
+                return `${userDefaultName.firstName.charAt(0)}`;
+            } else {
+                return `${user.first_name.charAt(0)}`;
+            }
+        }
+        const lastName = function () {
+            if (user.last_name === "" || user.last_name === undefined) {
+                return userDefaultName.lastName
+            } else {
+                return user.last_name;
+            }
+        }
+        const middleName = function () {
+            if (user.second_name === "" || user.second_name === undefined) {
+                return ""
+            } else {
+                return `${user.second_name.charAt(0)}.`;
+            }
+        };
+        const shortName = `${lastName()} ${firstName()}.${middleName()}`;
+        setUserName(shortName);
+    }
+
+    function handleAuthError(isValid) {
+        setAuthFormValid(isValid);
+    }
+
+    function handleAuthErrorMessage(message) {
+        setAuthErrorMessage(message);
+    }
+
+    function handleLogin(email, password, role) {
+        console.log(email);
+        console.log(password);
+        console.log(role);
+        UserAuth.authorize(email, password)
+            .then((res) => {
+                console.log(res);
+                if (res.status === 'failure') {
+                    handleAuthError(false);
+                    handleAuthErrorMessage(constants.AUTH.AUTH_ERROR_MESSAGE);
+                    // setPreloaderAuthBtn(false);
+                } else {
+                    // if (isRememberMe) {
+                    //     localStorage.setItem('user', JSON.stringify(res));
+                    // }
+                    handleAuthError(true);
+                    handleAuthErrorMessage('');
+                    // setLoggedIn(true);
+                    // addCurrentUser(res);
+                    // createUserName(res);
+                    // navigate('/');
+                }
+            })
+            .catch((err) => {
+                throw new Error(err.message);
+            })
+        // setPreloaderAuthBtn(true);
+
+    }
+
+    return (
+        <div className="app">
+            {isLoggedIn && (
+                <Header
+                    constants={constants}
+                />
+            )}
+            <Routes>
+                <Route path={'/auth'}
+                    element={<Auth
+                        handleLangChange={handleLangChange}
+                        constants={constants}
+                        changeLanguageBtn={changeLanguageBtn}
+                        handleRememberMe={handleRememberMe}
+                        isRememberMe={isRememberMe}
+                        config={config}
+                        handleLogin={handleLogin}
+                        isAuthFormValid={isAuthFormValid}
+                        handleAuthError={handleAuthError}
+                        handleAuthErrorMessage={handleAuthErrorMessage}
+                        authErrorMessage={authErrorMessage}
+                    />}
+                />
+                <Route exact path={'/'}
+                    element={<OrganizationsList
+                        constants={constants}
+                    />}
+                />
+                <Route path={'/add-org-page'}
+                    element={<AddNewOrganization
+                        constants={constants}
+                    />}
+                />
+                <Route path={'/profile-user'}
+                    element={<ProfileUser
+                        constants={constants}
+                    />}
+                />
+            </Routes>
+            {isLoggedIn && (
+                <Footer
+                    handleLangChange={handleLangChange}
+                    constants={constants}
+                    changeLanguageBtn={changeLanguageBtn}
+                />
+            )}
+        </div>
+    );
 }
+
 export default App;
