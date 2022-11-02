@@ -7,7 +7,7 @@ import timeZone from '../../utils/TimeZoneData/TimeZoneRu.json';
 import hideIconPass from '../../img/Auth_show_pass_icon.svg';
 import showIconPass from '../../img/Auth_hidden_pass.svg';
 import iconStarSecretary from '../../img/ProfileUserIconStar.svg';
-
+import iconRowList from '../../img/ProfileUserIconRow.svg';
 
 const ProfileUser = (props) => {
 
@@ -17,10 +17,54 @@ const ProfileUser = (props) => {
 
 
     const [editDataUser, setEditDataUser] = useState(false);
+    const [showListGroup, setShowListGroup] = useState(false);
     const [timeZoneLocation, setTimeZoneLocation] = useState('(UTC+3) Россия - Москва - московское время');
     const [timeZoneValue, setTimeZoneValue] = useState(3);
     const [isTimeZoneOptionsOpen, setTimeZoneOptionsOpen] = useState(false);
+    const [activeTypePass, dispatch] = useReducer((state, action) => {
+        switch (action.type) {
+            case 'typePass' :
+                return {activeTypePass: 'text'}
+            case 'rrr' :
+                return {activeTypePass: state.activeTypePass}
+            default:
+               return state;
+        }
+    }, 'password');
 
+console.log(activeTypePass)
+
+    const testObj = [
+            {
+                title: "ДВФУ",
+                list: [
+                    {
+                        name: "Голосующие онлайн 18.01.2021 (конференция такая Профсоюза работников ДВФУ)"
+                    },
+                    {
+                        name: "Голосующие онлайн 18.01.2021 (конференция еще одна Профсоюза работников ДВФУ)"
+                    },
+                    {
+                        name: "Название ровно на одну строчку предположим вми"
+                    }
+                ]
+           },
+        {
+            title: "Санкт-Петербургский государственный университет",
+            list: [
+                {
+                    name: "Голосующие онлайн 18.01.2021 (конференция такая Профсоюза работников ДВФУ)"
+                },
+                {
+                    name: "Голосующие онлайн 18.01.2021 (конференция еще одна Профсоюза работников ДВФУ)"
+                },
+                {
+                    name: "Название ровно на одну строчку предположим вми"
+                }
+            ]
+        }
+
+       ]
 
     function onSelectTimeZoneClick(location) {
         setTimeZoneValue(location.VALUE);
@@ -34,6 +78,7 @@ const ProfileUser = (props) => {
             setTimeZoneOptionsOpen(true);
         }
     }
+
 
     return (
         <div className="container__profile-user _container">
@@ -87,8 +132,8 @@ const ProfileUser = (props) => {
                         <p className="edit-main-data-user__title-change-pass">{constants.PROFILE_USER.PROFILE_USER_CHANGE_PASS}</p>
                         <div className="edit-main-data-user__pass">
                             <label className="edit-main-data-user__pass-label">{constants.PROFILE_USER.PROFILE_USER_PASS}</label>
-                            <input type={'password'} className="edit-main-data-user__pass-input"/>
-                            <img src={hideIconPass} alt={'иконка скрыть/показать пароль'} className="edit-main-data-user__pass-icon-show"/>
+                            <input type={activeTypePass} className="edit-main-data-user__pass-input"/>
+                            <img onClick={() => dispatch({type: 'typePass'})} src={hideIconPass} alt={'иконка скрыть/показать пароль'} className="edit-main-data-user__pass-icon-show"/>
                         </div>
                         <div className="edit-main-data-user__new-pass">
                             <label className="edit-main-data-user__new-pass-label">{constants.PROFILE_USER.PROFILE_USER_NEW_PASS}</label>
@@ -104,17 +149,33 @@ const ProfileUser = (props) => {
                     </div>
                 </div>
                 <div className="profile-user__organizations-groups-users-votes">
-                    <div className="organizations-groups-users-votes__title-btn">
-                        <p>{constants.PROFILE_USER.PROFILE_USER_ORG_GROUP_USERS}</p>
+                    <div className="organizations-groups-users-votes__toggle-buttons">
+                        <p className="toggle-buttons__org-group-users">{constants.PROFILE_USER.PROFILE_USER_ORG_GROUP_USERS}</p>
                     </div>
-                    <div>
-                        <div>
-                            <h3>Санкт-Петербургский государственный университет</h3>
-                            <div>
-                                <img src={iconStarSecretary} alt={'иконка звезда'} />
-                            </div>
-                        </div>
-                    </div>
+                    {
+                        testObj.map((el, i) => {
+                            return (
+                                <div key={i} className="organizations-groups-users-votes__org-groups-list">
+                                    <div className="org-groups-list__title-icon-status">
+                                        <h3 className="title-icon-status__title">{el.title}</h3>
+                                        <div className="title-icon-status__icon-status-block">
+                                            <img className="title-icon-status__icon" src={iconStarSecretary} alt={'иконка звезда'} />
+                                            <span className="title-icon-status__status">{constants.PROFILE_USER.PROFILE_USER_STATUS_SECRETARY}</span>
+                                        </div>
+                                    </div>
+                                    <div onClick={() => setShowListGroup(!showListGroup)} className="org-groups-list__select-row-list">
+                                        <p className="select-row-list__label">{constants.PROFILE_USER.PROFILE_USER_ACTIVITY_IN_USER_GROUPS}</p>
+                                        <img className={showListGroup ? "select-row-list__icon-row active" : "select-row-list__icon-row"} alt={'иконка стрелочка'} src={iconRowList}/>
+                                    </div>
+                                    <div className={showListGroup ? "org-groups-list__list-activity-user active" : "org-groups-list__list-activity-user"}>
+                                        <p className="list-activity-user__name-group">Голосующие онлайн 18.01.2021 (конференция такая Профсоюза работников ДВФУ)</p>
+                                        <p className="list-activity-user__name-group">Голосующие онлайн 18.01.2021 (конференция такая Профсоюза работников ДВФУ)</p>
+                                        <p className="list-activity-users__show-all-btn">{constants.PROFILE_USER.PROFILE_USER_SHOW_ALL}</p>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             </div>
         </div>

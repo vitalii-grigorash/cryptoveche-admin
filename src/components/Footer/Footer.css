@@ -12,10 +12,10 @@
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    min-height: 15.4em;
+    /*height: 15.4em;*/
     position: relative;
     border-top: 1px rgba(54, 59, 77, 0.1) solid;
-    padding-top: 4.8em;
+    padding: 4.88em 0 4.88em 0;
 }
 /*------Контейнер для блока с логотипом------------------------------------------------------------------------------*/
 .footer__logotype {

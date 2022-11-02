@@ -293,6 +293,11 @@
         font-size: 8px;
     }
 }
+@media (max-width: 600px) {
+    .search-setting-myprofile__myprofile-modal-exit {
+        left: -39px;
+    }
+}
 /*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
 @media (max-width: 375px) {
     .header__container {
