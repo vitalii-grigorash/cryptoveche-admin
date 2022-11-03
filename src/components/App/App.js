@@ -109,17 +109,20 @@ function App() {
         setAuthErrorMessage(message);
     }
 
-    function handleLogin(email, password, role) {
+    function handleLogin(email, password, authAs) {
         console.log(email);
         console.log(password);
-        console.log(role);
-        UserAuth.authorize(email, password)
+        console.log(authAs);
+        UserAuth.authorize(email, password, authAs)
             .then((res) => {
                 console.log(res);
                 if (res.status === 'failure') {
                     handleAuthError(false);
                     handleAuthErrorMessage(constants.AUTH.AUTH_ERROR_MESSAGE);
                     // setPreloaderAuthBtn(false);
+                } else if (res.status === 'Permission denied') {
+                    handleAuthError(false);
+                    handleAuthErrorMessage(constants.AUTH.AUTH_ERROR_MESSAGE);
                 } else {
                     // if (isRememberMe) {
                     //     localStorage.setItem('user', JSON.stringify(res));

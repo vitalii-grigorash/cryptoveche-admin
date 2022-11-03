@@ -27,6 +27,24 @@ const Auth = (props) => {
     const password = Validation();
     const [showPass, setShowPass] = useState(false);
     const [typePass, setTypePass] = useState('password');
+    const [authAs, setAuthAs] = useState('admin');
+    const [optionValue, setOptionValue] = useState(constants.AUTH.AUTH_ROLE_ADMIN);
+    const [isAuthOptionsActive, setAuthOptionsActive] = useState(false);
+
+    const authOptions = [
+        {
+            name: constants.AUTH.AUTH_ROLE_ADMIN,
+            value: 'admin'
+        },
+        {
+            name: constants.AUTH.AUTH_ROLE_OBSERVER,
+            value: 'observer'
+        },
+        {
+            name: constants.AUTH.AUTH_ROLE_COUNTER,
+            value: 'counter'
+        }
+    ]
 
     function showHidePass() {
         if (typePass === 'password') {
@@ -38,6 +56,11 @@ const Auth = (props) => {
         }
     }
 
+    function onSelectAuthOption(name, value) {
+        setOptionValue(name);
+        setAuthAs(value);
+    }
+
     function onAuthButtonClick() {
         if (email.value === '' || password.value === '') {
             handleAuthError(false);
@@ -45,7 +68,15 @@ const Auth = (props) => {
         } else {
             handleAuthError(true);
             handleAuthErrorMessage('');
-            handleLogin(email.value, password.value, 'Секретарь');
+            handleLogin(email.value, password.value, authAs);
+        }
+    }
+
+    function handleShowAuthOptions() {
+        if (isAuthOptionsActive) {
+            setAuthOptionsActive(false);
+        } else {
+            setAuthOptionsActive(true);
         }
     }
 
@@ -55,20 +86,47 @@ const Auth = (props) => {
         }
     };
 
+    const onCloseAuthOptionClick = (e) => {
+        if (!e.target.classList.contains('select-role__time-zone-option')) {
+            if (!e.target.classList.contains('select-role__time-zone-select-container')) {
+                if (!e.target.classList.contains('select-role__time-zone-select-arrow')) {
+                    if (!e.target.classList.contains('select-role__time-zone-select-value')) {
+                        setAuthOptionsActive(false);
+                    }
+                }
+            }
+        }
+    }
+
     useEffect(() => {
-        if (email.value !== '' && password.value !== '') {
-            document.addEventListener("keydown", handleKeyDown);
-            return () => {
-                document.removeEventListener("keydown", handleKeyDown);
-            };
+        if (isAuthOptionsActive) {
+            document.addEventListener("mousedown", onCloseAuthOptionClick);
+            return () => document.removeEventListener('mousedown', onCloseAuthOptionClick);
+        }
+    }, [isAuthOptionsActive])
+
+    useEffect(() => {
+        if (isAuthOptionsActive) {
+            if (email.value !== '' && password.value !== '') {
+                document.addEventListener("keydown", handleKeyDown);
+                return () => document.removeEventListener("keydown", handleKeyDown);
+
+            } else {
+                document.addEventListener("keydown", handleKeyDown);
+                return () => document.removeEventListener("keydown", handleKeyDown);
+            }
         } else {
-            document.addEventListener("keydown", handleKeyDown);
-            return () => {
-                document.removeEventListener("keydown", handleKeyDown);
-            };
+            if (email.value !== '' && password.value !== '') {
+                document.addEventListener("keydown", handleKeyDown);
+                return () => document.removeEventListener("keydown", handleKeyDown);
+
+            } else {
+                document.addEventListener("keydown", handleKeyDown);
+                return () => document.removeEventListener("keydown", handleKeyDown);
+            }
         }
         // eslint-disable-next-line
-    }, [email.value, password.value]);
+    }, [email.value, password.value, isAuthOptionsActive]);
 
     return (
         <div className="wrapper-auth">
@@ -81,13 +139,21 @@ const Auth = (props) => {
                             <span onClick={() => handleLangChange('en')} className={changeLanguageBtn ? "change-lang__english" : "change-lang__english active"}>ENG</span>
                         </div>
                     </div>
-                    <div className="auth-form__select-role">
+                    <div className="auth-form__select-role-container">
                         <label className="select-role__label">{constants.AUTH.AUTH_LABEL_SELECT_ROLE}</label>
-                        <div className="select-role__time-zone-select-container">
-                            <p className="select-role__time-zone-select-value">Секретарь</p>
+                        <div className="select-role__time-zone-select-container" onClick={handleShowAuthOptions}>
+                            <p className="select-role__time-zone-select-value">{optionValue}</p>
                             <img className="select-role__time-zone-select-arrow" src={row_input_select_role} alt="Стрелочка открытия меню" />
-                            <div className="select-role__time-zone-options-container">
-                                <p className="select-role__time-zone-option"></p>
+                            <div className={`select-role__time-zone-options-container ${isAuthOptionsActive && 'select-role__time-zone-options-container_active'}`}>
+                                {authOptions.map((option, index) => (
+                                    <p
+                                        key={index}
+                                        className="select-role__time-zone-option"
+                                        onClick={() => onSelectAuthOption(option.name, option.value)}
+                                    >
+                                        {option.name}
+                                    </p>
+                                ))}
                             </div>
                         </div>
                     </div>

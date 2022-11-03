@@ -13,7 +13,10 @@ export const constants = {
         AUTH_QUESTION_ACCOUNT: "Еще нет аккаунта?",
         AUTH_REG_BTN: "Зарегистрироваться",
         AUTH_ERROR_MESSAGE: "Неверно введено имя пользователя или пароль",
-        AUTH_ERROR_MESSAGE_REQUIRED: "Заполните все обязательные поля"
+        AUTH_ERROR_MESSAGE_REQUIRED: "Заполните все обязательные поля",
+        AUTH_ROLE_ADMIN: 'Секретарь',
+        AUTH_ROLE_OBSERVER: 'Наблюдатель',
+        AUTH_ROLE_COUNTER: 'Член счетной комиссии'
     },
     AUTH_FORGET_PASS: {
         AUTH_FORGET_PASS_TITLE: "Забыли пароль?",
