@@ -21,13 +21,14 @@
     background-color: #FFFFFF;
     border-radius: 1.33em;
     align-self: flex-start;
+    width: 30vw;
 }
 .personal-data-user__main-data-user.active {
     display: none;
 }
 .personal-data-user__icon-photo {
-    width: 21.33em;
-    height: 7.11em;
+    width: 26.667vw;
+    height: 8em;
     margin-bottom: 0.88em;
     flex-wrap: wrap;
 }
@@ -345,8 +346,9 @@
     box-shadow: -1px 0 8px rgba(54, 58, 72, 0.07);
     background-color: #FFFFFF;
     border-radius: 1.33em;
-    width: 100%;
+    width: 61.111vw;
     align-self: flex-start;
+
 }
 .organizations-groups-users-votes__toggle-buttons {
     display: flex;
@@ -656,5 +658,8 @@
         font-size: 16px;
         line-height: 150%;
         padding-bottom: 16px;
+    }
+    .profile-user__organizations-groups-users-votes {
+        width: 100%;
     }
 }
