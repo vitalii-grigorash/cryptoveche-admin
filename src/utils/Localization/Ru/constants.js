@@ -64,8 +64,12 @@ export const constants = {
     },
     HEADER: {
         HEADER_ORG: "Организации",
+        HEADER_USERS: "Пользователи",
+        HEADER_GROUP_USERS: "Группы пользователей",
+        HEADER_USERS_LIST: "Список пользователей",
         HEADER_ADD_BTN: "Добавить",
         HEADER_ADD_ORG: "Организацию",
+        HEADER_ADD_GROUP_USERS: "Группу пользователей",
         HEADER_MYPROFILE_MODAL: "Мой профиль",
         HEADER_MYPROFILE_MODAI_EXIT: "Выйти",
         HEADER_BURGER_ADD_BTN: "Добавить",
@@ -99,11 +103,12 @@ export const constants = {
     },
     GENERAL_TITLE: {
         GENERAL_TITLE_TITLENAME_ORG: "Список организаций",
+        GENERAL_TITLE_TITLENAME_GROUP_USER: "Группы пользователей",
+        GENERAL_TITLE_TITLENAME_ADD_ORG: "Добавление новой организации",
+        GENERAL_TITLE_TITLENAME_PROFILE: "Профиль пользователя",
         GENERAL_TITLE_FIRTSLETTER: "АдминистраторКриптовече",
         GENERAL_TITLE_SECONDLETTER_ORG: "Организация",
-        GENERAL_TITLE_TITLENAME_ADD_ORG: "Добавление новой организации",
-        GENERAL_TITLE_SECONDLETTER_GROUP_USERS: "Группы пользователей",
-        GENERAL_TITLE_TITLENAME_PROFILE: "Профиль пользователя"
+        GENERAL_TITLE_SECONDLETTER_GROUP_USERS: "Группы пользователей"
     },
     SORTING_BLOCK: {
         SORTING_BLOCK_LABEL: "Сортировать по:",
@@ -165,5 +170,14 @@ export const constants = {
         PROFILE_USER_PASS: "Пароль",
         PROFILE_USER_NEW_PASS: "Новый пароль",
         PROFILE_USER_REPEAT_PASS: "Повторите новый пароль"
+    },
+    GROUP_USERS: {
+        GROUP_USERS_NAME_GROUP_USERS: "Название группы пользователей",
+        GROUP_USERS_MEMBERS: "Участники",
+        GROUP_USERS_ACTIONS: "Действия",
+        GROUP_USERS_EDIT_BTN: "РЕДАКТИРОВАТЬ",
+        GROUP_USERS_BLOCK_BTN: "ЗАБЛОКИРОВАТЬ",
+        GROUP_USERS_UNBLOCK_BTN: "РАЗБЛОКИРОВАТЬ",
+        GROUP_USERS_DELETE_BTN: "УДАЛИТЬ"
     }
 }

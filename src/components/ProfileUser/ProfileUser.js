@@ -35,7 +35,6 @@ const ProfileUser = (props) => {
 
     const [showListGroup, setShowListGroup] = useState(false)
 
-
     const [changeTypePass, dispatchPass] = useReducer(reducer, {changeTypePass: false});
     const [changeTypeNewPass, dispatchNewPass] = useReducer(reducer, {changeTypeNewPass: false});
     const [changeTypeRepeatPass, dispatchRepeatPass] = useReducer(reducer, {changeTypeRepeatPass: false});
@@ -68,12 +67,10 @@ const ProfileUser = (props) => {
         }]
 
     function showList(index) {
-        if (index === 0) {
+        if (showListGroup === false) {
             setShowListGroup(true)
-            console.log(index)
         } else {
         setShowListGroup(false)
-            console.log(index)
         }
     }
 

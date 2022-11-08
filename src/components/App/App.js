@@ -11,6 +11,7 @@ import Footer from "../Footer/Footer";
 import OrganizationsList from "../OrganizationsList/OrganizationsList";
 import AddNewOrganization from "../AddNewOrganization/AddNewOrganization";
 import ProfileUser from "../ProfileUser/ProfileUser";
+import GroupUsers from "../GroupUsers/GroupUsers";
 
 function App() {
 
@@ -83,6 +84,9 @@ function App() {
                 constants={constants}
             />}/>
             <Route path={'/profile-user'} element={<ProfileUser
+                constants={constants}
+            />}/>
+            <Route path={'/group-users'} element={<GroupUsers
                 constants={constants}
             />}/>
         </Routes>
