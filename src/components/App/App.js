@@ -12,6 +12,7 @@ import OrganizationsList from "../OrganizationsList/OrganizationsList";
 import AddNewOrganization from "../AddNewOrganization/AddNewOrganization";
 import ProfileUser from "../ProfileUser/ProfileUser";
 import GroupUsers from "../GroupUsers/GroupUsers";
+import ListUsers from "../ListUsers/ListUsers";
 
 function App() {
 
@@ -87,6 +88,9 @@ function App() {
                 constants={constants}
             />}/>
             <Route path={'/group-users'} element={<GroupUsers
+                constants={constants}
+            />}/>
+            <Route path={'/list-users'} element={<ListUsers
                 constants={constants}
             />}/>
         </Routes>

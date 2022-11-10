@@ -6,12 +6,18 @@
     min-height: calc(49vh - 80px);
     font-size: 18px;
 }
+.group-user__add-user-btn-mobile {
+    display: none;
+}
 /*------Контейнер для блока с пагинацией и сортировкий----------------------------------------------------------------*/
 .group-users__sorting-pagination {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 1.7em;
+}
+.group-users__select-btn-mobile {
+    display: none;
 }
 /*------Контейнер для блока таблицей----------------------------------------------------------------------------------*/
 .group-users__table-group-users {
@@ -80,6 +86,9 @@
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+._show-check {
+    display: none;
+}
 .header-table-group-users__name-group {
     font-weight: 500;
     line-height: 133%;
@@ -140,14 +149,29 @@
     word-break: break-word;
 }
 .table-group-users-row__members {
-    font-weight: 400;
-    line-height: 156%;
-    color: #363B4D;
-    opacity: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
     width: 7.38em;
     margin-right: 2.22em;
     font-size: 1em;
     word-break: break-word;
+}
+.table-group-users-row__members-numbers {
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 156%;
+    color: #363B4D;
+    opacity: 90%;
+}
+.table-group-users-row__members-icon {
+    width: 0.66em;
+    height: 0.66em;
+    display: none;
+}
+.table-group-users-row__members-mobile {
+    display: none;
 }
 .table-group-users-row__buttons-block {
     display: flex;
@@ -234,5 +258,176 @@
     .container__group-users {
         font-size: 8px;
         min-height: calc(65vh - 80px);
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 500px) {
+    .container__group-users {
+        margin-bottom: 0;
+    }
+    .group-users__table-group-users {
+        border-radius: 16px;
+    }
+    .table-group-users__header-table-group-users {
+        display: none;
+    }
+    .table-group-users-row:nth-child(2) {
+        border-top: none;
+    }
+    .table-group-users-row {
+        justify-content: stretch;
+        flex-wrap: wrap;
+        align-items: initial;
+        padding: 16px 16px 16px 16px;
+    }
+    .table-group-users__checkbox_container {
+        top: -5px;
+    }
+    .table-group-users__checkbox_container .table-group-users__checkmark:after {
+        width: 11px;
+        height: 9px;
+        top: 4px;
+        left: 4px;
+    }
+    .table-group-users__checkmark {
+        width: 24px;
+        height: 24px;
+    }
+    .table-group-users-row__icon-red-lock {
+        width: 16px;
+        height: 21px;
+    }
+    .table-group-users-row__name-group-name-org {
+        width: 311px;
+        margin-bottom: 16px;
+        gap: 8px;
+    }
+    .table-group-users-row__name-group {
+        font-size: 16px;
+        line-height: 175%;
+        font-weight: 500;
+        width: 100%;
+    }
+    .table-group-users-row__name-org {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        width: 100%;
+    }
+    .table-group-users-row__members {
+        width: 311px;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 16px;
+    }
+    .table-group-users-row__members-mobile {
+        display: initial;
+        font-size: 14px;
+        color: rgba(54, 59, 77, 0.4);
+    }
+    .table-group-users-row__members-icon {
+        display: initial;
+        width: 12px;
+        height: 12px;
+    }
+    .table-group-users-row__members-mobile-block {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 6px;
+    }
+    .table-group-users-row__members-numbers {
+        font-size: 13px;
+        line-height: 162%;
+        font-weight: 400;
+    }
+    .table-group-users-row__buttons-block {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: "edit edit"
+                             "blockbtn delete";
+        width: 100%;
+        grid-row-gap: 16px;
+    }
+    .table-group-users-row__edit-btn {
+        grid-area: edit;
+        border: none;
+        height: 48px;
+        justify-content: center;
+        background-color: #0084FE;
+        border-radius: 4px;
+    }
+    .table-group-users-row__label-edit-btn {
+        font-size: 14px;
+        color: #FFFFFF;
+    }
+    .table-group-users-row__block-unblock-btn {
+        grid-area: blockbtn;
+        height: 48px;
+        border: 1px solid rgba(54, 59, 77, 0.9);
+        border-radius: 4px;
+        cursor: pointer;
+        justify-content: center;
+    }
+    .table-group-users-row__label-block-unblock-btn {
+        font-size: 14px;
+        color: rgba(54, 59, 77, 0.9);
+    }
+    .table-group-users-row__delete-btn {
+        grid-area: delete;
+        height: 48px;
+        border: 1px solid #FF4970;
+        border-radius: 4px;
+        cursor: pointer;
+        justify-content: center;
+    }
+    .table-group-users-row__label-icon-delete {
+        font-size: 14px;
+        color: #FF4970;
+    }
+
+    .table-group-users-row__icon-black-lock,
+    .table-group-users-row__icon-delete,
+    .table-group-users-row__icon-edit {
+        display: none;
+    }
+
+
+
+
+
+
+
+    .group-users__pagination {
+        display: none;
+    }
+    .group-user__add-user-btn-mobile {
+        display: block;
+        width: 246px;
+        height: 40px;
+        margin-bottom: 16px;
+        cursor: pointer;
+        border: 1px solid #0084FE;
+        border-radius: 4px;
+        background-color: #FFFFFF;
+        color: #0084FE;
+        font-size: 16px;
+        line-height: 150%;
+        font-weight: 400;
+    }
+    .group-users__select-btn-mobile {
+        display: inherit;
+        font-size: 15px;
+        line-height: 147%;
+        color: #363B4D;
+        opacity: 90%;
+        cursor: pointer;
+    }
+    ._hidden-check {
+        display: none;
+    }
+    ._show-check {
+        display: initial;
     }
 }

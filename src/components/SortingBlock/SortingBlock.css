@@ -5,6 +5,14 @@
     font-size: 16px;
     align-items: center;
 }
+.sorting-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.sorting-block-mobile {
+    display: none;
+}
 .sorting-block__sorting-label {
     line-height: 124%;
     color: #363B4D;
@@ -27,6 +35,27 @@
     width: 0.8em;
     height: 0.8em;
 }
+/*------Контейнер для кнопок мобильной версии-------------------------------------------------------------------------*/
+.sorting-block-mobile {
+    display: none;
+}
+.sorting-block-mobile__filters-sort-button {
+    display: flex;
+    background: none;
+    align-items: center;
+    font-size: 15px;
+    line-height: 121%;
+    font-weight: 400;
+    color: rgba(54, 59, 77, 0.4);
+    cursor: pointer;
+    position: relative;
+    gap: 5px;
+}
+.sorting-block-mobile__red-circle {
+    position: absolute;
+    top: 2px;
+    left: 12px;
+}
 /*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
 @media (max-width: 1570px) {
     .container__sorting-block {
@@ -48,9 +77,15 @@
         font-size: 8px;
     }
 }
-@media (max-width: 600px) {
-    .container__sorting-block {
-        font-size: 6px;
+
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 500px) {
+    .sorting-block {
+        display: none;
+    }
+    .sorting-block-mobile {
+        display: flex;
+        flex-direction: row;
+        gap: 18px;
     }
 }
-/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/

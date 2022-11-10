@@ -105,14 +105,18 @@ export const constants = {
         GENERAL_TITLE_TITLENAME_ORG: "Список организаций",
         GENERAL_TITLE_TITLENAME_GROUP_USER: "Группы пользователей",
         GENERAL_TITLE_TITLENAME_ADD_ORG: "Добавление новой организации",
+        GENERAL_TITLE_TITLENAME_LIST_USERS: "Список пользователей",
         GENERAL_TITLE_TITLENAME_PROFILE: "Профиль пользователя",
         GENERAL_TITLE_FIRTSLETTER: "АдминистраторКриптовече",
         GENERAL_TITLE_SECONDLETTER_ORG: "Организация",
-        GENERAL_TITLE_SECONDLETTER_GROUP_USERS: "Группы пользователей"
+        GENERAL_TITLE_SECONDLETTER_GROUP_USERS: "Группы пользователей",
+        GENERAL_TITLE_SECONDLETTER_LIST_USERS: "Список пользователей"
     },
     SORTING_BLOCK: {
         SORTING_BLOCK_LABEL: "Сортировать по:",
-        SORTING_BLOCK_TYPE_SORT: "Количеству транзакций"
+        SORTING_BLOCK_TYPE_SORT: "Количеству транзакций",
+        SORTING_BLOCK_FILTER_BTN: "Фильтры",
+        SORTING_BLOCK_SORT_BTN: "Сортировка"
     },
     PAGINATION: {
         PAGINATION_SHOW_LABEL: "Показать",
@@ -178,6 +182,14 @@ export const constants = {
         GROUP_USERS_EDIT_BTN: "РЕДАКТИРОВАТЬ",
         GROUP_USERS_BLOCK_BTN: "ЗАБЛОКИРОВАТЬ",
         GROUP_USERS_UNBLOCK_BTN: "РАЗБЛОКИРОВАТЬ",
-        GROUP_USERS_DELETE_BTN: "УДАЛИТЬ"
+        GROUP_USERS_DELETE_BTN: "УДАЛИТЬ",
+        GROUP_USERS_ADD_USER_BTN_MOBILE: "Добавить пользователей",
+        GROUP_USERS_SELECT_BTN_SELECT: "Выбрать"
+    },
+    LIST_USERS: {
+        LIST_USERS_TABLE_EMAIL: "E-mail",
+        LIST_USERS_USERNAME: "ФИО",
+        LIST_USERS_ACTIONS: "Действия",
+        LIST_USERS_WATCH_PROFILE: "ПОСМОТРЕТЬ ПРОФИЛЬ"
     }
 }

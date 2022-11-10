@@ -81,7 +81,7 @@ const Header = (props) => {
                         </div>
                         <div className={activeUsersButton ? "logotype-link-buttons__users-select-list" : "logotype-link-buttons__users-select-list hidden"}>
                             <Link to={'/group-users'}>{constants.HEADER.HEADER_GROUP_USERS}</Link>
-                            <Link to={'#'}>{constants.HEADER.HEADER_USERS_LIST}</Link>
+                            <Link to={'/list-users'}>{constants.HEADER.HEADER_USERS_LIST}</Link>
                         </div>
                     </div>
                     <span onClick={() => linkButtonOrgPage('/')} className={pathname === '/' ? "logotype-link-buttons__organizations active" : "logotype-link-buttons__organizations"}>{constants.HEADER.HEADER_ORG}</span>
