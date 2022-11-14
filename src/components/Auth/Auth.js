@@ -20,6 +20,7 @@ const Auth = (props) => {
         handleAuthError,
         handleAuthErrorMessage,
         authErrorMessage,
+        isPreloaderAuthBtn,
         config
     } = props;
 
@@ -198,7 +199,11 @@ const Auth = (props) => {
                         <span className="remember-me__label">{constants.AUTH.AUTH_REMEMBER_ME}</span>
                     </div>
                     <div className="auth-form__button-enter">
-                        <button onClick={onAuthButtonClick} className={`${config.enable_esia ? 'button-enter__btn-enter' : 'button-enter__btn-enter-large'}`}>{constants.AUTH.AUTH_ENTER_BTN}</button>
+                        {isPreloaderAuthBtn ? (
+                            <button className={`${config.enable_esia ? 'button-enter__btn-enter-loading' : 'button-enter__btn-enter-large-loading'}`}>{constants.AUTH.AUTH_ENTER_BTN_LOADING}</button>
+                        ) : (
+                            <button onClick={onAuthButtonClick} className={`${config.enable_esia ? 'button-enter__btn-enter' : 'button-enter__btn-enter-large'}`}>{constants.AUTH.AUTH_ENTER_BTN}</button>
+                        )}
                         {config.enable_esia && (
                             <a
                                 className="button-enter__link-gosuslugi"

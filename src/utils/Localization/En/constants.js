@@ -8,6 +8,7 @@ export const constants = {
         AUTH_FORGET_PASS: "Забыли пароль?",
         AUTH_REMEMBER_ME: "Запомнить меня",
         AUTH_ENTER_BTN: "Войти",
+        AUTH_ENTER_BTN_LOADING: "Загрузка...",
         AUTH_ENTER_LINK_GOSUSLUGI: "Войти через ЕСИА",
         AUTH_TITLE_LOGO_BLOCK: "Панель управления системой электронных голосований",
         AUTH_QUESTION_ACCOUNT: "Еще нет аккаунта?",
