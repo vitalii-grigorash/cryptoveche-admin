@@ -1,0 +1,169 @@
+/*------Основной контейнер--------------------------------------------------------------------------------------------*/
+.container__add-new-group-users {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(49vh - 80px);
+    font-size: 18px;
+}
+.add-new-group-users__current-name-org {
+    display: none;
+}
+.add-new-group-users__current-name-org.active {
+    display: initial;
+    font-size: 1em;
+    line-height: 133%;
+    color: rgba(54, 59, 77, 0.4);
+    margin-bottom: 2.22em;
+}
+/*------Контейнер для блока с выбором организации---------------------------------------------------------------------*/
+.add-new-group-users__select-organization-block {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    border-radius: 1.33em;
+    margin-bottom: 6.2em;
+    padding: 1.77em 1.77em;
+    border: 1px solid rgba(54, 59, 77, 0.2);
+    max-width: 36.44em;
+}
+.select-organization-block__title-select-org {
+    font-size: 1.33em;
+    font-weight: 600;
+    color: #363B4D;
+    line-height: 133%;
+    margin-bottom: 1.77em;
+}
+.select-organization-block__select-role {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    margin-bottom: 1.7em;
+}
+.select-organization-block__red-star {
+    color: #FF4970;
+}
+.select-organization-block__label {
+    color: rgba(54, 59, 77, 0.9);
+    font-weight: 400;
+    font-size: 1em;
+    line-height: 133%;
+}
+.select-organization-block__time-zone-select-container {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 2.6em;
+    margin: 0 auto;
+    border: 0.5px solid rgba(54, 59, 77, 0.3);
+    box-sizing: border-box;
+    border-radius: 0.4em;
+    cursor: pointer;
+}
+.select-organization-block__time-zone-select-value {
+    line-height: 133%;
+    color: rgba(54, 59, 77, 0.9);
+    opacity: 0.9;
+    margin: auto auto auto 1.3em;
+    max-width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.select-organization-block__time-zone-select-arrow {
+    width: 0.8em;
+    height: 0.8em;
+    object-fit: cover;
+    margin: auto 1.3em auto auto;
+}
+/*.select-organization-block__time-zone-options-container {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    position: absolute;*/
+/*    background: #FFFFFF;*/
+/*    overflow-y: scroll;*/
+/*    top: 58px;*/
+/*    left: -1px;*/
+/*    width: 100%;*/
+/*    max-height: 200px;*/
+/*    box-shadow: 0 4px 8px rgba(54, 59, 77, 0.1);*/
+/*    border: 0.5px solid rgba(54, 59, 77, 0.2);*/
+/*    border-radius: 4px;*/
+/*    box-sizing: border-box;*/
+/*    padding: 0 24px 24px;*/
+/*    cursor: default;*/
+/*    z-index: 9;*/
+/*}*/
+/*.select-organization-block__time-zone-options-container::-webkit-scrollbar {*/
+/*    width: 4px;*/
+/*    background: #FFFFFF;*/
+/*    border-radius: 4px;*/
+/*}*/
+/*.select-organization-block__time-zone-options-container::-webkit-scrollbar-thumb {*/
+/*    background: #CFD4DD;*/
+/*    border-radius: 4px;*/
+/*}*/
+/*.select-organization-block__time-zone-option {*/
+/*    line-height: 24px;*/
+/*    color: #363B4D;*/
+/*    opacity: 0.9;*/
+/*    margin: 24px auto 0 0;*/
+/*}*/
+/*.select-organization-block__time-zone-option:hover {*/
+/*    cursor: pointer;*/
+/*    opacity: 0.6;*/
+/*}*/
+.select-organization-block__button-block {
+    display: inline-flex;
+    justify-content: flex-end;
+}
+.select-organization-block__button-next {
+    background-color: #0084FE;
+    color: #FFFFFF;
+    font-size: 0.88em;
+    line-height: 150%;
+    font-weight: 500;
+    border-radius: 4px;
+    width: 8.55em;
+    height: 2.66em;
+    cursor: pointer;
+}
+.select-organization-block__button-next:hover {
+    background-color: #FFFFFF;
+    color: #0084FE;
+    border: 1px solid #0084FE;
+}
+/*------Контейнер для блока с выбором организации---------------------------------------------------------------------*/
+.add-new-group-users {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 6.2em;
+    background-color: #FFFFFF;
+    box-shadow: -3px 0 8px rgba(54, 58, 72, 0.1);
+    border-radius: 0.8em;
+    padding: 1.77em 1.77em;
+}
+/*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
+@media (max-width: 1570px) {
+    .container__add-new-group-users  {
+        font-size: 16px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 1120px) {
+    .container__add-new-group-users {
+        font-size: 12px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 830px) {
+    .container__add-new-group-users {
+        font-size: 10px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 600px) {
+    .container__add-new-group-users  {
+        font-size: 8px;
+        min-height: calc(65vh - 80px);
+    }
+}

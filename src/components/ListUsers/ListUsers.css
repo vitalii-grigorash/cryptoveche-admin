@@ -1,0 +1,221 @@
+/*------Основной контейнер--------------------------------------------------------------------------------------------*/
+.container__list-users {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 9em;
+    min-height: calc(49vh - 80px);
+    font-size: 18px;
+}
+/*------Контейнер для блока с пагинацией и сортировкий----------------------------------------------------------------*/
+.list-users__sorting-pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1.7em;
+}
+/*------Контейнер для блока таблицей----------------------------------------------------------------------------------*/
+.list-users__table-list-users {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.7em;
+    box-shadow: -3px 0 8px rgba(54, 58, 72, 0.1);
+    border-top-left-radius:  1.33em;
+    border-top-right-radius: 1.33em;
+    font-size: 1em;
+    background-color: #FFFFFF;
+}
+.table-list-users-header {
+    display: flex;
+    flex-direction: row;
+    border-top-left-radius: 1.33em;
+    border-top-right-radius: 1.33em;
+    padding: 1.11em 1.33em 1.11em 1.33em;
+}
+.table-list-users-header__e-mail {
+    font-weight: 500;
+    line-height: 133%;
+    color: #363B4D;
+    opacity: 60%;
+    width: 21.27em;
+    margin-right: 4.44em;
+}
+.table-list-users-header__username {
+    font-weight: 500;
+    line-height: 133%;
+    color: #363B4D;
+    opacity: 60%;
+    width: 27.11em;
+    margin-right: 4.44em;
+}
+.table-list-users-header__actions {
+    font-weight: 500;
+    line-height: 133%;
+    color: #363B4D;
+    opacity: 60%;
+    width: 12.66em;
+    margin-right: 3.77em;
+}
+/*------Контейнер для с блока со строками таблицы---------------------------------------------------------------------*/
+.list-users-row {
+    display: flex;
+    flex-direction: row;
+    padding: 1.11em 1.33em 1.11em 1.33em;
+    border-top: 1px solid rgba(54, 59, 77, 0.1);
+    align-items: center;
+}
+.list-users-row__e-mail {
+    font-weight: 400;
+    color: rgba(54, 59, 77, 0.9);
+    line-height: 156%;
+    font-size: 1em;
+    width: 21.27em;
+    margin-right: 4.44em;
+    word-break: break-word;
+}
+.list-users-row__username {
+    font-weight: 400;
+    color: rgba(54, 59, 77, 0.9);
+    line-height: 156%;
+    font-size: 1em;
+    width: 27.11em;
+    margin-right: 4.44em;
+    word-break: break-word;
+}
+.list-users-row-show-profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    width: 12.66em;
+    margin-right: 3.77em
+}
+.list-users-row-show-profile__icon {
+    width: 1.22em;
+    height: 0.83em;
+    margin-right: 0.5em;
+}
+.list-users-row-show-profile__show {
+    font-weight: 300;
+    line-height: 150%;
+    font-size: 0.88em;
+    color: #0084FE;
+}
+
+.list-users__mobile-search-input {
+    display: none;
+}
+.list-users-row-show-more {
+    display: none;
+}
+/*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
+@media (max-width: 1570px) {
+    .container__list-users {
+        font-size: 16px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 1120px) {
+    .container__list-users {
+        font-size: 12px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 830px) {
+    .container__list-users{
+        font-size: 10px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 600px) {
+    .container__list-users {
+        font-size: 8px;
+        min-height: calc(65vh - 80px);
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 500px) {
+    .container__list-users {
+        margin-bottom: 0;
+    }
+    .list-users__pagination {
+        display: none;
+    }
+    .table-list-users-header {
+        display: none;
+    }
+    .list-users__table-list-users {
+        border-radius: 16px;
+    }
+    .list-users-row {
+        flex-wrap: wrap;
+        align-items: initial;
+        padding: 16px 16px 16px 16px;
+        border: none;
+    }
+    .list-users-row-show-profile__show {
+        display: none;
+    }
+    .list-users-row__username{order: 0}
+    .list-users-row__e-mail{order: 1}
+
+    .list-users-row-show-profile__icon {
+        width: 22px;
+        height: 15px;
+        margin: 0;
+    }
+    .list-users-row__e-mail {
+        width: 247px;
+        font-size: 14px;
+        margin: 0;
+        color: rgba(54, 59, 77, 0.4);
+    }
+    .list-users-row__username {
+        width: 247px;
+        font-size: 16px;
+        margin: 0;
+    }
+    .list-users-row-show-profile {
+        width: 20%;
+        margin: 0;
+        justify-content: right;
+    }
+
+    .list-users__mobile-search-input {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: relative;
+        opacity: 60%;
+        margin: 16px 0 0 15px;
+    }
+    .list-users__mobile-input {
+        height: 24px;
+        outline: none;
+        color: #363B4D;
+        width: 163px;
+        background-color: rgba(54, 59, 77, 0.05);
+        border-radius: 4px;
+        padding: 0 0 0 22px;
+    }
+    .list-users__mobile-icon {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        left: 5px;
+    }
+    .list-users-row-show-more {
+        display: initial;
+        margin: 0 0 16px 15px;
+        color: #0084FE;
+        line-height: 150%;
+        font-size: 16px;
+        font-weight: 300;
+        cursor: pointer;
+    }
+}
+@media (max-width: 374px) {
+    .list-users__table-list-users {
+        min-width: 360px;
+    }
+}
+

@@ -5,6 +5,9 @@ import iconExcel from '../../img/AddNewOrgIconExcel.svg';
 import iconMailIcon from '../../img/AddNewOrgIconMail.svg';
 import iconDeleteBnt from '../../img/AddNewOrgDeleteIcon.svg';
 import iconLock from '../../img/AddNewOrgLockIcon.svg';
+import iconSuccessLoad from '../../img/AddNewOrgSuccessIcon.svg';
+import iconExcelActive from '../../img/AddNewOrgExcelActiveIcon.svg';
+import iconMailIconActive from '../../img/AddNewOrgIconMailActiveIcon.svg';
 
 const AddNewOrganization = (props) => {
 
@@ -13,12 +16,28 @@ const AddNewOrganization = (props) => {
     } = props;
 
     const [activeBlock, setActiveBlock] = useState(true);
+    const [activeMailBtn, setActiveMailBtn] = useState(true);
+    const [activeExcelBtn, setActiveExcelBth] = useState(false);
 
     const onActiveBlock = () => {
         if (activeBlock === true) {
            setActiveBlock(false)
         } else {
             setActiveBlock(true)
+        }
+    }
+
+    const onActiveExcelBtn = () => {
+        if (activeMailBtn === true) {
+            setActiveMailBtn(false)
+            setActiveExcelBth(true)
+        }
+    }
+
+    const onActiveMailBtn = () => {
+        if (activeExcelBtn === true) {
+           setActiveMailBtn(true)
+           setActiveExcelBth(false)
         }
     }
 
@@ -33,7 +52,6 @@ const AddNewOrganization = (props) => {
         }
     ]
 
-
     return (
         <div className="container__add-new-organization _container">
             <GeneralTitleAllPages
@@ -47,23 +65,41 @@ const AddNewOrganization = (props) => {
                     <input className="name-org-input__field" placeholder={constants.ADD_NEW_ORG.ADD_NEW_ORG_PLACEHOLDER_NAME}/>
                 </div>
                 <div className="add-new-organization__import-excel-add-email-buttons">
-                    <div className="import-excel-add-email-buttons__import-excel-btn">
-                        <img alt={iconExcel} src={iconExcel} className="import-excel-btn__excel-icon"/>
+                    <div onClick={onActiveExcelBtn}  className={activeExcelBtn ? "import-excel-add-email-buttons__import-excel-btn active" : "import-excel-add-email-buttons__import-excel-btn" }>
+                        <img alt={iconExcel} src={activeExcelBtn ? iconExcelActive : iconExcel} className="import-excel-btn__excel-icon"/>
                         <p>{constants.ADD_NEW_ORG.ADD_NEW_ORG_IMPORT_EXCEL_BTN}</p>
                     </div>
-                    <div className="import-excel-add-email-buttons__add-email-btn">
-                        <img alt={iconMailIcon} src={iconMailIcon} className="add-email-btn__email-icon"/>
+                    <div onClick={onActiveMailBtn} className={activeMailBtn ? "import-excel-add-email-buttons__add-email-btn active" : "import-excel-add-email-buttons__add-email-btn"}>
+                        <img alt={iconMailIcon} src={activeMailBtn ? iconMailIconActive : iconMailIcon} className="add-email-btn__email-icon"/>
                         <p className="add-email-btn__button-desktop">{constants.ADD_NEW_ORG.ADD_NEW_ORG_ADD_USERS_MAIL_BTN}</p>
                         <p className="add-email-btn__button-mobile">{constants.ADD_NEW_ORG.ADD_NEW_ORG_ADD_USERS_MAIL_BTN_MOBILE}</p>
                     </div>
                 </div>
-                <div className="add-new-organization__mail-addresses-users">
-                    <label className="mail-addresses-users__label-mail">{constants.ADD_NEW_ORG.ADD_NEW_ORG_MAIL_ADDRESS_USERS}
-                        <p className="mail-addresses-users__label-rule">{constants.ADD_NEW_ORG.ADD_NEW_ORG_MAIL_ADDRESS_USERS_RULE}</p>
-                    </label>
-                    <textarea className="mail-addresses-users__input-field"></textarea>
-                    <button className="mail-addresses-users__search-base-users">{constants.ADD_NEW_ORG.ADD_NEW_ORG_SEARCH_USERS_BASE_BTN}</button>
-                </div>
+                {activeMailBtn && (
+                    <div className="add-new-organization__mail-addresses-users">
+                        <label className="mail-addresses-users__label-mail">{constants.ADD_NEW_ORG.ADD_NEW_ORG_MAIL_ADDRESS_USERS}
+                            <p className="mail-addresses-users__label-rule">{constants.ADD_NEW_ORG.ADD_NEW_ORG_MAIL_ADDRESS_USERS_RULE}</p>
+                        </label>
+                        <textarea className="mail-addresses-users__input-field"></textarea>
+                        <button className="mail-addresses-users__search-base-users">{constants.ADD_NEW_ORG.ADD_NEW_ORG_SEARCH_USERS_BASE_BTN}</button>
+                    </div>
+                    )
+                }
+                {
+                    activeExcelBtn && (
+                        <div className="add-new-organization__download-file-load-button">
+                            <label className="download-file-load-button__label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_DOWNLOAD_FILE_LABEL}</label>
+                            <div className="download-file-load-button__field-file-load-button">
+                                <input type="file"/>
+                                <button className="field-file-load-button__load-btn" type={'submit'}>{constants.ADD_NEW_ORG.ADD_NEW_ORG_LOAD_BTN}</button>
+                                <div className="field-file-load-button__success-info">
+                                    <img className="field-file-load-button__icon-success" src={iconSuccessLoad} alt={iconSuccessLoad} />
+                                    <p className="field-file-load-button__label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_SUCCESS_INFO}</p>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                }
                 <div className="add-new-organization__top-pagination">
                     <PaginationBlock constants={constants}/>
                 </div>

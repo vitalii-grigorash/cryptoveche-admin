@@ -70,8 +70,12 @@ export const constants = {
     },
     HEADER: {
         HEADER_ORG: "Организации",
+        HEADER_USERS: "Пользователи",
+        HEADER_GROUP_USERS: "Группы пользователей",
+        HEADER_USERS_LIST: "Список пользователей",
         HEADER_ADD_BTN: "Добавить",
         HEADER_ADD_ORG: "Организацию",
+        HEADER_ADD_GROUP_USERS: "Группу пользователей",
         HEADER_MYPROFILE_MODAL: "Мой профиль",
         HEADER_MYPROFILE_MODAI_EXIT: "Выйти",
         HEADER_BURGER_ADD_BTN: "Добавить",
@@ -105,15 +109,21 @@ export const constants = {
     },
     GENERAL_TITLE: {
         GENERAL_TITLE_TITLENAME_ORG: "Список организаций",
+        GENERAL_TITLE_TITLENAME_GROUP_USER: "Группы пользователей",
+        GENERAL_TITLE_TITLENAME_ADD_ORG: "Добавление новой организации",
+        GENERAL_TITLE_TITLENAME_ADD_GROUP_USERS: "Добавление группы пользователей",
+        GENERAL_TITLE_TITLENAME_LIST_USERS: "Список пользователей",
+        GENERAL_TITLE_TITLENAME_PROFILE: "Профиль пользователя",
         GENERAL_TITLE_FIRTSLETTER: "АдминистраторКриптовече",
         GENERAL_TITLE_SECONDLETTER_ORG: "Организация",
-        GENERAL_TITLE_TITLENAME_ADD_ORG: "Добавление новой организации",
         GENERAL_TITLE_SECONDLETTER_GROUP_USERS: "Группы пользователей",
-        GENERAL_TITLE_TITLENAME_PROFILE: "Профиль пользователя"
+        GENERAL_TITLE_SECONDLETTER_LIST_USERS: "Список пользователей"
     },
     SORTING_BLOCK: {
         SORTING_BLOCK_LABEL: "Сортировать по:",
-        SORTING_BLOCK_TYPE_SORT: "Количеству транзакций"
+        SORTING_BLOCK_TYPE_SORT: "Количеству транзакций",
+        SORTING_BLOCK_FILTER_BTN: "Фильтры",
+        SORTING_BLOCK_SORT_BTN: "Сортировка"
     },
     PAGINATION: {
         PAGINATION_SHOW_LABEL: "Показать",
@@ -138,6 +148,9 @@ export const constants = {
         ADD_NEW_ORG_ADD_USERS_MAIL_BTN: "Добавить пользователей по E-mail",
         ADD_NEW_ORG_ADD_USERS_MAIL_BTN_MOBILE: "Добавить пользователей",
         ADD_NEW_ORG_MAIL_ADDRESS_USERS: "Почтовые адреса пользователей",
+        ADD_NEW_ORG_DOWNLOAD_FILE_LABEL: "Загрузить xls/xlsx документ со списком пользователей",
+        ADD_NEW_ORG_LOAD_BTN: "Загрузить",
+        ADD_NEW_ORG_SUCCESS_INFO: "Файл успешно загружен",
         ADD_NEW_ORG_MAIL_ADDRESS_USERS_RULE: "(по одному на каждую строчку для каждого пользователя)",
         ADD_NEW_ORG_SEARCH_USERS_BASE_BTN: "Найти в базе пользователей",
         ADD_NEW_ORG_E_MAIL_SUPPORT: "E-mail поддержки",
@@ -152,9 +165,28 @@ export const constants = {
         ADD_NEW_ORG_UNBLOCK_BTN: "Разблокировать",
         ADD_NEW_ORG_SHOW_MORE_BTN: "ПОКАЗАТЬ ЕЩЁ"
     },
+    ADD_NEW_GROUP_USERS: {
+        ADD_NEW_GROUP_USERS_SELECT_ORG: "Выбор организации",
+        ADD_NEW_GROUP_USERS_ORG: "Организация",
+        ADD_NEW_GROUP_NEXT_BTN: "Далее",
+        ADD_NEW_GROUP_USERS_NAME_GROUP_USERS: "Название группы пользователей",
+        ADD_NEW_GROUP_USERS_PLACEHOLDER_NAME: "Введите название группы",
+        ADD_NEW_GROUP_USERS_IMPORT_EXCEL_BTN: "Импорт пользователей из Excel",
+        ADD_NEW_GROUP_USERS_ADD_GROUP_BTN: "Добавить в группу пользователей",
+        ADD_NEW_GROUP_MAIL_ADDRESS_USERS: "Почтовые адреса пользователей",
+        ADD_NEW_GROUP_MAIL_ADDRESS_USERS_RULE: "(по одному на каждую строчку для каждого пользователя)",
+        ADD_NEW_GROUP_SEARCH_USERS_BASE_BTN: "Найти в базе пользователей",
+        ADD_NEW_GROUP_USERS_DELETE_BTN: "УДАЛИТЬ",
+        ADD_NEW_GROUP_USERS_SAVE_BTN: "Сохранить",
+        ADD_NEW_GROUP_USERS_SHOW_MORE_BTN: "ПОКАЗАТЬ ЕЩЁ",
+        ADD_NEW_GROUP_USERS_LOAD_BTN: "Загрузить",
+        ADD_NEW_GROUP_USERS_DOWNLOAD_FILE_LABEL: "Загрузить xls/xlsx документ со списком пользователей",
+        ADD_NEW_GROUP_SUCCESS_INFO: "Файл успешно загружен"
+    },
     PROFILE_USER: {
         PROFILE_USER_EDIT_BTN: "Редактировать профиль",
         PROFILE_USER_ORG_GROUP_USERS: "Организации и группы пользователя",
+        PROFILE_USER_ACTIVITY_IN_USER_GROUPS: "Членство в группах пользователей",
         PROFILE_USER_VOTES: "Голосования",
         PROFILE_USER_STATUS_VOTING: "Голосующий",
         PROFILE_USER_STATUS_OBSERVER: "Наблюдатель",
@@ -170,5 +202,23 @@ export const constants = {
         PROFILE_USER_PASS: "Пароль",
         PROFILE_USER_NEW_PASS: "Новый пароль",
         PROFILE_USER_REPEAT_PASS: "Повторите новый пароль"
+    },
+    GROUP_USERS: {
+        GROUP_USERS_NAME_GROUP_USERS: "Название группы пользователей",
+        GROUP_USERS_MEMBERS: "Участники",
+        GROUP_USERS_ACTIONS: "Действия",
+        GROUP_USERS_EDIT_BTN: "РЕДАКТИРОВАТЬ",
+        GROUP_USERS_BLOCK_BTN: "ЗАБЛОКИРОВАТЬ",
+        GROUP_USERS_UNBLOCK_BTN: "РАЗБЛОКИРОВАТЬ",
+        GROUP_USERS_DELETE_BTN: "УДАЛИТЬ",
+        GROUP_USERS_ADD_USER_BTN_MOBILE: "Добавить пользователей",
+        GROUP_USERS_SELECT_BTN_SELECT: "Выбрать"
+    },
+    LIST_USERS: {
+        LIST_USERS_TABLE_EMAIL: "E-mail",
+        LIST_USERS_USERNAME: "ФИО",
+        LIST_USERS_ACTIONS: "Действия",
+        LIST_USERS_WATCH_PROFILE: "ПОСМОТРЕТЬ ПРОФИЛЬ",
+        LIST_USERS_SHOW_MORE: "ПОКАЗАТЬ ЕЩЁ"
     }
 }

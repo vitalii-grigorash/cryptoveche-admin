@@ -20,14 +20,15 @@
     box-shadow: -1px 0 8px rgba(54, 58, 72, 0.07);
     background-color: #FFFFFF;
     border-radius: 1.33em;
-    max-width: 24em;
+    align-self: flex-start;
+    width: 30vw;
 }
 .personal-data-user__main-data-user.active {
     display: none;
 }
 .personal-data-user__icon-photo {
-    width: 21.33em;
-    height: 7.11em;
+    width: 26.667vw;
+    height: 8em;
     margin-bottom: 0.88em;
     flex-wrap: wrap;
 }
@@ -48,6 +49,7 @@
     color: rgba(54, 59, 77, 0.4);
     line-height: 124%;
     margin-bottom: 0.88em;
+    word-break: break-word;
 }
 .main-data-user__timezone {
     display: inline-flex;
@@ -90,6 +92,7 @@
     line-height: 124%;
     color: rgba(54, 59, 77, 0.4);
     margin-bottom: 1.33em;
+    word-break: break-word;
 }
 .edit-main-data-user__title-change-data {
     font-size: 1em;
@@ -315,8 +318,8 @@
     position: absolute;
     width: 1.22em;
     height: 0.83em;
-    bottom: 15px;
-    right: 15px;
+    bottom: 0.83em;
+    right: 0.83em;
     cursor: pointer;
 }
 .edit-main-data-user__repeat-pass-icon-show {
@@ -343,7 +346,320 @@
     box-shadow: -1px 0 8px rgba(54, 58, 72, 0.07);
     background-color: #FFFFFF;
     border-radius: 1.33em;
-    width: 100%;
+    width: 61.111vw;
     align-self: flex-start;
-}
 
+}
+.organizations-groups-users-votes__toggle-buttons {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #EEEEEE;
+    margin-bottom: 1.33em;
+}
+.toggle-buttons__org-group-users {
+    font-size: 1.11em;
+    line-height: 140%;
+    font-weight: 600;
+    color: #363B4D;
+    opacity: 90%;
+}
+.organizations-groups-users-votes__org-groups-list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.33em;
+
+}
+.org-groups-list__title-icon-status {
+    display: flex;
+    flex-direction: row;
+    gap: 1.77em;
+    margin-bottom: 1.33em;
+}
+.title-icon-status__title {
+    font-weight: 500;
+    line-height: 136%;
+    font-size: 1.11em;
+    color: #363B4D;
+    opacity: 90%;
+}
+.title-icon-status__icon-status-block {
+    display: flex;
+    align-items: center;
+    border: 0.5px solid #F9C521;
+    border-radius: 1.33em;
+    height: 1.33em;
+    padding: 0.11em 0.88em;
+    gap: 0.33em;
+}
+.title-icon-status__icon {
+    width: 0.72em;
+    height: 0.72em;
+}
+.title-icon-status__status {
+    font-size: 0.66em;
+    color: #F9C521;
+    line-height: 167%;
+}
+.org-groups-list__select-row-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.94em;
+    margin-bottom: 1.33em;
+    cursor: pointer;
+}
+.select-row-list__label {
+    font-size: 1em;
+    font-weight: 600;
+    color: #363B4D;
+    opacity: 90%;
+    line-height: 133%;
+}
+.select-row-list__icon-row {
+    width: 0.6em;
+    height: 0.8em;
+    transform: rotate(180deg);
+}
+.select-row-list__icon-row.active {
+    width: 0.6em;
+    height: 0.8em;
+    transform: rotate(0deg);
+}
+.org-groups-list__list-activity-user {
+    display: none;
+}
+.org-groups-list__list-activity-user.active {
+    display: flex;
+    flex-direction: column;
+}
+.list-activity-user__name-group {
+    font-size: 1em;
+    line-height: 156%;
+    color: #363B4D;
+    opacity: 90%;
+    margin-bottom: 0.88em;
+}
+.list-activity-users__show-all-btn {
+    padding-bottom: 1.33em;
+    font-weight: 300;
+    color: #0084FE;
+    line-height: 150%;
+    font-size: 0.88em;
+    cursor: pointer;
+    border-bottom: 1px solid #EEEEEE;
+}
+/*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
+@media (max-width: 1570px) {
+    .container__profile-user  {
+        font-size: 16px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 1120px) {
+    .container__profile-user  {
+        font-size: 12px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 830px) {
+    .container__profile-user  {
+        font-size: 10px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 600px) {
+    .container__profile-user  {
+        font-size: 8px;
+        min-height: calc(65vh - 80px);
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 500px) {
+    .container__profile-user {
+        margin-bottom: 29px;
+    }
+    .profile-user {
+        flex-direction: column;
+        gap: 16px;
+    }
+    .profile-user__personal-data-user {
+        width: 100%;
+    }
+    .personal-data-user__icon-photo {
+        width: 100%;
+        height: 170px;
+    }
+    .main-data-user__username {
+        font-size: 16px;
+        line-height: 138%;
+        font-weight: 400;
+        margin-bottom: 4px;
+    }
+    .main-data-user__email {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 138%;
+        margin-bottom: 8px;
+    }
+    .main-data-user__timezone {
+        margin-bottom: 16px;
+    }
+    .main-data-user__timezone {
+        align-items: center;
+    }
+    .main-data-user__timezone-icon {
+        width: 13px;
+        height: 13px;
+    }
+    .main-data-user__timezone-current {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 171%;
+    }
+    .main-data-user__edit-button {
+        height: 48px;
+        font-size: 16px;
+        line-height: 150%;
+        font-weight: 400;
+        margin-bottom: 8px;
+    }
+    .edit-main-data-user__email {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 138%;
+        margin-bottom: 16px;
+    }
+    .edit-main-data-user__title-change-data {
+        font-weight: 500;
+        line-height: 150%;
+        font-size: 16px;
+        margin-bottom: 16px;
+    }
+    .edit-main-data-user__surname,
+    .edit-main-data-user__name {
+        margin-bottom: 16px;
+        gap: 8px;
+    }
+    .edit-main-data-user__middle-name {
+        margin-bottom: 24px;
+        gap: 8px;
+    }
+    .edit-main-data-user__surname-label,
+    .edit-main-data-user__name-label,
+    .edit-main-data-user__middle-name-label
+    {
+        font-size: 16px;
+        line-height: 138%;
+    }
+    .edit-main-data-user__surname-field-input,
+    .edit-main-data-user__name-field-input,
+    .edit-main-data-user__middle-name-field-input {
+        font-size: 18px;
+        height: 48px;
+    }
+    .edit-main-data-user__time-zone-heading {
+        font-size: 16px;
+        line-height: 150%;
+        font-weight: 500;
+    }
+    .edit-main-data-user__time-zone-select-container {
+        font-size: 16px;
+        margin-bottom: 16px;
+    }
+    .edit-main-data-user__title-change-pass {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 24px;
+        line-height: 150%;
+    }
+    .edit-main-data-user__pass-label,
+    .edit-main-data-user__new-pass-label,
+    .edit-main-data-user__repeat-pass-label {
+        font-size: 16px;
+        line-height: 138%;
+    }
+    .edit-main-data-user__pass-input,
+    .edit-main-data-user__new-pass-input,
+    .edit-main-data-user__repeat-pass-input {
+        font-size: 16px;
+        height: 48px;
+        padding: 13px 38px 13px 16px;
+    }
+    .edit-main-data-user__pass-icon-show,
+    .edit-main-data-user__new-pass-icon-show,
+    .edit-main-data-user__repeat-pass-icon-show {
+        width: 22px;
+        height: 15px;
+        bottom: 15px;
+        right: 12px;
+    }
+    .edit-main-data-user__pass,
+    .edit-main-data-user__new-pass,
+    .edit-main-data-user__repeat-pass {
+        margin-bottom: 24px;
+        gap: 8px;
+    }
+    .edit-main-data-user__button-save {
+        height: 48px;
+        font-size: 16px;
+        line-height: 150%;
+        font-weight: 400;
+        margin-bottom: 8px;
+    }
+    .organizations-groups-users-votes__toggle-buttons {
+        margin-bottom: 32px;
+    }
+    .toggle-buttons__org-group-users {
+        font-size: 18px;
+        font-weight: 500;
+        white-space: nowrap;
+        line-height: 144%;
+    }
+    .org-groups-list__title-icon-status {
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+    .title-icon-status__title {
+        font-size: 16px;
+        line-height: 138%;
+    }
+    .title-icon-status__icon {
+        width: 13px;
+        height: 13px;
+    }
+    .title-icon-status__status {
+        font-size: 12px;
+        line-height: 167%;
+    }
+    .title-icon-status__icon-status-block {
+        max-width: 116px;
+        height: 24px;
+    }
+    .org-groups-list__select-row-list {
+        margin-bottom: 8px;
+    }
+    .select-row-list__label {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 138%;
+    }
+    .select-row-list__icon-row,
+    .select-row-list__icon-row.active {
+        width: 8px;
+        height: 13px;
+    }
+    .list-activity-user__name-group {
+        font-size: 16px;
+        line-height: 138%;
+        margin-bottom: 8px;
+    }
+    .list-activity-users__show-all-btn {
+        font-size: 16px;
+        line-height: 150%;
+        padding-bottom: 16px;
+    }
+    .profile-user__organizations-groups-users-votes {
+        width: 100%;
+    }
+}

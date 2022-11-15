@@ -31,6 +31,72 @@
     height: 2.1em;
     cursor: pointer;
 }
+/*------Контейнер для блоков с пользователи---------------------------------------------------------------------------*/
+.logotype-link-buttons__users {
+    margin-right: 3em;
+    cursor: pointer;
+    padding: 1.75em 0 1.75em 0;
+    border-bottom: 4px solid #373C4E;
+    position: relative;
+}
+.logotype-link-buttons__users-label-icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5em;
+    position: relative;
+}
+.logotype-link-buttons__users-label {
+    position: relative;
+    color: #FFFFFF;
+    line-height: 124%;
+}
+.logotype-link-buttons__users:hover {
+    border-bottom: 4px solid #4569FF;
+}
+.logotype-link-buttons__users.active {
+    border-bottom: 4px solid #4569FF;
+}
+.logotype-link-buttons__users-icon-row {
+    width: 0.7em;
+    height: 0.7em;
+}
+.logotype-link-buttons__users-select-list {
+    position: absolute;
+    top: 5.5em;
+    left: 0;
+    background-color: #4A4F60;
+    color: #FFFFFF;
+    box-sizing: content-box;
+    border-radius: 2px;
+    line-height: 124%;
+    display: flex;
+    flex-direction: column;
+    width: 13.75em;
+    z-index: 55;
+}
+.logotype-link-buttons__users-select-list.hidden {
+    display: none;
+}
+.logotype-link-buttons__users-select-list a:nth-child(1) {
+    padding: 1em 0 1em 1em;
+    border-bottom: 1px solid #61687E;
+    color: #FFFFFF;
+    text-decoration: none;
+    cursor: pointer;
+}
+.logotype-link-buttons__users-select-list a:nth-child(2) {
+    padding: 1em 0 1em 1em;
+    color: #FFFFFF;
+    text-decoration: none;
+    cursor: pointer;
+}
+.logotype-link-buttons__users-select-list a:nth-child(1):hover,
+.logotype-link-buttons__users-select-list a:nth-child(2):hover {
+    background-color: #0084FE;
+    border-radius: 2px;
+}
+
 /*------Контейнер для блоков с организацией---------------------------------------------------------------------------*/
 .logotype-link-buttons__organizations {
     color: #FFFFFF;
@@ -90,6 +156,7 @@
     padding: 1em 0 1em 1em;
     color: #FFFFFF;
     text-decoration: none;
+    border-bottom: 1px solid #61687E;
 }
 .logotype-link-buttons__select-list-buttons a:nth-child(2) {
     padding: 1em 0 1em 1em;
@@ -291,6 +358,11 @@
 @media (max-width: 670px) {
     .header {
         font-size: 8px;
+    }
+}
+@media (max-width: 600px) {
+    .search-setting-myprofile__myprofile-modal-exit {
+        left: -39px;
     }
 }
 /*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
