@@ -90,7 +90,7 @@ const Header = (props) => {
                         <img alt={'стрелочка для кнопки'} className="add-button__row-btn-open-list" src={headerRowBtn}/>
                         <div className={activeAddButton ? "logotype-link-buttons__select-list-buttons" : "logotype-link-buttons__select-list-buttons hidden"}>
                             {/*<Link to={'#'}>Голосование</Link>*/}
-                            <Link to={'#'}>{constants.HEADER.HEADER_ADD_GROUP_USERS}</Link>
+                            <Link to={'/add-new-group'}>{constants.HEADER.HEADER_ADD_GROUP_USERS}</Link>
                             {/*<Link to={'#'}>Шаблон голосования</Link>*/}
                             <Link to={'/add-org-page'}>{constants.HEADER.HEADER_ADD_ORG}</Link>
                         </div>

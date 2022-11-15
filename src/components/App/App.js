@@ -13,6 +13,7 @@ import AddNewOrganization from "../AddNewOrganization/AddNewOrganization";
 import ProfileUser from "../ProfileUser/ProfileUser";
 import GroupUsers from "../GroupUsers/GroupUsers";
 import ListUsers from "../ListUsers/ListUsers";
+import AddNewGroupUsers from "../AddNewGroupUsers/AddNewGroupUsers";
 
 function App() {
 
@@ -82,6 +83,9 @@ function App() {
                 constants={constants}
             />}/>
             <Route path={'/add-org-page'} element={<AddNewOrganization
+                constants={constants}
+            />}/>
+            <Route path={'/add-new-group'} element={<AddNewGroupUsers
                 constants={constants}
             />}/>
             <Route path={'/profile-user'} element={<ProfileUser

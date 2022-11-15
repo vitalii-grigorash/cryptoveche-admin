@@ -104,6 +104,9 @@
 .list-users__mobile-search-input {
     display: none;
 }
+.list-users-row-show-more {
+    display: none;
+}
 /*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
 @media (max-width: 1570px) {
     .container__list-users {
@@ -143,13 +146,11 @@
     .list-users__table-list-users {
         border-radius: 16px;
     }
-    .list-users__table-list-users div:last-child {
-        border-top: none;
-    }
     .list-users-row {
         flex-wrap: wrap;
         align-items: initial;
         padding: 16px 16px 16px 16px;
+        border: none;
     }
     .list-users-row-show-profile__show {
         display: none;
@@ -166,6 +167,7 @@
         width: 247px;
         font-size: 14px;
         margin: 0;
+        color: rgba(54, 59, 77, 0.4);
     }
     .list-users-row__username {
         width: 247px;
@@ -200,6 +202,15 @@
         width: 12px;
         height: 12px;
         left: 5px;
+    }
+    .list-users-row-show-more {
+        display: initial;
+        margin: 0 0 16px 15px;
+        color: #0084FE;
+        line-height: 150%;
+        font-size: 16px;
+        font-weight: 300;
+        cursor: pointer;
     }
 }
 @media (max-width: 374px) {

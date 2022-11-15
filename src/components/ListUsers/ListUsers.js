@@ -65,6 +65,7 @@ const ListUsers = (props) => {
                         )
                     })
                 }
+                <p className="list-users-row-show-more">{constants.LIST_USERS.LIST_USERS_SHOW_MORE}</p>
             </div>
         </div>
     )

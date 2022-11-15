@@ -105,6 +105,7 @@ export const constants = {
         GENERAL_TITLE_TITLENAME_ORG: "Список организаций",
         GENERAL_TITLE_TITLENAME_GROUP_USER: "Группы пользователей",
         GENERAL_TITLE_TITLENAME_ADD_ORG: "Добавление новой организации",
+        GENERAL_TITLE_TITLENAME_ADD_GROUP_USERS: "Добавление группы пользователей",
         GENERAL_TITLE_TITLENAME_LIST_USERS: "Список пользователей",
         GENERAL_TITLE_TITLENAME_PROFILE: "Профиль пользователя",
         GENERAL_TITLE_FIRTSLETTER: "АдминистраторКриптовече",
@@ -141,6 +142,9 @@ export const constants = {
         ADD_NEW_ORG_ADD_USERS_MAIL_BTN: "Добавить пользователей по E-mail",
         ADD_NEW_ORG_ADD_USERS_MAIL_BTN_MOBILE: "Добавить пользователей",
         ADD_NEW_ORG_MAIL_ADDRESS_USERS: "Почтовые адреса пользователей",
+        ADD_NEW_ORG_DOWNLOAD_FILE_LABEL: "Загрузить xls/xlsx документ со списком пользователей",
+        ADD_NEW_ORG_LOAD_BTN: "Загрузить",
+        ADD_NEW_ORG_SUCCESS_INFO: "Файл успешно загружен",
         ADD_NEW_ORG_MAIL_ADDRESS_USERS_RULE: "(по одному на каждую строчку для каждого пользователя)",
         ADD_NEW_ORG_SEARCH_USERS_BASE_BTN: "Найти в базе пользователей",
         ADD_NEW_ORG_E_MAIL_SUPPORT: "E-mail поддержки",
@@ -154,6 +158,24 @@ export const constants = {
         ADD_NEW_ORG_BLOCK_BTN: "Заблокировать",
         ADD_NEW_ORG_UNBLOCK_BTN: "Разблокировать",
         ADD_NEW_ORG_SHOW_MORE_BTN: "ПОКАЗАТЬ ЕЩЁ"
+    },
+    ADD_NEW_GROUP_USERS: {
+        ADD_NEW_GROUP_USERS_SELECT_ORG: "Выбор организации",
+        ADD_NEW_GROUP_USERS_ORG: "Организация",
+        ADD_NEW_GROUP_NEXT_BTN: "Далее",
+        ADD_NEW_GROUP_USERS_NAME_GROUP_USERS: "Название группы пользователей",
+        ADD_NEW_GROUP_USERS_PLACEHOLDER_NAME: "Введите название группы",
+        ADD_NEW_GROUP_USERS_IMPORT_EXCEL_BTN: "Импорт пользователей из Excel",
+        ADD_NEW_GROUP_USERS_ADD_GROUP_BTN: "Добавить в группу пользователей",
+        ADD_NEW_GROUP_MAIL_ADDRESS_USERS: "Почтовые адреса пользователей",
+        ADD_NEW_GROUP_MAIL_ADDRESS_USERS_RULE: "(по одному на каждую строчку для каждого пользователя)",
+        ADD_NEW_GROUP_SEARCH_USERS_BASE_BTN: "Найти в базе пользователей",
+        ADD_NEW_GROUP_USERS_DELETE_BTN: "УДАЛИТЬ",
+        ADD_NEW_GROUP_USERS_SAVE_BTN: "Сохранить",
+        ADD_NEW_GROUP_USERS_SHOW_MORE_BTN: "ПОКАЗАТЬ ЕЩЁ",
+        ADD_NEW_GROUP_USERS_LOAD_BTN: "Загрузить",
+        ADD_NEW_GROUP_USERS_DOWNLOAD_FILE_LABEL: "Загрузить xls/xlsx документ со списком пользователей",
+        ADD_NEW_GROUP_SUCCESS_INFO: "Файл успешно загружен"
     },
     PROFILE_USER: {
         PROFILE_USER_EDIT_BTN: "Редактировать профиль",
@@ -190,6 +212,7 @@ export const constants = {
         LIST_USERS_TABLE_EMAIL: "E-mail",
         LIST_USERS_USERNAME: "ФИО",
         LIST_USERS_ACTIONS: "Действия",
-        LIST_USERS_WATCH_PROFILE: "ПОСМОТРЕТЬ ПРОФИЛЬ"
+        LIST_USERS_WATCH_PROFILE: "ПОСМОТРЕТЬ ПРОФИЛЬ",
+        LIST_USERS_SHOW_MORE: "ПОКАЗАТЬ ЕЩЁ"
     }
 }
