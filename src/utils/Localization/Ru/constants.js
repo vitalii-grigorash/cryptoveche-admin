@@ -21,6 +21,7 @@ export const constants = {
     },
     HEADER: {
         HEADER_ORG: "Организации",
+        HEADER_MAIN: "Главная",
         HEADER_USERS: "Пользователи",
         HEADER_GROUP_USERS: "Группы пользователей",
         HEADER_USERS_LIST: "Список пользователей",
