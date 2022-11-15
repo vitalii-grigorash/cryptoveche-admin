@@ -67,6 +67,10 @@
     padding: 0.66em 1.66em 0.66em 1.66em;
     height: 2.66em;
 }
+.import-excel-add-email-buttons__import-excel-btn.active {
+    background-color: #4ED4A9;
+    color: #FFFFFF;
+}
 .import-excel-btn__excel-icon {
     width: 1.33em;
     height: 1.33em;
@@ -83,6 +87,10 @@
     padding: 0.66em 1.66em 0.66em 1.66em;
     border: 1px solid #0084FE;
     height: 2.66em;
+}
+.import-excel-add-email-buttons__add-email-btn.active {
+    background-color: #0084FE;
+    color: #FFFFFF;
 }
 .add-email-btn__email-icon {
     width: 1.33em;
@@ -135,11 +143,90 @@
     background-color: #0084FE;
     color: #FFFFFF;
 }
+
+.input_container {
+    border: 1px solid #e5e5e5;
+    width: 100%;
+}
+/*------Контейнер для блока с загрузкой файла-------------------------------------------------------------------------*/
+.add-new-organization__download-file-load-button {
+    display: flex;
+    flex-direction: column;
+    gap: 0.88em;
+    margin-bottom: 1.77em;
+
+}
+.download-file-load-button__label {
+    font-size: 1em;
+    line-height: 133%;
+    color: #363B4D;
+    opacity: 90%;
+}
+.download-file-load-button__field-file-load-button {
+    display: flex;
+    flex-direction: row;
+}
+.field-file-load-button__load-btn {
+    height: 3em;
+    background: #FFFFFF;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border: 0.5px solid #0084FE;
+    padding: 0.66em 3.55em 0.66em 3.55em;
+    font-size: 0.88em;
+    color: #0084FE;
+    cursor: pointer;
+    margin-right: 1.44em;
+}
+.field-file-load-button__success-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.33em;
+}
+.field-file-load-button__icon-success {
+    width: 0.66em;
+    height: 0.44em;
+}
+.field-file-load-button__label {
+    color: #4ED4A9;
+    line-height: 200%;
+    font-size: 0.66em;
+}
+input[type=file] {
+    width: 60vw;
+    color: #363B4D;
+    opacity: 90%;
+    padding: 0.66em 1.33em 0.66em 1.33em;
+    background: #FFFFFF;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border: 0.5px solid rgba(54, 59, 77, 0.2);
+    height: 2.66em;
+    font-size: 1em;
+    cursor: pointer;
+}
+input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #0084FE;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+    position: absolute;
+    display: none;
+}
+input[type=file]::file-selector-button:hover {
+    background: #0d45a5;
+}
+
 /*------Контейнер для верхней пагинации-------------------------------------------------------------------------------*/
 .add-new-organization__top-pagination {
     margin-bottom: 0.88em;
 }
-/*------Контейнер для таблицы c пользователями-------------------------------------------------------------------------*/
+/*------Контейнер для таблицы c пользователями------------------------------------------------------------------------*/
 .add-new-organization__table-list-users {
     display: flex;
     flex-direction: column;
@@ -617,5 +704,47 @@
         font-weight: 300;
         color: #0084FE;
         cursor: pointer;
+    }
+    .download-file-load-button__label {
+        font-size: 16px;
+        line-height: 138%;
+        margin-bottom: 16px;
+    }
+    .add-new-organization__download-file-load-button {
+        gap: 0;
+    }
+    .download-file-load-button__field-file-load-button {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 48px 1fr;
+        grid-template-areas: "blockdownload loadbtn"
+                             "success success";
+        width: 100%;
+        grid-row-gap: 16px;
+    }
+    input[type=file] {
+        grid-area: blockdownload;
+        height: 48px;
+        font-size: 18px;
+        width: 100%;
+    }
+    .field-file-load-button__load-btn {
+        grid-area: loadbtn;
+        height: 48px;
+        font-size: 16px;
+        padding: 12px 24px 12px 24px;
+        margin: 0;
+    }
+    .field-file-load-button__success-info {
+        grid-area: success;
+        gap: 6px;
+    }
+    .field-file-load-button__icon-success {
+        width: 12px;
+        height: 9px;
+    }
+    .field-file-load-button__label {
+        font-size: 12px;
+        line-height: 200%;
     }
 }

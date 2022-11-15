@@ -58,7 +58,7 @@ const HeaderBurgerMenu = ({ active, setActive, handleLogout, constants }) => {
                 <div className='burger-menu__link-page'>
                     <Link to={'/'} onClick={() => setActive(false)}>{constants.HEADER.HEADER_BURGER_ORG}</Link>
                     {/*<Link to={'/votes-page'} onClick={() => setActive(false)}>Голосования</Link>*/}
-                    <Link to={'/my-profile'} onClick={() => setActive(false)}>Мой профиль</Link>
+                    <Link to={'/profile-user'} onClick={() => setActive(false)}>Мой профиль</Link>
                 </div>
                 <div className="burger-menu__add-button">
                     <div onClick={showAddOrg} className="burger-menu__add-button-label-row">
