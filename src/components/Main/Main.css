@@ -1,0 +1,7 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 9em;
+    min-height: calc(49vh - 80px);
+    font-size: 18px;
+}
