@@ -78,6 +78,7 @@ const Header = (props) => {
             <div className="header__container _container">
                 <div className="header__logotype-link-buttons">
                     <img alt={'логотип'} className="logotype-link-buttons__logo" src={headerLogo} />
+                    <span onClick={() => linkButtonOrgPage('/')} className={pathname === '/' ? "logotype-link-buttons__organizations active" : "logotype-link-buttons__organizations"}>{constants.HEADER.HEADER_MAIN}</span>
                     <div onClick={showUserButtonList} className={pathname === '/group-users' ? "logotype-link-buttons__users active" : "logotype-link-buttons__users"}>
                         <div className="logotype-link-buttons__users-label-icon">
                             <p className="logotype-link-buttons__users-label">{constants.HEADER.HEADER_USERS}</p>
@@ -88,7 +89,7 @@ const Header = (props) => {
                             <Link to={'/list-users'}>{constants.HEADER.HEADER_USERS_LIST}</Link>
                         </div>
                     </div>
-                    <span onClick={() => linkButtonOrgPage('/')} className={pathname === '/' ? "logotype-link-buttons__organizations active" : "logotype-link-buttons__organizations"}>{constants.HEADER.HEADER_ORG}</span>
+                    <span onClick={() => linkButtonOrgPage('/organizations')} className={pathname === '/organizations' ? "logotype-link-buttons__organizations active" : "logotype-link-buttons__organizations"}>{constants.HEADER.HEADER_ORG}</span>
                     <div onClick={showAddButtonList} className="logotype-link-buttons__add-button">
                         <p className="logotype-link-buttons__label-add-button">{constants.HEADER.HEADER_ADD_BTN}</p>
                         <img alt={'стрелочка для кнопки'} className="add-button__row-btn-open-list" src={headerRowBtn} />

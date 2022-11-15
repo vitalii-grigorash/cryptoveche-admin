@@ -14,7 +14,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import GroupUsers from "../GroupUsers/GroupUsers";
 import ListUsers from "../ListUsers/ListUsers";
 import AddNewGroupUsers from "../AddNewGroupUsers/AddNewGroupUsers";
-
+import Main from "../Main/Main";
 
 function App() {
 
@@ -169,6 +169,7 @@ function App() {
             if (!(
                 pathname === '/' ||
                 pathname === '/add-org-page' ||
+                pathname === '/organisations' ||
                 pathname === '/profile-user'
             )) {
                 navigate('/');
@@ -212,6 +213,11 @@ function App() {
                         />}
                     />
                     <Route exact path={'/'}
+                        element={<Main
+                            constants={constants}
+                        />}
+                    />
+                    <Route exact path={'/organizations'}
                         element={<OrganizationsList
                             constants={constants}
                         />}
