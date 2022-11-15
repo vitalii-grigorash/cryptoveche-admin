@@ -6,35 +6,22 @@
     min-height: calc(49vh - 80px);
     font-size: 18px;
 }
-/*------Контейнер для блока с пагинацией и сортировкий----------------------------------------------------------------*/
-.organisation-list__sort-pagination {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 1.7em;
-}
 /*------Контейнер для блока таблицей-------------+---------------------------------------------------------------------*/
 .organisation-list__table-organisations {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1.7em;
+    margin: 1.7em 0;
     box-shadow: -3px 0 8px rgba(54, 58, 72, 0.1);
-    border-top-left-radius:  1.33em;
-    border-top-right-radius: 1.33em;
+    border-radius:  1.33em;
     font-size: 1em;
     background-color: #FFFFFF;
-}
-.organisation-list__show-more {
-    display: none;
 }
 /*------Контейнер для блока c заголовками таблицы---------------------------------------------------------------------*/
 .table-organisations-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-top-left-radius: 1.33em;
-    border-top-right-radius: 1.33em;
-    padding: 1.11em 1.33em 1.11em 1.33em;
+    padding: 1.11em 1.33em;
 }
 .table-organisations-header__name-org {
     line-height: 129%;
@@ -84,7 +71,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 1.11em 1.33em 1.11em 1.33em;
+    padding: 1.11em 1.33em;
     border-top: 1px solid rgba(54, 59, 77, 0.1);
 }
 .table-organisations-row__name-org {
@@ -180,9 +167,6 @@
 .organisation-list__table-organisations-mobile {
     display: none;
 }
-.table-organisations-mobile-search-input {
-    display: none;
-}
 /*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
 @media (max-width: 1570px) {
     .container__organisation-list  {
@@ -213,12 +197,9 @@
     .container__organisation-list {
         margin-bottom: 36px;
     }
-    .organisation-list__sort-pagination, .organisation-list__second-pagination {
-        display: none;
-    }
     .organisation-list__table-organisations {
         border-radius: 16px;
-        padding: 16px 0 16px 0;
+        padding: 0 0 16px 0;
     }
     .table-organisations-row:last-child {
         border-bottom: none;
@@ -345,38 +326,5 @@
         display: initial;
         font-weight: 400;
         line-height: 124%;
-    }
-    .table-organisations-mobile-search-input {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        position: relative;
-        opacity: 60%;
-        margin: 0 15px;
-    }
-    .mobile-search-input {
-        height: 24px;
-        outline: none;
-        color: #363B4D;
-        width: 163px;
-        background-color: rgba(54, 59, 77, 0.05);
-        border-radius: 4px;
-        padding: 0 0 0 22px;
-     }
-    .table-organisations-mobile-search-icon {
-        position: absolute;
-        width: 12px;
-        height: 12px;
-        left: 5px;
-    }
-    .organisation-list__show-more {
-        display: initial;
-        font-size: 16px;
-        margin: 0 16px;
-        line-height: 124%;
-        color: #0084FE;
-        font-weight: 300;
-        cursor: pointer;
-        padding-top: 12px;
     }
 }

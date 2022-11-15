@@ -67,15 +67,9 @@ export const constants = {
         GENERAL_TITLE_TITLENAME_LIST_USERS: "Список пользователей",
         GENERAL_TITLE_TITLENAME_PROFILE: "Профиль пользователя",
         GENERAL_TITLE_FIRTSLETTER: "АдминистраторКриптовече",
-        GENERAL_TITLE_SECONDLETTER_ORG: "Организация",
+        GENERAL_TITLE_SECONDLETTER_ORG: "Организации",
         GENERAL_TITLE_SECONDLETTER_GROUP_USERS: "Группы пользователей",
         GENERAL_TITLE_SECONDLETTER_LIST_USERS: "Список пользователей"
-    },
-    SORTING_BLOCK: {
-        SORTING_BLOCK_LABEL: "Сортировать по:",
-        SORTING_BLOCK_TYPE_SORT: "Количеству транзакций",
-        SORTING_BLOCK_FILTER_BTN: "Фильтры",
-        SORTING_BLOCK_SORT_BTN: "Сортировка"
     },
     PAGINATION: {
         PAGINATION_SHOW_LABEL: "Показать",
