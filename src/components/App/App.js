@@ -1,4 +1,4 @@
-import {Route, Routes, useLocation} from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import { config } from '../../config';
 import * as en from '../../utils/Localization/En/constants';
@@ -56,58 +56,178 @@ function App() {
         }
     }, []);
 
+    function handleRememberMe() {
+        if (isRememberMe) {
+            setRememberMe(false);
+        } else {
+            setRememberMe(true);
+        }
+    }
 
-  return (
-    <div className="app">
-        {isLoggedIn && (
-            <Header constants={constants}/>
-        )}
-        <Routes>
-            <Route path={'/auth'} element={<Auth
-                handleLangChange={handleLangChange}
-                constants={constants}
-                changeLanguageBtn={changeLanguageBtn}/>}/>
-            <Route path={'/reg'} element={<Reg
-                handleLangChange={handleLangChange}
-                constants={constants}
-                changeLanguageBtn={changeLanguageBtn}
-            />}/>
-            <Route path={'/forget-pass'} element={<AuthForgetPass
-                handleLangChange={handleLangChange}
-                constants={constants}
-                changeLanguageBtn={changeLanguageBtn}
-            />}/>
-            <Route path={'/rstpwd'} element={<AuthSetPass
-                handleLangChange={handleLangChange}
-                constants={constants}
-                changeLanguageBtn={changeLanguageBtn}
-            />}/>
-            <Route exact path={'/'} element={<OrganizationsList
-                constants={constants}
-            />}/>
-            <Route path={'/add-org-page'} element={<AddNewOrganization
-                constants={constants}
-            />}/>
-            <Route path={'/add-new-group'} element={<AddNewGroupUsers
-                constants={constants}
-            />}/>
-            <Route path={'/profile-user'} element={<ProfileUser
-                constants={constants}
-            />}/>
-            <Route path={'/group-users'} element={<GroupUsers
-                constants={constants}
-            />}/>
-            <Route path={'/list-users'} element={<ListUsers
-                constants={constants}
-            />}/>
-        </Routes>
-        {isLoggedIn && (
-            <Footer
-                handleLangChange={handleLangChange}
-                constants={constants}
-                changeLanguageBtn={changeLanguageBtn}
-            />)}
-    </div>
-  );
+    function addCurrentUser(user) {
+        setCurrentUser(user);
+    }
+
+    const userDefaultName = {
+        lastName: "Неизвестный",
+        firstName: "Пользователь"
+    }
+
+    function createUserName(user) {
+        const firstName = function () {
+            if (user.first_name === "" || user.first_name === undefined) {
+                return `${userDefaultName.firstName.charAt(0)}`;
+            } else {
+                return `${user.first_name.charAt(0)}`;
+            }
+        }
+        const lastName = function () {
+            if (user.last_name === "" || user.last_name === undefined) {
+                return userDefaultName.lastName
+            } else {
+                return user.last_name;
+            }
+        }
+        const middleName = function () {
+            if (user.second_name === "" || user.second_name === undefined) {
+                return ""
+            } else {
+                return `${user.second_name.charAt(0)}.`;
+            }
+        };
+        const shortName = `${lastName()} ${firstName()}.${middleName()}`;
+        setUserName(shortName);
+    }
+
+    function handleAuthError(isValid) {
+        setAuthFormValid(isValid);
+    }
+
+    function handleAuthErrorMessage(message) {
+        setAuthErrorMessage(message);
+    }
+
+    function logout() {
+        if (localStorage.getItem('user')) {
+            localStorage.removeItem('user');
+        }
+        if (localStorage.getItem('jwt')) {
+            localStorage.removeItem('jwt');
+        }
+        setLoggedIn(false);
+        setCurrentUser({});
+        setUserName('');
+        navigate('/auth');
+    }
+
+    function handleLogin(email, password, authAs) {
+        setPreloaderAuthBtn(true);
+        UserAuth.authorize(email, password, authAs)
+            .then((res) => {
+                if (res.status === 'failure') {
+                    handleAuthError(false);
+                    handleAuthErrorMessage(constants.AUTH.AUTH_ERROR_MESSAGE);
+                } else if (res.status === 'Permission denied') {
+                    handleAuthError(false);
+                    handleAuthErrorMessage(constants.AUTH.AUTH_ERROR_MESSAGE);
+                } else {
+                    if (isRememberMe) {
+                        localStorage.setItem('user', JSON.stringify(res));
+                    }
+                    handleAuthError(true);
+                    handleAuthErrorMessage('');
+                    setLoggedIn(true);
+                    addCurrentUser(res);
+                    createUserName(res);
+                    setAuthAs(res.authAs);
+                    navigate('/');
+                }
+            })
+            .catch((err) => {
+                throw new Error(err.message);
+            })
+            .finally(() => {
+                setPreloaderAuthBtn(false);
+            })
+    }
+
+    useEffect(() => {
+        if (localStorage.getItem('user')) {
+            const userData = localStorage.getItem('user');
+            const user = JSON.parse(userData);
+            addCurrentUser(user);
+            createUserName(user);
+            console.log(user);
+            setLoggedIn(true);
+            setAuthAs(user.authAs);
+            if (!(
+                pathname === '/' ||
+                pathname === '/add-org-page' ||
+                pathname === '/profile-user'
+            )) {
+                navigate('/');
+            }
+        } else {
+            if (!(
+                pathname === '/auth'
+            )) {
+                logout();
+            }
+        }
+        // eslint-disable-next-line
+    }, []);
+
+    return (
+        <div className="app">
+            {isLoggedIn && (
+                <Header constants={constants} />
+            )}
+            <Routes>
+                <Route path={'/auth'} element={<Auth
+                    handleLangChange={handleLangChange}
+                    constants={constants}
+                    changeLanguageBtn={changeLanguageBtn} />} />
+                <Route path={'/reg'} element={<Reg
+                    handleLangChange={handleLangChange}
+                    constants={constants}
+                    changeLanguageBtn={changeLanguageBtn}
+                />} />
+                <Route path={'/forget-pass'} element={<AuthForgetPass
+                    handleLangChange={handleLangChange}
+                    constants={constants}
+                    changeLanguageBtn={changeLanguageBtn}
+                />} />
+                <Route path={'/rstpwd'} element={<AuthSetPass
+                    handleLangChange={handleLangChange}
+                    constants={constants}
+                    changeLanguageBtn={changeLanguageBtn}
+                />} />
+                <Route exact path={'/'} element={<OrganizationsList
+                    constants={constants}
+                />} />
+                <Route path={'/add-org-page'} element={<AddNewOrganization
+                    constants={constants}
+                />} />
+                <Route path={'/add-new-group'} element={<AddNewGroupUsers
+                    constants={constants}
+                />} />
+                <Route path={'/profile-user'} element={<ProfileUser
+                    constants={constants}
+                />} />
+                <Route path={'/group-users'} element={<GroupUsers
+                    constants={constants}
+                />} />
+                <Route path={'/list-users'} element={<ListUsers
+                    constants={constants}
+                />} />
+            </Routes>
+            {isLoggedIn && (
+                <Footer
+                    handleLangChange={handleLangChange}
+                    constants={constants}
+                    changeLanguageBtn={changeLanguageBtn}
+                />)}
+        </div>
+    );
 }
 export default App;
