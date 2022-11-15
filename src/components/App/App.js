@@ -19,9 +19,17 @@ import AddNewGroupUsers from "../AddNewGroupUsers/AddNewGroupUsers";
 
 function App() {
 
+    const navigate = useNavigate();
     const [constants, setConstants] = useState(ru.constants);
     const [changeLanguageBtn, setChangeLanguageBtn] = useState(false);
-    const [isLoggedIn, setLoggedIn] = useState(true);
+    const [isLoggedIn, setLoggedIn] = useState(false);
+    const [isRememberMe, setRememberMe] = useState(true);
+    const [currentUser, setCurrentUser] = useState({});
+    const [userName, setUserName] = useState('');
+    const [isAuthFormValid, setAuthFormValid] = useState(true);
+    const [authErrorMessage, setAuthErrorMessage] = useState('');
+    const [isPreloaderAuthBtn, setPreloaderAuthBtn] = useState(false);
+    const [authAs, setAuthAs] = useState('');
     const { pathname } = useLocation();
 
     function handleLangChange(value) {
@@ -228,7 +236,8 @@ function App() {
                         handleLangChange={handleLangChange}
                         constants={constants}
                         changeLanguageBtn={changeLanguageBtn}
-                    />)}
+                    />
+                )}
             </div>
         </CurrentUserContext.Provider>
     );
