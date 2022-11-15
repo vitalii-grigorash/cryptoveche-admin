@@ -1,4 +1,4 @@
-import {Route, Routes, useLocation} from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import { config } from '../../config';
 import * as en from '../../utils/Localization/En/constants';
@@ -213,21 +213,24 @@ function App() {
                             isPreloaderAuthBtn={isPreloaderAuthBtn}
                         />}
                     />
-                    <Route exact path={'/'}
-                        element={<OrganizationsList
-                            constants={constants}
-                        />}
-                    />
-                    <Route path={'/add-org-page'}
-                        element={<AddNewOrganization
-                            constants={constants}
-                        />}
-                    />
-                    <Route path={'/profile-user'}
-                        element={<ProfileUser
-                            constants={constants}
-                        />}
-                    />
+                    <Route exact path={'/'} element={<OrganizationsList
+                        constants={constants}
+                    />} />
+                    <Route path={'/add-org-page'} element={<AddNewOrganization
+                        constants={constants}
+                    />} />
+                    <Route path={'/add-new-group'} element={<AddNewGroupUsers
+                        constants={constants}
+                    />} />
+                    <Route path={'/profile-user'} element={<ProfileUser
+                        constants={constants}
+                    />} />
+                    <Route path={'/group-users'} element={<GroupUsers
+                        constants={constants}
+                    />} />
+                    <Route path={'/list-users'} element={<ListUsers
+                        constants={constants}
+                    />} />
                 </Routes>
                 {isLoggedIn && (
                     <Footer
