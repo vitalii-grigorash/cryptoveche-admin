@@ -1,4 +1,3 @@
-import { Route, Routes, useLocation } from "react-router-dom";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import { config } from '../../config';
 import * as en from '../../utils/Localization/En/constants';
