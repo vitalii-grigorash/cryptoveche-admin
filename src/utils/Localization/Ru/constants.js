@@ -4,14 +4,20 @@ export const constants = {
         AUTH_LABEL_SELECT_ROLE: "Войти как",
         AUTH_LOGIN: "Имя пользователя",
         AUTH_PASS: "Пароль",
+        AUTH_PASS_PLACEHOLDER: "Введите пароль",
         AUTH_FORGET_PASS: "Забыли пароль?",
         AUTH_REMEMBER_ME: "Запомнить меня",
         AUTH_ENTER_BTN: "Войти",
+        AUTH_ENTER_BTN_LOADING: "Загрузка...",
         AUTH_ENTER_LINK_GOSUSLUGI: "Войти через ЕСИА",
         AUTH_TITLE_LOGO_BLOCK: "Панель управления системой электронных голосований",
         AUTH_QUESTION_ACCOUNT: "Еще нет аккаунта?",
         AUTH_REG_BTN: "Зарегистрироваться",
-        AUTH_ERROR_MESSAGE: "Неверно введено имя пользователя или пароль"
+        AUTH_ERROR_MESSAGE: "Неверно введено имя пользователя или пароль",
+        AUTH_ERROR_MESSAGE_REQUIRED: "Заполните все обязательные поля",
+        AUTH_ROLE_ADMIN: 'Секретарь',
+        AUTH_ROLE_OBSERVER: 'Наблюдатель',
+        AUTH_ROLE_COUNTER: 'Член счетной комиссии'
     },
     AUTH_FORGET_PASS: {
         AUTH_FORGET_PASS_TITLE: "Забыли пароль?",

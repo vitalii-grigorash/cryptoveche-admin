@@ -271,7 +271,7 @@
     text-decoration: none;
     cursor: pointer;
 }
-.search-setting-myprofile__myprofile-modal-exit a:nth-child(2) {
+.search-setting-myprofile__myprofile-modal-exit div:nth-child(2) {
     padding: 1em 0 1em 1em;
     color: #FFFFFF;
     text-decoration: none;
@@ -280,7 +280,7 @@
     cursor: pointer;
 }
 .search-setting-myprofile__myprofile-modal-exit a:nth-child(1):hover,
-.search-setting-myprofile__myprofile-modal-exit a:nth-child(2):hover {
+.search-setting-myprofile__myprofile-modal-exit div:nth-child(2):hover {
     background-color: #0084FE;
     border-radius: 2px;
 }

@@ -66,7 +66,7 @@
     border-bottom: 1px solid #0084FE;
 }
 /*------Стилизация блока с инпутом выбора ролей-----------------------------------------------------------------------*/
-.auth-form__select-role {
+.auth-form__select-role-container {
     display: flex;
     flex-direction: column;
     gap: 0.8em;
@@ -82,7 +82,7 @@
     position: relative;
     width: 100%;
     height: 2.6em;
-    margin: 0 auto;
+    margin: 0;
     border: 0.5px solid rgba(54, 59, 77, 0.3);
     box-sizing: border-box;
     border-radius: 0.4em;
@@ -104,43 +104,35 @@
     object-fit: cover;
     margin: auto 1.3em auto auto;
 }
-/*.select-role__time-zone-options-container {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    position: absolute;*/
-/*    background: #FFFFFF;*/
-/*    overflow-y: scroll;*/
-/*    top: 58px;*/
-/*    left: -1px;*/
-/*    width: 100%;*/
-/*    max-height: 200px;*/
-/*    box-shadow: 0 4px 8px rgba(54, 59, 77, 0.1);*/
-/*    border: 0.5px solid rgba(54, 59, 77, 0.2);*/
-/*    border-radius: 4px;*/
-/*    box-sizing: border-box;*/
-/*    padding: 0 24px 24px;*/
-/*    cursor: default;*/
-/*    z-index: 9;*/
-/*}*/
-/*.select-role__time-zone-options-container::-webkit-scrollbar {*/
-/*    width: 4px;*/
-/*    background: #FFFFFF;*/
-/*    border-radius: 4px;*/
-/*}*/
-/*.select-role__time-zone-options-container::-webkit-scrollbar-thumb {*/
-/*    background: #CFD4DD;*/
-/*    border-radius: 4px;*/
-/*}*/
-/*.select-role__time-zone-option {*/
-/*    line-height: 24px;*/
-/*    color: #363B4D;*/
-/*    opacity: 0.9;*/
-/*    margin: 24px auto 0 0;*/
-/*}*/
-/*.select-role__time-zone-option:hover {*/
-/*    cursor: pointer;*/
-/*    opacity: 0.6;*/
-/*}*/
+.select-role__time-zone-options-container {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    background: #FFFFFF;
+    top: 50px;
+    left: 0px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(54, 59, 77, 0.1);
+    border: 0.5px solid rgba(54, 59, 77, 0.2);
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 0 24px 24px;
+    cursor: default;
+    z-index: 9;
+}
+.select-role__time-zone-options-container_active {
+    display: flex;
+}
+.select-role__time-zone-option {
+    line-height: 24px;
+    color: #363B4D;
+    opacity: 0.9;
+    margin: 24px auto 0 0;
+}
+.select-role__time-zone-option:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
 /*------Контейнер для блока с инпутами логин и пароль-----------------------------------------------------------------*/
 .auth-form__username {
     display: flex;
@@ -163,6 +155,9 @@
     border-radius: 0.4em;
     outline: none;
     color: rgba(54, 59, 77, 0.9);
+}
+.username__field-username_error {
+    border: 0.5px solid #FF4970;
 }
 .auth-form__password {
     display: flex;
@@ -195,6 +190,9 @@
     outline: none;
     color: rgba(54, 59, 77, 0.9);
 }
+.password__field-pass_error {
+    border: 0.5px solid #FF4970;
+}
 .auth-form__error-message {
     position: absolute;
     font-size: 0.7em;
@@ -203,6 +201,9 @@
     right: 0;
     top: 7em;
     display: none;
+}
+.auth-form__error-message_active {
+    display: block;
 }
 /*------Контейнер для блока с ссылкой забыли пароль-------------------------------------------------------------------*/
 .auth-form__link-forget-pass {
@@ -295,6 +296,42 @@
     color: #0084FE;
     border: 1px solid #0084FE;
 }
+.button-enter__btn-enter-large {
+    background: #0084FE;
+    width: 7.4em;
+    height: 3.1em;
+    color: #FFFFFF;
+    line-height: 133%;
+    font-weight: 500;
+    font-size: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.button-enter__btn-enter-large:hover {
+    background: #FFFFFF;
+    color: #0084FE;
+    border: 1px solid #0084FE;
+}
+.button-enter__btn-enter-loading {
+    background-color: rgba(54, 59, 77, 0.08);
+    width: 7.4em;
+    height: 3.1em;
+    color: #0075FF;
+    line-height: 133%;
+    font-weight: 500;
+    font-size: 1em;
+    border-radius: 4px;
+}
+.button-enter__btn-enter-large-loading {
+    background-color: rgba(54, 59, 77, 0.08);
+    width: 7.4em;
+    height: 3.1em;
+    color: #0075FF;
+    line-height: 133%;
+    font-weight: 500;
+    font-size: 1em;
+    border-radius: 4px;
+}
 .button-enter__link-gosuslugi {
     color: #0084FE;
     line-height: 156%;
@@ -353,6 +390,7 @@
 .title-reg-block__reg-btn {
     display: flex;
     justify-content: flex-end;
+    text-decoration: none;
 }
 .reg-btn__registration-button {
     background: #FFFFFF;
@@ -363,8 +401,8 @@
     line-height: 150%;
     width: 80%;
     height: 3.3em;
-    cursor: pointer;
     z-index: 4;
+    cursor: pointer;
 }
 .reg-btn-logotype__background-image {
     position: absolute;
@@ -493,10 +531,10 @@
         font-size: 16px;
         line-height: 138%;
     }
-    .auth-form__select-role, .auth-form__username, .auth-form__password {
+    .auth-form__select-role-container, .auth-form__username, .auth-form__password {
         gap: 8px;
     }
-    .auth-form__select-role, .auth-form__username {
+    .auth-form__select-role-container, .auth-form__username {
         margin-bottom: 16px;
     }
     .auth-form__password {
@@ -552,6 +590,27 @@
     }
     .button-enter__btn-enter {
         width: 132px;
+        height: 40px;
+        font-size: 16px;
+        line-height: 150%;
+        font-weight: 500;
+    }
+    .button-enter__btn-enter-large {
+        width: 343px;
+        height: 40px;
+        font-size: 16px;
+        line-height: 150%;
+        font-weight: 500;
+    }
+    .button-enter__btn-enter-loading {
+        width: 132px;
+        height: 40px;
+        font-size: 16px;
+        line-height: 150%;
+        font-weight: 500;
+    }
+    .button-enter__btn-enter-large-loading {
+        width: 343px;
         height: 40px;
         font-size: 16px;
         line-height: 150%;

@@ -1,19 +1,21 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import headerLogo from '../../img/HeaderLogo.svg';
 import headerRowBtn from '../../img/HeaderRowButton.svg';
 import headerMyprofileIcon from '../../img/HeaderMyprofileIcon.svg';
-import headerSettingIcon from '../../img/HeaderSettingIcon.svg';
-import headerSearchIcon from '../../img/HeaderSearchIcon.svg';
+// import headerSettingIcon from '../../img/HeaderSettingIcon.svg';
+// import headerSearchIcon from '../../img/HeaderSearchIcon.svg';
 import headerSearchIconMobile from '../../img/HeaderSeachIconMobile.svg';
 import headerExitIcon from '../../img/HeaderExitIcon.svg';
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import HeaderBurgerMenu from "../HeaderBurgerMenu/HeaderBurgerMenu";
-
 
 const Header = (props) => {
 
     const {
-        constants
+        constants,
+        userName,
+        handleLogout,
+        authAs
     } = props;
 
     const [activeAddButton, setActiveAddButton] = useState(false);
@@ -22,6 +24,8 @@ const Header = (props) => {
     const [burgerMenuActive, setBurgerMenuActive] = useState(false);
     const { pathname } = useLocation();
     const linkButtonOrgPage = useNavigate();
+
+    console.log(authAs);
 
     function showAddButtonList() {
         setActiveAddButton(true)
@@ -63,7 +67,7 @@ const Header = (props) => {
                         <span />
                     </div>
                 </nav>
-                <img alt={'иконка поиска'} src={headerSearchIconMobile}/>
+                <img alt={'иконка поиска'} src={headerSearchIconMobile} />
                 <input
                     placeholder='Поиск'
                     className='header-burger-menu__input-search'
@@ -87,7 +91,7 @@ const Header = (props) => {
                     <span onClick={() => linkButtonOrgPage('/')} className={pathname === '/' ? "logotype-link-buttons__organizations active" : "logotype-link-buttons__organizations"}>{constants.HEADER.HEADER_ORG}</span>
                     <div onClick={showAddButtonList} className="logotype-link-buttons__add-button">
                         <p className="logotype-link-buttons__label-add-button">{constants.HEADER.HEADER_ADD_BTN}</p>
-                        <img alt={'стрелочка для кнопки'} className="add-button__row-btn-open-list" src={headerRowBtn}/>
+                        <img alt={'стрелочка для кнопки'} className="add-button__row-btn-open-list" src={headerRowBtn} />
                         <div className={activeAddButton ? "logotype-link-buttons__select-list-buttons" : "logotype-link-buttons__select-list-buttons hidden"}>
                             {/*<Link to={'#'}>Голосование</Link>*/}
                             <Link to={'/add-new-group'}>{constants.HEADER.HEADER_ADD_GROUP_USERS}</Link>
@@ -105,17 +109,21 @@ const Header = (props) => {
                     {/*    <img alt={'иконка настройки'} src={headerSettingIcon} className="search-setting-myprofile__icon-settings"/>*/}
                     {/*</div>*/}
                     <div onClick={showMyProfileModal} className="search-setting-myprofile__myprofile">
-                        <img alt={'иконка мой профиль'} src={headerMyprofileIcon} className="search-setting-myprofile__icon-myprofile"/>
-                        <p className="search-setting-myprofile__label-myprofile">Иванов И.И</p>
+                        <img alt='иконка мой профиль' src={headerMyprofileIcon} className="search-setting-myprofile__icon-myprofile" />
+                        <p className="search-setting-myprofile__label-myprofile">{userName}</p>
                         <div className={activeMyProfile ? "search-setting-myprofile__myprofile-modal-exit" : "search-setting-myprofile__myprofile-modal-exit hidden"}>
                             <Link to={'/profile-user'}>{constants.HEADER.HEADER_MYPROFILE_MODAL}</Link>
-                            <Link to={'#'}><img alt={'иконка выхода'} src={headerExitIcon} className="myprofile-modal-exit__icon"/>{constants.HEADER.HEADER_MYPROFILE_MODAI_EXIT}</Link>
+                            <div onClick={handleLogout}>
+                                <img alt='иконка выхода' src={headerExitIcon} className="myprofile-modal-exit__icon" />
+                                <p>{constants.HEADER.HEADER_MYPROFILE_MODAI_EXIT}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <HeaderBurgerMenu constants={constants} active={burgerMenuActive} setActive={setBurgerMenuActive}/>
+            <HeaderBurgerMenu constants={constants} active={burgerMenuActive} setActive={setBurgerMenuActive} />
         </div>
     )
 }
+
 export default Header;

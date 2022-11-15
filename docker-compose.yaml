@@ -1,0 +1,10 @@
+version: "2"
+
+services:
+  admin-crypto-veche:
+    container_name: admin-crypto-veche
+    restart: always
+    build: .
+    image: admin-crypto-veche:latest
+    ports:
+      - 3000:3000
