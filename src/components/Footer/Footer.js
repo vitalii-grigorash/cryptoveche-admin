@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import footerLogo from '../../img/FooterLogo.svg';
 import footerRowSelect from '../../img/FooterRowSelect.svg';
 import footerLogoMobile from '../../img/FooterLogoMobile.svg';
+import {Link} from "react-router-dom";
 
 const Footer = (props) => {
 
@@ -12,6 +13,8 @@ const Footer = (props) => {
     } = props;
 
     const [activeLangList, setActiveLangList] = useState(false);
+    const [activeUsersBtn, setActiveUsesBtn] = useState(false);
+    const [activeVotesBtn, setActiveVotesBtn] = useState(false);
 
 
     function closeLangList () {
@@ -46,16 +49,29 @@ const Footer = (props) => {
                 </div>
                 <div className="footer__map-site">
                     <h3 className="footer__map-site-title">{constants.FOOTER.FOOTER_MAP_SITE}</h3>
-                    {/*<p>{constants.FOOTER.FOOTER_MAIN_PAGE}</p>*/}
-                    {/*<div className="map-site__votes">*/}
-                    {/*    <p>{constants.FOOTER.FOOTER_VOTES}</p>*/}
-                    {/*    <img alt={'стрелка'} src={footerRowSelect} className="map-site__votes-row"/>*/}
-                    {/*</div>*/}
-                    {/*<div className="map-site__users">*/}
-                    {/*    <p>{constants.FOOTER.FOOTER_USERS}</p>*/}
-                    {/*    <img alt={'стрелка'} src={footerRowSelect} className="map-site__users-row"/>*/}
-                    {/*</div>*/}
-                    <p>{constants.FOOTER.FOOTER_ORG}</p>
+                    <Link to={'/'}>{constants.FOOTER.FOOTER_MAIN_PAGE}</Link>
+                    <div className="map-site__users">
+                        <div onClick={() => setActiveUsesBtn(!activeUsersBtn)}  className="map-site__users-icon-block">
+                            <Link to={'#'}>{constants.FOOTER.FOOTER_USERS}</Link>
+                            <img alt={'стрелка'} src={footerRowSelect} className={activeUsersBtn ? "map-site__users-row active" : "map-site__users-row"}/>
+                        </div>
+                        <div className={activeUsersBtn ? "map-site__users-drop-down-list active" : "map-site__users-drop-down-list"}>
+                            <Link to={'#'}>{constants.FOOTER.FOOTER_GROUP_USERS}</Link>
+                            <Link to={'#'}>{constants.FOOTER.FOOTER_LIST_USERS}</Link>
+                        </div>
+                    </div>
+                    <div className="map-site__votes">
+                        <div onClick={() => setActiveVotesBtn(!activeVotesBtn)} className="map-site__votes-icon-block">
+                            <Link to={'#'}>{constants.FOOTER.FOOTER_VOTES}</Link>
+                            <img alt={'стрелка'} src={footerRowSelect} className={activeVotesBtn ? "map-site__votes-row active" : "map-site__votes-row"}/>
+                        </div>
+                        <div className={activeVotesBtn ? "map-site__votes-drop-down-list active" : "map-site__votes-drop-down-list"}>
+                            <Link to={'#'}>{constants.FOOTER.FOOTER_LIST_VOTES}</Link>
+                            <Link to={'#'}>{constants.FOOTER.FOOTER_TEMPLATE_VOTES}</Link>
+                        </div>
+                    </div>
+                    <Link to={'#'}>{constants.FOOTER.FOOTER_ORG}</Link>
+                    <Link to={'#'}>{constants.FOOTER.FOOTER_MYPROFILE}</Link>
                 </div>
                 <div className="footer__settings">
                     <h3 className="footer__settings-title">{constants.FOOTER.FOOTER_SETTINGS}</h3>

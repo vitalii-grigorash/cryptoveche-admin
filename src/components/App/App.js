@@ -169,7 +169,7 @@ function App() {
             if (!(
                 pathname === '/' ||
                 pathname === '/add-org-page' ||
-                pathname === '/organisations' ||
+                pathname === '/organizations' ||
                 pathname === '/profile-user'
             )) {
                 navigate('/');
