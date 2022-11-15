@@ -1,19 +1,22 @@
 import {Route, Routes, useLocation} from "react-router-dom";
-import React, {useState, useEffect} from "react";
-import Reg from "../Reg/Reg";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
+import { config } from '../../config';
 import * as en from '../../utils/Localization/En/constants';
 import * as ru from '../../utils/Localization/Ru/constants';
-import AuthForgetPass from "../AuthForgetPass/AuthForgetPass";
 import Auth from "../Auth/Auth";
-import AuthSetPass from "../AuthSetPass/AuthSetPass";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import OrganizationsList from "../OrganizationsList/OrganizationsList";
 import AddNewOrganization from "../AddNewOrganization/AddNewOrganization";
 import ProfileUser from "../ProfileUser/ProfileUser";
+import * as UserAuth from '../../Api/Auth';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import GroupUsers from "../GroupUsers/GroupUsers";
 import ListUsers from "../ListUsers/ListUsers";
 import AddNewGroupUsers from "../AddNewGroupUsers/AddNewGroupUsers";
+// import Reg from "../Reg/Reg";
+// import AuthSetPass from "../AuthSetPass/AuthSetPass";
+// import AuthForgetPass from "../AuthForgetPass/AuthForgetPass";
 
 function App() {
 
