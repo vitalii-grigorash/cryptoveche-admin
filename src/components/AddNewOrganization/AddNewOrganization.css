@@ -225,6 +225,7 @@ input[type=file]::file-selector-button:hover {
 /*------Контейнер для верхней пагинации-------------------------------------------------------------------------------*/
 .add-new-organization__top-pagination {
     margin-bottom: 0.88em;
+    z-index: 44;
 }
 /*------Контейнер для таблицы c пользователями------------------------------------------------------------------------*/
 .add-new-organization__table-list-users {
@@ -381,6 +382,7 @@ input[type=file]::file-selector-button:hover {
 /*------Контейнер для нижней пагинации--------------------------------------------------------------------------------*/
 .add-new-organization__bottom-pagination {
     margin-bottom: 1.77em;
+    z-index: 44;
 }
 /*------Контейнер инпута с e-mail поддержки---------------------------------------------------------------------------*/
 .add-new-organization__e-mail-support {
