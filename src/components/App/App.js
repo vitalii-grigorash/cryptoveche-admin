@@ -178,56 +178,61 @@ function App() {
     }, []);
 
     return (
-        <div className="app">
-            {isLoggedIn && (
-                <Header constants={constants} />
-            )}
-            <Routes>
-                <Route path={'/auth'} element={<Auth
-                    handleLangChange={handleLangChange}
-                    constants={constants}
-                    changeLanguageBtn={changeLanguageBtn} />} />
-                <Route path={'/reg'} element={<Reg
-                    handleLangChange={handleLangChange}
-                    constants={constants}
-                    changeLanguageBtn={changeLanguageBtn}
-                />} />
-                <Route path={'/forget-pass'} element={<AuthForgetPass
-                    handleLangChange={handleLangChange}
-                    constants={constants}
-                    changeLanguageBtn={changeLanguageBtn}
-                />} />
-                <Route path={'/rstpwd'} element={<AuthSetPass
-                    handleLangChange={handleLangChange}
-                    constants={constants}
-                    changeLanguageBtn={changeLanguageBtn}
-                />} />
-                <Route exact path={'/'} element={<OrganizationsList
-                    constants={constants}
-                />} />
-                <Route path={'/add-org-page'} element={<AddNewOrganization
-                    constants={constants}
-                />} />
-                <Route path={'/add-new-group'} element={<AddNewGroupUsers
-                    constants={constants}
-                />} />
-                <Route path={'/profile-user'} element={<ProfileUser
-                    constants={constants}
-                />} />
-                <Route path={'/group-users'} element={<GroupUsers
-                    constants={constants}
-                />} />
-                <Route path={'/list-users'} element={<ListUsers
-                    constants={constants}
-                />} />
-            </Routes>
-            {isLoggedIn && (
-                <Footer
-                    handleLangChange={handleLangChange}
-                    constants={constants}
-                    changeLanguageBtn={changeLanguageBtn}
-                />)}
-        </div>
+        <CurrentUserContext.Provider value={currentUser}>
+            <div className="app">
+                {isLoggedIn && (
+                    <Header
+                        constants={constants}
+                        handleLogout={logout}
+                        userName={userName}
+                        authAs={authAs}
+                    />
+                )}
+                <Routes>
+                    <Route path={'/auth'}
+                        element={<Auth
+                            handleLangChange={handleLangChange}
+                            constants={constants}
+                            changeLanguageBtn={changeLanguageBtn}
+                            handleRememberMe={handleRememberMe}
+                            isRememberMe={isRememberMe}
+                            config={config}
+                            handleLogin={handleLogin}
+                            isAuthFormValid={isAuthFormValid}
+                            handleAuthError={handleAuthError}
+                            handleAuthErrorMessage={handleAuthErrorMessage}
+                            authErrorMessage={authErrorMessage}
+                            isPreloaderAuthBtn={isPreloaderAuthBtn}
+                        />}
+                    />
+                    <Route exact path={'/'} element={<OrganizationsList
+                        constants={constants}
+                    />} />
+                    <Route path={'/add-org-page'} element={<AddNewOrganization
+                        constants={constants}
+                    />} />
+                    <Route path={'/add-new-group'} element={<AddNewGroupUsers
+                        constants={constants}
+                    />} />
+                    <Route path={'/profile-user'} element={<ProfileUser
+                        constants={constants}
+                    />} />
+                    <Route path={'/group-users'} element={<GroupUsers
+                        constants={constants}
+                    />} />
+                    <Route path={'/list-users'} element={<ListUsers
+                        constants={constants}
+                    />} />
+                </Routes>
+                {isLoggedIn && (
+                    <Footer
+                        handleLangChange={handleLangChange}
+                        constants={constants}
+                        changeLanguageBtn={changeLanguageBtn}
+                    />)}
+            </div>
+        </CurrentUserContext.Provider>
     );
 }
+
 export default App;
