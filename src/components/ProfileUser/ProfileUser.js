@@ -136,7 +136,7 @@ const ProfileUser = (props) => {
                                     </div>
                                 )}
                             </div>
-                            <span className="edit-main-data-user__time-zone-main-container__error-message">{constants.REG.REG_ERROR_TIMEZONE}</span>
+                            <span className="edit-main-data-user__time-zone-main-container__error-message"></span>
                         </div>
                         <p className="edit-main-data-user__title-change-pass">{constants.PROFILE_USER.PROFILE_USER_CHANGE_PASS}</p>
                         <div className="edit-main-data-user__pass">

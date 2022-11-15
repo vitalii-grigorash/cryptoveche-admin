@@ -14,9 +14,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import GroupUsers from "../GroupUsers/GroupUsers";
 import ListUsers from "../ListUsers/ListUsers";
 import AddNewGroupUsers from "../AddNewGroupUsers/AddNewGroupUsers";
-// import Reg from "../Reg/Reg";
-// import AuthSetPass from "../AuthSetPass/AuthSetPass";
-// import AuthForgetPass from "../AuthForgetPass/AuthForgetPass";
+
 
 function App() {
 
