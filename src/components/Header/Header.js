@@ -72,9 +72,7 @@ const Header = (props) => {
             <div className="header__container _container">
                 <div className="header__logotype-link-buttons">
                     <img alt={'логотип'} className="logotype-link-buttons__logo" src={headerLogo} />
-                    {authAs === 'superAdmin' && (
-                        <span onClick={() => linkButtonOrgPage('/')} className={pathname === '/' ? "logotype-link-buttons__organizations active" : "logotype-link-buttons__organizations"}>{constants.HEADER.HEADER_ORG}</span>
-                    )}
+                    <span onClick={() => linkButtonOrgPage('/')} className={pathname === '/' ? "logotype-link-buttons__organizations active" : "logotype-link-buttons__organizations"}>{constants.HEADER.HEADER_ORG}</span>
                     <div onClick={showAddButtonList} className="logotype-link-buttons__add-button">
                         <p className="logotype-link-buttons__label-add-button">{constants.HEADER.HEADER_ADD_BTN}</p>
                         <img alt={'стрелочка для кнопки'} className="add-button__row-btn-open-list" src={headerRowBtn} />
