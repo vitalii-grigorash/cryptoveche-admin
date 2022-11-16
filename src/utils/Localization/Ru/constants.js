@@ -62,6 +62,7 @@ export const constants = {
     GENERAL_TITLE: {
         GENERAL_TITLE_TITLENAME_ORG: "Список организаций",
         GENERAL_TITLE_TITLENAME_GROUP_USER: "Группы пользователей",
+        GENERAL_TITLE_ADD_ORG: "Добавить организацию",
         GENERAL_TITLE_TITLENAME_ADD_ORG: "Добавление новой организации",
         GENERAL_TITLE_TITLENAME_ADD_GROUP_USERS: "Добавление группы пользователей",
         GENERAL_TITLE_TITLENAME_LIST_USERS: "Список пользователей",
@@ -94,7 +95,7 @@ export const constants = {
         ADD_NEW_ORG_ADD_USERS_MAIL_BTN: "Добавить пользователей по E-mail",
         ADD_NEW_ORG_ADD_USERS_MAIL_BTN_MOBILE: "Добавить пользователей",
         ADD_NEW_ORG_MAIL_ADDRESS_USERS: "Почтовые адреса пользователей",
-        ADD_NEW_ORG_DOWNLOAD_FILE_LABEL: "Загрузить xls/xlsx документ со списком пользователей",
+        ADD_NEW_ORG_DOWNLOAD_FILE_LABEL: "Загрузить xlsx документ со списком пользователей",
         ADD_NEW_ORG_LOAD_BTN: "Загрузить",
         ADD_NEW_ORG_SUCCESS_INFO: "Файл успешно загружен",
         ADD_NEW_ORG_MAIL_ADDRESS_USERS_RULE: "(по одному на каждую строчку для каждого пользователя)",
@@ -166,5 +167,8 @@ export const constants = {
         LIST_USERS_ACTIONS: "Действия",
         LIST_USERS_WATCH_PROFILE: "ПОСМОТРЕТЬ ПРОФИЛЬ",
         LIST_USERS_SHOW_MORE: "ПОКАЗАТЬ ЕЩЁ"
+    },
+    GENERAL: {
+        ALT_ICON: "Иконка"
     }
 }

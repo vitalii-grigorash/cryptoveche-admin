@@ -31,6 +31,8 @@ function App() {
     const [authAs, setAuthAs] = useState('');
     const { pathname } = useLocation();
 
+    console.log(authAs);
+
     function requestHelper(request, body = {}) {
         return new Promise((resolve, reject) => {
             if (localStorage.getItem('jwt')) {
@@ -202,7 +204,6 @@ function App() {
             const user = JSON.parse(userData);
             addCurrentUser(user);
             createUserName(user);
-            console.log(user);
             setLoggedIn(true);
             setAuthAs(user.authAs);
             if (!(
@@ -231,7 +232,6 @@ function App() {
                         constants={constants}
                         handleLogout={logout}
                         userName={userName}
-                        authAs={authAs}
                     />
                 )}
                 <Routes>
@@ -265,6 +265,7 @@ function App() {
                     <Route path={'/add-org-page'}
                         element={<AddNewOrganization
                             constants={constants}
+                            requestHelper={requestHelper}
                         />}
                     />
                     <Route path={'/add-new-group'}

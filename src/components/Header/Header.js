@@ -14,8 +14,7 @@ const Header = (props) => {
     const {
         constants,
         userName,
-        handleLogout,
-        authAs
+        handleLogout
     } = props;
 
     const [activeAddButton, setActiveAddButton] = useState(false);
@@ -24,8 +23,6 @@ const Header = (props) => {
     const [burgerMenuActive, setBurgerMenuActive] = useState(false);
     const { pathname } = useLocation();
     const linkButtonOrgPage = useNavigate();
-
-    console.log(authAs);
 
     function showAddButtonList() {
         setActiveAddButton(true)

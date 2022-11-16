@@ -1,76 +1,112 @@
-import React, {useState} from "react";
+import React, { useEffect, useState } from "react";
+import * as excel from 'xlsx';
 import GeneralTitleAllPages from "../GeneralTitleAllPages/GeneralTitleAllPages";
-import PaginationBlock from "../PaginationBlock/PaginationBlock";
+// import PaginationBlock from "../PaginationBlock/PaginationBlock";
 import iconExcel from '../../img/AddNewOrgIconExcel.svg';
-import iconMailIcon from '../../img/AddNewOrgIconMail.svg';
-import iconDeleteBnt from '../../img/AddNewOrgDeleteIcon.svg';
-import iconLock from '../../img/AddNewOrgLockIcon.svg';
-import iconSuccessLoad from '../../img/AddNewOrgSuccessIcon.svg';
+import iconEmail from '../../img/AddNewOrgIconMail.svg';
 import iconExcelActive from '../../img/AddNewOrgExcelActiveIcon.svg';
-import iconMailIconActive from '../../img/AddNewOrgIconMailActiveIcon.svg';
+import iconEmailActive from '../../img/AddNewOrgIconMailActiveIcon.svg';
+import iconDelete from '../../img/AddNewOrgDeleteIcon.svg';
+import iconSuccessLoad from '../../img/AddNewOrgSuccessIcon.svg';
+import * as Users from '../../Api/Users';
 
 const AddNewOrganization = (props) => {
 
     const {
-        constants
+        constants,
+        requestHelper
     } = props;
 
-    const [activeBlock, setActiveBlock] = useState(true);
-    const [activeMailBtn, setActiveMailBtn] = useState(true);
+    const [activeMailBtn, setActiveMailBtn] = useState(false);
     const [activeExcelBtn, setActiveExcelBth] = useState(false);
+    const [usersToFind, setUsersToFind] = useState([]);
+    const [usersToAdd, setUsersToAdd] = useState([]);
 
-    const onActiveBlock = () => {
-        if (activeBlock === true) {
-           setActiveBlock(false)
-        } else {
-            setActiveBlock(true)
-        }
+    const onExcelBtnClick = () => {
+        setActiveMailBtn(false);
+        setActiveExcelBth(true);
     }
 
-    const onActiveExcelBtn = () => {
-        if (activeMailBtn === true) {
-            setActiveMailBtn(false)
-            setActiveExcelBth(true)
-        }
+    const onEmailBtnClick = () => {
+        setActiveMailBtn(true);
+        setActiveExcelBth(false);
     }
 
-    const onActiveMailBtn = () => {
-        if (activeExcelBtn === true) {
-           setActiveMailBtn(true)
-           setActiveExcelBth(false)
+    useEffect(() => {
+        if (usersToFind.length !== 0) {
+            const body = {
+                usersToFind: usersToFind
+            }
+            requestHelper(Users.findUsers, body)
+                .then((data) => {
+                    console.log(data);
+                    const users = [];
+                    data.forEach((user) => {
+                        if (user.id === undefined) {
+                            const newUser = {
+                                id: user.email,
+                                email: user.email,
+                                first_name: "Без",
+                                last_name: "Пользователь",
+                                second_name: "Имени",
+                                userFields: user.userFields
+                            }
+                            users.push(newUser);
+                        } else {
+                            users.push(user);
+                        }
+                    })
+                    setUsersToAdd(users);
+                })
+                .catch((err) => {
+                    throw new Error(err.message);
+                })
         }
-    }
+        // eslint-disable-next-line
+    }, [usersToFind])
 
-    const testUsersObj = [
-        {
-            name: "Ускова Анна Владимировна",
-            email: "anyauskowa@yandex.ru"
-        },
-        {
-            name: "Тимошина Мария Владимировна",
-            email: "maria.timoshina98@yandex.ru"
-        }
-    ]
+    function onSelectFileHandler(e) {
+        var regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+        var files = e.target.files, f = files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var data = e.target.result;
+            var workbook = excel.read(data, { type: 'binary' });
+            const uploadedUsers = workbook.Strings.map(user => user.h);
+            const filteredUsers = uploadedUsers.filter(user => user !== undefined);
+            const validUsersEmails = [];
+            filteredUsers.forEach(user => {
+                if (regex.test(String(user).toLowerCase())) {
+                    validUsersEmails.push(user);
+                }
+            });
+            setUsersToFind(validUsersEmails);
+        };
+        reader.readAsBinaryString(f);
+    }
 
     return (
         <div className="container__add-new-organization _container">
             <GeneralTitleAllPages
                 titleName={constants.GENERAL_TITLE.GENERAL_TITLE_TITLENAME_ADD_ORG}
                 firstLetter={constants.GENERAL_TITLE.GENERAL_TITLE_FIRTSLETTER}
-                secondLetter={constants.GENERAL_TITLE.GENERAL_TITLE_SECONDLETTER_GROUP_USERS}
+                secondLetter={constants.GENERAL_TITLE.GENERAL_TITLE_ADD_ORG}
             />
             <div className="add-new-organization">
                 <div className="add-new-organization__name-org-input">
                     <label className="name-org-input__label-name-org">{constants.ADD_NEW_ORG.ADD_NEW_ORG_NAME_ORG}<span className="name-org-input__red-star">*</span></label>
-                    <input className="name-org-input__field" placeholder={constants.ADD_NEW_ORG.ADD_NEW_ORG_PLACEHOLDER_NAME}/>
+                    <input
+                        className="name-org-input__field"
+                        placeholder={constants.ADD_NEW_ORG.ADD_NEW_ORG_PLACEHOLDER_NAME}
+                    />
                 </div>
                 <div className="add-new-organization__import-excel-add-email-buttons">
-                    <div onClick={onActiveExcelBtn}  className={activeExcelBtn ? "import-excel-add-email-buttons__import-excel-btn active" : "import-excel-add-email-buttons__import-excel-btn" }>
-                        <img alt={iconExcel} src={activeExcelBtn ? iconExcelActive : iconExcel} className="import-excel-btn__excel-icon"/>
+                    <div onClick={onExcelBtnClick} className={activeExcelBtn ? "import-excel-add-email-buttons__import-excel-btn active" : "import-excel-add-email-buttons__import-excel-btn"}>
+                        <img alt={constants.GENERAL.ALT_ICON} src={activeExcelBtn ? iconExcelActive : iconExcel} className="import-excel-btn__excel-icon" />
                         <p>{constants.ADD_NEW_ORG.ADD_NEW_ORG_IMPORT_EXCEL_BTN}</p>
                     </div>
-                    <div onClick={onActiveMailBtn} className={activeMailBtn ? "import-excel-add-email-buttons__add-email-btn active" : "import-excel-add-email-buttons__add-email-btn"}>
-                        <img alt={iconMailIcon} src={activeMailBtn ? iconMailIconActive : iconMailIcon} className="add-email-btn__email-icon"/>
+                    <div onClick={onEmailBtnClick} className={activeMailBtn ? "import-excel-add-email-buttons__add-email-btn active" : "import-excel-add-email-buttons__add-email-btn"}>
+                        <img alt={constants.GENERAL.ALT_ICON} src={activeMailBtn ? iconEmailActive : iconEmail} className="add-email-btn__email-icon" />
                         <p className="add-email-btn__button-desktop">{constants.ADD_NEW_ORG.ADD_NEW_ORG_ADD_USERS_MAIL_BTN}</p>
                         <p className="add-email-btn__button-mobile">{constants.ADD_NEW_ORG.ADD_NEW_ORG_ADD_USERS_MAIL_BTN_MOBILE}</p>
                     </div>
@@ -83,67 +119,68 @@ const AddNewOrganization = (props) => {
                         <textarea className="mail-addresses-users__input-field"></textarea>
                         <button className="mail-addresses-users__search-base-users">{constants.ADD_NEW_ORG.ADD_NEW_ORG_SEARCH_USERS_BASE_BTN}</button>
                     </div>
-                    )
-                }
-                {
-                    activeExcelBtn && (
-                        <div className="add-new-organization__download-file-load-button">
-                            <label className="download-file-load-button__label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_DOWNLOAD_FILE_LABEL}</label>
-                            <div className="download-file-load-button__field-file-load-button">
-                                <input type="file"/>
-                                <button className="field-file-load-button__load-btn" type={'submit'}>{constants.ADD_NEW_ORG.ADD_NEW_ORG_LOAD_BTN}</button>
-                                <div className="field-file-load-button__success-info">
-                                    <img className="field-file-load-button__icon-success" src={iconSuccessLoad} alt={iconSuccessLoad} />
-                                    <p className="field-file-load-button__label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_SUCCESS_INFO}</p>
-                                </div>
-                            </div>
+                )}
+                {activeExcelBtn && (
+                    // <div className="add-new-organization__download-file-load-button">
+                        // <label className="download-file-load-button__label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_DOWNLOAD_FILE_LABEL}</label>
+                        <div className="add-new-organization__excel-add-container">
+                            <input
+                                className="add-new-organization__excel-add-input"
+                                id="excel__file"
+                                type="file"
+                                accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                onChange={(e) => onSelectFileHandler(e)}
+                            />
+                            <label htmlFor="excel__file" className="add-new-organization__excel-add-input-button">
+                                <p className='add-new-organization__excel-add-input-button-text'>{constants.ADD_NEW_ORG.ADD_NEW_ORG_LOAD_BTN}</p>
+                            </label>
+                            {/* <div className="field-file-load-button__success-info">
+                                <img className="field-file-load-button__icon-success" src={iconSuccessLoad} alt={iconSuccessLoad} />
+                                <p className="field-file-load-button__label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_SUCCESS_INFO}</p>
+                            </div> */}
                         </div>
-                    )
-                }
+                    // </div>
+                )}
                 <div className="add-new-organization__top-pagination">
-                    <PaginationBlock constants={constants}/>
+                    {/* <PaginationBlock
+                        constants={constants}
+                    /> */}
                 </div>
                 <div className="add-new-organization__table-list-users">
-                    {
-                        testUsersObj.map((el, i) => {
-                            return (
-                                <div key={i} className="table-list-users">
-                                    <div className="table-list-users__name-user-icon-lock">
-                                        <img className={activeBlock ? "table-list-users__icon-lock" : "table-list-users__icon-lock active"} alt={'иконка замочек'} src={iconLock}/>
-                                        <p className="table-list-users__column-name">{el.name}</p>
-                                    </div>
-                                    <p className="table-list-users__column-e-mail">{el.email}</p>
-                                    <div className="table-list-users__column-checkbox-superuser">
-                                        <label className='table-list-users__checkbox_container'>
-                                            <input defaultChecked={false} type="checkbox"/>
-                                            <span className='table-list-users__checkmark'/>
-                                        </label>
-                                        <p className="column-checkbox-superuser__label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_SUPERUSER}</p>
-                                    </div>
-                                    <div className="table-list-users__delete-icon-button">
-                                        <p onClick={() => onActiveBlock(i)} className="delete-icon-button__block-unblock-btn">
-                                            {activeBlock ? `${constants.ADD_NEW_ORG.ADD_NEW_ORG_BLOCK_BTN}` : `${constants.ADD_NEW_ORG.ADD_NEW_ORG_UNBLOCK_BTN}`}</p>
-                                        <img alt={'иконка крестик'} src={iconDeleteBnt} className="delete-icon-button__icon-delete"/>
-                                        <p className="delete-icon-button__delete-btn">{constants.ADD_NEW_ORG.ADD_NEW_ORG_DELETE_BTN}</p>
-                                        <p className="delete-icon-button__delete-btn-mobile">{constants.ADD_NEW_ORG.ADD_NEW_ORG_DELETE_BTN_MOBILE}</p>
-                                    </div>
+                    {usersToAdd.map((user) => {
+                        return (
+                            <div key={user.id} className="table-list-users">
+                                <div className="table-list-users__name-user-icon-lock">
+                                    <p className="table-list-users__column-name">{user.last_name} {user.first_name} {user.second_name}</p>
                                 </div>
-                            )
-                        })
-                    }
-                    <p className="table-list-users__show-more-mobile">{constants.ADD_NEW_ORG.ADD_NEW_ORG_SHOW_MORE_BTN}</p>
+                                <p className="table-list-users__column-e-mail">{user.email}</p>
+                                <div className="table-list-users__column-checkbox-superuser">
+                                    <label className='table-list-users__checkbox_container'>
+                                        <input defaultChecked={false} type="checkbox" />
+                                        <span className='table-list-users__checkmark' />
+                                    </label>
+                                    <p className="column-checkbox-superuser__label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_SUPERUSER}</p>
+                                </div>
+                                <div className="table-list-users__delete-icon-button">
+                                    <img alt={constants.GENERAL.ALT_ICON} src={iconDelete} className="delete-icon-button__icon-delete" />
+                                    <p className="delete-icon-button__delete-btn">{constants.ADD_NEW_ORG.ADD_NEW_ORG_DELETE_BTN}</p>
+                                    <p className="delete-icon-button__delete-btn-mobile">{constants.ADD_NEW_ORG.ADD_NEW_ORG_DELETE_BTN_MOBILE}</p>
+                                </div>
+                            </div>
+                        )
+                    })}
                 </div>
                 <div className="add-new-organization__bottom-pagination">
-                    <PaginationBlock constants={constants}/>
+                    {/* <PaginationBlock
+                        constants={constants}
+                    /> */}
                 </div>
                 <div className="add-new-organization__e-mail-support">
-                    <label className="e-mail-support__e-mail-label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_E_MAIL_SUPPORT}
-                        <span className="e-mail-support__red-star">*</span></label>
-                    <input className="e-mail-support__field" placeholder={constants.ADD_NEW_ORG.ADD_NEW_ORG_E_MAIL_SUPPORT_PLACEHOLDER}/>
+                    <label className="e-mail-support__e-mail-label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_E_MAIL_SUPPORT}</label>
+                    <input className="e-mail-support__field" placeholder={constants.ADD_NEW_ORG.ADD_NEW_ORG_E_MAIL_SUPPORT_PLACEHOLDER} />
                 </div>
                 <div className="add-new-organization__note-input">
-                    <label className="note-input__note-label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_NOTE}
-                        <span className="note-input__red-star">*</span></label>
+                    <label className="note-input__note-label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_NOTE}</label>
                     <textarea className="note-input__field" placeholder={constants.ADD_NEW_ORG.ADD_NEW_ORG_INPUT_NOTE}></textarea>
                 </div>
                 <div className="add-new-organization__save-button">
@@ -153,4 +190,5 @@ const AddNewOrganization = (props) => {
         </div>
     )
 }
+
 export default AddNewOrganization;
