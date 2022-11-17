@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as excel from 'xlsx';
 import GeneralTitleAllPages from "../GeneralTitleAllPages/GeneralTitleAllPages";
-// import PaginationBlock from "../PaginationBlock/PaginationBlock";
+import PaginationBlock from "../PaginationBlock/PaginationBlock";
 import iconExcel from '../../img/AddNewOrgIconExcel.svg';
 import iconEmail from '../../img/AddNewOrgIconMail.svg';
 import iconExcelActive from '../../img/AddNewOrgExcelActiveIcon.svg';
@@ -9,6 +9,7 @@ import iconEmailActive from '../../img/AddNewOrgIconMailActiveIcon.svg';
 import iconDelete from '../../img/AddNewOrgDeleteIcon.svg';
 import iconSuccessLoad from '../../img/AddNewOrgSuccessIcon.svg';
 import * as Users from '../../Api/Users';
+import { Validation } from '../../utils/Validation';
 
 const AddNewOrganization = (props) => {
 
@@ -17,10 +18,26 @@ const AddNewOrganization = (props) => {
         requestHelper
     } = props;
 
+    const usersTextarea = Validation();
+    const descriptionTextarea = Validation();
+    const usersSearch = Validation();
+    const orgNameInput = Validation();
+    const supportEmailInput = Validation();
     const [activeMailBtn, setActiveMailBtn] = useState(false);
     const [activeExcelBtn, setActiveExcelBth] = useState(false);
     const [usersToFind, setUsersToFind] = useState([]);
     const [usersToAdd, setUsersToAdd] = useState([]);
+    const [selectedFileName, setSelectedFileName] = useState(constants.ADD_NEW_ORG.ADD_NEW_ORG_SELECT_FILE);
+    const [isExcelFileSelected, setExcelFileSelected] = useState(false);
+    const [emailErrorMessage, setEmailErrorMessage] = useState('');
+    const [saveOrgErrorMessage, setSaveOrgErrorMessage] = useState('');
+    const [usersForRender, setUsersForRender] = useState([]);
+    const [usersSearchInput, setUsersSearchInput] = useState('');
+    const [showResultsFrom, setShowResultsFrom] = useState(0);
+    const [resultsShow, setResultsShow] = useState(5);
+    const [result, setResult] = useState(5);
+    const [pageCount, setPageCount] = useState(1);
+    const [selectedResultsShow, setSelectedResultsShow] = useState(5);
 
     const onExcelBtnClick = () => {
         setActiveMailBtn(false);
@@ -39,16 +56,15 @@ const AddNewOrganization = (props) => {
             }
             requestHelper(Users.findUsers, body)
                 .then((data) => {
-                    console.log(data);
                     const users = [];
                     data.forEach((user) => {
                         if (user.id === undefined) {
                             const newUser = {
                                 id: user.email,
                                 email: user.email,
-                                first_name: "Без",
-                                last_name: "Пользователь",
-                                second_name: "Имени",
+                                first_name: `${constants.ADD_NEW_ORG.ADD_NEW_ORG_DEFAULT_FIRST_NAME}`,
+                                last_name: `${constants.ADD_NEW_ORG.ADD_NEW_ORG_DEFAULT_LAST_NAME}`,
+                                second_name: `${constants.ADD_NEW_ORG.ADD_NEW_ORG_DEFAULT_SECOND_NAME}`,
                                 userFields: user.userFields
                             }
                             users.push(newUser);
@@ -68,6 +84,8 @@ const AddNewOrganization = (props) => {
     function onSelectFileHandler(e) {
         var regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
         var files = e.target.files, f = files[0];
+        setSelectedFileName(files[0].name);
+        setExcelFileSelected(true);
         var reader = new FileReader();
         reader.onload = function (e) {
             var data = e.target.result;
@@ -80,9 +98,118 @@ const AddNewOrganization = (props) => {
                     validUsersEmails.push(user);
                 }
             });
-            setUsersToFind(validUsersEmails);
+            const uniqАrr = [...new Set(validUsersEmails)];
+            setUsersToFind(uniqАrr);
         };
         reader.readAsBinaryString(f);
+    }
+
+    function findUsers() {
+        var regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+        const usersArray = usersTextarea.value.trim().split(/(?:\n| |,)+/);
+        const validUsersEmails = [];
+        usersArray.forEach(user => {
+            if (regex.test(String(user).toLowerCase())) {
+                validUsersEmails.push(user);
+            }
+        });
+        const uniqАrr = [...new Set(validUsersEmails)];
+        if (uniqАrr.length !== 0) {
+            setUsersToFind(uniqАrr);
+            setEmailErrorMessage('');
+        } else {
+            setEmailErrorMessage(constants.ADD_NEW_ORG.ADD_NEW_ORG_EMAIL_ERROR);
+        }
+    }
+
+    function onRemoveUserClick(userForRemove) {
+        const filteredUsers = usersToAdd.filter(user => user.id !== userForRemove.id);
+        setUsersToAdd(filteredUsers);
+    }
+
+    function handleShowResultsFrom(value) {
+        setShowResultsFrom(value);
+    }
+
+    function handleResultsShow(value) {
+        setResultsShow(value);
+    }
+
+    function showPrevResults() {
+        if (resultsShow <= result) {
+            return
+        } else {
+            setShowResultsFrom(showResultsFrom - result);
+            handleShowResultsFrom(showResultsFrom - result);
+            setResultsShow(resultsShow - result);
+            handleResultsShow(resultsShow - result);
+            setPageCount(pageCount - 1);
+        }
+    }
+
+    function showNextResults() {
+        if (resultsShow >= usersForRender.length) {
+            return
+        } else {
+            setShowResultsFrom(0 + resultsShow);
+            handleShowResultsFrom(0 + resultsShow);
+            setResultsShow(result + resultsShow);
+            handleResultsShow(result + resultsShow);
+            setPageCount(pageCount + 1);
+        }
+    }
+
+    function onChoiceClick(value) {
+        setResultsShow(value);
+        handleResultsShow(value);
+        setResult(value);
+        setSelectedResultsShow(value);
+        setShowResultsFrom(0);
+        handleShowResultsFrom(0);
+        setPageCount(1);
+    }
+
+    function searchInput(value) {
+        setUsersSearchInput(value);
+    }
+
+    useEffect(() => {
+        if (usersSearchInput === '') {
+            setUsersForRender(usersToAdd);
+        } else {
+            const dataForRender = [];
+            usersToAdd.forEach((user) => {
+                if (user.email.toLowerCase().includes(usersSearchInput.toLowerCase())) {
+                    dataForRender.push(user);
+                } else if (user.last_name.toLowerCase().includes(usersSearchInput.toLowerCase())) {
+                    dataForRender.push(user);
+                } else if (user.first_name.toLowerCase().includes(usersSearchInput.toLowerCase())) {
+                    dataForRender.push(user);
+                } else if (user.second_name.toLowerCase().includes(usersSearchInput.toLowerCase())) {
+                    dataForRender.push(user);
+                }
+            })
+            setUsersForRender(dataForRender);
+        }
+    },
+        [
+            usersSearchInput,
+            usersToAdd,
+        ]
+    );
+
+    function onSaveButtonClick() {
+        if (orgNameInput.value === '') {
+            setSaveOrgErrorMessage(constants.ADD_NEW_ORG.ADD_NEW_ORG_SAVE_ERROR);
+        } else if (usersToAdd.length === 0) {
+            setSaveOrgErrorMessage(constants.ADD_NEW_ORG.ADD_NEW_ORG_NO_USERS);
+        } else {
+            console.log(orgNameInput.value);
+            console.log(supportEmailInput.value);
+            console.log(descriptionTextarea.value);
+            console.log(usersToAdd);
+            setSaveOrgErrorMessage('');
+        }
     }
 
     return (
@@ -94,10 +221,12 @@ const AddNewOrganization = (props) => {
             />
             <div className="add-new-organization">
                 <div className="add-new-organization__name-org-input">
-                    <label className="name-org-input__label-name-org">{constants.ADD_NEW_ORG.ADD_NEW_ORG_NAME_ORG}<span className="name-org-input__red-star">*</span></label>
+                    <label className="name-org-input__label-name-org">{constants.ADD_NEW_ORG.ADD_NEW_ORG_NAME_ORG}<span className="name-org-input__red-star"> *</span></label>
                     <input
                         className="name-org-input__field"
                         placeholder={constants.ADD_NEW_ORG.ADD_NEW_ORG_PLACEHOLDER_NAME}
+                        onChange={orgNameInput.onChange}
+                        value={orgNameInput.value}
                     />
                 </div>
                 <div className="add-new-organization__import-excel-add-email-buttons">
@@ -113,16 +242,25 @@ const AddNewOrganization = (props) => {
                 </div>
                 {activeMailBtn && (
                     <div className="add-new-organization__mail-addresses-users">
-                        <label className="mail-addresses-users__label-mail">{constants.ADD_NEW_ORG.ADD_NEW_ORG_MAIL_ADDRESS_USERS}
-                            <p className="mail-addresses-users__label-rule">{constants.ADD_NEW_ORG.ADD_NEW_ORG_MAIL_ADDRESS_USERS_RULE}</p>
-                        </label>
-                        <textarea className="mail-addresses-users__input-field"></textarea>
-                        <button className="mail-addresses-users__search-base-users">{constants.ADD_NEW_ORG.ADD_NEW_ORG_SEARCH_USERS_BASE_BTN}</button>
+                        <label className="mail-addresses-users__label-mail">{constants.ADD_NEW_ORG.ADD_NEW_ORG_MAIL_ADDRESS_USERS}<span className="name-org-input__red-star"> *</span></label>
+                        <textarea
+                            className="mail-addresses-users__input-field"
+                            type="text"
+                            onChange={usersTextarea.onChange}
+                            value={usersTextarea.value}
+                        />
+                        <p className="add-new-organization__error-message">{emailErrorMessage}</p>
+                        <button
+                            className="mail-addresses-users__search-base-users"
+                            onClick={findUsers}
+                        >
+                            {constants.ADD_NEW_ORG.ADD_NEW_ORG_SEARCH_USERS_BASE_BTN}
+                        </button>
                     </div>
                 )}
                 {activeExcelBtn && (
-                    // <div className="add-new-organization__download-file-load-button">
-                        // <label className="download-file-load-button__label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_DOWNLOAD_FILE_LABEL}</label>
+                    <div className="add-new-organization__download-file-load-button">
+                        <label className="download-file-load-button__label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_DOWNLOAD_FILE_LABEL}<span className="name-org-input__red-star"> *</span></label>
                         <div className="add-new-organization__excel-add-container">
                             <input
                                 className="add-new-organization__excel-add-input"
@@ -131,24 +269,39 @@ const AddNewOrganization = (props) => {
                                 accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                                 onChange={(e) => onSelectFileHandler(e)}
                             />
-                            <label htmlFor="excel__file" className="add-new-organization__excel-add-input-button">
-                                <p className='add-new-organization__excel-add-input-button-text'>{constants.ADD_NEW_ORG.ADD_NEW_ORG_LOAD_BTN}</p>
+                            <label htmlFor="excel__file" className="add-new-organization__excel-add-input-container">
+                                <div className="add-new-organization__excel-add-input-file-name-container">
+                                    <p className={`add-new-organization__excel-add-input-file-name-text ${isExcelFileSelected && 'add-new-organization__excel-add-input-file-name-text_selected'}`}>{selectedFileName}</p>
+                                </div>
+                                <div className="add-new-organization__excel-add-input-button">
+                                    <p className='add-new-organization__excel-add-input-button-text'>{constants.ADD_NEW_ORG.ADD_NEW_ORG_LOAD_BTN}</p>
+                                </div>
                             </label>
-                            {/* <div className="field-file-load-button__success-info">
-                                <img className="field-file-load-button__icon-success" src={iconSuccessLoad} alt={iconSuccessLoad} />
-                                <p className="field-file-load-button__label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_SUCCESS_INFO}</p>
-                            </div> */}
+                            {isExcelFileSelected && (
+                                <div className="field-file-load-button__success-info">
+                                    <img className="field-file-load-button__icon-success" src={iconSuccessLoad} alt={iconSuccessLoad} />
+                                    <p className="field-file-load-button__label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_SUCCESS_INFO}</p>
+                                </div>
+                            )}
                         </div>
-                    // </div>
+                    </div>
                 )}
                 <div className="add-new-organization__top-pagination">
-                    {/* <PaginationBlock
+                    <PaginationBlock
+                        sortList={usersForRender}
+                        search={usersSearch}
+                        searchInput={searchInput}
+                        onChoiceClick={onChoiceClick}
+                        selectedResultsShow={selectedResultsShow}
+                        pageCount={pageCount}
+                        showPrevResults={showPrevResults}
+                        showNextResults={showNextResults}
                         constants={constants}
-                    /> */}
+                    />
                 </div>
-                <div className="add-new-organization__table-list-users">
-                    {usersToAdd.map((user) => {
-                        return (
+                {usersForRender.length !== 0 ? (
+                    <div className="add-new-organization__table-list-users">
+                        {usersForRender.slice(showResultsFrom, resultsShow).map((user) => (
                             <div key={user.id} className="table-list-users">
                                 <div className="table-list-users__name-user-icon-lock">
                                     <p className="table-list-users__column-name">{user.last_name} {user.first_name} {user.second_name}</p>
@@ -161,31 +314,53 @@ const AddNewOrganization = (props) => {
                                     </label>
                                     <p className="column-checkbox-superuser__label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_SUPERUSER}</p>
                                 </div>
-                                <div className="table-list-users__delete-icon-button">
+                                <div className="table-list-users__delete-icon-button" onClick={() => onRemoveUserClick(user)}>
                                     <img alt={constants.GENERAL.ALT_ICON} src={iconDelete} className="delete-icon-button__icon-delete" />
                                     <p className="delete-icon-button__delete-btn">{constants.ADD_NEW_ORG.ADD_NEW_ORG_DELETE_BTN}</p>
                                     <p className="delete-icon-button__delete-btn-mobile">{constants.ADD_NEW_ORG.ADD_NEW_ORG_DELETE_BTN_MOBILE}</p>
                                 </div>
                             </div>
-                        )
-                    })}
-                </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="table-list-users__no-users-container">
+                        <p className="table-list-users__no-users">{constants.ADD_NEW_ORG.ADD_NEW_ORG_NO_USERS}<span className="name-org-input__red-star"> *</span></p>
+                    </div>
+                )}
                 <div className="add-new-organization__bottom-pagination">
-                    {/* <PaginationBlock
+                    <PaginationBlock
+                        sortList={usersForRender}
+                        search={usersSearch}
+                        searchInput={searchInput}
+                        onChoiceClick={onChoiceClick}
+                        selectedResultsShow={selectedResultsShow}
+                        pageCount={pageCount}
+                        showPrevResults={showPrevResults}
+                        showNextResults={showNextResults}
                         constants={constants}
-                    /> */}
+                    />
                 </div>
                 <div className="add-new-organization__e-mail-support">
                     <label className="e-mail-support__e-mail-label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_E_MAIL_SUPPORT}</label>
-                    <input className="e-mail-support__field" placeholder={constants.ADD_NEW_ORG.ADD_NEW_ORG_E_MAIL_SUPPORT_PLACEHOLDER} />
+                    <input
+                        className="e-mail-support__field"
+                        placeholder={constants.ADD_NEW_ORG.ADD_NEW_ORG_E_MAIL_SUPPORT_PLACEHOLDER}
+                        onChange={supportEmailInput.onChange}
+                        value={supportEmailInput.value}
+                    />
                 </div>
                 <div className="add-new-organization__note-input">
                     <label className="note-input__note-label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_NOTE}</label>
-                    <textarea className="note-input__field" placeholder={constants.ADD_NEW_ORG.ADD_NEW_ORG_INPUT_NOTE}></textarea>
+                    <textarea
+                        className="note-input__field"
+                        placeholder={constants.ADD_NEW_ORG.ADD_NEW_ORG_INPUT_NOTE}
+                        type="text"
+                        onChange={descriptionTextarea.onChange}
+                        value={descriptionTextarea.value}
+                    />
                 </div>
-                <div className="add-new-organization__save-button">
-                    <button className="save-button__add-new-org-save-btn">{constants.ADD_NEW_ORG.ADD_NEW_ORG_SAVE_BTN}</button>
-                </div>
+                <p className="add-new-organization__error-message">{saveOrgErrorMessage}</p>
+                <button className="save-button__add-new-org-save-btn" onClick={onSaveButtonClick}>{constants.ADD_NEW_ORG.ADD_NEW_ORG_SAVE_BTN}</button>
             </div>
         </div>
     )

@@ -51,7 +51,6 @@ const OrganizationsList = (props) => {
             handleResultsShow(resultsShow - result);
             setPageCount(pageCount - 1);
         }
-
     }
 
     function showNextResults() {
@@ -108,7 +107,7 @@ const OrganizationsList = (props) => {
             />
             <PaginationBlock
                 sortList={orgDetailsForRender}
-                orgDetailsSearch={orgDetailsSearch}
+                search={orgDetailsSearch}
                 searchInput={searchInput}
                 onChoiceClick={onChoiceClick}
                 selectedResultsShow={selectedResultsShow}
@@ -160,7 +159,7 @@ const OrganizationsList = (props) => {
             </div>
             <PaginationBlock
                 sortList={orgDetailsForRender}
-                orgDetailsSearch={orgDetailsSearch}
+                search={orgDetailsSearch}
                 searchInput={searchInput}
                 onChoiceClick={onChoiceClick}
                 selectedResultsShow={selectedResultsShow}

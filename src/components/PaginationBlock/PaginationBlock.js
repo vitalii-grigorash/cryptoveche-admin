@@ -7,7 +7,7 @@ const PaginationBlock = (props) => {
 
     const {
         sortList,
-        orgDetailsSearch,
+        search,
         searchInput,
         onChoiceClick,
         selectedResultsShow,
@@ -30,10 +30,10 @@ const PaginationBlock = (props) => {
     }, [sortList.length, selectedResultsShow]);
 
     useEffect(() => {
-        searchInput(orgDetailsSearch.value);
+        searchInput(search.value);
     },
         [
-            orgDetailsSearch.value,
+            search.value,
             searchInput
         ]
     );
@@ -87,8 +87,8 @@ const PaginationBlock = (props) => {
                     name='searchInput'
                     className='pagination-search-block__search-table-input'
                     placeholder={constants.PAGINATION.PAGINATION_SEARCH}
-                    value={orgDetailsSearch.value}
-                    onChange={orgDetailsSearch.onChange}
+                    value={search.value}
+                    onChange={search.onChange}
                 />
             </div>
         </div>

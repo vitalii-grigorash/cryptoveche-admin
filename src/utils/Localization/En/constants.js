@@ -110,7 +110,14 @@ export const constants = {
         ADD_NEW_ORG_DELETE_BTN_MOBILE: "Удалить",
         ADD_NEW_ORG_BLOCK_BTN: "Заблокировать",
         ADD_NEW_ORG_UNBLOCK_BTN: "Разблокировать",
-        ADD_NEW_ORG_SHOW_MORE_BTN: "ПОКАЗАТЬ ЕЩЁ"
+        ADD_NEW_ORG_SHOW_MORE_BTN: "ПОКАЗАТЬ ЕЩЁ",
+        ADD_NEW_ORG_SELECT_FILE: "Выберите файл",
+        ADD_NEW_ORG_NO_USERS: "Список пользователей пуст",
+        ADD_NEW_ORG_DEFAULT_FIRST_NAME: "Без",
+        ADD_NEW_ORG_DEFAULT_LAST_NAME: "Пользователь",
+        ADD_NEW_ORG_DEFAULT_SECOND_NAME: "Имени",
+        ADD_NEW_ORG_EMAIL_ERROR: "Введён некорректный формат почты",
+        ADD_NEW_ORG_SAVE_ERROR: "Название организации не может быть пустым",
     },
     ADD_NEW_GROUP_USERS: {
         ADD_NEW_GROUP_USERS_SELECT_ORG: "Выбор организации",
