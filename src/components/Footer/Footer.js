@@ -9,13 +9,13 @@ const Footer = (props) => {
     const {
         handleLangChange,
         constants,
-        changeLanguageBtn
+        changeLanguageBtn,
+        authAs
     } = props;
 
     const [activeLangList, setActiveLangList] = useState(false);
     const [activeUsersBtn, setActiveUsesBtn] = useState(false);
     const [activeVotesBtn, setActiveVotesBtn] = useState(false);
-
 
     function closeLangList () {
         if (activeLangList === false) {
@@ -49,8 +49,8 @@ const Footer = (props) => {
                 </div>
                 <div className="footer__map-site">
                     <h3 className="footer__map-site-title">{constants.FOOTER.FOOTER_MAP_SITE}</h3>
-                    <Link to={'/'}>{constants.FOOTER.FOOTER_MAIN_PAGE}</Link>
-                    <div className="map-site__users">
+                    <Link className="map-site__main" to={'/'}>{constants.FOOTER.FOOTER_MAIN_PAGE}</Link>
+                    {authAs === 'admin' || authAs === 'superAdmin' ? <div className="map-site__users">
                         <div onClick={() => setActiveUsesBtn(!activeUsersBtn)}  className="map-site__users-icon-block">
                             <Link to={'#'}>{constants.FOOTER.FOOTER_USERS}</Link>
                             <img alt={'стрелка'} src={footerRowSelect} className={activeUsersBtn ? "map-site__users-row active" : "map-site__users-row"}/>
@@ -59,7 +59,7 @@ const Footer = (props) => {
                             <Link to={'#'}>{constants.FOOTER.FOOTER_GROUP_USERS}</Link>
                             <Link to={'#'}>{constants.FOOTER.FOOTER_LIST_USERS}</Link>
                         </div>
-                    </div>
+                    </div> : null}
                     <div className="map-site__votes">
                         <div onClick={() => setActiveVotesBtn(!activeVotesBtn)} className="map-site__votes-icon-block">
                             <Link to={'#'}>{constants.FOOTER.FOOTER_VOTES}</Link>
@@ -67,11 +67,11 @@ const Footer = (props) => {
                         </div>
                         <div className={activeVotesBtn ? "map-site__votes-drop-down-list active" : "map-site__votes-drop-down-list"}>
                             <Link to={'#'}>{constants.FOOTER.FOOTER_LIST_VOTES}</Link>
-                            <Link to={'#'}>{constants.FOOTER.FOOTER_TEMPLATE_VOTES}</Link>
+                            {authAs === 'admin' ? <Link to={'#'}>{constants.FOOTER.FOOTER_TEMPLATE_VOTES}</Link> : null}
                         </div>
                     </div>
-                    <Link to={'#'}>{constants.FOOTER.FOOTER_ORG}</Link>
-                    <Link to={'#'}>{constants.FOOTER.FOOTER_MYPROFILE}</Link>
+                    {authAs === 'superAdmin' ? <Link className="map-site__org" to={'#'}>{constants.FOOTER.FOOTER_ORG}</Link> : null}
+                    <Link className="map-site__myprofile" to={'#'}>{constants.FOOTER.FOOTER_MYPROFILE}</Link>
                 </div>
                 <div className="footer__settings">
                     <h3 className="footer__settings-title">{constants.FOOTER.FOOTER_SETTINGS}</h3>

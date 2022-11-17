@@ -8,6 +8,7 @@ import headerSearchIconMobile from '../../img/HeaderSeachIconMobile.svg';
 import headerExitIcon from '../../img/HeaderExitIcon.svg';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import HeaderBurgerMenu from "../HeaderBurgerMenu/HeaderBurgerMenu";
+import {useOnClickOutsideModal} from "../../utils/CustomHooks/UseOutsideModal/UseOutsideModal";
 
 const Header = (props) => {
 
@@ -25,7 +26,6 @@ const Header = (props) => {
     const [burgerMenuActive, setBurgerMenuActive] = useState(false);
     const { pathname } = useLocation();
     const linkButtonOrgPage = useNavigate();
-
 
     console.log(authAs);
 
@@ -50,25 +50,9 @@ const Header = (props) => {
     useOnClickOutsideModal(activeUsersButton, () => setActiveUsersButton(false));
     useOnClickOutsideModal(activeVotesButton, () => setActiveVotesButton(false));
 
-    function useOnClickOutsideModal(active, handler) {
-        useEffect(() => {
-            const listener = (e) => {
-                if (!active) {
-                    return;
-                }
-                handler(e);
-            };
-            document.addEventListener('click', listener);
-            return function () {
-                document.removeEventListener('click', listener);
-            };
-        }, [active, handler])
-    }
-
-
     return (
         <div className="header">
-            {/*/------Меню бургер для мобильной версии----------------------------------------------------------------------------*/}
+            {/*/------Меню бургер для мобильной версии---------------------------------------------------------------*/}
             <div className={'header-burger-menu'}>
                 <nav>
                     <div className={'header-burger-menu__button'} onClick={() => setBurgerMenuActive(true)}>
@@ -104,20 +88,20 @@ const Header = (props) => {
                         </div>
                         <div className={activeVotesButton ? "logotype-link-buttons__users-select-list" : "logotype-link-buttons__users-select-list hidden"}>
                             <Link to={'#'}>{constants.HEADER.HEADER_LIST_VOTES}</Link>
-                            <Link to={'#'}>{constants.HEADER.HEADER_TEMPLATE_VOTES}</Link>
+                            {authAs === 'admin' ? <Link to={'#'}>{constants.HEADER.HEADER_TEMPLATE_VOTES}</Link> : null}
                         </div>
                     </div>
                     {authAs === 'superAdmin' ? <span onClick={() => linkButtonOrgPage('/organizations')} className={pathname === '/organizations' ? "logotype-link-buttons__organizations active" : "logotype-link-buttons__organizations"}>{constants.HEADER.HEADER_ORG}</span> : null}
-                    <div onClick={showAddButtonList} className="logotype-link-buttons__add-button">
+                    {authAs === 'admin' || authAs === 'superAdmin' ? <div onClick={showAddButtonList} className="logotype-link-buttons__add-button">
                         <p className="logotype-link-buttons__label-add-button">{constants.HEADER.HEADER_ADD_BTN}</p>
                         <img alt={'стрелочка для кнопки'} className="add-button__row-btn-open-list" src={headerRowBtn} />
                         <div className={activeAddButton ? "logotype-link-buttons__select-list-buttons" : "logotype-link-buttons__select-list-buttons hidden"}>
-                            <Link to={'#'}>{constants.HEADER.HEADER_ADD_VOTE}</Link>
-                            <Link to={'/add-new-group'}>{constants.HEADER.HEADER_ADD_GROUP_USERS}</Link>
-                            <Link to={'#'}>{constants.HEADER.HEADER_ADD_TEMPLATE_VOTE}</Link>
-                            <Link to={'/add-org-page'}>{constants.HEADER.HEADER_ADD_ORG}</Link>
+                            {authAs === 'admin' ? <Link to={'#'}>{constants.HEADER.HEADER_ADD_VOTE}</Link> : null}
+                            {authAs === 'admin' ? <Link to={'/add-new-group'}>{constants.HEADER.HEADER_ADD_GROUP_USERS}</Link> : null}
+                            {authAs === 'admin' ? <Link to={'#'}>{constants.HEADER.HEADER_ADD_TEMPLATE_VOTE}</Link> : null}
+                            {authAs === 'superAdmin' ? <Link to={'/add-org-page'}>{constants.HEADER.HEADER_ADD_ORG}</Link> : null}
                         </div>
-                    </div>
+                    </div>: null}
                 </div>
                 <div className={pathname === '/profile-user' ? "header__search-setting-myprofile active" : "header__search-setting-myprofile"}>
                     {/*<div className="search-setting-myprofile__search">*/}
@@ -140,9 +124,13 @@ const Header = (props) => {
                     </div>
                 </div>
             </div>
-            <HeaderBurgerMenu constants={constants} active={burgerMenuActive} setActive={setBurgerMenuActive} />
+            <HeaderBurgerMenu
+                constants={constants}
+                active={burgerMenuActive}
+                setActive={setBurgerMenuActive}
+                authAs={authAs}
+                handleLogout={handleLogout}/>
         </div>
     )
 }
-
 export default Header;

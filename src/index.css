@@ -16,4 +16,5 @@
 @import url(./components/GroupUsers/GroupUsers.css);
 @import url(./components/ListUsers/ListUsers.css);
 @import url(./components/AddNewGroupUsers/AddNewGroupUsers.css);
-
+@import url(./components/GroupUsersDeleteModalGroup/GroupUsersDeleteModalGroup.css);
+@import url(./components/GroupUsersSelectNameGroup/GroupUsersSelectNameGroup.css);

@@ -53,6 +53,12 @@
     opacity: 80%;
     margin-bottom: 2.2em;
 }
+.map-site__main,
+.map-site__org,
+.map-site__myprofile {
+    margin-bottom: 1.7em;
+}
+
 .footer__map-site a {
     line-height: 110%;
     font-size: 1em;
@@ -60,17 +66,8 @@
     opacity: 70%;
     text-decoration: none;
 }
-.footer__map-site a:nth-child(2) {
-    margin-bottom: 1.7em;
-    cursor: pointer;
-}
-.footer__map-site a:nth-child(5) {
-    margin-bottom: 1.7em;
-    cursor: pointer;
-}
-.footer__map-site a:nth-child(6) {
-    cursor: pointer;
-    margin-bottom: 1.7em;
+.votes-drop-down-list__list {
+    margin: 0;
 }
 .map-site__votes {
     display: flex;
@@ -90,6 +87,7 @@
     flex-direction: column;
     white-space: nowrap;
     gap: 1em;
+    margin-bottom: 1.7em;
 }
 .map-site__votes-row {
     margin-left: 0.4em;
@@ -117,6 +115,7 @@
     flex-direction: column;
     white-space: nowrap;
     gap: 1em;
+    margin-bottom: 1.7em;
 }
 .map-site__users-row {
     margin-left: 0.4em;
@@ -311,10 +310,10 @@
     .footer__logotype p {
         font-size: 15px;
     }
+
     .footer__map-site a:nth-child(2) {
         font-size: 15px;
         line-height: 121%;
-        margin-bottom: 16px;
     }
     .footer__map-site a:nth-child(1) {
         font-size: 15px;
@@ -333,9 +332,10 @@
     .map-site__votes-icon-block {
         align-items: center;
     }
-    .map-site__users,
-    .map-site__votes {
-
+    .map-site__main,
+    .map-site__org,
+    .map-site__myprofile {
+        margin-bottom: 16px;
     }
     .map-site__users-row,
     .map-site__votes-row {

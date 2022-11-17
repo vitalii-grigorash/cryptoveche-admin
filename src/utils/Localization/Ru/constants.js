@@ -169,12 +169,19 @@ export const constants = {
         GROUP_USERS_NAME_GROUP_USERS: "Название группы пользователей",
         GROUP_USERS_MEMBERS: "Участники",
         GROUP_USERS_ACTIONS: "Действия",
+        GROUP_USERS_SHOW_GROUP: "ПОСМОТРЕТЬ ГРУППУ",
         GROUP_USERS_EDIT_BTN: "РЕДАКТИРОВАТЬ",
         GROUP_USERS_BLOCK_BTN: "ЗАБЛОКИРОВАТЬ",
         GROUP_USERS_UNBLOCK_BTN: "РАЗБЛОКИРОВАТЬ",
         GROUP_USERS_DELETE_BTN: "УДАЛИТЬ",
         GROUP_USERS_ADD_USER_BTN_MOBILE: "Добавить пользователей",
-        GROUP_USERS_SELECT_BTN_SELECT: "Выбрать"
+        GROUP_USERS_SELECT_BTN_SELECT: "Выбрать",
+        GROUP_USERS_MODAL_SELECTED: "Выбрано",
+        GROUP_USERS_MODAL_NUMBER_GROUP: "группа",
+        GROUP_USERS_MODAL_NUMBER_GROUPS: "группы",
+        GROUP_USERS_MODAL_NUMBER_SEVERAL_GROUP: "групп",
+        GROUP_USERS_MODAL_CANCEL: "Отмена",
+        GROUP_USERS_MODAL_DELETE_SELECTED: "Удалить выбранное"
     },
     LIST_USERS: {
         LIST_USERS_TABLE_EMAIL: "E-mail",
