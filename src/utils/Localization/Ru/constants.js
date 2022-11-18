@@ -117,6 +117,7 @@ export const constants = {
         ADD_NEW_ORG_DEFAULT_LAST_NAME: "Пользователь",
         ADD_NEW_ORG_DEFAULT_SECOND_NAME: "Имени",
         ADD_NEW_ORG_EMAIL_ERROR: "Введён некорректный формат почты",
+        ADD_NEW_ORG_SUPPORT_EMAIL_ERROR: "Некорректный E-mail поддержки",
         ADD_NEW_ORG_SAVE_ERROR: "Название организации не может быть пустым",
     },
     ADD_NEW_GROUP_USERS: {

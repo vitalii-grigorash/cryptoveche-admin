@@ -38,6 +38,7 @@ const AddNewOrganization = (props) => {
     const [result, setResult] = useState(5);
     const [pageCount, setPageCount] = useState(1);
     const [selectedResultsShow, setSelectedResultsShow] = useState(5);
+    const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
     const onExcelBtnClick = () => {
         setActiveMailBtn(false);
@@ -65,11 +66,21 @@ const AddNewOrganization = (props) => {
                                 first_name: `${constants.ADD_NEW_ORG.ADD_NEW_ORG_DEFAULT_FIRST_NAME}`,
                                 last_name: `${constants.ADD_NEW_ORG.ADD_NEW_ORG_DEFAULT_LAST_NAME}`,
                                 second_name: `${constants.ADD_NEW_ORG.ADD_NEW_ORG_DEFAULT_SECOND_NAME}`,
+                                isAdmin: false,
                                 userFields: user.userFields
                             }
                             users.push(newUser);
                         } else {
-                            users.push(user);
+                            const newUser = {
+                                id: user.id,
+                                email: user.email,
+                                first_name: user.first_name,
+                                last_name: user.last_name,
+                                second_name: user.second_name,
+                                isAdmin: false,
+                                userFields: user.userFields
+                            }
+                            users.push(newUser);
                         }
                     })
                     setUsersToAdd(users);
@@ -82,7 +93,6 @@ const AddNewOrganization = (props) => {
     }, [usersToFind])
 
     function onSelectFileHandler(e) {
-        var regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
         var files = e.target.files, f = files[0];
         setSelectedFileName(files[0].name);
         setExcelFileSelected(true);
@@ -105,7 +115,6 @@ const AddNewOrganization = (props) => {
     }
 
     function findUsers() {
-        var regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
         const usersArray = usersTextarea.value.trim().split(/(?:\n| |,)+/);
         const validUsersEmails = [];
         usersArray.forEach(user => {
@@ -198,17 +207,39 @@ const AddNewOrganization = (props) => {
         ]
     );
 
+    function handleChangeSuperUser(userForChange) {
+        const foundUser = usersToAdd.find(user => user.id === userForChange.id)
+        const filteredUsers = usersToAdd.filter(user => user.id !== userForChange.id);
+        if (foundUser.isAdmin === false) {
+            foundUser.isAdmin = true;
+        } else {
+            foundUser.isAdmin = false;
+        }
+        filteredUsers.push(foundUser);
+        setUsersToAdd(filteredUsers);
+    }
+
+    function sendRequest() {
+        console.log(orgNameInput.value);
+        console.log(usersToAdd);
+        console.log(supportEmailInput.value);
+        console.log(descriptionTextarea.value);
+        setSaveOrgErrorMessage('');
+    }
+
     function onSaveButtonClick() {
         if (orgNameInput.value === '') {
             setSaveOrgErrorMessage(constants.ADD_NEW_ORG.ADD_NEW_ORG_SAVE_ERROR);
         } else if (usersToAdd.length === 0) {
             setSaveOrgErrorMessage(constants.ADD_NEW_ORG.ADD_NEW_ORG_NO_USERS);
+        } else if (supportEmailInput.value !== '') {
+            if (regex.test(String(supportEmailInput.value).toLowerCase())) {
+                sendRequest();
+            } else {
+                setSaveOrgErrorMessage(constants.ADD_NEW_ORG.ADD_NEW_ORG_SUPPORT_EMAIL_ERROR);
+            }
         } else {
-            console.log(orgNameInput.value);
-            console.log(supportEmailInput.value);
-            console.log(descriptionTextarea.value);
-            console.log(usersToAdd);
-            setSaveOrgErrorMessage('');
+            sendRequest();
         }
     }
 
@@ -301,7 +332,14 @@ const AddNewOrganization = (props) => {
                 </div>
                 {usersForRender.length !== 0 ? (
                     <div className="add-new-organization__table-list-users">
-                        {usersForRender.slice(showResultsFrom, resultsShow).map((user) => (
+                        {usersForRender.sort(function (a, b) {
+                            var emailA = a.email.toLowerCase(), emailB = b.email.toLowerCase()
+                            if (emailA < emailB)
+                                return -1
+                            if (emailA > emailB)
+                                return 1
+                            return 0
+                        }).slice(showResultsFrom, resultsShow).map((user) => (
                             <div key={user.id} className="table-list-users">
                                 <div className="table-list-users__name-user-icon-lock">
                                     <p className="table-list-users__column-name">{user.last_name} {user.first_name} {user.second_name}</p>
@@ -309,7 +347,11 @@ const AddNewOrganization = (props) => {
                                 <p className="table-list-users__column-e-mail">{user.email}</p>
                                 <div className="table-list-users__column-checkbox-superuser">
                                     <label className='table-list-users__checkbox_container'>
-                                        <input defaultChecked={false} type="checkbox" />
+                                        <input
+                                            checked={user.isAdmin}
+                                            onChange={() => handleChangeSuperUser(user)}
+                                            type="checkbox"
+                                        />
                                         <span className='table-list-users__checkmark' />
                                     </label>
                                     <p className="column-checkbox-superuser__label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_SUPERUSER}</p>
