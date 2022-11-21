@@ -1,0 +1,114 @@
+/*------Основной стиль для модального окна----------------------------------------------------------------------------*/
+.materials-vote-question-modal__wrapper {
+    position: absolute;
+    max-width: 501px;
+    max-height: 176px;
+    background: rgba(54, 59, 77, 0.1);
+    left: 0;
+    top: 22px;
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+    cursor: auto;
+}
+.materials-vote-question-modal__wrapper.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+}
+/*------Стилизация для контента модального окна------------------------------------------------------------------------*/
+.materials-vote-question-modal__content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    gap: 20px;
+    padding: 32px 24px 24px 24px;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    position: relative;
+    transform: scale(0.5);
+    box-shadow: 0 4px 8px rgba(54, 59, 77, 0.1);
+}
+.materials-vote-question-modal__content.active {
+    transform: scale(1);
+}
+.materials-vote-question-modal__link-materials {
+    min-width: 380px;
+}
+.materials-vote-question-modal__content a {
+    color: #0084FE;
+    font-size: 18px;
+    line-height: 133%;
+    opacity: 0.9;
+    white-space: break-spaces;
+    word-break: break-word;
+}
+/*------Стилизация для div с документами------------------------------------------------------------------------------*/
+.materials-vote-question-modal__document-icons {
+    display: inline-flex;
+    flex-direction: row;
+    max-width: 453px;
+    justify-content: space-between;
+    align-items: center;
+}
+.materials-vote-question-modal__document-icons span {
+    word-wrap: break-word;
+    font-size: 18px;
+    max-width: 310px;
+    line-height: 24px;
+    color: rgba(54, 59, 77, 0.9);
+    white-space: break-spaces;
+}
+/*------Стилизация для div с иконками--------------------------------------------------------------------------------*/
+.document-icons__icons-block {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    padding-left: 70px;
+}
+.document-icons__icons-block img {
+    cursor: pointer;
+}
+/*---------Адаптивная версия-----------------------------------------------------------------------------------------*/
+@media (max-width: 1210px) {
+    .materials-vote-question-modal__wrapper.active {
+        /*left: -210px;*/
+    }
+    .materials-vote-question-modal__content {
+        padding: 16px 16px;
+        gap: 16px;
+    }
+    .materials-vote-question-modal__document-icons  {
+        font-size: 14px;
+        min-width: 333px;
+    }
+    .materials-vote-question-modal__document-icons span {
+        font-size: 14px;
+    }
+    .materials-vote-question-modal__content a {
+        font-size: 14px;
+    }
+}
+@media (max-width: 820px) {
+    .materials-vote-question-modal__wrapper.active {
+        /*left: -100px;*/
+    }
+}
+@media (max-width: 420px) {
+    .materials-vote-question-modal__wrapper.active {
+        left: -25px;
+    }
+    .materials-vote-question-modal__document-icons span  {
+        font-size: 12px;
+    }
+    .materials-vote-question-modal__content a {
+        font-size: 12px;
+    }
+    .document-icons__icons-block {
+        padding-left: 0;
+    }
+    .materials-vote-question-modal__link-materials {
+        min-width: 250px;
+    }
+
+}

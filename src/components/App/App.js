@@ -16,6 +16,7 @@ import ListUsers from "../ListUsers/ListUsers";
 import AddNewGroupUsers from "../AddNewGroupUsers/AddNewGroupUsers";
 import Main from "../Main/Main";
 import GroupUsersSelectNameGroup from "../GroupUsersSelectNameGroup/GroupUsersSelectNameGroup";
+import VotesPage from "../VotesPage/VotesPage";
 
 function App() {
 
@@ -255,6 +256,12 @@ function App() {
                             constants={constants}
                         />}
                     />
+                    <Route exact path={'/list-votes'}
+                           element={<VotesPage
+                               constants={constants}
+                               authAs={authAs}
+                           />}
+                    />
                 </Routes>
                 {isLoggedIn && (
                     <Footer
@@ -268,5 +275,4 @@ function App() {
         </CurrentUserContext.Provider>
     );
 }
-
 export default App;

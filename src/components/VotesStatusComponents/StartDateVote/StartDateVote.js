@@ -1,6 +1,6 @@
 import React from "react";
 import './StartDateVote.css';
-import DateTime from "../DateTime/DateTime";
+import DateTime from "../StartDateVote/DataTimeVote";
 
 const StartDateVote = (props) => {
 

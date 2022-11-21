@@ -1,0 +1,110 @@
+/*------Cтилизация блока c кнопками фильтры и сортировка--------------------------------------------------------------*/
+.votes-page-filter-sort-buttons {
+    position: relative;
+    font-size: 16px;
+}
+.navigation-menu__select-buttons {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+.select-buttons__filters-button {
+    width: 9.62em;
+    height: 2.5em;
+    background-color: #FBFBFC;
+    color: #0084FE;
+    padding: 0.5em 1.5em 0.5em;
+    font-size: 1em;
+    border: 1px #0084FE solid;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-right: 0.87em;
+}
+.select-buttons__filters-button img {
+    padding-right: 0.87em;
+    width: 2em;
+    height: 1em;
+}
+.select-buttons__sort-button {
+    width: 9.83em;
+    height: 2.5em;
+    background-color: #FBFBFC;
+    color: #0084FE;
+    font-size: 1em;
+    padding: 0.5em;
+    border: 1px #0084FE solid;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.select-buttons__sort-button img {
+    padding-right: 0.8em;
+    vertical-align: middle;
+    width: 2em;
+    height: 1em;
+}
+/*------Cтилизация блока c кнопками фильтры и сортировка(для мобильной версии)----------------------------------------*/
+.select-buttons__mobile-filters-sort-button  {
+    display: none;
+}
+.select-buttons__filters-red-circle, .select-buttons__sort-red-circle {
+    display: none;
+}
+/*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
+@media (max-width: 1570px) {
+    .votes-page-filter-sort-buttons {
+        font-size: 14px;
+    }
+}
+@media (max-width: 1120px) {
+    .votes-page-filter-sort-buttons  {
+        font-size: 12px;
+    }
+}
+@media (max-width: 900px) {
+    .votes-page-filter-sort-buttons  {
+        font-size: 10px;
+    }
+}
+@media (max-width: 700px) {
+    .votes-page-filter-sort-buttons  {
+        font-size: 8px;
+    }
+}
+/*------Адаптивная версия--------------------------------------------------------------------------------------------*/
+@media (max-width: 500px) {
+    .select-buttons__filters-button, .select-buttons__sort-button {
+        display: none;
+    }
+    .select-buttons__mobile-filters-sort-button {
+        display: flex;
+        background: none;
+        font-size: 15px;
+        line-height: 121%;
+        font-weight: 400;
+        color: rgba(54, 59, 77, 0.4);
+        cursor: pointer;
+    }
+    .select-buttons__mobile-filters-sort-button img {
+        padding-right: 5px;
+        cursor: pointer;
+    }
+    .select-buttons__filters-red-circle {
+        position: absolute;
+        display: inherit;
+        top: 2px;
+        left: 12px;
+    }
+    .select-buttons__sort-red-circle {
+        position: absolute;
+        display: inherit;
+        top: 2px;
+        left: 100px;
+    }
+}
+@media (max-width: 750px) {
+    .navigation-menu__select-buttons {
+        padding-bottom: 0;
+    }
+}

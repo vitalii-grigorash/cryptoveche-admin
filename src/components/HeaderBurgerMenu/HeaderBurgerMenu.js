@@ -62,8 +62,8 @@ const HeaderBurgerMenu = (props) => {
                         <img alt={'иконка стрелочка'} src={burgerMenuIconRow} className={activeUsersBtn ? "burger-menu__users-button-row active" : "burger-menu__users-button-row"}/>
                     </div>
                     <div className={activeUsersBtn ? "burger-menu__users-button-drop-down-list active" : "burger-menu__users-button-drop-down-list"}>
-                        <Link to={'#'}>{constants.HEADER.HEADER_GROUP_USERS}</Link>
-                        <Link to={'#'}>{constants.HEADER.HEADER_USERS_LIST}</Link>
+                        <Link to={'/group-users'}>{constants.HEADER.HEADER_GROUP_USERS}</Link>
+                        <Link to={'/list-users'}>{constants.HEADER.HEADER_USERS_LIST}</Link>
                     </div>
                 </div> : null}
                 <div className="burger-menu__votes-button">
@@ -72,7 +72,7 @@ const HeaderBurgerMenu = (props) => {
                         <img alt={'иконка стрелочка'} src={burgerMenuIconRow} className={activeVotesBtn ? "burger-menu__votes-button-row active" : "burger-menu__votes-button-row"}/>
                     </div>
                     <div className={activeVotesBtn ? "burger-menu__votes-button-drop-down-list active" : "burger-menu__votes-button-drop-down-list"}>
-                        <Link to={'#'}>{constants.HEADER.HEADER_LIST_VOTES}</Link>
+                        <Link to={'/list-votes'}>{constants.HEADER.HEADER_LIST_VOTES}</Link>
                         {authAs === 'admin' ? <Link to={'#'}>{constants.HEADER.HEADER_TEMPLATE_VOTES}</Link> : null}
                     </div>
                 </div>

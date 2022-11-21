@@ -1,0 +1,310 @@
+/*------Контейнер для блока------------------------------------------------------------------------------------------*/
+.my-votes-block-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    background-color: #FFFFFF;
+    border-radius: 24px;
+    padding: 32px 32px 32px 32px;
+    width: 100%;
+    box-shadow: 0 3px 16px 0 rgba(54, 58, 72, 0.08);
+}
+.my-votes-block-wrapper h2 {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+    padding-bottom: 0;
+    color: rgba(54, 59, 77, 0.9);
+}
+.my-votes-block-wrapper:last-child {
+    margin-bottom: 30px;
+}
+/*------Стили для обоих блоков---------------------------------------------------------------------------------------*/
+.my-votes-block__vote-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    color: #363B4D;
+    border-bottom: 1px #EEEEEE;
+    border-style: solid;
+    padding-bottom: 24px;
+}
+.my-votes-block__vote-form_votes-page {
+    flex-direction: row;
+    display: flex;
+    margin-bottom: 24px;
+}
+.my-votes-block__container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.reg-form__status-block, .vote-form__status-block {
+    display: flex;
+    flex-direction: row;
+    max-height: 56px;
+    align-items: center;
+    /*margin-bottom: 24px;*/
+}
+.my-votes-block__container-title-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.my-votes-block__container-title-h3 {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 133%;
+    color: rgba(54, 59, 77, 0.9);
+    margin: 0 auto 0 0;
+    cursor: pointer;
+}
+.my-votes-block__container-title-h5 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: rgba(54, 59, 77, 0.6);
+}
+.my-votes-block__votes-form {
+    padding-bottom: 24px;
+}
+.status-and-start-reg-start-vote__add-border-left {
+    border-left: 1px rgba(54, 59, 77, 0.2) solid;
+}
+.my-votes-block__utc-container {
+    display: flex;
+}
+.my-votes-block__utc-icon {
+    margin: auto 8px auto 0;
+}
+.my-votes-block__utc-value {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(54, 59, 77, 0.6);
+    margin: auto auto auto 0;
+}
+/*------Стилизация кнопки зарегистрироваться ------------------------------------------------------------------------*/
+.reg-form__button-reg {
+    max-width: 213px;
+    height: 40px;
+    background-color: #0084FE;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+/*------Блок с кнопкой проголосовать----------------------------------------------------------------------------------*/
+.votes-form__button-vote-cancel-reg {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    margin-top: auto;
+}
+.votes-form__button-vote-cancel-reg_votes-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: flex-end;
+    margin: auto 0 0 auto;
+}
+.button-vote {
+    width: 169px;
+    height: 40px;
+    background-color: #0084FE;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.button-vote-hide {
+    display: none;
+}
+.reg {
+    width: 214px;
+    height: 40px;
+    background: #0084FE;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    cursor: pointer;
+    color: #FFFFFF;
+}
+.cancel-reg {
+    width: 233px;
+    height: 40px;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    cursor: pointer;
+    color: #0084FE;
+    border: 1px #0084FE solid;
+}
+.cancel-reg-hide {
+    display: none;
+}
+/*------Ccылка со стрелкой ПОКАЗАТЬ ПОЛНОСТЬЮ----------------------------------------------------------------------------------*/
+.my-votes__link-arrow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #0075FF;
+    gap: 5px;
+    margin-top: auto;
+}
+.link-arrow__show-all {
+    font-size: 16px;
+    font-weight: 300;
+}
+.my-votes__link-arrow a {
+    color: #0075FF;
+    text-decoration: none;
+}
+.my-votes__link-arrow img {
+
+}
+.my-votes-block__link-votes-page {
+    pointer-events: none;
+    text-decoration: none;
+}
+/*------Адаптивная версия--------------------------------------------------------------------------------------*/
+@media (max-width: 1270px) {
+    .my-votes-block-wrapper h2 {
+        font-size: 21px;
+        font-weight: 500;
+        line-height: 138%;
+    }
+    .my-votes-block-wrapper {
+        padding: 16px 16px;
+    }
+}
+
+@media (max-width: 1180px) {
+    .my-votes-block__vote-form_votes-page {
+        flex-direction: column;
+    }
+    .votes-form__button-vote-cancel-reg_votes-page {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        justify-content: flex-start;
+        margin: 0;
+    }
+}
+@media (max-width: 830px) {
+    .my-votes-block-wrapper {
+        max-width: 440px;
+        padding: 16px 16px 16px 16px;
+    }
+    .my-votes-block-wrapper h2 {
+        font-size: 21px;
+        line-height: 144%;
+        padding-bottom: 8px;
+        font-weight: 500;
+    }
+    .my-votes-block__votes-form {
+        padding-bottom: 0;
+    }
+    /*.my-votes-block__vote-form h3 {*/
+    /*    font-size: 14px;*/
+    /*}*/
+    /*.my-votes-block__vote-form h5 {*/
+    /*    font-size: 13px;*/
+    /*}*/
+    .status-block__start-vote h5, .vote-form__status-block-start-vote h5 {
+        font-size: 10px;
+    }
+    .reg-form__button-reg, .button-vote, .reg {
+        width: 150px;
+        height: 40px;
+        font-size: 12px;
+    }
+    .cancel-reg {
+        width: 200px;
+        height: 40px;
+        font-size: 12px;
+    }
+    .link-arrow__show-all {
+        font-size: 14px;
+    }
+    .reg-form__status-block {
+        max-height: 50px;
+    }
+    .vote-form__status-block {
+        max-height: 50px;
+    }
+    .my-votes-block__utc-value {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 815px) {
+    .my-votes-block-wrapper {
+        max-width: 800px;
+        width: 100%;
+        height: 60px;
+    }
+    .link-arrow__show-all {
+        display: none;
+    }
+    .my-votes__link-arrow img {
+        position: absolute;
+        top: 20px;
+        right: 27px;
+    }
+    .vote-form__status-block {
+        display: none;
+    }
+    .my-votes-block__container {
+        gap: 16px;
+    }
+    .my-votes-block__utc-container {
+        display: none;
+    }
+    .my-votes-block__container-title-block {
+        gap: 8px;
+    }
+    .my-votes-block__container-title-h3 {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .my-votes-block__container-title-h5 {
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .my-votes-block__link-votes-page {
+        pointer-events: auto;
+    }
+}
+@media (max-width: 420px) {
+    .reg-form__button-reg, .button-vote, .reg {
+        width: 100%;
+        height: 48px;
+        font-size: 16px;
+    }
+    .cancel-reg {
+        width: 100%;
+        height: 48px;
+        font-size: 16px;
+    }
+    .my-votes-block__vote-form_votes-page {
+        margin-bottom: 16px;
+    }
+    .my-votes-block__vote-form {
+        padding-bottom: 16px;
+        gap: 0;
+    }
+    .votes-page-switch-buttons {
+        margin-bottom: 16px;
+    }
+}

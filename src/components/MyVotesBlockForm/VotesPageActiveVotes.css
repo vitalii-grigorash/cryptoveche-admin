@@ -1,0 +1,92 @@
+/*------Основной контейнер---------------------------------------------------------------------------------------------*/
+.votes-page-active-votes__wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0 24px 0;
+    gap: 24px;
+    border-bottom: 1px rgba(54, 59, 77, 0.1) solid;
+}
+.votes-page-active-votes__wrapper-title {
+    font-weight: 400;
+}
+/*---------Cтилизация блока со статусами и датой регистрации-----------------------------------------------------------*/
+.active-votes__status-and-start-reg-start-vote {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.status-and-start-reg-start-vote__add-border-left {
+    border-left: 1px rgba(54, 59, 77, 0.2) solid;
+
+}
+.reg-vote-date__border-right-mobile {
+    display: flex;
+    justify-content: center;
+}
+.status-and-start-reg-start-vote {
+    display: flex;
+    flex-direction: row;
+    height: 56px;
+    align-items: center;
+}
+.status-and-start-reg-start-vote__reg-vote-date {
+    display: flex;
+    flex-direction: row;
+}
+/*-----Блок с кнопками------------------------------------------------------------------------------------------------*/
+.votes-page-active-votes__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: right;
+}
+/*-----Адаптивная версия----------------------------------------------------------------------------------------------*/
+@media (max-width: 1240px) {
+    .active-votes__status-and-start-reg-start-vote {
+        display: block;
+    }
+    .status-and-start-reg-start-vote {
+        /*padding-bottom: 5px;*/
+        /*height: 75px;*/
+    }
+    .votes-page-active-votes__buttons {
+        text-align: left;
+    }
+}
+@media (max-width: 890px) {
+    .status-and-start-reg-start-vote {
+        height: 48px;
+    }
+}
+@media (max-width: 600px) {
+    .status-and-start-reg-start-vote {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+        row-gap: 16px;
+        height: 100%;
+    }
+    .status-and-start-reg-start-vote__add-border-left {
+        border: none;
+    }
+    .status-and-start-reg-start-vote__reg-vote-date {
+        gap: 8px;
+    }
+    .reg-vote-date__border-right-mobile {
+        border-right: 0.5px solid rgba(54, 59, 77, 0.4);
+        padding-right: 8px;
+    }
+}
+@media (max-width: 420px) {
+    .votes-page-active-votes__wrapper {
+        padding: 8px 0 16px 0;
+        gap: 12px;
+    }
+    .status-and-start-reg-start-vote {
+        padding-bottom: 0;
+    }
+
+}

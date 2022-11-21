@@ -87,7 +87,7 @@ const Header = (props) => {
                             <img className="logotype-link-buttons__users-icon-row" src={headerRowBtn} alt={'иконка-стрелочка'}/>
                         </div>
                         <div className={activeVotesButton ? "logotype-link-buttons__users-select-list" : "logotype-link-buttons__users-select-list hidden"}>
-                            <Link to={'#'}>{constants.HEADER.HEADER_LIST_VOTES}</Link>
+                            <Link to={'/list-votes'}>{constants.HEADER.HEADER_LIST_VOTES}</Link>
                             {authAs === 'admin' ? <Link to={'#'}>{constants.HEADER.HEADER_TEMPLATE_VOTES}</Link> : null}
                         </div>
                     </div>

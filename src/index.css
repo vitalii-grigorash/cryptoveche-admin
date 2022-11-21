@@ -18,3 +18,10 @@
 @import url(./components/AddNewGroupUsers/AddNewGroupUsers.css);
 @import url(./components/GroupUsersDeleteModalGroup/GroupUsersDeleteModalGroup.css);
 @import url(./components/GroupUsersSelectNameGroup/GroupUsersSelectNameGroup.css);
+@import url(./components/VotesPage/VotesPage.css);
+@import url(./components/VotesPageFilterSortButtons/VotesPageFilterSortButtons.css);
+@import url(./components/VotesPageFilterSortButtons/VotesPageFiltersModal/VotesPageFiltersModal.css);
+@import url(./components/VotesPageFilterSortButtons/VotesPageSortingModal/VotesPageSortingModal.css);
+@import url(./components/VotesPageFilterSortButtons/VotesPageFiltersModal/FiltersModalCheckBox/FiltersModalCheckBox.css);
+@import url(./components/MyVotesBlockForm/MyVotesBlock.css);
+@import url(./components/MyVotesBlockForm/VotesPageActiveVotes.css);

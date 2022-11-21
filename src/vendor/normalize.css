@@ -30,7 +30,7 @@ body {
   font-size: 18px;
   background-color: #FBFBFC;
   font-family: Inter;
-  overflow-y: scroll;
+  /*overflow-y: scroll;*/
 }
 ._container {
   max-width: 92.222vw;

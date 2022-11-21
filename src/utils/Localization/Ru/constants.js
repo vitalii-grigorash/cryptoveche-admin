@@ -71,6 +71,7 @@ export const constants = {
     },
     GENERAL_TITLE: {
         GENERAL_TITLE_TITLENAME_ORG: "Список организаций",
+        GENERAL_TITLE_TITLENAME_VOTES: "Голосования",
         GENERAL_TITLE_TITLENAME_GROUP_USER: "Группы пользователей",
         GENERAL_TITLE_TITLENAME_ADD_ORG: "Добавление новой организации",
         GENERAL_TITLE_TITLENAME_ADD_GROUP_USERS: "Добавление группы пользователей",
@@ -79,7 +80,8 @@ export const constants = {
         GENERAL_TITLE_FIRTSLETTER: "АдминистраторКриптовече",
         GENERAL_TITLE_SECONDLETTER_ORG: "Организация",
         GENERAL_TITLE_SECONDLETTER_GROUP_USERS: "Группы пользователей",
-        GENERAL_TITLE_SECONDLETTER_LIST_USERS: "Список пользователей"
+        GENERAL_TITLE_SECONDLETTER_LIST_USERS: "Список пользователей",
+        GENERAL_TITLE_SECONDLETTER_VOTES: "Голосования"
     },
     SORTING_BLOCK: {
         SORTING_BLOCK_LABEL: "Сортировать по:",
@@ -189,5 +191,42 @@ export const constants = {
         LIST_USERS_ACTIONS: "Действия",
         LIST_USERS_WATCH_PROFILE: "ПОСМОТРЕТЬ ПРОФИЛЬ",
         LIST_USERS_SHOW_MORE: "ПОКАЗАТЬ ЕЩЁ"
+    },
+    FILTER_SORT_BLOCK: {
+        FILTER_SORT_BLOCK_FILTERS: "Фильтры",
+        FILTER_SORT_BLOCK_SORTING: "Сортировка",
+        FILTER_SORT_BLOCK_BY_VOTING_STATUS: "По статусу голосования",
+        FILTER_SORT_BLOCK_STATUS_VOTING: "Статус голосования",
+        FILTER_SORT_BLOCK_BY_VOTING_TYPE: "По типу голосования",
+        FILTER_SORT_BLOCK_TYPE_VOTING: "Тип голосования",
+        FILTER_SORT_BLOCK_BY_REG_START_DATE: "По дате начала регистрации",
+        FILTER_SORT_BLOCK_REG_START_DATE: "Дата начала регистрации",
+        FILTER_SORT_BLOCK_BY_VOTE_START_DATE: "По дате начала голосования",
+        FILTER_SORT_BLOCK_VOTE_START_DATE: "Дата начала голосования",
+        FILTER_SORT_BLOCK_FROM: "c",
+        FILTER_SORT_BLOCK_TO: "по",
+        FILTER_SORT_BLOCK_VOTING_IN_PROGRESS: "Идет голосование",
+        FILTER_SORT_BLOCK_REG_IN_PROGRESS: "Идет регистрация",
+        FILTER_SORT_BLOCK_VOTING_AND_REG: "Регистрация и голосование",
+        FILTER_SORT_BLOCK_WAITING_VOTE: "Ожидание голосования",
+        FILTER_SORT_BLOCK_WAITING_REG: "Ожидание регистрации",
+        FILTER_SORT_BLOCK_VOTE_END: "Голосование завершено",
+        FILTER_SORT_BLOCK_QUORUM_NOT_REACHED: "Кворум не достигнут",
+        FILTER_SORT_BLOCK_OPEN: "Открытое",
+        FILTER_SORT_BLOCK_CLOSE: "Тайное",
+        FILTER_SORT_BLOCK_APPLY_FILTER: "Применить фильтр",
+        FILTER_SORT_BLOCK_RESET_FILTERS: "Сбросить все фильтры",
+        FILTER_SORT_BLOCK_EVENT_NAME: "Названию события",
+        FILTER_SORT_BLOCK_ORG_NAME: "Названию организации",
+        FILTER_SORT_BLOCK_TIME_START_REG: "Времени начала регистрации",
+        FILTER_SORT_BLOCK_TIME_START_VOTE: "Времени начала голосования",
+        FILTER_SORT_BLOCK_TIME_END_REG: "Времени окончания регистрации",
+        FILTER_SORT_BLOCK_TIME_END_VOTE: "Времени окончания голосования",
+        FILTER_SORT_BLOCK_ALT_BUTTON_CLOSE_WINDOW: "кнопка-крестик-закрыть окно",
+        FILTER_SORT_BLOCK_ALT_BUTTON_SORT_LOW: "иконка сортировки на убывание",
+        FILTER_SORT_BLOCK_ALT_BUTTON_ALT_SORT_UP: "иконка сортировки на увеличение",
+        FILTER_SORT_BLOCK_ALT_RED_CIRCLE: "красная точка",
+        FILTER_SORT_BLOCK_ALT_ICON_FILTER: "иконка фильтр",
+        FILTER_SORT_BLOCK_ALT_ICON_SORT: "иконка сортировка"
     }
 }
