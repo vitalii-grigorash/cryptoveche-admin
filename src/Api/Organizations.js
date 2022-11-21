@@ -21,3 +21,26 @@ export const getOrganizations = (accessToken) => {
             throw new Error(err.message);
         });
 }
+
+export const addOrganization = (accessToken, body) => {
+    return fetch(`${API_URL}/organizations`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(
+            body.newOrgData
+        )
+    })
+        .then(res => res.ok ? res : Promise.reject(res))
+        .then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+        })
+        .then(data => data)
+        .catch((err) => {
+            throw new Error(err.message);
+        });
+}

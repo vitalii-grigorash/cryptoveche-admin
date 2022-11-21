@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as excel from 'xlsx';
 import GeneralTitleAllPages from "../GeneralTitleAllPages/GeneralTitleAllPages";
 import PaginationBlock from "../PaginationBlock/PaginationBlock";
@@ -9,6 +10,7 @@ import iconEmailActive from '../../img/AddNewOrgIconMailActiveIcon.svg';
 import iconDelete from '../../img/AddNewOrgDeleteIcon.svg';
 import iconSuccessLoad from '../../img/AddNewOrgSuccessIcon.svg';
 import * as Users from '../../Api/Users';
+import * as Organizations from '../../Api/Organizations';
 import { Validation } from '../../utils/Validation';
 
 const AddNewOrganization = (props) => {
@@ -18,6 +20,7 @@ const AddNewOrganization = (props) => {
         requestHelper
     } = props;
 
+    const navigate = useNavigate();
     const usersTextarea = Validation();
     const descriptionTextarea = Validation();
     const usersSearch = Validation();
@@ -220,11 +223,40 @@ const AddNewOrganization = (props) => {
     }
 
     function sendRequest() {
-        console.log(orgNameInput.value);
-        console.log(usersToAdd);
-        console.log(supportEmailInput.value);
-        console.log(descriptionTextarea.value);
-        setSaveOrgErrorMessage('');
+        const usersToSend = [];
+        const adminsToSend = [];
+        usersToAdd.forEach((user) => {
+            if (user.isAdmin) {
+                adminsToSend.push(user.email);
+                usersToSend.push(user.email);
+            } else {
+                usersToSend.push(user.email);
+            }
+        })
+        const newOrgData = {
+            title: orgNameInput.value,
+            users: usersToSend,
+            admins: adminsToSend,
+            settings: {
+                email: supportEmailInput.value,
+                description: descriptionTextarea.value
+            }
+        }
+        const body = {
+            newOrgData: newOrgData
+        }
+        requestHelper(Organizations.addOrganization, body)
+            .then((data) => {
+                if (data.status === 'ok') {
+                    navigate('/organizations');
+                    setSaveOrgErrorMessage('');
+                } else {
+                    setSaveOrgErrorMessage(constants.ADD_NEW_ORG.ADD_NEW_ORG_FAILURE_ERROR);
+                }
+            })
+            .catch((err) => {
+                throw new Error(err.message);
+            })
     }
 
     function onSaveButtonClick() {

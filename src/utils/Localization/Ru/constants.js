@@ -119,6 +119,7 @@ export const constants = {
         ADD_NEW_ORG_EMAIL_ERROR: "Введён некорректный формат почты",
         ADD_NEW_ORG_SUPPORT_EMAIL_ERROR: "Некорректный E-mail поддержки",
         ADD_NEW_ORG_SAVE_ERROR: "Название организации не может быть пустым",
+        ADD_NEW_ORG_FAILURE_ERROR: "Что-то пошло не так..."
     },
     ADD_NEW_GROUP_USERS: {
         ADD_NEW_GROUP_USERS_SELECT_ORG: "Выбор организации",
