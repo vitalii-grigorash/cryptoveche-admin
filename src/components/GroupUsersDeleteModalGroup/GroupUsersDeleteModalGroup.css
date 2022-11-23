@@ -1,0 +1,70 @@
+/*------Основной контейнер--------------------------------------------------------------------------------------------*/
+.container__group-users-delete-modal-group {
+    display: none;
+}
+.container__group-users-delete-modal-group.active  {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    width: 42.05em;
+    height: 4em;
+    background-color: #4A4F5F;
+    top: 50%;
+    border-radius: 0.88em;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0.88em 2.22em 0.88em 2.22em;
+}
+.group-users-delete-modal-group__selector-group {
+    color: #FFFFFF;
+    font-size: 1em;
+    line-height: 197%;
+}
+.group-users-delete-modal-group__buttons {
+    display: flex;
+    gap: 0.88em;
+}
+.group-users-delete-modal-group__cancel-btn {
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    background-color: #4A4F5F;
+    padding: 0.44em 1.33em 0.44em 1.33em;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.88em;
+    line-height: 150%;
+}
+.group-users-delete-modal-group__delete-btn {
+    color: #FF4970;
+    border: 1px solid #FF4970;
+    background-color: #4A4F5F;
+    padding: 0.44em 1.33em 0.44em 1.33em;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.88em;
+    line-height: 150%;
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 500px) {
+    .container__group-users-delete-modal-group.active {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px 16px;
+        height: 110px;
+        border-radius: 16px;
+        width: 329px;
+    }
+    .group-users-delete-modal-group__selector-group {
+        font-size: 16px;
+    }
+    .group-users-delete-modal-group__cancel-btn {
+        font-size: 16px;
+        padding: 9px 16px;
+    }
+    .group-users-delete-modal-group__delete-btn {
+        font-size: 16px;
+        padding: 9px 16px;
+    }
+}

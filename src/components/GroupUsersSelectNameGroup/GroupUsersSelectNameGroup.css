@@ -1,0 +1,291 @@
+/*------Основной контейнер--------------------------------------------------------------------------------------------*/
+.container__group-users-select-name-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 9em;
+    min-height: calc(49vh - 80px);
+    font-size: 18px;
+}
+.group-users-select-name-group__name-org {
+    font-size: 1em;
+    line-height: 133%;
+    font-weight: 500;
+    color: rgba(54, 59, 77, 0.4);
+    margin-bottom: 0.88em;
+}
+.group-users-select-name-group__add-btn-block {
+    display: flex;
+    margin-bottom: 0.88em;
+}
+.group-users-select-name-group__add-btn-block.hidden {
+    display: none;
+}
+.group-users-select-name-group__button {
+    font-size: 0.88em;
+    color: #0084FE;
+    line-height: 150%;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    border: 1px solid #0084FE;
+    padding: 0.44em 1.33em 0.44em 1.33em;
+    cursor: pointer;
+}
+.group-users-select-name-group__button:hover {
+    background-color: #0084FE;
+    color: #FFFFFF;
+}
+/*------Контейнер для блока с формой добавления пользователей---------------------------------------------------------*/
+.group-users-select-name-group__add-users-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.88em;
+    box-shadow: -3px 0 8px rgba(54, 58, 72, 0.1);
+    border-radius: 1.33em;
+    font-size: 1em;
+    background-color: #FFFFFF;
+    padding: 1.77em 1.77em;
+}
+.group-users-select-name-group__input-field {
+    outline: none;
+    font-size: 1em;
+    color: #363B4D;
+    border: 0.5px solid rgba(54, 59, 77, 0.2);
+    border-radius: 0.44em;
+    line-height: 110%;
+    opacity: 90%;
+    padding: 0.88em 1.33em 0.88em 1.33em;
+    height: 7.11em;
+    resize: none;
+    margin-bottom: 1.33em;
+}
+.group-users-select-name-group__input-field::placeholder {
+    color: rgba(54, 59, 77, 0.4);
+}
+.group-users-select-name-group__add-users-form-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 0.88em;
+}
+.add-users-form-buttons__search-base-users-btn {
+    font-size: 0.88em;
+    color: #0084FE;
+    line-height: 150%;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    border: 1px solid #0084FE;
+    padding: 0.66em 1.33em 0.66em 1.33em;
+    cursor: pointer;
+}
+.add-users-form-buttons__search-base-users-btn:hover {
+    background-color: #0084FE;
+    color: #FFFFFF;
+}
+.add-users-form-buttons__save-btn {
+    font-size: 0.88em;
+    color: #0084FE;
+    line-height: 150%;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    border: 1px solid #0084FE;
+    padding: 0.66em 1.33em 0.66em 1.33em;
+    cursor: pointer;
+}
+.add-users-form-buttons__save-btn:hover {
+    background-color: #0084FE;
+    color: #FFFFFF;
+}
+
+/*------Контейнер для блока с пагинацией и сортировкий----------------------------------------------------------------*/
+.group-users-select-name-group__pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: 1.7em;
+}
+/*------Контейнер для блока таблицей----------------------------------------------------------------------------------*/
+.group-users-select-name-group__table-users-select-name-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.7em;
+    box-shadow: -3px 0 8px rgba(54, 58, 72, 0.1);
+    border-radius: 1.33em;
+    font-size: 1em;
+    background-color: #FFFFFF;
+    padding: 1.77em 1.77em;
+}
+.table-users-select-name-group {
+    display: flex;
+    flex-direction: column;
+    border-radius: 1.33em;
+    border: 0.5px solid rgba(54, 59, 77, 0.2);
+ }
+.table-users-select-name-group__table-list-users {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.33em 0 1.33em;;
+    border-top: 0.5px solid rgba(54, 59, 77, 0.2);
+}
+.table-users-select-name-group div:first-child {
+    border-top: none;
+}
+.table-users-select-name-group__column-name {
+    width: 30.16em;
+    line-height: 129%;
+    color: #363B4D;
+    opacity: 90%;
+    min-height: 3.55em;
+    display: flex;
+    align-items: center;
+    border-right: 0.5px solid rgba(54, 59, 77, 0.2);
+    word-break: break-word;
+    white-space: break-spaces;
+    padding-right: 1.77em;
+}
+.table-users-select-name-group__column-e-mail {
+    width: 30.16em;
+    line-height: 129%;
+    color: #363B4D;
+    opacity: 90%;
+    min-height: 3.55em;
+    display: flex;
+    align-items: center;
+    word-break: break-word;
+    white-space: break-spaces;
+    padding-left: 1.77em;
+}
+.table-users-select-name-group__delete-icon-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    border-left: 0.5px solid rgba(54, 59, 77, 0.2);
+    min-height: 3.55em;
+    width: 9.61em;
+    margin-right: 2.38em;
+    padding-left: 1.77em;
+    gap: 0.72em;
+}
+.table-users-select-name-group__delete-btn {
+    color: #FF4970;
+    line-height: 134%;
+    font-size: 0.88em;
+}
+.table-users-select-name-group__delete-btn-mobile {
+    display: none;
+}
+.table-users-select-name-group__icon-delete {
+    width: 0.77em;
+    height: 0.77em ;
+}
+
+/*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
+@media (max-width: 1570px) {
+    .container__group-users-select-name-group {
+        font-size: 16px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 1120px) {
+    .container__group-users-select-name-group {
+        font-size: 12px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 830px) {
+    .container__group-users-select-name-group {
+        font-size: 10px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 600px) {
+    .container__group-users-select-name-group {
+        font-size: 8px;
+        min-height: calc(65vh - 80px);
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 500px) {
+    .container__group-users-select-name-group {
+        margin-bottom: 0;
+    }
+    .group-users-select-name-group__name-org {
+        font-size: 16px;
+    }
+    .group-users-select-name-group__add-users-form {
+        padding: 16px 16px;
+    }
+    .group-users-select-name-group__input-field {
+        font-size: 16px;
+        padding: 13px 16px;
+        height: 110px;
+        margin-bottom: 16px;
+    }
+    .group-users-select-name-group__add-users-form-buttons {
+       flex-direction: column;
+    }
+
+    .add-users-form-buttons__search-base-users-btn {
+        font-size: 16px;
+
+    }
+    .add-users-form-buttons__save-btn {
+        font-size: 16px;
+
+    }
+
+    .table-users-select-name-group__table-list-users {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px 16px;
+    }
+    .group-users-select-name-group__table-users-select-name-group {
+        padding: 0;
+    }
+    .group-users-select-name-group__button {
+        font-size: 16px;
+    }
+    .group-users-select-name-group__pagination {
+        justify-content: flex-start;
+        margin-bottom: 8px;
+    }
+    .table-users-select-name-group__column-name {
+        border: 0;
+        font-size: 16px;
+        width: 100%;
+        padding: 0;
+        min-height: 22px;
+        margin-bottom: 9px;
+    }
+    .table-users-select-name-group__column-e-mail {
+        font-size: 14px;
+        width: 100%;
+        padding: 0;
+        color: rgba(54, 59, 77, 0.4);
+        min-height: 22px;
+        margin-bottom: 16px;
+    }
+    .table-users-select-name-group__delete-icon-button {
+        border: none;
+        align-items: normal;
+        width: 100%;
+        padding: 0;
+    }
+    .table-users-select-name-group__delete-btn {
+        display: none;
+    }
+    .table-users-select-name-group__icon-delete {
+        display: none;
+    }
+    .table-users-select-name-group__delete-btn-mobile {
+        display: initial;
+        font-size: 16px;
+        color: #FF4970;
+        background-color: #FFFFFF;
+        border: 1px solid #FF4970;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 12px 43px 12px 43px;
+    }
+}

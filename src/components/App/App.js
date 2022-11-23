@@ -15,6 +15,8 @@ import GroupUsers from "../GroupUsers/GroupUsers";
 import ListUsers from "../ListUsers/ListUsers";
 import AddNewGroupUsers from "../AddNewGroupUsers/AddNewGroupUsers";
 import Main from "../Main/Main";
+import GroupUsersSelectNameGroup from "../GroupUsersSelectNameGroup/GroupUsersSelectNameGroup";
+import VotesPage from "../VotesPage/VotesPage";
 
 function App() {
 
@@ -169,7 +171,7 @@ function App() {
             if (!(
                 pathname === '/' ||
                 pathname === '/add-org-page' ||
-                pathname === '/organisations' ||
+                pathname === '/organizations' ||
                 pathname === '/profile-user'
             )) {
                 navigate('/');
@@ -237,15 +239,28 @@ function App() {
                             constants={constants}
                         />}
                     />
-                    <Route path={'/group-users'}
+                    <Route exact path={'/group-users'}
                         element={<GroupUsers
                             constants={constants}
+                            authAs={authAs}
                         />}
+                    />
+                    <Route path={'/group-users/selected-name-group'}
+                           element={<GroupUsersSelectNameGroup
+                               constants={constants}
+                               authAs={authAs}
+                           />}
                     />
                     <Route path={'/list-users'}
                         element={<ListUsers
                             constants={constants}
                         />}
+                    />
+                    <Route exact path={'/list-votes'}
+                           element={<VotesPage
+                               constants={constants}
+                               authAs={authAs}
+                           />}
                     />
                 </Routes>
                 {isLoggedIn && (
@@ -253,11 +268,11 @@ function App() {
                         handleLangChange={handleLangChange}
                         constants={constants}
                         changeLanguageBtn={changeLanguageBtn}
+                        authAs={authAs}
                     />
                 )}
             </div>
         </CurrentUserContext.Provider>
     );
 }
-
 export default App;

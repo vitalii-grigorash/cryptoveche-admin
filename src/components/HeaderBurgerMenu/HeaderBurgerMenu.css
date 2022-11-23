@@ -2,14 +2,14 @@
 .burger-menu {
     position: fixed;
     width: 272px;
-    height: 500px;
+    max-height: 700px;
     top: 0;
     left: 0;
     transform: translate(-100%);
 }
 .burger-menu.active {
     transform: scale(1);
-    z-index: 4;
+    z-index: 55;
     opacity: 1;
     pointer-events: all;
     transition: 0.5s;
@@ -19,7 +19,7 @@
     backdrop-filter: blur(0);
     position: absolute;
 }
-/*------Стилизация для контента бургер-меню-----------------------------------------------------------------------------*/
+/*------Стилизация для контента бургер-меню---------------------------------------------------------------------------*/
 .burger-menu__content {
     width: 100%;
     height: 100%;
@@ -39,7 +39,7 @@
     align-items: center;
     width: 100%;
     gap: 133px;
-    padding-bottom: 45px;
+    padding-bottom: 27px;
 }
 .burger-menu__logotype-block span:first-child {
     font-size: 12px;
@@ -59,35 +59,107 @@
     flex-direction: column;
     gap: 24px;
     color: #FFFFFF;
-    padding-bottom: 30px;
+    margin-bottom: 24px;
 }
 .burger-menu__link-page a {
     color: #FFFFFF;
     text-decoration: none;
 }
+
+/*------Навигация(кнопка Пользователи)--------------------------------------------------------------------------------*/
+.burger-menu__users-button {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+.burger-menu__users-button-label-row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 24px;
+    gap: 8px;
+    cursor: pointer;
+}
+.burger-menu__users-button-drop-down-list {
+    display: none;
+}
+.burger-menu__users-button-drop-down-list.active {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+    gap: 16px;
+}
+.burger-menu__users-button-drop-down-list a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+.burger-menu__users-button-row.active {
+    transform: rotate(180deg);
+}
+/*------Навигация(кнопка Голосования)---------------------------------------------------------------------------------*/
+.burger-menu__votes-button {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+.burger-menu__votes-button-label-row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 24px;
+    gap: 8px;
+    cursor: pointer;
+}
+.burger-menu__votes-button-drop-down-list {
+    display: none;
+}
+.burger-menu__votes-button-drop-down-list.active {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+    gap: 16px;
+}
+.burger-menu__votes-button-drop-down-list a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+.burger-menu__votes-button-row.active {
+    transform: rotate(180deg);
+}
+/*------Навигация(кнопка Добавить)------------------------------------------------------------------------------------*/
 .burger-menu__add-button {
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    height: 24px;
 }
 .burger-menu__add-button-label-row {
     display: flex;
     flex-direction: row;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
     gap: 8px;
     cursor: pointer;
 }
-.burger-menu__add-button-org {
+.burger-menu__add-button-drop-down-list {
     display: none;
 }
-.burger-menu__add-button-org.active {
-    display: initial;
+.burger-menu__add-button-drop-down-list.active {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+    gap: 16px;
+}
+.burger-menu__add-button-drop-down-list a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #FFFFFF;
+    cursor: pointer;
 }
 .burger-menu__add-button-row.active {
     transform: rotate(180deg);
 }
-/*------Стилизация для блока с кнопкой увеличить шрифт-----------------------------------------------------------------*/
+/*------Стилизация для блока с кнопкой увеличить шрифт----------------------------------------------------------------*/
 /*.burger-menu__toggle-font {*/
 /*    display: flex;*/
 /*    flex-direction: row;*/
@@ -137,13 +209,12 @@
 /*    transform: translateX(21px);*/
 /*}*/
 
-/*------Стилизация для блока с политикой конф-ти и support--------------------------------------------------------------*/
+/*------Стилизация для блока с политикой конф-ти и support------------------------------------------------------------*/
 .burger-menu__politic-support {
     display: flex;
     flex-direction: column;
     gap: 24px;
-    padding-bottom: 20px;
-    margin: 45px auto 0 0;
+    margin-bottom: 24px;
 }
 .burger-menu__politic-support a {
     color: #FFFFFF;
@@ -154,7 +225,6 @@
     flex-direction: column;
     position: relative;
     gap: 41px;
-    margin: 20px auto 0 0;
 }
 .burger-menu__search-form-logo input {
     width: 100%;
@@ -178,7 +248,7 @@
     line-height: 20px;
     cursor: pointer;
 }
-/*------Адаптивная версия(420px)---------------------------------------------------------------------------------------*/
+/*------Адаптивная версия(420px)--------------------------------------------------------------------------------------*/
 @media (max-width: 500px) {
     .blur {
         width: 100vw;

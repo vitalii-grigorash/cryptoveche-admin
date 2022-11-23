@@ -1,0 +1,102 @@
+/*---------Основной контейнер-----------------------------------------------------------------------------------------*/
+.status-block__current-status {
+    display: flex;
+    flex-direction: column;
+    padding: 0 32px 0 0;
+    gap: 8px;
+    font-size: 12px;
+    border-right: 1px rgba(54, 59, 77, 0.2) solid;
+    justify-content: center;
+    height: 56px;
+}
+.current-status__registration-and-votes {
+    display: flex;
+    border: 1px #0084FE solid;
+    border-radius: 8px;
+    padding: 5px 12px 5px 24px;
+    color: #0084FE;
+}
+.current-status__registration {
+    display: flex;
+    border: 1px #4ED4A9 solid;
+    border-radius: 8px;
+    padding: 5px 12px 5px 24px;
+    color: #4ED4A9;
+}
+.current-status__voiting {
+    display: flex;
+    border: 1px #4569FF solid;
+    border-radius: 8px;
+    padding: 5px 12px 5px 24px;
+    color: #4569FF;
+}
+.current-status__wait-voiting {
+    display: flex;
+    border: 1px #FF8A00 solid;
+    border-radius: 8px;
+    padding: 5px 12px 5px 24px;
+    color: #FF8A00;
+}
+.current-status__ended-voiting {
+    display: flex;
+    border: 1px #FF2957 solid;
+    border-radius: 8px;
+    padding: 5px 12px 5px 24px;
+    color: #FF2957;
+}
+.current-status__quorum_unpresant {
+    display: flex;
+    border: 1px #F9C521 solid;
+    border-radius: 8px;
+    padding: 5px 12px 5px 24px;
+    color: #F9C521;
+}
+
+.current-status__types-vote {
+    border: 1px rgba(54, 59, 77, 0.4) solid;
+    border-radius: 8px;
+    padding: 5px 20px 10px 20px;
+    max-height: 24px;
+    max-width: 90px;
+    opacity: 50%;
+}
+
+/*---------Адаптивная версия-----------------------------------------------------------------------------------------*/
+@media (max-width: 1050px) {
+    .status-block__current-status {
+        padding-right: 12px;
+        font-size: 10px;
+    }
+}
+@media (max-width: 830px) {
+    .status-block__current-status {
+        padding-right: 6px;
+        gap: 5px;
+        height: 37px;
+    }
+    .current-status__types-vote {
+        gap: 4px;
+        padding-right: 5px;
+    }
+    .current-status__registration-in-progress, .current-status__types-vote {
+        padding: 5px 12px 5px 20px;
+        font-size: 8px;
+    }
+
+}
+/*------Адаптивная версия(600px)--------------------------------------------------------------------------------------*/
+@media (max-width: 640px) {
+    .status-block__current-status {
+        flex-direction: row;
+        justify-content: flex-start;
+        border: none;
+        gap: 10px;
+        font-size: 12px;
+        padding: 7px 0 6px 2px;
+        margin-bottom: 6px;
+    }
+    .current-status__registration-in-progress, .current-status__types-vote {
+        font-size: 12px;
+    }
+
+}
