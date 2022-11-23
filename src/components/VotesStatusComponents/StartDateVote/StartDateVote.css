@@ -1,0 +1,42 @@
+.status-block__start-vote {
+    display: flex;
+    flex-direction: column;
+    padding: 0 32px 0 32px;
+    font-size: 14px;
+    gap: 16px;
+    justify-content: center;
+    /*border-left: 1px rgba(54, 59, 77, 0.4) solid;*/
+}
+.status-block__start-vote h4 {
+    opacity: 50%;
+}
+/*---------Адаптивная версия-----------------------------------------------------------------------------------------*/
+
+@media (max-width: 1050px) {
+    .status-block__start-vote {
+        padding: 0 10px 0 10px;
+        font-size: 11px;
+    }
+    .status-block__start-vote h5, .vote-form__status-block-start-vote h5 {
+        font-size: 11px;
+    }
+}
+@media (max-width: 890px) {
+    .status-block__start-vote {
+        padding: 0 6px 0 6px;
+        font-size: 11px;
+        gap: 12px;
+    }
+}
+
+
+@media (max-width: 420px) {
+    .status-block__start-vote {
+        padding: 0 0 0 0;
+        /*border-left: 1px rgba(54, 59, 77, 0.2) solid;*/
+    }
+    .status-block__start-vote h4 {
+        font-size: 14px;
+        white-space: nowrap;
+    }
+}

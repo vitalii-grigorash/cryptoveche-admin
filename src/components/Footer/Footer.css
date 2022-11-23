@@ -53,41 +53,77 @@
     opacity: 80%;
     margin-bottom: 2.2em;
 }
-.footer__map-site p {
+.map-site__main,
+.map-site__org,
+.map-site__myprofile {
+    margin-bottom: 1.7em;
+}
+
+.footer__map-site a {
     line-height: 110%;
     font-size: 1em;
     color: #4A4F5F;
     opacity: 70%;
+    text-decoration: none;
 }
-.footer__map-site p:nth-child(2) {
-    margin-bottom: 1.7em;
-    cursor: pointer;
-}
-.footer__map-site p:nth-child(5) {
-    margin-bottom: 1.7em;
-    cursor: pointer;
+.votes-drop-down-list__list {
+    margin: 0;
 }
 .map-site__votes {
     display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+.map-site__votes-icon-block {
+    display: flex;
     flex-direction: row;
     margin-bottom: 1.7em;
-    cursor: pointer;
+}
+.map-site__votes-drop-down-list {
+    display: none;
+}
+.map-site__votes-drop-down-list.active {
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    gap: 1em;
+    margin-bottom: 1.7em;
 }
 .map-site__votes-row {
     margin-left: 0.4em;
     width: 0.5em;
     height: 1em;
 }
+.map-site__votes-row.active {
+    transform: rotate(180deg);
+}
 .map-site__users {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+.map-site__users-icon-block {
     display: flex;
     flex-direction: row;
     margin-bottom: 1.7em;
-    cursor: pointer;
+}
+.map-site__users-drop-down-list {
+    display: none;
+}
+.map-site__users-drop-down-list.active {
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    gap: 1em;
+    margin-bottom: 1.7em;
 }
 .map-site__users-row {
     margin-left: 0.4em;
     width: 0.5em;
     height: 1em;
+}
+.map-site__users-row.active {
+    transform: rotate(180deg);
 }
 /*------Контейнер для блока с настройками-----------------------------------------------------------------------------*/
 .footer__settings {
@@ -274,9 +310,37 @@
     .footer__logotype p {
         font-size: 15px;
     }
-    .footer__map-site p:nth-child(2) {
+
+    .footer__map-site a:nth-child(2) {
         font-size: 15px;
         line-height: 121%;
+    }
+    .footer__map-site a:nth-child(1) {
+        font-size: 15px;
+        line-height: 121%;
+    }
+    .footer__map-site a:nth-child(5) {
+        font-size: 15px;
+        line-height: 121%;
+        margin-bottom: 16px;
+    }
+    .footer__map-site a:nth-child(6) {
+        font-size: 15px;
+        line-height: 121%;
+    }
+    .map-site__users-icon-block,
+    .map-site__votes-icon-block {
+        align-items: center;
+    }
+    .map-site__main,
+    .map-site__org,
+    .map-site__myprofile {
+        margin-bottom: 16px;
+    }
+    .map-site__users-row,
+    .map-site__votes-row {
+        width: 8px;
+        height: 8px;
     }
     .settings__select-lang {
         font-size: 15px;

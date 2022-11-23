@@ -35,7 +35,7 @@ const ProfileUser = (props) => {
         }
     }
 
-    const [showListGroup, setShowListGroup] = useState(false)
+    const [showListGroup, setShowListGroup] = useState(null)
 
     const [changeTypePass, dispatchPass] = useReducer(reducer, { changeTypePass: false });
     const [changeTypeNewPass, dispatchNewPass] = useReducer(reducer, { changeTypeNewPass: false });
@@ -69,10 +69,10 @@ const ProfileUser = (props) => {
         }]
 
     function showList(index) {
-        if (showListGroup === false) {
-            setShowListGroup(true)
+        if (showListGroup !== index) {
+            setShowListGroup(index)
         } else {
-            setShowListGroup(false)
+            setShowListGroup(null)
         }
     }
 
@@ -174,11 +174,11 @@ const ProfileUser = (props) => {
                                     </div>
                                     <div onClick={() => showList(index)} className="org-groups-list__select-row-list">
                                         <p className="select-row-list__label">{constants.PROFILE_USER.PROFILE_USER_ACTIVITY_IN_USER_GROUPS}</p>
-                                        <img className={showListGroup ? "select-row-list__icon-row active" : "select-row-list__icon-row"} alt={'иконка стрелочка'} src={iconRowList} />
+                                        <img className={showListGroup === index ? "select-row-list__icon-row active" : "select-row-list__icon-row"} alt={'иконка стрелочка'} src={iconRowList} />
                                     </div>
-                                    <div className={showListGroup ? "org-groups-list__list-activity-user active" : "org-groups-list__list-activity-user"}>
+                                    <div className={showListGroup === index ? "org-groups-list__list-activity-user active" : "org-groups-list__list-activity-user"}>
                                         {
-                                            testObj.map(el => el.list.flatMap((item, i) =>
+                                            testObj.map(el => el.list.map((item, i) =>
                                                 <p key={i} className="list-activity-user__name-group">{item.name}</p>))
                                         }
                                         <p className="list-activity-users__show-all-btn">{constants.PROFILE_USER.PROFILE_USER_SHOW_ALL}</p>

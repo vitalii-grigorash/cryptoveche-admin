@@ -1,0 +1,6 @@
+.start-vote__data {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #363B4D;
+}

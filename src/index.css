@@ -15,4 +15,17 @@
 @import url(./components/GroupUsers/GroupUsers.css);
 @import url(./components/ListUsers/ListUsers.css);
 @import url(./components/AddNewGroupUsers/AddNewGroupUsers.css);
-
+@import url(./components/GroupUsersDeleteModalGroup/GroupUsersDeleteModalGroup.css);
+@import url(./components/GroupUsersSelectNameGroup/GroupUsersSelectNameGroup.css);
+@import url(./components/VotesPage/VotesPage.css);
+@import url(./components/VotesPageFilterSortButtons/VotesPageFilterSortButtons.css);
+@import url(./components/VotesPageFilterSortButtons/VotesPageFiltersModal/VotesPageFiltersModal.css);
+@import url(./components/VotesPageFilterSortButtons/VotesPageSortingModal/VotesPageSortingModal.css);
+@import url(./components/VotesPageFilterSortButtons/VotesPageFiltersModal/FiltersModalCheckBox/FiltersModalCheckBox.css);
+@import url(./components/MyVotesBlockForm/MyVotesBlock.css);
+@import url(./components/MyVotesBlockForm/VotesPageActiveVotes.css);
+@import url(./components/VotesStatusComponents/CurrentStatusVote/CurrentStatusVote.css);
+@import url(./components/VotesStatusComponents/MaterialsVoteQuestion/MaterialsVoteQuestion.css);
+@import url(./components/VotesStatusComponents/MaterialsVoteQuestion/MaterialsVoteQuestionModal/MaterialsVoteQuestionModal.css);
+@import url(./components/VotesStatusComponents/StartDateVote/StartDateVote.css);
+@import url(./components/VotesStatusComponents/StartDateVote/DataTimeVote.css);
