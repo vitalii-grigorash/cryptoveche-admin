@@ -235,8 +235,5 @@ export const constants = {
         VOTES_PAGE_ALT_ICON_TIME: "иконка часы",
         VOTES_PAGE_ALT_ROW_OPEN: "Стрелочка открытия меню",
         VOTES_PAGE_MATERIALS_VOTE: "Материалы голосования"
-    },
-    GENERAL: {
-        ALT_ICON: "Иконка"
     }
 }
