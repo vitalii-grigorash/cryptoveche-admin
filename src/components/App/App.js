@@ -33,6 +33,47 @@ function App() {
     const [authAs, setAuthAs] = useState('');
     const { pathname } = useLocation();
 
+    console.log(authAs);
+
+    function requestHelper(request, body = {}) {
+        return new Promise((resolve, reject) => {
+            if (localStorage.getItem('jwt')) {
+                const jwt = localStorage.getItem('jwt');
+                const jwtTokens = JSON.parse(jwt);
+                request(jwtTokens.access_token, body)
+                    .then((res) => {
+                        if (res.status === 'failure') {
+                            UserAuth.getNewTokens(jwtTokens.refresh_token)
+                                .then((newTokens) => {
+                                    if (newTokens.status === 'failure') {
+                                        logout();
+                                    } else {
+                                        localStorage.setItem('jwt', JSON.stringify(newTokens));
+                                        request(newTokens.access_token, body)
+                                            .then((res) => {
+                                                resolve(res);
+                                            })
+                                            .catch((err) => {
+                                                throw new Error(err.message);
+                                            })
+                                    }
+                                })
+                                .catch((err) => {
+                                    throw new Error(err.message);
+                                })
+                        } else {
+                            resolve(res);
+                        }
+                    })
+                    .catch((err) => {
+                        throw new Error(err.message);
+                    })
+            } else {
+                logout();
+            }
+        })
+    }
+
     function handleLangChange(value) {
         const lang = {
             lang: value
@@ -165,7 +206,6 @@ function App() {
             const user = JSON.parse(userData);
             addCurrentUser(user);
             createUserName(user);
-            console.log(user);
             setLoggedIn(true);
             setAuthAs(user.authAs);
             if (!(
@@ -194,7 +234,6 @@ function App() {
                         constants={constants}
                         handleLogout={logout}
                         userName={userName}
-                        authAs={authAs}
                     />
                 )}
                 <Routes>
@@ -222,11 +261,13 @@ function App() {
                     <Route exact path={'/organizations'}
                         element={<OrganizationsList
                             constants={constants}
+                            requestHelper={requestHelper}
                         />}
                     />
                     <Route path={'/add-org-page'}
                         element={<AddNewOrganization
                             constants={constants}
+                            requestHelper={requestHelper}
                         />}
                     />
                     <Route path={'/add-new-group'}

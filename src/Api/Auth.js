@@ -2,6 +2,29 @@ import { config } from '../config';
 
 const API_URL = config.java_api_url;
 
+export const getNewTokens = (refreshToken) => {
+    return fetch(`${API_URL}/refresh_tokens`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${refreshToken}`,
+        },
+    })
+        .then(res => res.ok ? res : Promise.reject(res))
+        .then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+        })
+        .then((data) => {
+            localStorage.removeItem('jwt');
+            return data;
+        })
+        .catch((err) => {
+            throw new Error(err.message);
+        });
+}
+
 export const authorize = (email, password, authAs) => {
     return fetch(`${API_URL}/auth`, {
         method: 'POST',

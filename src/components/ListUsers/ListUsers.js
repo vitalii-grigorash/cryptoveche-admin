@@ -1,7 +1,6 @@
 import React from "react";
 import iconEye from "../../img/ListUsersIconEye.svg";
 import GeneralTitleAllPages from "../GeneralTitleAllPages/GeneralTitleAllPages";
-import SortingBlock from "../SortingBlock/SortingBlock";
 import PaginationBlock from "../PaginationBlock/PaginationBlock";
 import orgSearchIconMobile from "../../img/PaginationSearchIcon.svg";
 
@@ -34,17 +33,15 @@ const ListUsers = (props) => {
                 secondLetter={constants.GENERAL_TITLE.GENERAL_TITLE_SECONDLETTER_LIST_USERS}
             />
             <div className="list-users__sorting-pagination">
-                <SortingBlock
-                    constants={constants}/>
                 <div className="list-users__pagination">
                     <PaginationBlock
-                        constants={constants}/>
+                        constants={constants} />
                 </div>
             </div>
             <div className="list-users__table-list-users">
                 <div className="list-users__mobile-search-input">
-                    <input className="list-users__mobile-input" placeholder="Поиск по списку"/>
-                    <img className="list-users__mobile-icon" alt={orgSearchIconMobile} src={orgSearchIconMobile}/>
+                    <input className="list-users__mobile-input" placeholder="Поиск по списку" />
+                    <img className="list-users__mobile-icon" alt={orgSearchIconMobile} src={orgSearchIconMobile} />
                 </div>
                 <div className="table-list-users-header">
                     <p className="table-list-users-header__e-mail">{constants.LIST_USERS.LIST_USERS_TABLE_EMAIL}</p>
@@ -58,7 +55,7 @@ const ListUsers = (props) => {
                                 <p className="list-users-row__e-mail">{el.email}</p>
                                 <p className="list-users-row__username">{el.name}</p>
                                 <div className="list-users-row-show-profile">
-                                    <img className="list-users-row-show-profile__icon" src={iconEye} alt={iconEye}/>
+                                    <img className="list-users-row-show-profile__icon" src={iconEye} alt={iconEye} />
                                     <p className="list-users-row-show-profile__show">{constants.LIST_USERS.LIST_USERS_WATCH_PROFILE}</p>
                                 </div>
                             </div>
