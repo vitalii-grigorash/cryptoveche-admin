@@ -61,11 +61,13 @@
 .votes-page-block__main-content-show-more-button {
     color: #0084FE;
     line-height: 124%;
-    font-size: 16px;
+    font-size: 1em;
     font-weight: 300;
     width: 100%;
-    padding-top: 24px;
     cursor: pointer;
+}
+.votes-page-block__main-content-show-more-button.active {
+    display: none;
 }
 .votes-page-block__empty-state-message.active {
     display: none;
@@ -120,8 +122,17 @@
     ._active-vote-bnt {
         display: none;
     }
+    .votes-page__pagination-filter-sort-block {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 14px;
+    }
 }
-@media (max-width: 420px) {
+@media (max-width: 500px) {
+    .my-votes-block__buttons-block {
+        flex-direction: column;
+    }
     .navigation-menu__select-buttons {
         padding-bottom: 14px;
     }

@@ -20,7 +20,12 @@
 
 .status-and-start-reg-start-vote__add-border-left {
     border-left: 1px rgba(54, 59, 77, 0.2) solid;
-
+    padding-left: 32px;
+    height: 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+   justify-content: center;
 }
 .reg-vote-date__border-right-mobile {
     display: flex;
@@ -56,12 +61,17 @@
         text-align: left;
     }
 }
+@media (max-width: 1050px) {
+    .status-and-start-reg-start-vote__add-border-left {
+        padding-left: 10px;
+    }
+}
 @media (max-width: 890px) {
     .status-and-start-reg-start-vote {
         height: 48px;
     }
 }
-@media (max-width: 600px) {
+@media (max-width: 640px) {
     .status-and-start-reg-start-vote {
         display: grid;
         grid-template-columns: 1fr;
@@ -71,13 +81,14 @@
     }
     .status-and-start-reg-start-vote__add-border-left {
         border: none;
+        padding: 0;
     }
     .status-and-start-reg-start-vote__reg-vote-date {
         gap: 8px;
     }
     .reg-vote-date__border-right-mobile {
-        border-right: 0.5px solid rgba(54, 59, 77, 0.4);
-        padding-right: 8px;
+        border-left: 0.5px solid rgba(54, 59, 77, 0.4);
+        padding-left: 8px;
     }
 }
 @media (max-width: 420px) {

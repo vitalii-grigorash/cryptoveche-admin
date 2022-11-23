@@ -228,5 +228,27 @@ export const constants = {
         FILTER_SORT_BLOCK_ALT_RED_CIRCLE: "красная точка",
         FILTER_SORT_BLOCK_ALT_ICON_FILTER: "иконка фильтр",
         FILTER_SORT_BLOCK_ALT_ICON_SORT: "иконка сортировка"
+    },
+    VOTES_PAGE: {
+        VOTES_PAGE_SWITCH_ACTIVE_BTN: "Активные",
+        VOTES_PAGE_SWITCH_ACTIVE_BTN_MOBILE: "голосования",
+        VOTES_PAGE_SWITCH_ARCHIVE_BTN: "Архивные",
+        VOTES_PAGE_SWITCH_ARCHIVE_BTN_MOBILE: "голосования",
+        VOTES_PAGE_SHOW_MORE_BTN: "ПОКАЗАТЬ ЕЩЁ",
+        VOTES_PAGE_SHOW_INFO_DO_NOT_VOTE: "У вас пока нет доступных голосований!",
+        VOTES_PAGE_SHOW_VOTE_BTN: "ПОСМОТРЕТЬ",
+        VOTES_PAGE_EDIT_VOTE_BTN: "РЕДАКТИРОВАТЬ",
+        VOTES_PAGE_DELETE_VOTE_BNT: "УДАЛИТЬ",
+        VOTES_PAGE_STATUS_VOTE_WAIT_REG: 'Ожидание регистрации',
+        VOTES_PAGE_STATUS_VOTE_PROGRESS_REG: 'Идет регистрация',
+        VOTES_PAGE_STATUS_VOTE_WAIT_VOTE: 'Ожидание голосования',
+        VOTES_PAGE_STATUS_VOTE_PROGRESS_VOTE: 'Идет голосование',
+        VOTES_PAGE_STATUS_VOTE_REG_VOTE: 'Регистрация и голосование',
+        VOTES_PAGE_STATUS_VOTE_VOTE_END: 'Голосование завершено',
+        VOTES_PAGE_STATUS_VOTE_QUORUM_FAILURE: 'Кворум не достигнут',
+        VOTES_PAGE_ALT_ICON_CALENDAR: "иконка календарь",
+        VOTES_PAGE_ALT_ICON_TIME: "иконка часы",
+        VOTES_PAGE_ALT_ROW_OPEN: "Стрелочка открытия меню",
+        VOTES_PAGE_MATERIALS_VOTE: "Материалы голосования"
     }
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import './CurrentStatusVote.css';
 
-const CurrentStatusVote = ({ regStatus, voteStatus }) => {
+const CurrentStatusVote = ({ regStatus, voteStatus, constants }) => {
 
     const styleStatusObj = {
         'Ожидание регистрации': 'current-status__wait-voiting',
@@ -32,5 +32,4 @@ const CurrentStatusVote = ({ regStatus, voteStatus }) => {
         </div>
     )
 }
-
 export default CurrentStatusVote;

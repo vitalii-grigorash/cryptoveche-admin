@@ -25,3 +25,8 @@
 @import url(./components/VotesPageFilterSortButtons/VotesPageFiltersModal/FiltersModalCheckBox/FiltersModalCheckBox.css);
 @import url(./components/MyVotesBlockForm/MyVotesBlock.css);
 @import url(./components/MyVotesBlockForm/VotesPageActiveVotes.css);
+@import url(./components/VotesStatusComponents/CurrentStatusVote/CurrentStatusVote.css);
+@import url(./components/VotesStatusComponents/MaterialsVoteQuestion/MaterialsVoteQuestion.css);
+@import url(./components/VotesStatusComponents/MaterialsVoteQuestion/MaterialsVoteQuestionModal/MaterialsVoteQuestionModal.css);
+@import url(./components/VotesStatusComponents/StartDateVote/StartDateVote.css);
+@import url(./components/VotesStatusComponents/StartDateVote/DataTimeVote.css);

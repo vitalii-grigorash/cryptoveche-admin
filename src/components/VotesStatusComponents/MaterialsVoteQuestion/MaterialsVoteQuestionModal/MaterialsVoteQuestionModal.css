@@ -1,7 +1,7 @@
 /*------Основной стиль для модального окна----------------------------------------------------------------------------*/
 .materials-vote-question-modal__wrapper {
     position: absolute;
-    max-width: 501px;
+    width: 31vw;
     max-height: 176px;
     background: rgba(54, 59, 77, 0.1);
     left: 0;
@@ -15,6 +15,7 @@
     opacity: 1;
     transform: scale(1);
     pointer-events: all;
+    width: 31vw;
 }
 /*------Стилизация для контента модального окна------------------------------------------------------------------------*/
 .materials-vote-question-modal__content {
@@ -96,7 +97,8 @@
 }
 @media (max-width: 420px) {
     .materials-vote-question-modal__wrapper.active {
-        left: -25px;
+        left: 0;
+        width: 85vw;
     }
     .materials-vote-question-modal__document-icons span  {
         font-size: 12px;

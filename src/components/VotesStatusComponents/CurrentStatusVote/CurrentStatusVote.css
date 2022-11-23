@@ -85,7 +85,7 @@
 
 }
 /*------Адаптивная версия(600px)--------------------------------------------------------------------------------------*/
-@media (max-width: 600px) {
+@media (max-width: 640px) {
     .status-block__current-status {
         flex-direction: row;
         justify-content: flex-start;

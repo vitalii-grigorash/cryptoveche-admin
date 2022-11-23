@@ -3,6 +3,7 @@ import './MaterialsVoteQuestionModal.css';
 import MaterialsVoteQuestionModalDocuments
     from "./MaterialsVoteQuestionModalDocuments/MaterialsVoteQuestionModalDocuments";
 import MaterialsVoteQuestionModalLinks from "./MaterialsVoteQuestionModalLinks/MaterialsVoteQuestionModalLinks";
+import {useOnClickOutsideModal} from "../../../../utils/CustomHooks/UseOutsideModal/UseOutsideModal";
 
 const MaterialsVoteQuestionModal = React.memo((props) => {
 
@@ -36,6 +37,8 @@ const MaterialsVoteQuestionModal = React.memo((props) => {
     //     setTypeLink(filteredCurrentMaterialsQuestionDocument);
     // }
 
+    useOnClickOutsideModal(active, () => setActive(false))
+
     useEffect(() => {
         if(currentMaterialsVote !== undefined){
             const filteredCurrentMaterialsVoteDocument = currentMaterialsVote.materials.filter(elem => elem.type === 'doc');
@@ -55,23 +58,6 @@ const MaterialsVoteQuestionModal = React.memo((props) => {
         }
         return () => setTypeDocument([]) || setTypeLink([])
     }, [currentMaterialsQuestion]);
-
-    useOnClickOutsideMaterialsVoteModal(active, () => setActive(false));
-
-    function useOnClickOutsideMaterialsVoteModal(active, handler) {
-        useEffect(() => {
-            const listener = (e) => {
-                if (!active) {
-                    return;
-                }
-                handler(e);
-            };
-            document.addEventListener('click', listener);
-            return function () {
-                document.removeEventListener('click', listener);
-            };
-        }, [active, handler])
-    }
 
     return (
         <div className={active ? 'materials-vote-question-modal__wrapper active' : 'materials-vote-question-modal__wrapper'}>
