@@ -1,10 +1,6 @@
 import React from "react";
 
-function Main(props) {
-
-    const {
-        constants
-    } = props;
+function Main() {
 
     return (
         <div className="main _container">

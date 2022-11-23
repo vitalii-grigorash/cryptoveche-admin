@@ -1,17 +1,16 @@
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import changeRowLeft from '../../img/PaginationChangePageRowIconLeft.svg';
 import changeRowRight from '../../img/PaginationChangePageRowIconRight.svg';
 import paginationSeacrhIcon from '../../img/PaginationSearchIcon.svg';
 
-
 const PaginationBlock = (props) => {
+
     const {
         sortList,
-        eventsSearchActive,
-        eventsSearchArchive,
-        eventsSearchInput,
-        btnActiveVotes,
-        btnArchiveVotes,
+        search,
+        searchInput,
+        onChoiceClick,
+        selectedResultsShow,
         pageCount,
         showPrevResults,
         showNextResults,
@@ -20,32 +19,24 @@ const PaginationBlock = (props) => {
 
     const [isOptionsActive, setOptionsActive] = useState(false);
     const [allPages, setAllPages] = useState(0);
-    const [selectedResultsShow, setSelectedResultsShow] = useState(5);
 
-    // useEffect(() => {
-    //     const pages = sortList.length / selectedResultsShow
-    //     setAllPages(Math.ceil(pages));
-    // }, [sortList.length, selectedResultsShow]);
+    useEffect(() => {
+        const pages = sortList.length / selectedResultsShow
+        if (Math.ceil(pages) === 0) {
+            setAllPages(1);
+        } else {
+            setAllPages(Math.ceil(pages));
+        }
+    }, [sortList.length, selectedResultsShow]);
 
-    // useEffect(() => {
-    //         if (btnActiveVotes) {
-    //             eventsSearchInput(eventsSearchActive.value);
-    //         } else if (btnArchiveVotes) {
-    //             eventsSearchInput(eventsSearchArchive.value);
-    //         }
-    //     },
-    //     [
-    //         eventsSearchActive.value,
-    //         eventsSearchArchive.value,
-    //         btnActiveVotes,
-    //         btnArchiveVotes,
-    //         eventsSearchInput
-    //     ]
-    // );
-
-    function onChoiceClick(value) {
-            setSelectedResultsShow(value);
-    }
+    useEffect(() => {
+        searchInput(search.value);
+    },
+        [
+            search.value,
+            searchInput
+        ]
+    );
 
     function handleShowOptionsContainer() {
         if (isOptionsActive) {
@@ -83,35 +74,25 @@ const PaginationBlock = (props) => {
                 )}
             </div>
             <div className='pagination-search-block__change-page'>
-                <span className="change-page__counter-page">1 {constants.PAGINATION.PAGINATION_PAGE_FROM_PAGE} 1</span>
+                <span className="change-page__counter-page">{pageCount} {constants.PAGINATION.PAGINATION_PAGE_FROM_PAGE} {allPages}</span>
                 <span className="change-page__rows">
                     <img alt='стрелка переключатель страниц' src={changeRowLeft} onClick={showPrevResults} className="change-page__rows-left" />
-                    <img alt='стрелка переключатель страниц' src={changeRowRight} onClick={showNextResults} className="change-page__rows-right"/>
+                    <img alt='стрелка переключатель страниц' src={changeRowRight} onClick={showNextResults} className="change-page__rows-right" />
                 </span>
             </div>
             <div className='pagination-search-block__search-table'>
-                <img className='search-table__search-table-icon' alt='иконка поиска' src={paginationSeacrhIcon}/>
-                {btnActiveVotes ? (
-                    <input
-                        type="text"
-                        name="searchInput"
-                        placeholder={constants.PAGINATION.PAGINATION_SEARCH}
-                        // value={eventsSearchActive.value}
-                        // onChange={eventsSearchActive.onChange}
-                    />
-                ) : (
-                    <input
-                        type="text"
-                        name="searchInput"
-                        placeholder={constants.PAGINATION.PAGINATION_SEARCH}
-                        // value={eventsSearchArchive.value}
-                        // onChange={eventsSearchArchive.onChange}
-                    />
-                )}
+                <img className='search-table__search-table-icon' alt='иконка поиска' src={paginationSeacrhIcon} />
+                <input
+                    type='text'
+                    name='searchInput'
+                    className='pagination-search-block__search-table-input'
+                    placeholder={constants.PAGINATION.PAGINATION_SEARCH}
+                    value={search.value}
+                    onChange={search.onChange}
+                />
             </div>
         </div>
     )
 }
+
 export default PaginationBlock;
-
-

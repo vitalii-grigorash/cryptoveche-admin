@@ -111,12 +111,8 @@
     color: #363B4D;
     opacity: 90%;
 }
-.mail-addresses-users__label-rule {
-    opacity: 40%;
-    line-height: 120%;
-    font-size: 0.88em;
-}
 .mail-addresses-users__input-field {
+    font-family: 'Inter';
     outline: none;
     font-size: 1em;
     color: #363B4D;
@@ -153,14 +149,65 @@
     display: flex;
     flex-direction: column;
     gap: 0.88em;
-    margin-bottom: 1.77em;
-
+    margin: 0 auto 1.77em 0;
 }
 .download-file-load-button__label {
     font-size: 1em;
     line-height: 133%;
     color: #363B4D;
     opacity: 90%;
+}
+.add-new-organization__excel-add-container {
+    display: flex;
+    position: relative;
+    margin: 0 auto 0 0;
+}
+.add-new-organization__excel-add-input {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+}
+.add-new-organization__excel-add-input-container {
+    display: flex;
+    cursor: pointer;
+    margin: 0 24px 0 0;
+}
+.add-new-organization__excel-add-input-file-name-container {
+    display: flex;
+    width: 580px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 0.5px solid rgba(54, 59, 77, 0.6);
+    border-right: 0;
+    border-radius: 8px 0px 0px 8px;
+}
+.add-new-organization__excel-add-input-file-name-text {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: rgba(54, 59, 77, 0.4);
+    opacity: 0.9;
+    margin: auto auto auto 24px;
+}
+.add-new-organization__excel-add-input-file-name-text_selected {
+    color: rgba(54, 59, 77, 0.9);
+}
+.add-new-organization__excel-add-input-button {
+    display: flex;
+    width: 129px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 0.5px solid #0084FE;
+    border-radius: 0px 8px 8px 0px;
+}
+.add-new-organization__excel-add-input-button-text {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #0084FE;
+    opacity: 0.9;
+    margin: auto;
 }
 .download-file-load-button__field-file-load-button {
     display: flex;
@@ -193,35 +240,6 @@
     line-height: 200%;
     font-size: 0.66em;
 }
-input[type=file] {
-    width: 60vw;
-    color: #363B4D;
-    opacity: 90%;
-    padding: 0.66em 1.33em 0.66em 1.33em;
-    background: #FFFFFF;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-    border: 0.5px solid rgba(54, 59, 77, 0.2);
-    height: 2.66em;
-    font-size: 1em;
-    cursor: pointer;
-}
-input[type=file]::file-selector-button {
-    margin-right: 20px;
-    border: none;
-    background: #0084FE;
-    padding: 10px 20px;
-    border-radius: 10px;
-    color: #fff;
-    cursor: pointer;
-    transition: background .2s ease-in-out;
-    position: absolute;
-    display: none;
-}
-input[type=file]::file-selector-button:hover {
-    background: #0d45a5;
-}
-
 /*------Контейнер для верхней пагинации-------------------------------------------------------------------------------*/
 .add-new-organization__top-pagination {
     margin-bottom: 0.88em;
@@ -235,21 +253,29 @@ input[type=file]::file-selector-button:hover {
     border: 0.5px solid rgba(54, 59, 77, 0.2);
     margin-bottom: 0.88em;
 }
-.table-list-users__icon-lock {
-    display: none;
-}
-.table-list-users__icon-lock.active {
-    display: initial;
-}
-.table-list-users__show-more-mobile {
-    display: none;
-}
 .table-list-users {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 0 1.33em 0 1.33em;;
+    padding: 0 1.33em;
     border-top: 0.5px solid rgba(54, 59, 77, 0.2);
+}
+.table-list-users__no-users-container {
+    display: flex;
+    border-radius: 8px;
+    border: 0.5px solid rgba(54, 59, 77, 0.2);
+    margin-bottom: 0.88em;
+    width: 100%;
+    height: 48px;
+}
+.table-list-users__no-users {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(54, 59, 77, 0.9);
+    opacity: 0.9;
+    margin: auto;
 }
 .add-new-organization__table-list-users div:first-child {
     border-top: none;
@@ -352,16 +378,12 @@ input[type=file]::file-selector-button:hover {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-
 .table-list-users__delete-icon-button {
-    width: 9.61em;
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 0.72em;
-    min-height: 3.55em;
-    margin: 0 auto;
+    margin: auto;
     cursor: pointer;
 }
 .delete-icon-button__delete-btn {
@@ -372,9 +394,6 @@ input[type=file]::file-selector-button:hover {
 .delete-icon-button__icon-delete {
     width: 0.77em;
     height: 0.77em ;
-}
-.delete-icon-button__block-unblock-btn {
-    display: none;
 }
 .delete-icon-button__delete-btn-mobile {
     display: none;
@@ -412,15 +431,12 @@ input[type=file]::file-selector-button:hover {
     color: #363B4D;
     opacity: 40%;
 }
-.e-mail-support__red-star {
-    color: #FF4970;
-}
 /*------Контейнер инпута с примечаниями-------------------------------------------------------------------------------*/
 .add-new-organization__note-input {
     display: flex;
     flex-direction: column;
     gap: 0.88em;
-    margin-bottom: 1.77em;
+    margin-bottom: 10px;
 }
 .note-input__note-label {
     line-height: 110%;
@@ -429,6 +445,7 @@ input[type=file]::file-selector-button:hover {
     opacity: 90%;
 }
 .note-input__field {
+    font-family: 'Inter';
     line-height: 110%;
     height: 7.11em;
     outline: none;
@@ -444,13 +461,7 @@ input[type=file]::file-selector-button:hover {
     color: #363B4D;
     opacity: 40%;
 }
-.note-input__red-star {
-    color: #FF4970;
-}
 /*------Контейнер для кнопки сохранить--------------------------------------------------------------------------------*/
-.add-new-organization__save-button {
-    display: flex;
-}
 .save-button__add-new-org-save-btn {
     border-radius: 4px;
     background-color: #0084FE;
@@ -461,11 +472,21 @@ input[type=file]::file-selector-button:hover {
     font-weight: 500;
     cursor: pointer;
     font-size: 1em;
+    margin: 10px auto 0 0;
 }
 .save-button__add-new-org-save-btn:hover {
     background-color: #FFFFFF;
     color: #0084FE;
     border: 1px solid #0084FE;
+}
+.add-new-organization__error-message {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #FF4970;
+    opacity: 0.9;
+    margin: 0 auto 0 0;
 }
 /*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
 @media (max-width: 1570px) {
@@ -473,11 +494,45 @@ input[type=file]::file-selector-button:hover {
         font-size: 16px;
         min-height: calc(65vh - 80px);
     }
+    .add-new-organization__excel-add-input-file-name-container {
+        width: 498px;
+    }
 }
 @media (max-width: 1120px) {
     .container__add-new-organization  {
         font-size: 12px;
         min-height: calc(65vh - 80px);
+    }
+    .add-new-organization__excel-add-input-container {
+        margin: 0 14px 0 0;
+    }
+    .add-new-organization__excel-add-input-file-name-container {
+        width: 350px;
+        height: 35px;
+    }
+    .add-new-organization__excel-add-input-file-name-text {
+        font-size: 14px;
+        line-height: 18px;
+        margin: auto auto auto 18px;
+    }
+    .add-new-organization__excel-add-input-button {
+        width: 120px;
+        height: 35px;
+    }
+    .add-new-organization__excel-add-input-button-text {
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .table-list-users__no-users-container {
+        height: 30px;
+    }
+    .table-list-users__no-users {
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .add-new-organization__error-message {
+        font-size: 12px;
+        line-height: 18px;
     }
 }
 @media (max-width: 830px) {
@@ -485,11 +540,52 @@ input[type=file]::file-selector-button:hover {
         font-size: 10px;
         min-height: calc(65vh - 80px);
     }
+    .add-new-organization__excel-add-input-container {
+        margin: 0 8px 0 0;
+    }
+    .add-new-organization__excel-add-input-file-name-container {
+        width: 294px;
+        height: 30px;
+    }
+    .add-new-organization__excel-add-input-file-name-text {
+        font-size: 12px;
+        line-height: 16px;
+        margin: auto auto auto 16px;
+    }
+    .add-new-organization__excel-add-input-button {
+        width: 100px;
+        height: 30px;
+    }
+    .add-new-organization__error-message {
+        font-size: 10px;
+        line-height: 16px;
+    }
 }
 @media (max-width: 600px) {
     .container__add-new-organization  {
         font-size: 8px;
         min-height: calc(65vh - 80px);
+    }
+    .add-new-organization__excel-add-input-file-name-container {
+        width: 217px;
+        height: 25px;
+    }
+    .add-new-organization__excel-add-input-file-name-text {
+        font-size: 11px;
+        line-height: 14px;
+        margin: auto auto auto 12px;
+    }
+    .add-new-organization__excel-add-input-button {
+        width: 100px;
+        height: 25px;
+    }
+    .add-new-organization__excel-add-input-button-text {
+        font-size: 10px;
+        line-height: 14px;
+    }
+    .add-new-organization__error-message {
+        font-size: 8px;
+        line-height: 12px;
     }
 }
 /*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
@@ -532,9 +628,6 @@ input[type=file]::file-selector-button:hover {
        font-size: 16px;
        padding: 12px 41px 12px 39px;
        justify-content: center;
-   }
-    .mail-addresses-users__label-rule {
-        display: none;
     }
     .add-email-btn__button-desktop {
         display: none;
@@ -566,9 +659,6 @@ input[type=file]::file-selector-button:hover {
     .add-new-organization__top-pagination {
         margin-bottom: 8px;
     }
-    .add-new-organization__bottom-pagination {
-        display: none;
-    }
     .add-new-organization__table-list-users {
         margin-bottom: 24px;
         border: none;
@@ -577,6 +667,14 @@ input[type=file]::file-selector-button:hover {
         flex-direction: column;
         padding: 16px 0 0 0;
         margin-bottom: 24px;
+    }
+    .table-list-users__no-users-container {
+        height: 48px;
+        margin-bottom: 1.6em;
+    }
+    .table-list-users__no-users {
+        font-size: 16px;
+        line-height: 24px;
     }
     .table-list-users__name-user-icon-lock {
         width: 100%;
@@ -633,7 +731,6 @@ input[type=file]::file-selector-button:hover {
         margin-right: 0;
         padding-right: 0;
         min-height: 0;
-        justify-content: space-between;
     }
     .delete-icon-button__delete-btn,
     .delete-icon-button__icon-delete {
@@ -644,24 +741,12 @@ input[type=file]::file-selector-button:hover {
         align-items: center;
         justify-content: center;
         color: #FF4970;
-        width: 151px;
+        width: 100%;
         height: 48px;
         font-size: 16px;
         border: 1px solid #FF4970;
         border-radius: 4px;
         cursor: pointer;
-    }
-    .delete-icon-button__block-unblock-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 152px;
-        height: 48px;
-        font-size: 16px;
-        border: 1px solid rgba(54, 59, 77, 0.9);
-        border-radius: 4px;
-        cursor: pointer;
-        opacity: 90%;
     }
     .add-new-organization__e-mail-support {
         margin-bottom: 32px;
@@ -698,14 +783,7 @@ input[type=file]::file-selector-button:hover {
         height: 56px;
         font-size: 18px;
         line-height: 110%;
-        margin-bottom: 8px;
-    }
-    .table-list-users__show-more-mobile {
-        display: initial;
-        font-size: 16px;
-        font-weight: 300;
-        color: #0084FE;
-        cursor: pointer;
+        margin: 0 auto 8px 0;
     }
     .download-file-load-button__label {
         font-size: 16px;
@@ -714,6 +792,34 @@ input[type=file]::file-selector-button:hover {
     }
     .add-new-organization__download-file-load-button {
         gap: 0;
+        width: 100%;
+    }
+    .add-new-organization__excel-add-container {
+        flex-direction: column;
+        width: 100%;
+        margin: 0;
+    }
+    .add-new-organization__excel-add-input-container {
+        width: 100%;
+        margin: 0;
+    }
+    .add-new-organization__excel-add-input-file-name-container {
+        width: 70%;
+        max-width: 330px;
+        height: 48px;
+    }
+    .add-new-organization__excel-add-input-file-name-text {
+        font-size: 14px;
+        line-height: 18px;
+        margin: auto auto auto 12px;
+    }
+    .add-new-organization__excel-add-input-button {
+        width: 30%;
+        height: 48px;
+    }
+    .add-new-organization__excel-add-input-button-text {
+        font-size: 14px;
+        line-height: 18px;
     }
     .download-file-load-button__field-file-load-button {
         display: grid;
@@ -723,12 +829,6 @@ input[type=file]::file-selector-button:hover {
                              "success success";
         width: 100%;
         grid-row-gap: 16px;
-    }
-    input[type=file] {
-        grid-area: blockdownload;
-        height: 48px;
-        font-size: 18px;
-        width: 100%;
     }
     .field-file-load-button__load-btn {
         grid-area: loadbtn;
@@ -748,5 +848,10 @@ input[type=file]::file-selector-button:hover {
     .field-file-load-button__label {
         font-size: 12px;
         line-height: 200%;
+    }
+    .add-new-organization__error-message {
+        font-size: 12px;
+        line-height: 16px;
+        margin: 0 auto 12px 0;
     }
 }

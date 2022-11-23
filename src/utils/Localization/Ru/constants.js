@@ -73,21 +73,16 @@ export const constants = {
         GENERAL_TITLE_TITLENAME_ORG: "Список организаций",
         GENERAL_TITLE_TITLENAME_VOTES: "Голосования",
         GENERAL_TITLE_TITLENAME_GROUP_USER: "Группы пользователей",
+        GENERAL_TITLE_ADD_ORG: "Добавить организацию",
         GENERAL_TITLE_TITLENAME_ADD_ORG: "Добавление новой организации",
         GENERAL_TITLE_TITLENAME_ADD_GROUP_USERS: "Добавление группы пользователей",
         GENERAL_TITLE_TITLENAME_LIST_USERS: "Список пользователей",
         GENERAL_TITLE_TITLENAME_PROFILE: "Профиль пользователя",
         GENERAL_TITLE_FIRTSLETTER: "АдминистраторКриптовече",
-        GENERAL_TITLE_SECONDLETTER_ORG: "Организация",
+        GENERAL_TITLE_SECONDLETTER_ORG: "Организации",
         GENERAL_TITLE_SECONDLETTER_GROUP_USERS: "Группы пользователей",
         GENERAL_TITLE_SECONDLETTER_LIST_USERS: "Список пользователей",
         GENERAL_TITLE_SECONDLETTER_VOTES: "Голосования"
-    },
-    SORTING_BLOCK: {
-        SORTING_BLOCK_LABEL: "Сортировать по:",
-        SORTING_BLOCK_TYPE_SORT: "Количеству транзакций",
-        SORTING_BLOCK_FILTER_BTN: "Фильтры",
-        SORTING_BLOCK_SORT_BTN: "Сортировка"
     },
     PAGINATION: {
         PAGINATION_SHOW_LABEL: "Показать",
@@ -112,7 +107,7 @@ export const constants = {
         ADD_NEW_ORG_ADD_USERS_MAIL_BTN: "Добавить пользователей по E-mail",
         ADD_NEW_ORG_ADD_USERS_MAIL_BTN_MOBILE: "Добавить пользователей",
         ADD_NEW_ORG_MAIL_ADDRESS_USERS: "Почтовые адреса пользователей",
-        ADD_NEW_ORG_DOWNLOAD_FILE_LABEL: "Загрузить xls/xlsx документ со списком пользователей",
+        ADD_NEW_ORG_DOWNLOAD_FILE_LABEL: "Загрузить xlsx документ со списком пользователей",
         ADD_NEW_ORG_LOAD_BTN: "Загрузить",
         ADD_NEW_ORG_SUCCESS_INFO: "Файл успешно загружен",
         ADD_NEW_ORG_MAIL_ADDRESS_USERS_RULE: "(по одному на каждую строчку для каждого пользователя)",
@@ -127,7 +122,16 @@ export const constants = {
         ADD_NEW_ORG_DELETE_BTN_MOBILE: "Удалить",
         ADD_NEW_ORG_BLOCK_BTN: "Заблокировать",
         ADD_NEW_ORG_UNBLOCK_BTN: "Разблокировать",
-        ADD_NEW_ORG_SHOW_MORE_BTN: "ПОКАЗАТЬ ЕЩЁ"
+        ADD_NEW_ORG_SHOW_MORE_BTN: "ПОКАЗАТЬ ЕЩЁ",
+        ADD_NEW_ORG_SELECT_FILE: "Выберите файл",
+        ADD_NEW_ORG_NO_USERS: "Список пользователей пуст",
+        ADD_NEW_ORG_DEFAULT_FIRST_NAME: "Без",
+        ADD_NEW_ORG_DEFAULT_LAST_NAME: "Пользователь",
+        ADD_NEW_ORG_DEFAULT_SECOND_NAME: "Имени",
+        ADD_NEW_ORG_EMAIL_ERROR: "Введён некорректный формат почты",
+        ADD_NEW_ORG_SUPPORT_EMAIL_ERROR: "Некорректный E-mail поддержки",
+        ADD_NEW_ORG_SAVE_ERROR: "Название организации не может быть пустым",
+        ADD_NEW_ORG_FAILURE_ERROR: "Что-то пошло не так..."
     },
     ADD_NEW_GROUP_USERS: {
         ADD_NEW_GROUP_USERS_SELECT_ORG: "Выбор организации",
@@ -250,5 +254,8 @@ export const constants = {
         VOTES_PAGE_ALT_ICON_TIME: "иконка часы",
         VOTES_PAGE_ALT_ROW_OPEN: "Стрелочка открытия меню",
         VOTES_PAGE_MATERIALS_VOTE: "Материалы голосования"
+    },
+    GENERAL: {
+        ALT_ICON: "Иконка"
     }
 }
