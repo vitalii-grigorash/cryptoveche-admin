@@ -34,8 +34,8 @@ const ListUsers = (props) => {
             />
             <div className="list-users__sorting-pagination">
                 <div className="list-users__pagination">
-                    <PaginationBlock
-                        constants={constants} />
+                    {/*<PaginationBlock*/}
+                    {/*    constants={constants} />*/}
                 </div>
             </div>
             <div className="list-users__table-list-users">

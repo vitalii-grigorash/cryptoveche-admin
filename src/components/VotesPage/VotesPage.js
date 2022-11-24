@@ -35,9 +35,9 @@ const VotesPage = (props) => {
             <div className="votes-page__pagination-filter-sort-block">
                 <VotesPageFilterSortButtons
                     constants={constants}/>
-                <PaginationBlock
-                    constants={constants}
-                />
+                {/*<PaginationBlock*/}
+                {/*    constants={constants}*/}
+                {/*/>*/}
             </div>
             <div className='votes-page-block__main-content'>
                 <div className='votes-page-switch-buttons'>
