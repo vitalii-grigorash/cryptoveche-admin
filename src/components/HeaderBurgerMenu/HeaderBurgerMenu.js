@@ -82,7 +82,7 @@ const HeaderBurgerMenu = (props) => {
                         <img alt={'иконка стрелочка'} src={burgerMenuIconRow} className={activeAddBtn ? "burger-menu__add-button-row active" : "burger-menu__add-button-row"}/>
                     </div>
                     <div className={activeAddBtn ? "burger-menu__add-button-drop-down-list active" : "burger-menu__add-button-drop-down-list"}>
-                        {authAs === 'admin' ? <Link to={'#'}>{constants.HEADER.HEADER_ADD_VOTE}</Link> : null}
+                        {authAs === 'admin' ? <Link to={'/add-new-vote'}>{constants.HEADER.HEADER_ADD_VOTE}</Link> : null}
                         {authAs === 'admin' ? <Link to={'#'}>{constants.HEADER.HEADER_ADD_GROUP_USERS}</Link> : null}
                         {authAs === 'admin' ? <Link to={'#'}>{constants.HEADER.HEADER_ADD_TEMPLATE_VOTE}</Link> : null}
                         {authAs === 'superAdmin' ? <Link to={'/add-org-page'} onClick={() => setActive(false)}>{constants.HEADER.HEADER_BURGER_ADD_ORG}</Link> : null}

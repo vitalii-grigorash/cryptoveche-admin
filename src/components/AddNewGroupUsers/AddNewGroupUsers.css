@@ -21,10 +21,10 @@
     flex-direction: column;
     background-color: #FFFFFF;
     border-radius: 1.33em;
-    margin-bottom: 6.2em;
-    padding: 1.77em 1.77em;
-    border: 1px solid rgba(54, 59, 77, 0.2);
-    max-width: 36.44em;
+    margin-bottom: 6.22em;
+    padding: 1.33em 1.33em;
+    width: 45.556vw;
+    box-shadow: -1px 0 8px rgba(54, 58, 72, 0.07);
 }
 .select-organization-block__title-select-org {
     font-size: 1.33em;
@@ -132,7 +132,7 @@
     color: #0084FE;
     border: 1px solid #0084FE;
 }
-/*------Контейнер для блока с выбором организации---------------------------------------------------------------------*/
+/*------Контейнер для блока с формой добаления группы-----------------------------------------------------------------*/
 .add-new-group-users {
     display: flex;
     flex-direction: column;

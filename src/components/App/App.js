@@ -17,6 +17,7 @@ import AddNewGroupUsers from "../AddNewGroupUsers/AddNewGroupUsers";
 import Main from "../Main/Main";
 import GroupUsersSelectNameGroup from "../GroupUsersSelectNameGroup/GroupUsersSelectNameGroup";
 import VotesPage from "../VotesPage/VotesPage";
+import AddNewVote from "../AddNewVote/AddNewVote";
 
 function App() {
 
@@ -234,6 +235,7 @@ function App() {
                         constants={constants}
                         handleLogout={logout}
                         userName={userName}
+                        authAs={authAs}
                     />
                 )}
                 <Routes>
@@ -274,6 +276,11 @@ function App() {
                         element={<AddNewGroupUsers
                             constants={constants}
                         />}
+                    />
+                    <Route path={'/add-new-vote'}
+                       element={<AddNewVote
+                           constants={constants}
+                       />}
                     />
                     <Route path={'/profile-user'}
                         element={<ProfileUser

@@ -56,8 +56,8 @@ const Footer = (props) => {
                             <img alt={'стрелка'} src={footerRowSelect} className={activeUsersBtn ? "map-site__users-row active" : "map-site__users-row"}/>
                         </div>
                         <div className={activeUsersBtn ? "map-site__users-drop-down-list active" : "map-site__users-drop-down-list"}>
-                            <Link to={'#'}>{constants.FOOTER.FOOTER_GROUP_USERS}</Link>
-                            <Link to={'#'}>{constants.FOOTER.FOOTER_LIST_USERS}</Link>
+                            <Link to={'/group-users'}>{constants.FOOTER.FOOTER_GROUP_USERS}</Link>
+                            <Link to={'/list-users'}>{constants.FOOTER.FOOTER_LIST_USERS}</Link>
                         </div>
                     </div> : null}
                     <div className="map-site__votes">
@@ -66,7 +66,7 @@ const Footer = (props) => {
                             <img alt={'стрелка'} src={footerRowSelect} className={activeVotesBtn ? "map-site__votes-row active" : "map-site__votes-row"}/>
                         </div>
                         <div className={activeVotesBtn ? "map-site__votes-drop-down-list active" : "map-site__votes-drop-down-list"}>
-                            <Link to={'#'}>{constants.FOOTER.FOOTER_LIST_VOTES}</Link>
+                            <Link to={'/list-votes'}>{constants.FOOTER.FOOTER_LIST_VOTES}</Link>
                             {authAs === 'admin' ? <Link to={'#'}>{constants.FOOTER.FOOTER_TEMPLATE_VOTES}</Link> : null}
                         </div>
                     </div>

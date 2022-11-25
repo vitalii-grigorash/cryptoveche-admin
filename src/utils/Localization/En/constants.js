@@ -74,6 +74,7 @@ export const constants = {
         GENERAL_TITLE_TITLENAME_VOTES: "Голосования",
         GENERAL_TITLE_TITLENAME_GROUP_USER: "Группы пользователей",
         GENERAL_TITLE_ADD_ORG: "Добавить организацию",
+        GENERAL_TITLE_TITLENAME_ADD_VOTE: "Добавление нового голосования",
         GENERAL_TITLE_TITLENAME_ADD_ORG: "Добавление новой организации",
         GENERAL_TITLE_TITLENAME_ADD_GROUP_USERS: "Добавление группы пользователей",
         GENERAL_TITLE_TITLENAME_LIST_USERS: "Список пользователей",
@@ -82,7 +83,8 @@ export const constants = {
         GENERAL_TITLE_SECONDLETTER_ORG: "Организации",
         GENERAL_TITLE_SECONDLETTER_GROUP_USERS: "Группы пользователей",
         GENERAL_TITLE_SECONDLETTER_LIST_USERS: "Список пользователей",
-        GENERAL_TITLE_SECONDLETTER_VOTES: "Голосования"
+        GENERAL_TITLE_SECONDLETTER_VOTES: "Голосования",
+        GENERAL_TITLE_SECONDLETTER_ADD_VOTE: "Добавить голосование"
     },
     PAGINATION: {
         PAGINATION_SHOW_LABEL: "Показать",
