@@ -1,0 +1,178 @@
+.org-settings {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 9em;
+    min-height: calc(49vh - 80px);
+    font-size: 18px;
+}
+.org-settings__page-title-container {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    margin: 0 auto 1.7em 0;
+}
+.org-settings__crumbs-container {
+    display: flex;
+    flex-direction: row;
+    gap: 0.8em;
+    margin: 0 auto 1.5em 0;
+    align-items: center;
+}
+.org-settings__crumb {
+    line-height: 118%;
+    font-size: 0.7em;
+    color: #363B4D;
+    opacity: 40%;
+}
+.org-settings__arrow {
+    width: 0.3em;
+    height: 0.8em;
+}
+.org-settings__title-container {
+    display: flex;
+    margin: 0 auto 0 0;
+}
+.org-settings__title {
+    font-size: 1.7em;
+    font-weight: 600;
+    color: #363B4D;
+    opacity: 90%;
+    line-height: 103%;
+    margin: auto 13px auto 0;
+}
+.org-settings__edit-title {
+    background-image: url('../../img/org-edit-icon.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-width: 2.5em;
+    min-height: 2.5em;
+    margin: auto 0;
+    cursor: pointer;
+}
+.org-settings__edit-title:hover {
+    background-image: url('../../img/org-edit-icon-hover.svg');
+}
+.org-settings__edit-title-container {
+    display: flex;
+    margin: 0 auto 0 0;
+}
+.org-settings__edit-title-input {
+    font-size: 1.7em;
+    font-weight: 600;
+    color: #363B4D;
+    opacity: 90%;
+    line-height: 103%;
+    margin: auto 13px auto 0;
+    background-color: #FBFBFC;
+}
+.org-settings__edit-title-input::placeholder {
+    font-size: 0.7em;
+    font-weight: 400;
+}
+.org-settings__edit-title-input:focus {
+    outline: none;
+}
+.org-settings__edit-title-buttons-container {
+    display: flex;
+    margin: auto 0;
+}
+.org-settings__edit-title-button-save {
+    width: 9.5em;
+    height: 2em;
+    border: 1px solid #4ED4A9;
+    border-radius: 4px;
+    background-color: #FBFBFC;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #4ED4A9;
+    margin: auto 8px auto 0;
+    cursor: pointer;
+}
+.org-settings__edit-title-button-save:hover {
+    background-color: #4ED4A9;
+    color: #FFFFFF;
+}
+.org-settings__edit-title-button-cancel {
+    width: 9.5em;
+    height: 2em;
+    border: 1px solid #FF4970;
+    border-radius: 4px;
+    background-color: #FBFBFC;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FF4970;
+    margin: auto 0;
+    cursor: pointer;
+}
+.org-settings__edit-title-button-cancel:hover {
+    background-color: #FF4970;
+    color: #FFFFFF;
+}
+@media (max-width: 1570px) {
+    .org-settings__page-title-container {
+        font-size: 16px;
+    }
+}
+@media (max-width: 1120px) {
+    .org-settings__page-title-container {
+        font-size: 14px;
+    }
+}
+@media (max-width: 830px) {
+    .org-settings__page-title-container {
+        font-size: 12px;
+    }
+}
+@media (max-width: 650px) {
+    .org-settings__edit-title-button-save {
+        width: 6.5em;
+    }
+    .org-settings__edit-title-button-cancel {
+        width: 6.5em;
+    }
+}
+@media (max-width: 600px) {
+    .org-settings__page-title-container  {
+        font-size: 10px;
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 500px) {
+    .org-settings__page-title-container {
+        font-size: 16px;
+        margin-bottom: 14px;
+    }
+    .org-settings__crumbs-container {
+        display: none;
+    }
+    .org-settings__title {
+        font-size: 20px;
+        line-height: 113%;
+        font-weight: 500;
+    }
+    .org-settings__edit-title {
+        min-width: 2.0em;
+        min-height: 2.0em;
+    }
+    .org-settings__edit-title-container {
+        flex-direction: column;
+    }
+    .org-settings__edit-title-input {
+        font-size: 20px;
+        margin: 0 auto 0 0;
+    }
+    .org-settings__edit-title-buttons-container {
+        display: flex;
+        margin: 15px 0 0;
+    }
+    .org-settings__edit-title-button-save {
+        width: 100%;
+    }
+    .org-settings__edit-title-button-cancel {
+        width: 100%;
+    }
+}

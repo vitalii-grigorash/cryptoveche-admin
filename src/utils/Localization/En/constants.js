@@ -81,6 +81,7 @@ export const constants = {
         GENERAL_TITLE_TITLENAME_PROFILE: "Профиль пользователя",
         GENERAL_TITLE_FIRTSLETTER: "АдминистраторКриптовече",
         GENERAL_TITLE_SECONDLETTER_ORG: "Организации",
+        GENERAL_TITLE_SECONDLETTER_ORG_MANY: "Организация",
         GENERAL_TITLE_SECONDLETTER_GROUP_USERS: "Группы пользователей",
         GENERAL_TITLE_SECONDLETTER_LIST_USERS: "Список пользователей",
         GENERAL_TITLE_SECONDLETTER_VOTES: "Голосования",
@@ -256,6 +257,11 @@ export const constants = {
         VOTES_PAGE_ALT_ICON_TIME: "иконка часы",
         VOTES_PAGE_ALT_ROW_OPEN: "Стрелочка открытия меню",
         VOTES_PAGE_MATERIALS_VOTE: "Материалы голосования"
+    },
+    ORG_SETTINGS: {
+        PLACEHOLDER: "Введите название компании",
+        BUTTON_SAVE: 'Сохранить',
+        BUTTON_CANCEL: 'Отменить'
     },
     GENERAL: {
         ALT_ICON: "Иконка"

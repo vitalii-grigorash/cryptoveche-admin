@@ -18,6 +18,7 @@ import Main from "../Main/Main";
 import GroupUsersSelectNameGroup from "../GroupUsersSelectNameGroup/GroupUsersSelectNameGroup";
 import VotesPage from "../VotesPage/VotesPage";
 import AddNewVote from "../AddNewVote/AddNewVote";
+import OrgSettings from "../OrgSettings/OrgSettings";
 
 function App() {
 
@@ -213,7 +214,14 @@ function App() {
                 pathname === '/' ||
                 pathname === '/add-org-page' ||
                 pathname === '/organizations' ||
-                pathname === '/profile-user'
+                pathname === '/profile-user' ||
+                pathname === '/org-settings' ||
+                pathname === '/add-new-group' ||
+                pathname === '/add-new-vote' ||
+                pathname === '/group-users' ||
+                pathname === '/group-users/selected-name-group' ||
+                pathname === '/list-users' ||
+                pathname === '/list-votes'
             )) {
                 navigate('/');
             }
@@ -226,6 +234,14 @@ function App() {
         }
         // eslint-disable-next-line
     }, []);
+
+    function onOrgSettingsClick(org) {
+        const currentOrg = {
+            id: org.id
+        }
+        localStorage.setItem('currentOrgId', JSON.stringify(currentOrg));
+        navigate('/org-settings');
+    }
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
@@ -264,6 +280,13 @@ function App() {
                         element={<OrganizationsList
                             constants={constants}
                             requestHelper={requestHelper}
+                            onOrgSettingsClick={onOrgSettingsClick}
+                        />}
+                    />
+                    <Route path={'/org-settings'}
+                        element={<OrgSettings
+                            constants={constants}
+                            requestHelper={requestHelper}
                         />}
                     />
                     <Route path={'/add-org-page'}
@@ -278,9 +301,9 @@ function App() {
                         />}
                     />
                     <Route path={'/add-new-vote'}
-                       element={<AddNewVote
-                           constants={constants}
-                       />}
+                        element={<AddNewVote
+                            constants={constants}
+                        />}
                     />
                     <Route path={'/profile-user'}
                         element={<ProfileUser
@@ -294,10 +317,10 @@ function App() {
                         />}
                     />
                     <Route path={'/group-users/selected-name-group'}
-                           element={<GroupUsersSelectNameGroup
-                               constants={constants}
-                               authAs={authAs}
-                           />}
+                        element={<GroupUsersSelectNameGroup
+                            constants={constants}
+                            authAs={authAs}
+                        />}
                     />
                     <Route path={'/list-users'}
                         element={<ListUsers
@@ -305,10 +328,10 @@ function App() {
                         />}
                     />
                     <Route exact path={'/list-votes'}
-                           element={<VotesPage
-                               constants={constants}
-                               authAs={authAs}
-                           />}
+                        element={<VotesPage
+                            constants={constants}
+                            authAs={authAs}
+                        />}
                     />
                 </Routes>
                 {isLoggedIn && (
