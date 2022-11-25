@@ -15,7 +15,8 @@ const Header = (props) => {
     const {
         constants,
         userName,
-        handleLogout
+        handleLogout,
+        authAs
     } = props;
 
     const [activeAddButton, setActiveAddButton] = useState(false);
@@ -93,7 +94,7 @@ const Header = (props) => {
                         <p className="logotype-link-buttons__label-add-button">{constants.HEADER.HEADER_ADD_BTN}</p>
                         <img alt={'стрелочка для кнопки'} className="add-button__row-btn-open-list" src={headerRowBtn} />
                         <div className={activeAddButton ? "logotype-link-buttons__select-list-buttons" : "logotype-link-buttons__select-list-buttons hidden"}>
-                            {authAs === 'admin' ? <Link to={'#'}>{constants.HEADER.HEADER_ADD_VOTE}</Link> : null}
+                            {authAs === 'admin' ? <Link to={'/add-new-vote'}>{constants.HEADER.HEADER_ADD_VOTE}</Link> : null}
                             {authAs === 'admin' ? <Link to={'/add-new-group'}>{constants.HEADER.HEADER_ADD_GROUP_USERS}</Link> : null}
                             {authAs === 'admin' ? <Link to={'#'}>{constants.HEADER.HEADER_ADD_TEMPLATE_VOTE}</Link> : null}
                             {authAs === 'superAdmin' ? <Link to={'/add-org-page'}>{constants.HEADER.HEADER_ADD_ORG}</Link> : null}

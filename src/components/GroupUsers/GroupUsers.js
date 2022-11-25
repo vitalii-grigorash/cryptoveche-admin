@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import GeneralTitleAllPages from "../GeneralTitleAllPages/GeneralTitleAllPages";
 import PaginationBlock from "../PaginationBlock/PaginationBlock";
-import SortingBlock from "../SortingBlock/SortingBlock";
 import iconDeleteBtn from "../../img/AddNewOrgDeleteIcon.svg";
 import iconEditBtn from "../../img/OrganizationsLisеIconEditButton.svg";
 import iconLockRed from "../../img/AddNewOrgLockIcon.svg";
@@ -48,8 +47,8 @@ const GroupUsers = (props) => {
                 <button className="group-user__add-user-btn-mobile">{constants.GROUP_USERS.GROUP_USERS_ADD_USER_BTN_MOBILE}</button>
                     <div className="group-users__sorting-pagination">
                         <div className="group-users__pagination">
-                            <PaginationBlock
-                                constants={constants}/>
+                            {/*<PaginationBlock*/}
+                            {/*    constants={constants}/>*/}
                         </div>
                     <p className="group-users__select-btn-mobile">{constants.GROUP_USERS.GROUP_USERS_SELECT_BTN_SELECT}</p>
                     </div>

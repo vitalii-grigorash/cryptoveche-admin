@@ -50,7 +50,7 @@ const GroupUsersSelectNameGroup = (props) => {
                     </div>
                 )}
             <div className="group-users-select-name-group__pagination">
-                <PaginationBlock constants={constants}/>
+                {/*<PaginationBlock constants={constants}/>*/}
             </div>
             <div className="group-users-select-name-group__table-users-select-name-group">
                 <div className="table-users-select-name-group">

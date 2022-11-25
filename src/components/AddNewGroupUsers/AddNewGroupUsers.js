@@ -123,7 +123,7 @@ const AddNewGroupUsers = (props) => {
                                 </div>
                             )}
                         <div className="add-new-organization__top-pagination">
-                            <PaginationBlock constants={constants}/>
+                            {/*<PaginationBlock constants={constants}/>*/}
                         </div>
                         <div className="add-new-organization__table-list-users">
                             {
@@ -141,7 +141,7 @@ const AddNewGroupUsers = (props) => {
                             <p className="table-list-users__show-more-mobile">{constants.ADD_NEW_GROUP_USERS.ADD_NEW_GROUP_USERS_SHOW_MORE_BTN}</p>
                         </div>
                         <div className="add-new-organization__bottom-pagination">
-                            <PaginationBlock constants={constants}/>
+                            {/*<PaginationBlock constants={constants}/>*/}
                         </div>
                         <div className="add-new-organization__save-button">
                             <button className="save-button__add-new-org-save-btn">{constants.ADD_NEW_GROUP_USERS.ADD_NEW_GROUP_USERS_SAVE_BTN}</button>
