@@ -3,6 +3,7 @@ import GeneralTitleAllPages from "../GeneralTitleAllPages/GeneralTitleAllPages";
 import row_input_select_role from "../../img/Auth_icon_row_select_role.svg";
 import iconPlus from "../../img/AddNewVoteIconPlus.svg";
 import iconClip from "../../img/AddNewVoteIconClip.svg";
+import iconDelete from "../../img/AddNewOrgDeleteIcon.svg";
 
 const AddNewVote = (props) => {
 
@@ -13,6 +14,7 @@ const AddNewVote = (props) => {
     const [activeGeneralSettings, setActiveGeneralSettings] = useState(false);
     const [hideSelectOrg, setHideSelectOrg] = useState(true);
     const [hideSelectOrgBtn, setHideSelectOrgBnt] = useState(true);
+    const [showAddMaterialsVotes, setShowAddMaterialsVotes] = useState(false);
 
     function showSelectOrgForm() {
         setHideSelectOrg(false)
@@ -58,7 +60,7 @@ const AddNewVote = (props) => {
                         {activeGeneralSettings && (
                             <>
                                 <div className="add-new-vote__name-new-vote">
-                                    <label className="add-new-vote__name-new-vote-label">Название голосования<span className="add-new-vote__red-start">*</span></label>
+                                    <label className="add-new-vote__name-new-vote-label">Название голосования<span className="add-new-vote__red-star">*</span></label>
                                     <input className="add-new-vote__name-new-vote-field" placeholder={'Введите название голосования'}/>
                                 </div>
                                 <div className="add-new-vote__select-open-close-vote-buttons">
@@ -100,38 +102,69 @@ const AddNewVote = (props) => {
                                     </div>
                                 </div>
                                 <div className="add-new-vote__checkboxes-block">
-                                    <div className="add-new-vote__column-checkbox-superuser">
+                                    <div className="add-new-vote__checkbox">
                                         <label className='add-new-vote__checkbox_container'>
                                             <input type="checkbox"/>
                                             <span className='add-new-vote__checkmark' />
                                         </label>
                                         <p className="add-new-vote__label-checkbox">Возможность отмены электронной регистрации</p>
                                     </div>
-                                    <div className="add-new-vote__column-checkbox-superuser">
+                                    <div className="add-new-vote__checkbox">
                                         <label className='add-new-vote__checkbox_container'>
                                             <input type="checkbox"/>
-                                            <span className='add-new-vote__checkmark' />
+                                            <span className='add-new-vote__checkmark'/>
                                         </label>
                                         <p className="add-new-vote__label-checkbox">Возможность изменения голоса</p>
                                     </div>
                                 </div>
-                                <div className="add-new-vote__attach-material-vote">
-                                    <img className="add-new-vote__material-vote-icon" src={iconClip} alt={constants.GENERAL.ALT_ICON}/>
-                                    <p className="add-new-vote__material-vote-label">ПРИКРЕПИТЬ МАТЕРИАЛЫ ГОЛОСОВАНИЯ</p>
+                                <div className="add-new-vote__materials-vote-block">
+                                    <div className="add-new-vote__materials-vote-btn">
+                                        <img className="add-new-vote__materials-vote-icon-clip" src={iconClip} alt={constants.GENERAL.ALT_ICON}/>
+                                        <p onClick={() => setShowAddMaterialsVotes(!showAddMaterialsVotes)} className="add-new-vote__materials-vote-label">ПРИКРЕПИТЬ МАТЕРИАЛЫ ГОЛОСОВАНИЯ</p>
+                                        <img className={showAddMaterialsVotes ? "add-new-vote__materials-vote-icon-plus" : "add-new-vote__materials-vote-icon-plus hidden"} alt={constants.GENERAL.ALT_ICON} src={iconPlus}/>
+                                    </div>
+                                    {showAddMaterialsVotes && (
+                                        <div className="add-new-vote__materials-vote-add-link-document">
+                                            <div className="add-new-vote__name-materials-vote">
+                                                <div>
+                                                    <input className="add-new-vote__name-materials-vote-input" placeholder={'Заголовок вспомогательного материала'} type={'text'}/>
+                                                    <span className="add-new-vote__red-star">*</span>
+                                                </div>
+                                                <div className="add-new-vote__delete-materials-btn">
+                                                    <img className="add-new-vote__delete-materials-icon" src={iconDelete} alt={constants.GENERAL.ALT_ICON}/>
+                                                    <p>УДАЛИТЬ</p>
+                                                </div>
+                                            </div>
+                                            <div className="add-new-vote__link-document-block">
+                                                <div className="add-new-vote__time-zone-select-container _wight">
+                                                    <p className="add-new-vote__time-zone-select-value">Документ</p>
+                                                    <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt="Стрелочка открытия меню"/>
+                                                    <div className="add-new-vote__time-zone-options-container">
+                                                        <p className="add-new-vote__time-zone-option"></p>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <input placeholder={'fdfd'} type={'text'}/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                                 <h3 className="add-new-vote__title-select-org">Настройки пользователей</h3>
-                                <div className="add-new-vote__user-settings-button-block">
+                                <div className="add-new-vote__user-settings-open-close-btn">
                                     <div className="add-new-vote__settings-button-close-open-list">
                                         <p>Закрытые списки</p>
                                     </div>
                                     <div className="add-new-vote__settings-button-close-open-list">
-                                        <p>Открытые списки </p>
+                                        <p>Открытые списки</p>
                                     </div>
+                                </div>
+                                <div className="add-new-vote__user-settings-add-users-group-btn">
                                     <div className="add-new-vote__settings-button-add-users-group">
                                         <p>Добавить пользователей</p>
                                     </div>
                                     <div className="add-new-vote__settings-button-add-users-group">
-                                        <p>Добавить группу </p>
+                                        <p>Добавить группу</p>
                                     </div>
                                 </div>
                             </>

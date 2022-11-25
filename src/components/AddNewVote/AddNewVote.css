@@ -48,6 +48,7 @@
 }
 .add-new-vote__red-star {
     color: #FF4970;
+    vertical-align: top;
 }
 .add-new-vote__label {
     color: rgba(54, 59, 77, 0.9);
@@ -163,9 +164,6 @@
     font-weight: 400;
     color: rgba(54, 59, 77, 0.9);
 }
-.add-new-vote__red-start {
-    color: #FF4970;
-}
 .add-new-vote__name-new-vote-field {
     outline: none;
     border: 0.5px solid rgba(54, 59, 77, 0.4);
@@ -265,7 +263,7 @@
     gap: 1.33em;
     margin-bottom: 1.77em;
 }
-.add-new-vote__column-checkbox-superuser {
+.add-new-vote__checkbox {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -328,32 +326,98 @@
     transform: rotate(45deg);
 }
 /*------Контейнер для блока c прикреплением материалов голосования----------------------------------------------------*/
-.add-new-vote__attach-material-vote {
+.add-new-vote__materials-vote-block {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1.77em;
+    margin-bottom: 1.33em;
+    border-bottom: 0.5px solid rgba(54, 59, 77, 0.2);
+}
+.add-new-vote__materials-vote-btn {
     display: inline-flex;
     gap: 0.88em;
-    margin-bottom: 1.77em;
     align-items: center;
-    border-bottom: 0.5px solid rgba(54, 59, 77, 0.2);
-    padding-bottom: 1.77em;
     cursor: pointer;
 }
-.add-new-vote__material-vote-icon {
+.add-new-vote__materials-vote-icon-clip {
     width: 0.61em;
     height: 1.22em;
 }
-.add-new-vote__material-vote-label {
+.add-new-vote__materials-vote-icon-plus {
+    display: initial;
+    width: 1em;
+    height: 1em;
+}
+.add-new-vote__materials-vote-icon-plus.hidden {
+    display: none;
+}
+.add-new-vote__materials-vote-label {
     font-size: 0.88em;
     font-weight: 300;
     color: #0084FE;
     line-height: 150%;
 }
+.add-new-vote__materials-vote-add-link-document {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.33em;
+    gap: 0.88em;
+}
+.add-new-vote__name-materials-vote {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 0.88em;
+}
+.add-new-vote__name-materials-vote-input {
+
+}
+.add-new-vote__delete-materials-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.44em;
+    cursor: pointer;
+    font-size: 0.88em;
+    color: #FF4970;
+    font-weight: 300;
+}
+.add-new-vote__name-materials-vote-input {
+    outline: none;
+    border: 0.5px solid rgba(54, 59, 77, 0.4);
+    border-radius: 0.44em;
+    height: 2.5em;
+    padding: 0.88em 1.33em 0.88em 1.33em;
+    font-size: 0.88em;
+    color: rgba(54, 59, 77, 0.9);
+    width: 28vw;
+}
+.add-new-vote__delete-materials-icon {
+    width: 0.77em;
+    height: 0.77em;
+}
+.add-new-vote__link-document-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 0.88em;
+}
+._wight {
+    width: 100px;
+    margin: 0;
+}
+
 /*------Контейнер для блока c настройками пользователя----------------------------------------------------------------*/
-.add-new-vote__user-settings-button-block {
-    display: grid;
-    grid-template-columns: 20vw 20vw;
-    grid-template-rows: 1fr 1fr;
-    grid-row-gap: 1.33em;
-    grid-column-gap: 0.88em;
+.add-new-vote__user-settings-open-close-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1.33em;
+}
+.add-new-vote__user-settings-add-users-group-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     margin-bottom: 1.77em;
 }
 .add-new-vote__settings-button-close-open-list {
