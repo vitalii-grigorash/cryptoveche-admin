@@ -1,0 +1,5 @@
+.add-users {
+    display: flex;
+    flex-direction: column;
+}
+/* Стили компонента в файле AddNewOrganization.css */
