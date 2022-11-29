@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: column;
     font-size: 18px;
-    margin: 0 auto 1.7em 0;
+    margin: 0 auto 0 0;
 }
 .org-settings__crumbs-container {
     display: flex;
@@ -112,6 +112,121 @@
     background-color: #FF4970;
     color: #FFFFFF;
 }
+
+
+
+
+
+
+
+.org-settings__main-container {
+    display: flex;
+    margin: 1.7em 0;
+}
+.org-settings__nav-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 343px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 6px rgba(54, 58, 72, 0.08);
+    border-radius: 16px;
+    padding: 16px;
+    box-sizing: border-box;
+    margin: 0 16px auto 0;
+}
+.org-settings__link-container {
+    display: flex;
+    border-radius: 16px;
+    background: #FFFFFF;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(54, 59, 77, 0.9);
+}
+.org-settings__link-container:hover {
+    background: rgba(0, 132, 254, 0.07);
+    color: #0084FE;
+    cursor: pointer;
+}
+.org-settings__link-container_active {
+    background: rgba(0, 132, 254, 0.07);
+    color: #0084FE;
+}
+.org-settings__link-container_active:hover {
+    cursor: default;
+}
+.org-settings__link-container_admins:hover .org-settings__link-icon_admins {
+    background-image: url('../../img/admin-list-hover.svg');
+}
+.org-settings__link-container_general:hover .org-settings__link-icon_general {
+    background-image: url('../../img/general-settings-hover.svg');
+}
+.org-settings__link-container_protocol:hover .org-settings__link-icon_protocol {
+    background-image: url('../../img/protocol-settings-hover.svg');
+}
+.org-settings__link-container_vote:hover .org-settings__link-icon_vote {
+    background-image: url('../../img/vote-constructor-hover.svg');
+}
+.org-settings__link-container_mailing:hover .org-settings__link-icon_mailing {
+    background-image: url('../../img/mailing-settings-hover.svg');
+}
+.org-settings__link-icon {
+    min-width: 24px;
+    min-height: 24px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: auto 16px auto 40px;
+}
+.org-settings__link-icon_admins {
+    background-image: url('../../img/admin-list.svg');
+}
+.org-settings__link-icon_general {
+    background-image: url('../../img/general-settings.svg');
+}
+.org-settings__link-icon_protocol {
+    background-image: url('../../img/protocol-settings.svg');
+}
+.org-settings__link-icon_vote {
+    background-image: url('../../img/vote-constructor.svg');
+}
+.org-settings__link-icon_mailing {
+    background-image: url('../../img/mailing-settings.svg');
+}
+.org-settings__link-icon_admins-active {
+    background-image: url('../../img/admin-list-hover.svg');
+}
+.org-settings__link-icon_general-active {
+    background-image: url('../../img/general-settings-hover.svg');
+}
+.org-settings__link-icon_protocol-active {
+    background-image: url('../../img/protocol-settings-hover.svg');
+}
+.org-settings__link-icon_vote-active {
+    background-image: url('../../img/vote-constructor-hover.svg');
+}
+.org-settings__link-icon_mailing-active {
+    background-image: url('../../img/mailing-settings-hover.svg');
+}
+.org-settings__link-text {
+    margin: 16px auto 16px 0;
+}
+.org-settings__container {
+    display: flex;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 6px rgba(54, 58, 72, 0.08);
+    border-radius: 16px;
+    padding: 32px;
+    box-sizing: border-box;
+    margin: 0;
+    width: 100%;
+}
+
+
+
+
+
+
+
 @media (max-width: 1570px) {
     .org-settings__page-title-container {
         font-size: 16px;
@@ -131,12 +246,13 @@
     .org-settings__edit-title-button-save {
         width: 6.5em;
     }
+
     .org-settings__edit-title-button-cancel {
         width: 6.5em;
     }
 }
 @media (max-width: 600px) {
-    .org-settings__page-title-container  {
+    .org-settings__page-title-container {
         font-size: 10px;
     }
 }

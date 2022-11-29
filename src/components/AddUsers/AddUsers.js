@@ -198,7 +198,7 @@ const AddUsers = (props) => {
                 constants={constants}
                 onRemoveUserClick={onRemoveUserClick}
                 handleChangeSuperUser={handleChangeSuperUser}
-                usersToAdd={usersToAdd}
+                users={usersToAdd}
             />
         </div>
     )

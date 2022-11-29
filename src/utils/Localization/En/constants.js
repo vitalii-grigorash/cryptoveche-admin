@@ -259,9 +259,14 @@ export const constants = {
         VOTES_PAGE_MATERIALS_VOTE: "Материалы голосования"
     },
     ORG_SETTINGS: {
-        PLACEHOLDER: "Введите название компании",
+        PLACEHOLDER: 'Введите название компании',
         BUTTON_SAVE: 'Сохранить',
-        BUTTON_CANCEL: 'Отменить'
+        BUTTON_CANCEL: 'Отменить',
+        ADMINS_LIST: 'Список секретарей',
+        GENERAL_SETTINGS: 'Общие настройки',
+        PROTOCOL_SETTINGS: 'Настройки протокола подсчета голосов',
+        VOTE_CONSTRUCOR: 'Конструктор создания голосования',
+        MAILING_SETTINGS: 'Управление рассылкой'
     },
     GENERAL: {
         ALT_ICON: "Иконка"

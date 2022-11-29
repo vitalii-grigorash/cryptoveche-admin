@@ -9,7 +9,7 @@ const UsersTable = (props) => {
         constants,
         onRemoveUserClick,
         handleChangeSuperUser,
-        usersToAdd
+        users
     } = props;
 
     const usersSearch = Validation();
@@ -69,10 +69,10 @@ const UsersTable = (props) => {
 
     useEffect(() => {
         if (usersSearchInput === '') {
-            setUsersForRender(usersToAdd);
+            setUsersForRender(users);
         } else {
             const dataForRender = [];
-            usersToAdd.forEach((user) => {
+            users.forEach((user) => {
                 if (user.email.toLowerCase().includes(usersSearchInput.toLowerCase())) {
                     dataForRender.push(user);
                 } else if (user.last_name.toLowerCase().includes(usersSearchInput.toLowerCase())) {
@@ -88,7 +88,7 @@ const UsersTable = (props) => {
     },
         [
             usersSearchInput,
-            usersToAdd,
+            users,
         ]
     );
 

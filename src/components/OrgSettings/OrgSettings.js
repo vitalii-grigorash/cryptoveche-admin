@@ -3,6 +3,11 @@ import { useNavigate } from "react-router-dom";
 import generalTitleRow from '../../img/GeneralTitleAllPagesRowIcon.svg';
 import * as Organizations from '../../Api/Organizations';
 import { Validation } from '../../utils/Validation';
+import AdminsSettings from "../AdminsSettings/AdminsSettings";
+import GeneralSettings from "../GeneralSettings/GeneralSettings";
+import ProtocolSettings from "../ProtocolSettings/ProtocolSettings";
+import VoteSettings from "../VoteSettings/VoteSettings";
+import MailingSettings from '../MailingSettings/MailingSettings';
 
 const OrgSettings = (props) => {
 
@@ -16,6 +21,11 @@ const OrgSettings = (props) => {
     const [isEditUserActive, setEditUserActive] = useState(false);
     const [currentOrg, setCurrentOrg] = useState({});
     const [orgTitle, setOrgTitle] = useState('');
+    const [isAdminsSettingsActive, setAdminsSettingsActive] = useState(true);
+    const [isGeneralSettingsActive, setGeneralSettingsActive] = useState(false);
+    const [isProtocolSettingsActive, setProtocolSettingsActive] = useState(false);
+    const [isVoteSettingsActive, setVoteSettingsActive] = useState(false);
+    const [isMailingSettingsActive, setMailingSettingsActive] = useState(false);
 
     function getCurrentOrg() {
         if (localStorage.getItem('currentOrgId')) {
@@ -78,6 +88,46 @@ const OrgSettings = (props) => {
         title.setValue(currentOrg.title);
     }
 
+    function adminsSettingsShow() {
+        setAdminsSettingsActive(true);
+        setGeneralSettingsActive(false);
+        setProtocolSettingsActive(false);
+        setVoteSettingsActive(false);
+        setMailingSettingsActive(false);
+    }
+
+    function generalSettingsShow() {
+        setGeneralSettingsActive(true);
+        setAdminsSettingsActive(false);
+        setProtocolSettingsActive(false);
+        setVoteSettingsActive(false);
+        setMailingSettingsActive(false);
+    }
+
+    function protocolSettingsShow() {
+        setProtocolSettingsActive(true);
+        setGeneralSettingsActive(false);
+        setAdminsSettingsActive(false);
+        setVoteSettingsActive(false);
+        setMailingSettingsActive(false);
+    }
+
+    function voteSettingsShow() {
+        setVoteSettingsActive(true);
+        setProtocolSettingsActive(false);
+        setGeneralSettingsActive(false);
+        setAdminsSettingsActive(false);
+        setMailingSettingsActive(false);
+    }
+
+    function mailingSettingsShow() {
+        setMailingSettingsActive(true);
+        setVoteSettingsActive(false);
+        setProtocolSettingsActive(false);
+        setGeneralSettingsActive(false);
+        setAdminsSettingsActive(false);
+    }
+
     return (
         <div className="org-settings _container">
             <div className="org-settings__page-title-container">
@@ -107,6 +157,47 @@ const OrgSettings = (props) => {
                         </div>
                     </div>
                 )}
+            </div>
+            <div className="org-settings__main-container">
+                <div className="org-settings__nav-container">
+                    <div className={`${isAdminsSettingsActive ? 'org-settings__link-container org-settings__link-container_active' : 'org-settings__link-container org-settings__link-container_admins'}`} onClick={adminsSettingsShow}>
+                        <div className={`${isAdminsSettingsActive ? 'org-settings__link-icon org-settings__link-icon_admins-active' : 'org-settings__link-icon org-settings__link-icon_admins'}`} />
+                        <p className="org-settings__link-text">{constants.ORG_SETTINGS.ADMINS_LIST}</p>
+                    </div>
+                    <div className={`${isGeneralSettingsActive ? 'org-settings__link-container org-settings__link-container_active' : 'org-settings__link-container org-settings__link-container_general'}`} onClick={generalSettingsShow}>
+                        <div className={`${isGeneralSettingsActive ? 'org-settings__link-icon org-settings__link-icon_general-active' : 'org-settings__link-icon org-settings__link-icon_general'}`} />
+                        <p className="org-settings__link-text">{constants.ORG_SETTINGS.GENERAL_SETTINGS}</p>
+                    </div>
+                    <div className={`${isProtocolSettingsActive ? 'org-settings__link-container org-settings__link-container_active' : 'org-settings__link-container org-settings__link-container_protocol'}`} onClick={protocolSettingsShow}>
+                        <div className={`${isProtocolSettingsActive ? 'org-settings__link-icon org-settings__link-icon_protocol-active' : 'org-settings__link-icon org-settings__link-icon_protocol'}`} />
+                        <p className="org-settings__link-text">{constants.ORG_SETTINGS.PROTOCOL_SETTINGS}</p>
+                    </div>
+                    <div className={`${isVoteSettingsActive ? 'org-settings__link-container org-settings__link-container_active' : 'org-settings__link-container org-settings__link-container_vote'}`} onClick={voteSettingsShow}>
+                        <div className={`${isVoteSettingsActive ? 'org-settings__link-icon org-settings__link-icon_vote-active' : 'org-settings__link-icon org-settings__link-icon_vote'}`} />
+                        <p className="org-settings__link-text">{constants.ORG_SETTINGS.VOTE_CONSTRUCOR}</p>
+                    </div>
+                    <div className={`${isMailingSettingsActive ? 'org-settings__link-container org-settings__link-container_active' : 'org-settings__link-container org-settings__link-container_mailing'}`} onClick={mailingSettingsShow}>
+                        <div className={`${isMailingSettingsActive ? 'org-settings__link-icon org-settings__link-icon_mailing-active' : 'org-settings__link-icon org-settings__link-icon_mailing'}`} />
+                        <p className="org-settings__link-text">{constants.ORG_SETTINGS.MAILING_SETTINGS}</p>
+                    </div>
+                </div>
+                <div className="org-settings__container">
+                    {isAdminsSettingsActive && (
+                        <AdminsSettings />
+                    )}
+                    {isGeneralSettingsActive && (
+                        <GeneralSettings />
+                    )}
+                    {isProtocolSettingsActive && (
+                        <ProtocolSettings />
+                    )}
+                    {isVoteSettingsActive && (
+                        <VoteSettings />
+                    )}
+                    {isMailingSettingsActive && (
+                        <MailingSettings />
+                    )}
+                </div>
             </div>
         </div>
     )
