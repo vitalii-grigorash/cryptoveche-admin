@@ -1,9 +1,11 @@
 import React, {useState} from "react";
 import GeneralTitleAllPages from "../GeneralTitleAllPages/GeneralTitleAllPages";
+import AddNewVoteQuestionType from "../AddNewVoteQuestionType/AddNewVoteQuestionType";
 import row_input_select_role from "../../img/Auth_icon_row_select_role.svg";
 import iconPlus from "../../img/AddNewVoteIconPlus.svg";
 import iconClip from "../../img/AddNewVoteIconClip.svg";
 import iconDelete from "../../img/AddNewOrgDeleteIcon.svg";
+import * as excel from "xlsx";
 
 const AddNewVote = (props) => {
 
@@ -15,11 +17,65 @@ const AddNewVote = (props) => {
     const [hideSelectOrg, setHideSelectOrg] = useState(true);
     const [hideSelectOrgBtn, setHideSelectOrgBnt] = useState(true);
     const [showAddMaterialsVotes, setShowAddMaterialsVotes] = useState(false);
+    const [activeSelectLinkDocument, setActiveLinkDocument] = useState(false);
+    const [activeSelectOrg, setActiveSelectOrg] = useState(false);
+    const [activeCloseList, setActiveCloseList] = useState(true);
+    const [activeOpenList, setActiveOpenList] = useState(false);
+    const [activeAddUsersBtn, setActiveAddUsersBtn] = useState(false);
+    const [activeAddGroupBtn, setActiveAddGroupBnt] = useState(true);
+    const [activeSelectQuorum, setActiveSelectQuorum] = useState(false);
+    const [activeModalTypeQuestion, setActiveModalTypeQuestion] = useState(false);
+    const [isExcelFileSelected, setExcelFileSelected] = useState(false);
+    const [selectedFileName, setSelectedFileName] = useState(constants.ADD_NEW_ORG.ADD_NEW_ORG_SELECT_FILE);
+    const [usersToFind, setUsersToFind] = useState([]);
+    const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+
+    function onSelectFileHandler(e) {
+        var files = e.target.files, f = files[0];
+        setSelectedFileName(files[0].name);
+        setExcelFileSelected(true);
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var data = e.target.result;
+            var workbook = excel.read(data, { type: 'binary' });
+            const uploadedUsers = workbook.Strings.map(user => user.h);
+            const filteredUsers = uploadedUsers.filter(user => user !== undefined);
+            const validUsersEmails = [];
+            filteredUsers.forEach(user => {
+                if (regex.test(String(user).toLowerCase())) {
+                    validUsersEmails.push(user);
+                }
+            });
+            const uniqАrr = [...new Set(validUsersEmails)];
+            setUsersToFind(uniqАrr);
+        };
+        reader.readAsBinaryString(f);
+    }
 
     function showSelectOrgForm() {
         setHideSelectOrg(false)
         setActiveGeneralSettings(true)
         setHideSelectOrgBnt(false)
+    }
+
+    const onShowOpenList = () => {
+        setActiveOpenList(true)
+        setActiveCloseList(false)
+    }
+
+    const onShowCloseList = () => {
+        setActiveOpenList(false)
+        setActiveCloseList(true)
+    }
+
+    const onShowSelectAddUsers = () => {
+        setActiveAddUsersBtn(true)
+        setActiveAddGroupBnt(false)
+    }
+
+    const onShowSelectAddGroup = () => {
+        setActiveAddUsersBtn(false)
+        setActiveAddGroupBnt(true)
     }
 
     return (
@@ -40,10 +96,10 @@ const AddNewVote = (props) => {
                                         <label className="add-new-vote__label">{constants.ADD_NEW_GROUP_USERS.ADD_NEW_GROUP_USERS_ORG}
                                             <span className="add-new-vote__red-star">*</span>
                                         </label>
-                                        <div className="add-new-vote__time-zone-select-container">
+                                        <div onClick={() => setActiveSelectOrg(!activeSelectOrg)} className="add-new-vote__time-zone-select-container">
                                             <p className="add-new-vote__time-zone-select-value">Выбранная нами организация</p>
                                             <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt="Стрелочка открытия меню"/>
-                                            <div className="add-new-vote__time-zone-options-container">
+                                            <div className={activeSelectOrg ? "add-new-vote__time-zone-options-container" : "add-new-vote__time-zone-options-container hidden"}>
                                                 <p className="add-new-vote__time-zone-option"></p>
                                             </div>
                                         </div>
@@ -75,11 +131,13 @@ const AddNewVote = (props) => {
                                     <label className="add-new-vote__label">Условие кворума
                                         <span className="add-new-vote__red-star">*</span>
                                     </label>
-                                    <div className="add-new-vote__time-zone-select-container">
-                                        <p className="add-new-vote__time-zone-select-value">Тайное голосование</p>
+                                    <div onClick={() => setActiveSelectQuorum(!activeSelectQuorum)} className="add-new-vote__time-zone-select-container">
+                                        <p className="add-new-vote__time-zone-select-value">Любое количество</p>
                                         <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt="Стрелочка открытия меню"/>
-                                        <div className="add-new-vote__time-zone-options-container">
-                                            <p className="add-new-vote__time-zone-option"></p>
+                                        <div className={activeSelectQuorum ? "add-new-vote__time-zone-options-container" : "add-new-vote__time-zone-options-container hidden"}>
+                                            <p className="add-new-vote__time-zone-option">50% + 1</p>
+                                            <p className="add-new-vote__time-zone-option">50%</p>
+                                            <p className="add-new-vote__time-zone-option">2/3</p>
                                         </div>
                                     </div>
                                 </div>
@@ -136,15 +194,32 @@ const AddNewVote = (props) => {
                                                 </div>
                                             </div>
                                             <div className="add-new-vote__link-document-block">
-                                                <div className="add-new-vote__time-zone-select-container _wight">
+                                                <div onClick={() => setActiveLinkDocument(!activeSelectLinkDocument)} className="add-new-vote__time-zone-select-container _add-materials-vote">
                                                     <p className="add-new-vote__time-zone-select-value">Документ</p>
                                                     <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt="Стрелочка открытия меню"/>
-                                                    <div className="add-new-vote__time-zone-options-container">
-                                                        <p className="add-new-vote__time-zone-option"></p>
+                                                    <div className={activeSelectLinkDocument ? "add-new-vote__time-zone-options-container _add-document-link" : "add-new-vote__time-zone-options-container hidden"}>
+                                                        <p className="add-new-vote__time-zone-option">Cсылка</p>
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <input placeholder={'fdfd'} type={'text'}/>
+                                                    {/*<input className="add-new-vote__add-link" type={'text'}/>*/}
+                                                    <div className="add-new-vote__excel-add-container">
+                                                        <input
+                                                            className="add-new-vote__excel-add-input"
+                                                            id="excel__file"
+                                                            type="file"
+                                                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                                            onChange={(e) => onSelectFileHandler(e)}
+                                                        />
+                                                        <label htmlFor="excel__file" className="add-new-vote__excel-add-input-container">
+                                                            <div className="add-new-vote__excel-add-input-file-name-container">
+                                                                <p className={`add-new-vote__excel-add-input-file-name-text ${isExcelFileSelected && 'add-new-vote__excel-add-input-file-name-text_selected'}`}>{selectedFileName}</p>
+                                                            </div>
+                                                            <div className="add-new-vote__excel-add-input-button">
+                                                                <p className='add-new-vote__excel-add-input-button-text'>{constants.ADD_NEW_ORG.ADD_NEW_ORG_LOAD_BTN}</p>
+                                                            </div>
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -152,21 +227,50 @@ const AddNewVote = (props) => {
                                 </div>
                                 <h3 className="add-new-vote__title-select-org">Настройки пользователей</h3>
                                 <div className="add-new-vote__user-settings-open-close-btn">
-                                    <div className="add-new-vote__settings-button-close-open-list">
+                                    <div onClick={onShowCloseList} className={activeCloseList ? "add-new-vote__settings-button-close-open-list active" : "add-new-vote__settings-button-close-open-list"}>
                                         <p>Закрытые списки</p>
                                     </div>
-                                    <div className="add-new-vote__settings-button-close-open-list">
+                                    <div onClick={onShowOpenList} className={activeOpenList ? "add-new-vote__settings-button-close-open-list active" : "add-new-vote__settings-button-close-open-list"}>
                                         <p>Открытые списки</p>
                                     </div>
                                 </div>
-                                <div className="add-new-vote__user-settings-add-users-group-btn">
-                                    <div className="add-new-vote__settings-button-add-users-group">
-                                        <p>Добавить пользователей</p>
+                                {activeCloseList && (
+                                    <div className="add-new-vote__user-settings-add-users-group-block">
+                                        <div className="add-new-vote__user-settings-add-users-group-btn">
+                                            <div onClick={onShowSelectAddUsers} className={activeAddUsersBtn ? "add-new-vote__settings-button-add-users-group active" : "add-new-vote__settings-button-add-users-group"}>
+                                                <p>Добавить пользователей</p>
+                                            </div>
+                                            <div onClick={onShowSelectAddGroup} className={activeAddGroupBtn ? "add-new-vote__settings-button-add-users-group active" : "add-new-vote__settings-button-add-users-group"}>
+                                                <p>Добавить группу</p>
+                                            </div>
+                                        </div>
+                                        <div className="add-new-vote__select-role">
+                                            <label className="add-new-vote__label">{activeAddGroupBtn ? 'Группа пользователей' : 'Список пользователей'}
+                                            </label>
+                                            <div onClick={() => setActiveSelectQuorum(!activeSelectQuorum)} className="add-new-vote__time-zone-select-container">
+                                                <p className="add-new-vote__time-zone-select-value"></p>
+                                                <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt="Стрелочка открытия меню"/>
+                                                <div className={activeSelectQuorum ? "add-new-vote__time-zone-options-container" : "add-new-vote__time-zone-options-container hidden"}>
+                                                    <p className="add-new-vote__time-zone-option"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="add-new-vote__checkbox">
+                                            <label className='add-new-vote__checkbox_container'>
+                                                <input type="checkbox"/>
+                                                <span className='add-new-vote__checkmark' />
+                                            </label>
+                                            <p className="add-new-vote__label-checkbox">Весовое голосование</p>
+                                        </div>
                                     </div>
-                                    <div className="add-new-vote__settings-button-add-users-group">
-                                        <p>Добавить группу</p>
+                                )}
+                                {activeOpenList && (
+                                    <div className="add-new-vote__open-list-block">
+                                        <label className="add-new-vote__open-list-label-input">Максимальное количество участников</label>
+                                        <input className="add-new-vote__open-list-input" placeholder={'1'} type={"number"} min={1} max={9999} step={1}/>
+                                        <label className="add-new-vote__open-list-info">После создания голосования вам будет доступна пригласительная ссылка</label>
                                     </div>
-                                </div>
+                                )}
                             </>
                             )}
                     </div>
@@ -180,7 +284,7 @@ const AddNewVote = (props) => {
                             {/*    </div>*/}
                             {/*</div>*/}
                             <div className="add-new-vote__select-type-questions">
-                                <div className="add-new-vote__select-type-vote-ynq">
+                                <div onClick={() => setActiveModalTypeQuestion(true)}  className="add-new-vote__select-type-vote-ynq">
                                     <p>Голосование</p>
                                     <p>по вопросу</p>
                                 </div>
@@ -206,6 +310,11 @@ const AddNewVote = (props) => {
                         </div>
                 )}
         </div>
+            <AddNewVoteQuestionType
+                activeModalTypeQuestion={activeModalTypeQuestion}
+                setActiveModalTypeQuestion={setActiveModalTypeQuestion}
+                constants={constants}
+            />
     </div>
     )
 }
