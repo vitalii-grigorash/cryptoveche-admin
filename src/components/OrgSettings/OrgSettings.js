@@ -26,6 +26,13 @@ const OrgSettings = (props) => {
     const [isProtocolSettingsActive, setProtocolSettingsActive] = useState(false);
     const [isVoteSettingsActive, setVoteSettingsActive] = useState(false);
     const [isMailingSettingsActive, setMailingSettingsActive] = useState(false);
+    const [mobileSettingsName, setMobileSettingsName] = useState('');
+    const [isMobileNavActive, setMobileNavActive] = useState(true);
+    const [isAdminsSettingsMobileActive, setAdminsSettingsMobileActive] = useState(false);
+    const [isGeneralSettingsMobileActive, setGeneralSettingsMobileActive] = useState(false);
+    const [isProtocolSettingsMobileActive, setProtocolSettingsMobileActive] = useState(false);
+    const [isVoteSettingsMobileActive, setVoteSettingsMobileActive] = useState(false);
+    const [isMailingSettingsMobileActive, setMailingSettingsMobileActive] = useState(false);
 
     function getCurrentOrg() {
         if (localStorage.getItem('currentOrgId')) {
@@ -37,7 +44,6 @@ const OrgSettings = (props) => {
             requestHelper(Organizations.getOrganization, body)
                 .then((org) => {
                     if (org.status !== 'failure') {
-                        console.log(org);
                         setCurrentOrg(org);
                         setOrgTitle(org.title);
                         title.setValue(org.title);
@@ -57,6 +63,10 @@ const OrgSettings = (props) => {
         getCurrentOrg();
         // eslint-disable-next-line
     }, [])
+
+    function reloadOrgPage() {
+        getCurrentOrg();
+    }
 
     function onEditTitleButtonClick() {
         setEditUserActive(true);
@@ -128,6 +138,46 @@ const OrgSettings = (props) => {
         setAdminsSettingsActive(false);
     }
 
+    function onSettingsBackClick() {
+        setMobileNavActive(true);
+        setMobileSettingsName('');
+        setAdminsSettingsMobileActive(false);
+        setGeneralSettingsMobileActive(false);
+        setProtocolSettingsMobileActive(false);
+        setVoteSettingsMobileActive(false);
+        setMailingSettingsMobileActive(false);
+    }
+
+    function adminsSettingsMobileShow() {
+        setMobileNavActive(false);
+        setAdminsSettingsMobileActive(true);
+        setMobileSettingsName(constants.ORG_SETTINGS.ADMINS_LIST);
+    }
+
+    function generalSettingsMobileShow() {
+        setMobileNavActive(false);
+        setGeneralSettingsMobileActive(true);
+        setMobileSettingsName(constants.ORG_SETTINGS.GENERAL_SETTINGS);
+    }
+
+    function protocolSettingsMobileShow() {
+        setMobileNavActive(false);
+        setProtocolSettingsMobileActive(true);
+        setMobileSettingsName(constants.ORG_SETTINGS.PROTOCOL_SETTINGS);
+    }
+
+    function voteSettingsMobileShow() {
+        setMobileNavActive(false);
+        setVoteSettingsMobileActive(true);
+        setMobileSettingsName(constants.ORG_SETTINGS.VOTE_CONSTRUCOR);
+    }
+
+    function mailingSettingsMobileShow() {
+        setMobileNavActive(false);
+        setMailingSettingsMobileActive(true);
+        setMobileSettingsName(constants.ORG_SETTINGS.MAILING_SETTINGS);
+    }
+
     return (
         <div className="org-settings _container">
             <div className="org-settings__page-title-container">
@@ -183,7 +233,12 @@ const OrgSettings = (props) => {
                 </div>
                 <div className="org-settings__container">
                     {isAdminsSettingsActive && (
-                        <AdminsSettings />
+                        <AdminsSettings
+                            constants={constants}
+                            requestHelper={requestHelper}
+                            org={currentOrg}
+                            reloadOrgPage={reloadOrgPage}
+                        />
                     )}
                     {isGeneralSettingsActive && (
                         <GeneralSettings />
@@ -198,6 +253,65 @@ const OrgSettings = (props) => {
                         <MailingSettings />
                     )}
                 </div>
+            </div>
+            {/* Мобильная версия */}
+            <div className="org-settings__main-container-mobile">
+                {!isMobileNavActive && (
+                    <div className="org-settings__mobile-heading-container">
+                        <div className="org-settings__mobile-button-back-container" onClick={onSettingsBackClick}>
+                            <div className="org-settings__mobile-button-back-arrow" />
+                            <p className="org-settings__mobile-button-back-text">{constants.ORG_SETTINGS.SETTINGS_BACK}</p>
+                        </div>
+                        <p className="org-settings__mobile-settings-name">{mobileSettingsName}</p>
+                    </div>
+                )}
+                {isMobileNavActive ? (
+                    <div className="org-settings__nav-container-mobile">
+                        <div className="org-settings__link-container" onClick={adminsSettingsMobileShow}>
+                            <div className="org-settings__link-icon org-settings__link-icon_admins" />
+                            <p className="org-settings__link-text">{constants.ORG_SETTINGS.ADMINS_LIST}</p>
+                        </div>
+                        <div className="org-settings__link-container" onClick={generalSettingsMobileShow}>
+                            <div className="org-settings__link-icon org-settings__link-icon_general" />
+                            <p className="org-settings__link-text">{constants.ORG_SETTINGS.GENERAL_SETTINGS}</p>
+                        </div>
+                        <div className="org-settings__link-container" onClick={protocolSettingsMobileShow}>
+                            <div className="org-settings__link-icon org-settings__link-icon_protocol" />
+                            <p className="org-settings__link-text">{constants.ORG_SETTINGS.PROTOCOL_SETTINGS}</p>
+                        </div>
+                        <div className="org-settings__link-container" onClick={voteSettingsMobileShow}>
+                            <div className="org-settings__link-icon org-settings__link-icon_vote" />
+                            <p className="org-settings__link-text">{constants.ORG_SETTINGS.VOTE_CONSTRUCOR}</p>
+                        </div>
+                        <div className="org-settings__link-container" onClick={mailingSettingsMobileShow}>
+                            <div className="org-settings__link-icon org-settings__link-icon_mailing" />
+                            <p className="org-settings__link-text">{constants.ORG_SETTINGS.MAILING_SETTINGS}</p>
+                        </div>
+                    </div>
+                ) : (
+                    <div className="org-settings__container-mobile">
+                        {isAdminsSettingsMobileActive && (
+                            <AdminsSettings
+                                constants={constants}
+                                requestHelper={requestHelper}
+                                org={currentOrg}
+                                reloadOrgPage={reloadOrgPage}
+                            />
+                        )}
+                        {isGeneralSettingsMobileActive && (
+                            <GeneralSettings />
+                        )}
+                        {isProtocolSettingsMobileActive && (
+                            <ProtocolSettings />
+                        )}
+                        {isVoteSettingsMobileActive && (
+                            <VoteSettings />
+                        )}
+                        {isMailingSettingsMobileActive && (
+                            <MailingSettings />
+                        )}
+                    </div>
+                )}
             </div>
         </div>
     )

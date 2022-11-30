@@ -112,21 +112,32 @@
     background-color: #FF4970;
     color: #FFFFFF;
 }
-
-
-
-
-
-
-
 .org-settings__main-container {
     display: flex;
+    margin: 1.7em 0;
+}
+.org-settings__main-container-mobile {
+    display: none;
+    flex-direction: column;
     margin: 1.7em 0;
 }
 .org-settings__nav-container {
     display: flex;
     flex-direction: column;
     max-width: 343px;
+    min-width: 343px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 6px rgba(54, 58, 72, 0.08);
+    border-radius: 16px;
+    padding: 16px;
+    box-sizing: border-box;
+    margin: 0 16px auto 0;
+}
+.org-settings__nav-container-mobile {
+    display: none;
+    flex-direction: column;
+    max-width: 343px;
+    min-width: 343px;
     background: #FFFFFF;
     box-shadow: 0px 2px 6px rgba(54, 58, 72, 0.08);
     border-radius: 16px;
@@ -215,21 +226,96 @@
     background: #FFFFFF;
     box-shadow: 0px 2px 6px rgba(54, 58, 72, 0.08);
     border-radius: 16px;
+    padding: 1.77em;
+    box-sizing: border-box;
+    margin: 0;
+    width: 100%;
+}
+.org-settings__container-mobile {
+    display: none;
+    flex-direction: column;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 6px rgba(54, 58, 72, 0.08);
+    border-radius: 16px;
     padding: 32px;
     box-sizing: border-box;
     margin: 0;
     width: 100%;
 }
-
-
-
-
-
-
-
-@media (max-width: 1570px) {
+.org-settings__mobile-heading-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 16px 0;
+}
+.org-settings__mobile-button-back-container {
+    display: flex;
+    margin: 0 auto 0 0;
+}
+.org-settings__mobile-button-back-arrow {
+    background-image: url('../../img/back-button-icon.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    margin: auto 8px auto 0;
+}
+.org-settings__mobile-button-back-text {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #363B4D;
+    opacity: 0.4;
+    margin: auto auto auto 0;
+}
+.org-settings__mobile-settings-name {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    color: rgba(54, 59, 77, 0.9);
+    margin: 16px auto 0 0;
+    max-width: 300px;
+}
+@media (max-width: 1900px) {
+    .org-settings  {
+        font-size: 16px;
+        min-height: calc(65vh - 80px);
+    }
     .org-settings__page-title-container {
         font-size: 16px;
+    }
+}
+@media (max-width: 1735px) {
+    .org-settings  {
+        font-size: 14px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 1570px) {
+    .org-settings  {
+        font-size: 12px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 1395px) {
+    .org-settings  {
+        font-size: 10px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 1350px) {
+    .org-settings  {
+        font-size: 8px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 1060px) {
+    .org-settings  {
+        font-size: 6px;
+        min-height: calc(65vh - 80px);
     }
 }
 @media (max-width: 1120px) {
@@ -237,16 +323,48 @@
         font-size: 14px;
     }
 }
+@media (max-width: 950px) {
+    .org-settings  {
+        font-size: 12px;
+        min-height: calc(65vh - 80px);
+    }
+    .org-settings__main-container {
+        display: none;
+    }
+    .org-settings__main-container-mobile {
+        display: flex;
+    }
+    .org-settings__nav-container {
+        display: none;
+    }
+    .org-settings__nav-container-mobile {
+        display: flex;
+    }
+    .org-settings__container {
+        display: none;
+    }
+    .org-settings__container-mobile {
+        display: flex;
+        padding: 16px;
+    }
+}
 @media (max-width: 830px) {
+    .org-settings  {
+        font-size: 10px;
+        min-height: calc(65vh - 80px);
+    }
     .org-settings__page-title-container {
         font-size: 12px;
     }
 }
 @media (max-width: 650px) {
+    .org-settings  {
+        font-size: 8px;
+        min-height: calc(65vh - 80px);
+    }
     .org-settings__edit-title-button-save {
         width: 6.5em;
     }
-
     .org-settings__edit-title-button-cancel {
         width: 6.5em;
     }

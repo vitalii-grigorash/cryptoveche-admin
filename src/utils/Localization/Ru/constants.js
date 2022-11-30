@@ -261,12 +261,16 @@ export const constants = {
     ORG_SETTINGS: {
         PLACEHOLDER: 'Введите название компании',
         BUTTON_SAVE: 'Сохранить',
+        BUTTON_SAVE_NEW_ADMINS: 'Добавить пользователей',
         BUTTON_CANCEL: 'Отменить',
         ADMINS_LIST: 'Список секретарей',
         GENERAL_SETTINGS: 'Общие настройки',
         PROTOCOL_SETTINGS: 'Настройки протокола подсчета голосов',
         VOTE_CONSTRUCOR: 'Конструктор создания голосования',
-        MAILING_SETTINGS: 'Управление рассылкой'
+        MAILING_SETTINGS: 'Управление рассылкой',
+        SETTINGS_BACK: 'К меню настроек',
+        ADD_ADMIN: 'добавить администратора',
+        BUTTON_SAVE_ADMINS_CHANGE: 'Сохранить изменения',
     },
     GENERAL: {
         ALT_ICON: "Иконка"
