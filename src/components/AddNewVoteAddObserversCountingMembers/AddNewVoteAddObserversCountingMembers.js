@@ -3,10 +3,11 @@ import iconPlus from "../../img/AddNewVoteIconPlus.svg";
 import row_input_select_role from "../../img/Auth_icon_row_select_role.svg";
 import AddNewVoteExpandList from "../AddNewVoteExpandList/AddNewVoteExpandList";
 
-const AddNewVoteAddObservers = (props) => {
+const AddNewVoteAddObserversCountingMembers = (props) => {
 
     const {
-        constants
+        constants,
+        titleObserversCountingMembers
     } = props;
 
     const [activeAddObservers, setActiveAddObservers] = useState(false);
@@ -29,7 +30,7 @@ const AddNewVoteAddObservers = (props) => {
             <div className="add-new-vote-add-observers">
                 <div onClick={() => setActiveAddObservers(!activeAddObservers)} className="add-new-vote-add-observers__add-list-voters-active-btn">
                     <img className="add-new-vote-add-observers__materials-vote-icon-plus" src={iconPlus} alt={constants.GENERAL.ALT_ICON}/>
-                    <p className="add-new-vote__add-list-voters-active-btn-label">ДОБАВИТЬ НАБЛЮДАТЕЛЕЙ</p>
+                    <p className="add-new-vote__add-list-voters-active-btn-label">{titleObserversCountingMembers}</p>
                 </div>
                 <div className={activeAddObservers ? "add-new-vote-add-observers__buttons-table-block active" : "add-new-vote-add-observers__buttons-table-block"}>
                     <div className="add-new-vote-add-observers__add-users-group-btn">
@@ -84,4 +85,4 @@ const AddNewVoteAddObservers = (props) => {
         </>
     )
 }
-export default AddNewVoteAddObservers;
+export default AddNewVoteAddObserversCountingMembers;

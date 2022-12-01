@@ -2,10 +2,13 @@ import React, {useState} from "react";
 import GeneralTitleAllPages from "../GeneralTitleAllPages/GeneralTitleAllPages";
 import AddNewVoteQuestionType from "../AddNewVoteQuestionType/AddNewVoteQuestionType";
 import row_input_select_role from "../../img/Auth_icon_row_select_role.svg";
-import iconPlus from "../../img/AddNewVoteIconPlus.svg";
-import iconClip from "../../img/AddNewVoteIconClip.svg";
-import iconDelete from "../../img/AddNewOrgDeleteIcon.svg";
-import * as excel from "xlsx";
+import iconPlusTable from "../../img/AddNewVoteIconPlusTable.svg";
+import iconMinusTable from "../../img/AddNewVoteIconMinusTable.svg";
+import PaginationBlock from "../PaginationBlock/PaginationBlock";
+import AddNewVoteAddObserversCountingMembers from "../AddNewVoteAddObserversCountingMembers/AddNewVoteAddObserversCountingMembers";
+import AddNewVoteExpandList from "../AddNewVoteExpandList/AddNewVoteExpandList";
+import orgSearchIconMobile from "../../img/PaginationSearchIcon.svg";
+import AddNewVoteAddMaterialsVote from "../AddNewVoteAddMaterialsVote/AddNewVoteAddMaterialsVote";
 
 const AddNewVote = (props) => {
 
@@ -16,41 +19,14 @@ const AddNewVote = (props) => {
     const [activeGeneralSettings, setActiveGeneralSettings] = useState(false);
     const [hideSelectOrg, setHideSelectOrg] = useState(true);
     const [hideSelectOrgBtn, setHideSelectOrgBnt] = useState(true);
-    const [showAddMaterialsVotes, setShowAddMaterialsVotes] = useState(false);
-    const [activeSelectLinkDocument, setActiveLinkDocument] = useState(false);
     const [activeSelectOrg, setActiveSelectOrg] = useState(false);
     const [activeCloseList, setActiveCloseList] = useState(true);
     const [activeOpenList, setActiveOpenList] = useState(false);
     const [activeAddUsersBtn, setActiveAddUsersBtn] = useState(false);
     const [activeAddGroupBtn, setActiveAddGroupBnt] = useState(true);
+    const [activeSelectUsersGroup, setActiveSelectUserGroup] = useState(false);
     const [activeSelectQuorum, setActiveSelectQuorum] = useState(false);
     const [activeModalTypeQuestion, setActiveModalTypeQuestion] = useState(false);
-    const [isExcelFileSelected, setExcelFileSelected] = useState(false);
-    const [selectedFileName, setSelectedFileName] = useState(constants.ADD_NEW_ORG.ADD_NEW_ORG_SELECT_FILE);
-    const [usersToFind, setUsersToFind] = useState([]);
-    const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-
-    function onSelectFileHandler(e) {
-        var files = e.target.files, f = files[0];
-        setSelectedFileName(files[0].name);
-        setExcelFileSelected(true);
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            var data = e.target.result;
-            var workbook = excel.read(data, { type: 'binary' });
-            const uploadedUsers = workbook.Strings.map(user => user.h);
-            const filteredUsers = uploadedUsers.filter(user => user !== undefined);
-            const validUsersEmails = [];
-            filteredUsers.forEach(user => {
-                if (regex.test(String(user).toLowerCase())) {
-                    validUsersEmails.push(user);
-                }
-            });
-            const uniqАrr = [...new Set(validUsersEmails)];
-            setUsersToFind(uniqАrr);
-        };
-        reader.readAsBinaryString(f);
-    }
 
     function showSelectOrgForm() {
         setHideSelectOrg(false)
@@ -142,21 +118,21 @@ const AddNewVote = (props) => {
                                     </div>
                                 </div>
                                 <div className="add-new-vote__select-datetime-events-vote">
-                                    <div className="add-new-vote__select-datatime">
-                                        <label className="add-new-vote__select-datatime-label">Начало регистрации<span className="add-new-vote__red-star">*</span></label>
-                                        <input className="add-new-vote__select-datatime-field" type={"datetime-local"}/>
+                                    <div className="add-new-vote__select-datetime">
+                                        <label className="add-new-vote__select-datetime-label">Начало регистрации<span className="add-new-vote__red-star">*</span></label>
+                                        <input className="add-new-vote__select-datetime-field" type={"datetime-local"}/>
                                     </div>
-                                    <div className="add-new-vote__select-datatime">
-                                        <label className="add-new-vote__select-datatime-label">Окончание регистрации<span className="add-new-vote__red-star">*</span></label>
-                                        <input className="add-new-vote__select-datatime-field" type={"datetime-local"}/>
+                                    <div className="add-new-vote__select-datetime">
+                                        <label className="add-new-vote__select-datetime-label">Окончание регистрации<span className="add-new-vote__red-star">*</span></label>
+                                        <input className="add-new-vote__select-datetime-field" type={"datetime-local"}/>
                                     </div>
-                                    <div className="add-new-vote__select-datatime">
-                                        <label className="add-new-vote__select-datatime-label">Начало голосования<span className="add-new-vote__red-star">*</span></label>
-                                        <input className="add-new-vote__select-datatime-field" type={"datetime-local"}/>
+                                    <div className="add-new-vote__select-datetime">
+                                        <label className="add-new-vote__select-datetime-label">Начало голосования<span className="add-new-vote__red-star">*</span></label>
+                                        <input className="add-new-vote__select-datetime-field" type={"datetime-local"}/>
                                     </div>
-                                    <div className="add-new-vote__select-datatime">
-                                        <label className="add-new-vote__select-datatime-label">Окончание голосования<span className="add-new-vote__red-star">*</span></label>
-                                        <input className="add-new-vote__select-datatime-field" type={"datetime-local"}/>
+                                    <div className="add-new-vote__select-datetime">
+                                        <label className="add-new-vote__select-datetime-label">Окончание голосования<span className="add-new-vote__red-star">*</span></label>
+                                        <input className="add-new-vote__select-datetime-field" type={"datetime-local"}/>
                                     </div>
                                 </div>
                                 <div className="add-new-vote__checkboxes-block">
@@ -176,54 +152,10 @@ const AddNewVote = (props) => {
                                     </div>
                                 </div>
                                 <div className="add-new-vote__materials-vote-block">
-                                    <div className="add-new-vote__materials-vote-btn">
-                                        <img className="add-new-vote__materials-vote-icon-clip" src={iconClip} alt={constants.GENERAL.ALT_ICON}/>
-                                        <p onClick={() => setShowAddMaterialsVotes(!showAddMaterialsVotes)} className="add-new-vote__materials-vote-label">ПРИКРЕПИТЬ МАТЕРИАЛЫ ГОЛОСОВАНИЯ</p>
-                                        <img className={showAddMaterialsVotes ? "add-new-vote__materials-vote-icon-plus" : "add-new-vote__materials-vote-icon-plus hidden"} alt={constants.GENERAL.ALT_ICON} src={iconPlus}/>
-                                    </div>
-                                    {showAddMaterialsVotes && (
-                                        <div className="add-new-vote__materials-vote-add-link-document">
-                                            <div className="add-new-vote__name-materials-vote">
-                                                <div>
-                                                    <input className="add-new-vote__name-materials-vote-input" placeholder={'Заголовок вспомогательного материала'} type={'text'}/>
-                                                    <span className="add-new-vote__red-star">*</span>
-                                                </div>
-                                                <div className="add-new-vote__delete-materials-btn">
-                                                    <img className="add-new-vote__delete-materials-icon" src={iconDelete} alt={constants.GENERAL.ALT_ICON}/>
-                                                    <p>УДАЛИТЬ</p>
-                                                </div>
-                                            </div>
-                                            <div className="add-new-vote__link-document-block">
-                                                <div onClick={() => setActiveLinkDocument(!activeSelectLinkDocument)} className="add-new-vote__time-zone-select-container _add-materials-vote">
-                                                    <p className="add-new-vote__time-zone-select-value">Документ</p>
-                                                    <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt="Стрелочка открытия меню"/>
-                                                    <div className={activeSelectLinkDocument ? "add-new-vote__time-zone-options-container _add-document-link" : "add-new-vote__time-zone-options-container hidden"}>
-                                                        <p className="add-new-vote__time-zone-option">Cсылка</p>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    {/*<input className="add-new-vote__add-link" type={'text'}/>*/}
-                                                    <div className="add-new-vote__excel-add-container">
-                                                        <input
-                                                            className="add-new-vote__excel-add-input"
-                                                            id="excel__file"
-                                                            type="file"
-                                                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                                                            onChange={(e) => onSelectFileHandler(e)}
-                                                        />
-                                                        <label htmlFor="excel__file" className="add-new-vote__excel-add-input-container">
-                                                            <div className="add-new-vote__excel-add-input-file-name-container">
-                                                                <p className={`add-new-vote__excel-add-input-file-name-text ${isExcelFileSelected && 'add-new-vote__excel-add-input-file-name-text_selected'}`}>{selectedFileName}</p>
-                                                            </div>
-                                                            <div className="add-new-vote__excel-add-input-button">
-                                                                <p className='add-new-vote__excel-add-input-button-text'>{constants.ADD_NEW_ORG.ADD_NEW_ORG_LOAD_BTN}</p>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
+                                    <AddNewVoteAddMaterialsVote
+                                        constants={constants}
+                                        nameMaterialsVote={'ПРИКРЕПИТЬ МАТЕРИАЛЫ ГОЛОСОВАНИЯ'}
+                                    />
                                 </div>
                                 <h3 className="add-new-vote__title-select-org">Настройки пользователей</h3>
                                 <div className="add-new-vote__user-settings-open-close-btn">
@@ -247,20 +179,63 @@ const AddNewVote = (props) => {
                                         <div className="add-new-vote__select-role">
                                             <label className="add-new-vote__label">{activeAddGroupBtn ? 'Группа пользователей' : 'Список пользователей'}
                                             </label>
-                                            <div onClick={() => setActiveSelectQuorum(!activeSelectQuorum)} className="add-new-vote__time-zone-select-container">
+                                            <div onClick={() => setActiveSelectUserGroup(!activeSelectUsersGroup)} className="add-new-vote__time-zone-select-container">
                                                 <p className="add-new-vote__time-zone-select-value"></p>
                                                 <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt="Стрелочка открытия меню"/>
-                                                <div className={activeSelectQuorum ? "add-new-vote__time-zone-options-container" : "add-new-vote__time-zone-options-container hidden"}>
+                                                <div className={activeSelectUsersGroup ? "add-new-vote__time-zone-options-container" : "add-new-vote__time-zone-options-container hidden"}>
                                                     <p className="add-new-vote__time-zone-option"></p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="add-new-vote__checkbox">
-                                            <label className='add-new-vote__checkbox_container'>
-                                                <input type="checkbox"/>
-                                                <span className='add-new-vote__checkmark' />
-                                            </label>
-                                            <p className="add-new-vote__label-checkbox">Весовое голосование</p>
+                                        <div className="add-new-vote__weight-voting-checkbox">
+                                            <div className="add-new-vote__checkbox">
+                                                <label className='add-new-vote__checkbox_container'>
+                                                    <input type="checkbox"/>
+                                                    <span className='add-new-vote__checkmark' />
+                                                </label>
+                                                <p className="add-new-vote__label-checkbox">Разрешить другим пользователям присоединяться к голосованию по ссылке</p>
+                                            </div>
+                                            <div className="add-new-vote__checkbox">
+                                                <label className='add-new-vote__checkbox_container'>
+                                                    <input type="checkbox"/>
+                                                    <span className='add-new-vote__checkmark' />
+                                                </label>
+                                                <p className="add-new-vote__label-checkbox">Весовое голосование</p>
+                                            </div>
+                                        </div>
+                                        {activeAddGroupBtn && (
+                                       <AddNewVoteExpandList
+                                           constants={constants}
+                                       />
+                                        )}
+                                       <div className="add-new-vote__top-pagination">
+                                            {/*<PaginationBlock/>   */}
+                                           Верхнняя пагинация
+                                       </div>
+                                        <div className="add-new-vote__list-users-table">
+                                            <div className="add-new-vote__list-users-table-header">
+                                                <p className="add-new-vote__list-users-table-header-username">ФИО</p>
+                                                <p className="add-new-vote__list-users-table-header-weight-vote">Вес голоса</p>
+                                                <p className="add-new-vote__list-users-table-header-action">Действие</p>
+                                            </div>
+                                            <div className="add-new-vote__list-users-table-row">
+                                                <div className="add-new-vote__table-row-username-email">
+                                                    <p className="add-new-vote__table-row-username">Тимошина Мария Владимировна</p>
+                                                    <p className="add-new-vote__table-row-email">anyauskowa@yandex.ru</p>
+                                                </div>
+                                                <div className="add-new-vote__table-row-count">
+                                                    <img className="add-new-vote__table-row-count-minus" src={iconMinusTable} alt={constants.GENERAL.ALT_ICON}/>
+                                                    <p className="add-new-vote__table-row-count-number">3</p>
+                                                    <img className="add-new-vote__table-row-count-plus" src={iconPlusTable} alt={constants.GENERAL.ALT_ICON}/>
+                                                </div>
+                                                <div className="add-new-vote__table-row-action">
+                                                    <p className="add-new-vote__table-row-action-delete">УДАЛИТЬ</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="add-new-vote__bottom-pagination">
+                                            {/*<PaginationBlock/>   */}
+                                            Нижняя пагинация
                                         </div>
                                     </div>
                                 )}
@@ -271,6 +246,8 @@ const AddNewVote = (props) => {
                                         <label className="add-new-vote__open-list-info">После создания голосования вам будет доступна пригласительная ссылка</label>
                                     </div>
                                 )}
+                                <AddNewVoteAddObserversCountingMembers constants={constants} titleObserversCountingMembers={'ДОБАВИТЬ НАБЛЮДАТЕЛЕЙ'}/>
+                                <AddNewVoteAddObserversCountingMembers constants={constants} titleObserversCountingMembers={'ДОБАВИТЬ ЧЛЕНОВ СЧЕТНОЙ КОММИСИИ'}/>
                             </>
                             )}
                     </div>
