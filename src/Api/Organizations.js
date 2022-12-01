@@ -88,6 +88,52 @@ export const addNewOrgAdmins = (accessToken, body) => {
         });
 }
 
+export const changeOrgAdminsStatus = (accessToken, body) => {
+    return fetch(`${API_URL}/organizations/${body.id}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(
+            body.users
+        )
+    })
+        .then(res => res.ok ? res : Promise.reject(res))
+        .then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+        })
+        .then(data => data)
+        .catch((err) => {
+            throw new Error(err.message);
+        });
+}
+
+export const deleteUserFromOrg = (accessToken, body) => {
+    return fetch(`${API_URL}/organizations/${body.id}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(
+            body.users
+        )
+    })
+        .then(res => res.ok ? res : Promise.reject(res))
+        .then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+        })
+        .then(data => data)
+        .catch((err) => {
+            throw new Error(err.message);
+        });
+}
+
 export const updateOrgTitle = (accessToken, body) => {
     return fetch(`${API_URL}/organizations/${body.org_id}`, {
         method: 'PUT',

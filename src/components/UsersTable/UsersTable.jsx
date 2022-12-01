@@ -9,7 +9,10 @@ const UsersTable = (props) => {
         constants,
         onRemoveUserClick,
         handleChangeSuperUser,
-        users
+        users,
+        deleteUserButtonText,
+        deleteUserButtonTextMobile,
+        deleteUserId
     } = props;
 
     const usersSearch = Validation();
@@ -135,8 +138,8 @@ const UsersTable = (props) => {
                             </div>
                             <div className="table-list-users__delete-icon-button" onClick={() => onRemoveUserClick(user)}>
                                 <img alt={constants.GENERAL.ALT_ICON} src={iconDelete} className="delete-icon-button__icon-delete" />
-                                <p className="delete-icon-button__delete-btn">{constants.ADD_NEW_ORG.ADD_NEW_ORG_DELETE_BTN}</p>
-                                <p className="delete-icon-button__delete-btn-mobile">{constants.ADD_NEW_ORG.ADD_NEW_ORG_DELETE_BTN_MOBILE}</p>
+                                <p className="delete-icon-button__delete-btn">{deleteUserId === user.id ? deleteUserButtonText : constants.ADD_NEW_ORG.ADD_NEW_ORG_DELETE_BTN}</p>
+                                <p className="delete-icon-button__delete-btn-mobile">{deleteUserId === user.id ? deleteUserButtonTextMobile : constants.ADD_NEW_ORG.ADD_NEW_ORG_DELETE_BTN_MOBILE}</p>
                             </div>
                         </div>
                     ))}

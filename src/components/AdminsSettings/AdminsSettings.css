@@ -63,3 +63,17 @@
         cursor: default;
     }
 }
+
+@media (max-width: 500px) {
+    .admins-setting__save-new-admins-button {
+        margin: 0 0 32px;
+        width: 100%;
+        height: 48px;
+        font-size: 2em;
+        line-height: 2em;
+        cursor: default;
+    }
+    .admins-setting__save-new-admins-button_change {
+        margin: 0;
+    }
+}

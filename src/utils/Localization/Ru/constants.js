@@ -122,7 +122,9 @@ export const constants = {
         ADD_NEW_ORG_SAVE_BTN: "Сохранить",
         ADD_NEW_ORG_SUPERUSER: "Суперпользователь",
         ADD_NEW_ORG_DELETE_BTN: "УДАЛИТЬ",
+        ADD_NEW_ORG_DELETE_BTN_PROCESS: "УДАЛЕНИЕ...",
         ADD_NEW_ORG_DELETE_BTN_MOBILE: "Удалить",
+        ADD_NEW_ORG_DELETE_BTN_MOBILE_PROCESS: "Удаление...",
         ADD_NEW_ORG_BLOCK_BTN: "Заблокировать",
         ADD_NEW_ORG_UNBLOCK_BTN: "Разблокировать",
         ADD_NEW_ORG_SHOW_MORE_BTN: "ПОКАЗАТЬ ЕЩЁ",
@@ -271,6 +273,7 @@ export const constants = {
         SETTINGS_BACK: 'К меню настроек',
         ADD_ADMIN: 'добавить администратора',
         BUTTON_SAVE_ADMINS_CHANGE: 'Сохранить изменения',
+        BUTTON_LOADING: 'Загрузка...',
     },
     GENERAL: {
         ALT_ICON: "Иконка"

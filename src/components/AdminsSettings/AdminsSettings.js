@@ -15,6 +15,14 @@ const AdminsSettings = (props) => {
     const [isAddAdminOpen, setAddAdminOpen] = useState(false);
     const [usersToAdd, setUsersToAdd] = useState([]);
     const [orgAdmins, setOrgAdmins] = useState([]);
+    const [newAdmins, setNewAdmins] = useState([]);
+    const [adminsToDelete, setAdminsToDelete] = useState([]);
+    const [isSaveButtonActive, setSaveButtonActive] = useState(false);
+    const [newAdminsButtonText, setNewAdminsButtonText] = useState(constants.ORG_SETTINGS.BUTTON_SAVE_NEW_ADMINS);
+    const [changeAdminsStatusButtonText, setChangeAdminsStatusButtonText] = useState(constants.ORG_SETTINGS.BUTTON_SAVE_ADMINS_CHANGE);
+    const [deleteUserButtonText, setDeleteUserButtonText] = useState(constants.ADD_NEW_ORG.ADD_NEW_ORG_DELETE_BTN);
+    const [deleteUserButtonTextMobile, setDeleteUserButtonTextMobile] = useState(constants.ADD_NEW_ORG.ADD_NEW_ORG_DELETE_BTN_MOBILE);
+    const [deleteUserId, setDeleteUserId] = useState('');
 
     function handleShowAddAdmin() {
         if (isAddAdminOpen) {
@@ -29,6 +37,7 @@ const AdminsSettings = (props) => {
     }
 
     function onSaveNewAdminsButtonClick() {
+        setNewAdminsButtonText(constants.ORG_SETTINGS.BUTTON_LOADING);
         const usersToSend = [];
         const adminsToSend = [];
         usersToAdd.forEach((user) => {
@@ -48,14 +57,18 @@ const AdminsSettings = (props) => {
             newUsersData: newUsersData
         }
         requestHelper(Organizations.addNewOrgAdmins, body)
-            .then((data) => {
-                console.log(data);
+            .then(() => {
                 reloadOrgPage();
                 setAddAdminOpen(false);
                 setUsersToAdd([]);
+                setNewAdmins([]);
+                setAdminsToDelete([]);
             })
             .catch((err) => {
                 throw new Error(err.message);
+            })
+            .finally(() => {
+                setNewAdminsButtonText(constants.ORG_SETTINGS.BUTTON_SAVE_NEW_ADMINS);
             })
     }
 
@@ -63,16 +76,29 @@ const AdminsSettings = (props) => {
         if (org.users !== undefined) {
             const users = [];
             org.users.forEach((user) => {
-                const newUser = {
-                    id: user.id,
-                    email: user.email,
-                    first_name: user.first_name,
-                    last_name: user.last_name,
-                    second_name: user.second_name,
-                    isAdmin: false,
-                    userFields: user.userFields
+                if (user.last_name === undefined) {
+                    const newUser = {
+                        id: user.email,
+                        email: user.email,
+                        first_name: `${constants.ADD_NEW_ORG.ADD_NEW_ORG_DEFAULT_FIRST_NAME}`,
+                        last_name: `${constants.ADD_NEW_ORG.ADD_NEW_ORG_DEFAULT_LAST_NAME}`,
+                        second_name: `${constants.ADD_NEW_ORG.ADD_NEW_ORG_DEFAULT_SECOND_NAME}`,
+                        isAdmin: false,
+                        userFields: user.userFields
+                    }
+                    users.push(newUser);
+                } else {
+                    const newUser = {
+                        id: user.id,
+                        email: user.email,
+                        first_name: user.first_name,
+                        last_name: user.last_name,
+                        second_name: user.second_name,
+                        isAdmin: false,
+                        userFields: user.userFields
+                    }
+                    users.push(newUser);
                 }
-                users.push(newUser);
             })
             users.forEach((user) => {
                 org.admins.forEach((admin) => {
@@ -83,12 +109,32 @@ const AdminsSettings = (props) => {
             })
             setOrgAdmins(users);
         }
+        // eslint-disable-next-line
     }, [org])
 
     function onRemoveUserClick(userForRemove) {
-        console.log(userForRemove);
-        // const filteredUsers = usersToAdd.filter(user => user.id !== userForRemove.id);
-        // changeUsersToAddArr(filteredUsers);
+        setDeleteUserId(userForRemove.id);
+        setDeleteUserButtonText(constants.ADD_NEW_ORG.ADD_NEW_ORG_DELETE_BTN_PROCESS);
+        setDeleteUserButtonTextMobile(constants.ADD_NEW_ORG.ADD_NEW_ORG_DELETE_BTN_MOBILE_PROCESS);
+        const body = {
+            id: org.id,
+            users: {
+                usersToDelete: [userForRemove.id]
+            }
+        }
+        requestHelper(Organizations.deleteUserFromOrg, body)
+            .then(() => {
+                reloadOrgPage();
+                setNewAdmins([]);
+                setAdminsToDelete([]);
+            })
+            .catch((err) => {
+                throw new Error(err.message);
+            })
+            .finally(() => {
+                setDeleteUserButtonText(constants.ADD_NEW_ORG.ADD_NEW_ORG_DELETE_BTN);
+                setDeleteUserButtonTextMobile(constants.ADD_NEW_ORG.ADD_NEW_ORG_DELETE_BTN_MOBILE);
+            })
     }
 
     function handleChangeSuperUser(userForChange) {
@@ -101,13 +147,37 @@ const AdminsSettings = (props) => {
         }
         filteredUsers.push(foundUser);
         setOrgAdmins(filteredUsers);
+        const adminsToAdd = [];
+        const adminsToRemove = [];
+        filteredUsers.forEach((user) => {
+            if (user.isAdmin) {
+                const isUserSuperAdmin = org.admins.find(admin => admin.id === user.id);
+                if (isUserSuperAdmin === undefined) {
+                    adminsToAdd.push(user.id);
+                }
+            } else {
+                const isUserSuperAdmin = org.admins.find(admin => admin.id === user.id);
+                if (isUserSuperAdmin !== undefined) {
+                    adminsToRemove.push(user.id);
+                }
+            }
+        })
+        setNewAdmins(adminsToAdd);
+        setAdminsToDelete(adminsToRemove);
     }
 
+    useEffect(() => {
+        if (newAdmins.length !== 0) {
+            setSaveButtonActive(true);
+        } else if (adminsToDelete.length !== 0) {
+            setSaveButtonActive(true);
+        } else {
+            setSaveButtonActive(false);
+        }
+    }, [adminsToDelete.length, newAdmins.length])
+
     function onSaveAdminsChangeClick() {
-
-        const newAdmins = [];
-        const adminsToDelete = [];
-
+        setChangeAdminsStatusButtonText(constants.ORG_SETTINGS.BUTTON_LOADING);
         const body = {
             id: org.id,
             users: {
@@ -115,26 +185,19 @@ const AdminsSettings = (props) => {
                 adminsToDelete: adminsToDelete
             }
         }
-
-        orgAdmins.forEach((user) => {
-            if (user.isAdmin) {
-                const isUserSuperAdmin = org.admins.find(admin => admin.id === user.id);
-                if (isUserSuperAdmin === undefined) {
-                    newAdmins.push(user.id);
-                }
-            } else {
-                const isUserSuperAdmin = org.admins.find(admin => admin.id === user.id);
-                if (isUserSuperAdmin !== undefined) {
-                    adminsToDelete.push(user.id);
-                }
-            }
-        })
-
-        console.log(newAdmins);
-        console.log(adminsToDelete);
-
-        // Всё готово, осталось отправить запрос на API и проверить
-
+        requestHelper(Organizations.changeOrgAdminsStatus, body)
+            .then((data) => {
+                console.log(data);
+                reloadOrgPage();
+                setNewAdmins([]);
+                setAdminsToDelete([]);
+            })
+            .catch((err) => {
+                throw new Error(err.message);
+            })
+            .finally(() => {
+                setChangeAdminsStatusButtonText(constants.ORG_SETTINGS.BUTTON_SAVE_ADMINS_CHANGE);
+            })
     }
 
     return (
@@ -155,7 +218,7 @@ const AdminsSettings = (props) => {
             {isAddAdminOpen && (
                 <>
                     {usersToAdd.length !== 0 && (
-                        <button className="admins-setting__save-new-admins-button" onClick={onSaveNewAdminsButtonClick}>{constants.ORG_SETTINGS.BUTTON_SAVE_NEW_ADMINS}</button>
+                        <button className="admins-setting__save-new-admins-button" onClick={onSaveNewAdminsButtonClick}>{newAdminsButtonText}</button>
                     )}
                 </>
             )}
@@ -164,8 +227,13 @@ const AdminsSettings = (props) => {
                 onRemoveUserClick={onRemoveUserClick}
                 handleChangeSuperUser={handleChangeSuperUser}
                 users={orgAdmins}
+                deleteUserButtonText={deleteUserButtonText}
+                deleteUserButtonTextMobile={deleteUserButtonTextMobile}
+                deleteUserId={deleteUserId}
             />
-            <button className="admins-setting__save-new-admins-button admins-setting__save-new-admins-button_change" onClick={onSaveAdminsChangeClick}>{constants.ORG_SETTINGS.BUTTON_SAVE_ADMINS_CHANGE}</button>
+            {isSaveButtonActive && (
+                <button className="admins-setting__save-new-admins-button admins-setting__save-new-admins-button_change" onClick={onSaveAdminsChangeClick}>{changeAdminsStatusButtonText}</button>
+            )}
         </div>
     )
 }

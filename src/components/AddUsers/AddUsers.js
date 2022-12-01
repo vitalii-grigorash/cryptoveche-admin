@@ -25,6 +25,9 @@ const AddUsers = (props) => {
     const [selectedFileName, setSelectedFileName] = useState(constants.ADD_NEW_ORG.ADD_NEW_ORG_SELECT_FILE);
     const [isExcelFileSelected, setExcelFileSelected] = useState(false);
     const [emailErrorMessage, setEmailErrorMessage] = useState('');
+    const deleteUserButtonText = constants.ADD_NEW_ORG.ADD_NEW_ORG_DELETE_BTN;
+    const deleteUserButtonTextMobile = constants.ADD_NEW_ORG.ADD_NEW_ORG_DELETE_BTN_MOBILE;
+    const deleteUserId = '';
     const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
     const onExcelBtnClick = () => {
@@ -199,6 +202,9 @@ const AddUsers = (props) => {
                 onRemoveUserClick={onRemoveUserClick}
                 handleChangeSuperUser={handleChangeSuperUser}
                 users={usersToAdd}
+                deleteUserButtonText={deleteUserButtonText}
+                deleteUserButtonTextMobile={deleteUserButtonTextMobile}
+                deleteUserId={deleteUserId}
             />
         </div>
     )
