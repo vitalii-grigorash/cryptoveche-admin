@@ -274,6 +274,17 @@ export const constants = {
         ADD_ADMIN: 'добавить администратора',
         BUTTON_SAVE_ADMINS_CHANGE: 'Сохранить изменения',
         BUTTON_LOADING: 'Загрузка...',
+        ADD_OBSERVERS: 'Добавить наблюдателей',
+        ADD_COUNTERS: 'Добавить счетную комиссию',
+        ADD_TEMPLATES: 'Добавить шаблоны голосований',
+        INVALID_BALLOTS: 'Разрешить отправку недействительных бюллетеней',
+        PROLONG: 'Разрешить продление времени голосования',
+        MINUTES: 'минут',
+        TIME_ZONE: 'Временная зона',
+        SUPPORT_EMAIL: 'E-mail службы поддержки',
+        SUPPORT_EMAIL_PLACEGOLDER: 'Введите E-mail службы поддержки',
+        DESCRIPTION: 'Примечание',
+        DESCRIPTION_PLACEGOLDER: 'Введите примечание',
     },
     GENERAL: {
         ALT_ICON: "Иконка"

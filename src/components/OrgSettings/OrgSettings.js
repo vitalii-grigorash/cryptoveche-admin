@@ -241,7 +241,12 @@ const OrgSettings = (props) => {
                         />
                     )}
                     {isGeneralSettingsActive && (
-                        <GeneralSettings />
+                        <GeneralSettings
+                            constants={constants}
+                            requestHelper={requestHelper}
+                            org={currentOrg}
+                            reloadOrgPage={reloadOrgPage}
+                        />
                     )}
                     {isProtocolSettingsActive && (
                         <ProtocolSettings />
@@ -299,7 +304,12 @@ const OrgSettings = (props) => {
                             />
                         )}
                         {isGeneralSettingsMobileActive && (
-                            <GeneralSettings />
+                            <GeneralSettings
+                                constants={constants}
+                                requestHelper={requestHelper}
+                                org={currentOrg}
+                                reloadOrgPage={reloadOrgPage}
+                            />
                         )}
                         {isProtocolSettingsMobileActive && (
                             <ProtocolSettings />

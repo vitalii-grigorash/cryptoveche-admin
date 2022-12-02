@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    
 }
 .admins-settings__heading {
     font-family: 'Inter';
@@ -63,7 +62,6 @@
         cursor: default;
     }
 }
-
 @media (max-width: 500px) {
     .admins-setting__save-new-admins-button {
         margin: 0 0 32px;

@@ -35,8 +35,6 @@ function App() {
     const [authAs, setAuthAs] = useState('');
     const { pathname } = useLocation();
 
-    console.log(authAs);
-
     function requestHelper(request, body = {}) {
         return new Promise((resolve, reject) => {
             if (localStorage.getItem('jwt')) {
