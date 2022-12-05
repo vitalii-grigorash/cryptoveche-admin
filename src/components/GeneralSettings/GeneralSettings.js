@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import timeZoneRu from '../../utils/TimeZoneData/TimeZoneRu.json';
 import timeZoneEn from '../../utils/TimeZoneData/TimeZoneEn.json';
 import { Validation } from '../../utils/Validation';
+import * as Organizations from '../../Api/Organizations';
 
 const GeneralSettings = (props) => {
 
@@ -11,8 +12,6 @@ const GeneralSettings = (props) => {
         org,
         reloadOrgPage
     } = props;
-
-    console.log(org);
 
     const email = Validation();
     const description = Validation();
@@ -27,6 +26,8 @@ const GeneralSettings = (props) => {
     const [isMinutesOptionsOpen, setMinutesOptionsOpen] = useState(false);
     const [isTimeZoneOptionsOpen, setTimeZoneOptionsOpen] = useState(false);
     const [saveChangesErrorMessage, setSaveChangesErrorMessage] = useState('');
+    const [isSaveButtonActive, setSaveButtonActive] = useState(false);
+    const [saveButtonText, setSaveButtonText] = useState(constants.ORG_SETTINGS.BUTTON_SAVE_ADMINS_CHANGE);
     const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
     const minutesOptions = [
@@ -62,7 +63,6 @@ const GeneralSettings = (props) => {
     }, []);
 
     useEffect(() => {
-        console.log('use effect');
         handleMinutesOptionSelect(org.config.general.statistics_step);
         email.setValue(org.settings.email);
         description.setValue(org.settings.description);
@@ -81,6 +81,61 @@ const GeneralSettings = (props) => {
         }
         // eslint-disable-next-line
     }, [timeZone.length, org.config.general.utc_offset])
+
+    useEffect(() => {
+        setObservers(org.config.general.observers);
+        setCounters(org.config.general.counters);
+        setTemplates(org.config.general.templates);
+        setInvalidBallots(org.config.general.invalid_ballots);
+        setProlong(org.config.general.prolong);
+    },
+        [
+            org.config.general.observers,
+            org.config.general.counters,
+            org.config.general.templates,
+            org.config.general.invalid_ballots,
+            org.config.general.prolong
+        ]
+    )
+
+    useEffect(() => {
+        if (
+            org.config.general.observers === observers &&
+            org.config.general.counters === counters &&
+            org.config.general.templates === templates &&
+            org.config.general.invalid_ballots === invalidBallots &&
+            org.config.general.prolong === prolong &&
+            org.config.general.statistics_step.toString() === minutesOption.value &&
+            org.settings.email === email.value &&
+            org.settings.description === description.value &&
+            org.config.general.utc_offset.toString() === utcOffset.VALUE
+        ) {
+            setSaveButtonActive(false);
+        } else {
+            setSaveButtonActive(true);
+        }
+    },
+        [
+            org.config.general.observers,
+            observers,
+            org.config.general.counters,
+            counters,
+            org.config.general.templates,
+            templates,
+            org.config.general.invalid_ballots,
+            invalidBallots,
+            org.config.general.prolong,
+            prolong,
+            org.config.general.statistics_step,
+            minutesOption.value,
+            org.settings.email,
+            email.value,
+            org.settings.description,
+            description.value,
+            org.config.general.utc_offset,
+            utcOffset.VALUE
+        ]
+    )
 
     function handleChangeObservers() {
         if (observers) {
@@ -140,23 +195,83 @@ const GeneralSettings = (props) => {
         }
     }
 
+    function saveAdditionalSettings() {
+        setSaveButtonText(constants.ORG_SETTINGS.BUTTON_LOADING);
+        const body = {
+            org_id: org.id,
+            inactive: org.settings.inactive,
+            email: email.value,
+            description: description.value
+        }
+        requestHelper(Organizations.updateAdditionalSettings, body)
+            .then((res) => {
+                console.log(res);
+                if (res.status === "ok") {
+                    reloadOrgPage();
+                } else {
+                    console.log(res.text);
+                }
+            })
+            .catch((err) => {
+                throw new Error(err.message);
+            })
+            .finally(() => {
+                setSaveButtonText(constants.ORG_SETTINGS.BUTTON_SAVE_ADMINS_CHANGE);
+            })
+    }
+
+    function saveGeneralSettings() {
+        const body = {
+            general: {
+                observers: observers,
+                counters: counters,
+                templates: templates,
+                invalid_ballots: invalidBallots,
+                prolong: prolong,
+                statistics_step: Number(minutesOption.value),
+                utc_offset: Number(utcOffset.VALUE),
+                statistics: true,
+                statisticsWindowStep: 60
+            },
+            org_id: org.id
+        }
+        requestHelper(Organizations.updateGeneralSettings, body)
+            .then((res) => {
+                if (res.status === "ok") {
+                    if (
+                        org.settings.email === email.value &&
+                        org.settings.description === description.value
+                    ) {
+                        reloadOrgPage();
+                    } else {
+                        saveAdditionalSettings();
+                    }
+                } else {
+                    console.log(res.text);
+                }
+            })
+            .catch((err) => {
+                throw new Error(err.message);
+            })
+    }
+
+    useEffect(() => {
+        if (email.value === '') {
+            setSaveChangesErrorMessage('');
+        }
+    }, [email.value])
+
     function onSaveChangesClick() {
-        // Сформировать правильный объект и сделать запрос к API на изменение конфига организации
         if (email.value !== '') {
             if (regex.test(String(email.value).toLowerCase())) {
-                console.log(observers);
-                console.log(counters);
-                console.log(templates);
-                console.log(invalidBallots);
-                console.log(prolong);
-                console.log(minutesOption.value);
-                console.log(utcOffset.VALUE);
-                console.log(email.value);
-                console.log(description.value);
+                saveGeneralSettings();
                 setSaveChangesErrorMessage('');
             } else {
                 setSaveChangesErrorMessage(constants.ADD_NEW_ORG.ADD_NEW_ORG_SUPPORT_EMAIL_ERROR);
             }
+        } else {
+            saveGeneralSettings();
+            setSaveChangesErrorMessage('');
         }
     }
 
@@ -237,8 +352,12 @@ const GeneralSettings = (props) => {
                     </div>
                 </div>
             </div>
-            <p className="general-settings__save-changes-error">{saveChangesErrorMessage}</p>
-            <button className="general-settings__save-changes-button" onClick={onSaveChangesClick}>{constants.ORG_SETTINGS.BUTTON_SAVE_ADMINS_CHANGE}</button>
+            {isSaveButtonActive && (
+                <>
+                    <p className="general-settings__save-changes-error">{saveChangesErrorMessage}</p>
+                    <button className="general-settings__save-changes-button" onClick={onSaveChangesClick}>{saveButtonText}</button>
+                </>
+            )}
         </div>
     )
 }
