@@ -43,7 +43,8 @@ button {
 }
 
 body::-webkit-scrollbar {
-  width: 8px;               /* ширина всей полосы прокрутки */
+  width: 8px;
+  height: 8px;/* ширина всей полосы прокрутки */
 }
 body::-webkit-scrollbar-track {
   background: rgba(54, 59, 77, 0.1);        /* цвет зоны отслеживания */

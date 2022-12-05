@@ -1,0 +1,155 @@
+.add-new-vote__materials-vote-btn {
+    display: inline-flex;
+    gap: 0.88em;
+    align-items: center;
+    cursor: pointer;
+}
+.add-new-vote__materials-vote-icon-clip {
+    width: 0.61em;
+    height: 1.22em;
+}
+.add-new-vote__materials-vote-icon-plus {
+    display: initial;
+    width: 1.11em;
+    height: 1.11em;
+}
+.add-new-vote__materials-vote-icon-plus.hidden {
+    display: none;
+}
+.add-new-vote__materials-vote-label {
+    font-size: 0.88em;
+    font-weight: 300;
+    color: #0084FE;
+    line-height: 150%;
+}
+.add-new-vote__materials-vote-add-link-document {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.33em;
+    gap: 0.88em;
+}
+.add-new-vote__name-materials-vote {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.add-new-vote__delete-materials-btn {
+    display: flex;
+    flex-direction: row;
+    gap: 0.44em;
+    cursor: pointer;
+    font-size: 0.88em;
+    color: #FF4970;
+    font-weight: 300;
+}
+.add-new-vote__name-materials-vote-input {
+    outline: none;
+    border: 0.5px solid rgba(54, 59, 77, 0.4);
+    border-radius: 0.44em;
+    height: 2.5em;
+    padding: 0.88em 1.33em 0.88em 1.33em;
+    font-size: 0.88em;
+    color: rgba(54, 59, 77, 0.9);
+    width: 31vw;
+}
+.add-new-vote__name-materials-vote-input::placeholder {
+    color: rgba(54, 59, 77, 0.4);
+}
+.add-new-vote__delete-materials-icon {
+    width: 0.77em;
+    height: 0.77em;
+}
+.add-new-vote__link-document-block {
+    display: flex;
+    flex-direction: row;
+}
+._add-materials-vote {
+    width: 10vw;
+    margin: 0 0.88em 0 0;
+    height: 2.5em;
+    font-size: 0.88em;
+}
+._add-document-link {
+    overflow: hidden;
+    top: 3em;
+    max-height: 2.77em;
+    align-items: center;
+    justify-content: center;
+}
+.add-new-vote__add-link {
+    outline: none;
+    border: 0.5px solid rgba(54, 59, 77, 0.4);
+    border-radius: 0.44em;
+    height: 2.5em;
+    padding: 0.88em 1.33em 0.88em 1.33em;
+    font-size: 0.88em;
+    color: rgba(54, 59, 77, 0.9);
+    width: 20.3vw;
+}
+.add-new-vote__excel-add-container {
+    display: flex;
+    position: relative;
+    margin: 0 auto 0 0;
+}
+.add-new-vote__excel-add-input {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+}
+.add-new-vote__excel-add-input-container {
+    display: flex;
+    cursor: pointer;
+    margin: 0;
+}
+.add-new-vote__excel-add-input-file-name-container {
+    display: flex;
+    width: 13.3vw;
+    height: 2.2em;
+    background: #FFFFFF;
+    border: 0.5px solid rgba(54, 59, 77, 0.4);
+    border-right: 0;
+    border-radius: 0.44em 0 0 0.44em;
+}
+.add-new-vote__excel-add-input-file-name-text {
+    font-weight: 400;
+    font-size: 0.88em;
+    color: rgba(54, 59, 77, 0.4);
+    opacity: 0.9;
+    margin: auto auto auto 1.33em;
+}
+.add-new-vote__excel-add-input-file-name-text_selected {
+    color: rgba(54, 59, 77, 0.9);
+}
+.add-new-vote__excel-add-input-button {
+    display: flex;
+    width: 7vw;
+    height: 2.5em;
+    background: #FFFFFF;
+    border: 0.5px solid #0084FE;
+    border-radius: 0 0.44em 0.44em 0;
+    font-size: 0.88em;
+}
+.add-new-vote__excel-add-input-button-text {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.88em;
+    line-height: 133%;
+    color: #0084FE;
+    opacity: 0.9;
+    margin: auto;
+}
+.add-new-vote__materials-vote-icon-ready {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.33em;
+}
+.add-new-vote__materials-vote-icon-success {
+    width: 0.66em;
+    height: 0.5em;
+}
+.add-new-vote__materials-vote-ready {
+    font-size: 0.66em;
+    line-height: 200%;
+    font-weight: 400;
+    color: #4ED4A9;
+}

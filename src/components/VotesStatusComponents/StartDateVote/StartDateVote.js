@@ -10,8 +10,6 @@ const StartDateVote = (props) => {
         title
     } = props;
 
-    console.log(dateTimeWatch)
-
     return (
         <div className={'status-block__start-vote'}>
             <h4>{title}</h4>

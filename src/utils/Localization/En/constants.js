@@ -257,6 +257,35 @@ export const constants = {
         VOTES_PAGE_ALT_ROW_OPEN: "Стрелочка открытия меню",
         VOTES_PAGE_MATERIALS_VOTE: "Материалы голосования"
     },
+    ADD_NEW_VOTE: {
+        ADD_NEW_VOTE_GENERAL_SETTINGS_TITLE: "Общие настройки",
+        ADD_NEW_VOTE_QUESTION_TITLE: "Вопросы",
+        ADD_NEW_VOTE_NAME_VOTING: "Название голосования",
+        ADD_NEW_VOTE_CLOSE_VOTING_BTN : "Тайное голосование",
+        ADD_NEW_VOTE_OPEN_VOTING_BTN : "Открытое голосование",
+        ADD_NEW_VOTE_QUORUM_CONDITION: "Условие кворума",
+        ADD_NEW_VOTE_QUORUM_ANY_NUMBERS: "Любое количество",
+        ADD_NEW_VOTE_START_REG: "Начало регистрации",
+        ADD_NEW_VOTE_END_REG: "Окончание регистрации",
+        ADD_NEW_VOTE_START_VOTE: "Начало голосования",
+        ADD_NEW_VOTE_END_VOTE: "Окончание голосования",
+        ADD_NEW_VOTE_POSSIBLE_CANCEL_ONLINE_REG: "Возможность отмены электронной регистрации",
+        ADD_NEW_VOTE_POSSIBLE_CHANGE_VOTE: "Возможность изменения голоса",
+        ADD_NEW_VOTE_SETTINGS_USERS: "Настройки пользователей",
+        ADD_NEW_VOTE_CLOSE_LISTS: "Закрытые списки",
+        ADD_NEW_VOTE_OPEN_LISTS: "Открытые списки",
+        ADD_NEW_VOTE_ALLOW_JOIN_LINK_VOTE: "Разрешить другим пользователям присоединяться к голосованию по ссылке",
+        ADD_NEW_VOTE_WEIGHT_VOTE: "Весовое голосование",
+        ADD_NEW_VOTE_USERNAME_TABLE: "ФИО",
+        ADD_NEW_VOTE_WEIGHT_VOTE_TABLE: "Вес голоса",
+        ADD_NEW_VOTE_ACTION_TABLE: "Действие",
+        ADD_NEW_VOTE_DELETE_BTN_TABLE: "УДАЛИТЬ",
+        ADD_NEW_VOTE_MAX_NUMBERS_MEMBERS : "Максимальное количество участников",
+        ADD_NEW_VOTE_AFTER_CREATE_VOTE_AVAILABLE_LINK : "После создания голосования вам будет доступна пригласительная ссылка",
+        ADD_NEW_VOTE_ADD_QUESTION_BTN: "Добавить вопрос",
+        ADD_NEW_VOTE_ADD_VOTE_BTN: "Добавить голосование",
+        ADD_NEW_VOTE_ERROR_MESSAGE: "Чтобы создать голосование, добавьте минимум 1 пользователя."
+    },
     GENERAL: {
         ALT_ICON: "Иконка"
     }
