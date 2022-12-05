@@ -12,7 +12,8 @@ const AddNewVoteQuestionType = (props) => {
     const {
         activeModalTypeQuestion,
         setActiveModalTypeQuestion,
-        constants
+        constants,
+        typeQuestionBtn
     } = props;
 
     const [activeRuleSelect, setActiveRuleSelect] = useState(false);
@@ -43,18 +44,22 @@ const AddNewVoteQuestionType = (props) => {
     },[startValueRange, endValueRange])
 
     useEffect(() => {
-        if (parseInt(endValueRange.toString()) - parseInt(startValueRange.toString()) <= minGapRange) {
-            return setStartValueRange(parseInt(endValueRange.toString()) - minGapRange);
+        if (typeQuestionBtn.typeQuestion === "none") {
+            if (parseInt(endValueRange.toString()) - parseInt(startValueRange.toString()) <= minGapRange) {
+                return setStartValueRange(parseInt(endValueRange.toString()) - minGapRange);
+            }
+            fillColorRangeTrack();
         }
-        fillColorRangeTrack();
-    },[endValueRange, startValueRange, minGapRange, fillColorRangeTrack])
+    },[endValueRange, startValueRange, minGapRange, fillColorRangeTrack, typeQuestionBtn.typeQuestion])
 
     useEffect(() => {
-        if(parseInt(endValueRange.toString()) - parseInt(startValueRange.toString()) <= minGapRange) {
-            setEndValueRange(parseInt(startValueRange.toString()) + minGapRange)
+        if (typeQuestionBtn.typeQuestion === "none") {
+            if(parseInt(endValueRange.toString()) - parseInt(startValueRange.toString()) <= minGapRange) {
+                setEndValueRange(parseInt(startValueRange.toString()) + minGapRange)
+            }
+            fillColorRangeTrack();
         }
-        fillColorRangeTrack();
-    },[endValueRange, startValueRange, minGapRange, fillColorRangeTrack])
+    },[endValueRange, startValueRange, minGapRange, fillColorRangeTrack, typeQuestionBtn.typeQuestion])
 
     const onCloseModal = () => {
         setActiveModalTypeQuestion(false)
@@ -69,7 +74,7 @@ const AddNewVoteQuestionType = (props) => {
                     </h3>
                     <img onClick={onCloseModal} className="add-new-vote-question-type__title-icon-close" src={iconCloseModal} alt={constants.GENERAL.ALT_ICON}/>
                 </div>
-                <h5 className="add-new-vote-question-type__title-current-type-question">Тип вопроса</h5>
+                <h5 className="add-new-vote-question-type__title-current-type-question">{typeQuestionBtn.nameBtn}</h5>
                 <div className="add-new-vote-question-type__name-question">
                     <label className="add-new-vote-question-type__name-question-label">
                         Заголовок вопроса
@@ -77,27 +82,29 @@ const AddNewVoteQuestionType = (props) => {
                     </label>
                     <input className="add-new-vote-question-type__name-question-input"
                            type={'text'}
-                           placeholder={'Введите ваш вопрос'}
+                           placeholder={typeQuestionBtn.typeQuestion === "ynq" || typeQuestionBtn.typeQuestion === "none" ? "Введите ваш вопрос" : "Отбор на позицию профессора"}
                     />
                 </div>
-                {/*<div className="add-new-vote-question-type__number-positions-block">*/}
-                {/*    <input className="add-new-vote-question-type__number-positions-name-positions" type={"text"} disabled={true} placeholder={'Количество должностных позиций'}/>*/}
-                {/*    <input className="add-new-vote-question-type__numbers-position" type={"number"} placeholder={'1'} min={1} max={9999} step={1}/>*/}
-                {/*</div>*/}
+                {typeQuestionBtn.typeQuestion === "samePositions" ? <div className="add-new-vote-question-type__number-positions-block">
+                    <input className="add-new-vote-question-type__number-positions-name-positions" type={"text"} disabled={true} placeholder={'Количество должностных позиций'}/>
+                    <input className="add-new-vote-question-type__numbers-position" type={"number"} placeholder={'1'} min={1} max={9999} step={1}/>
+                </div> : null}
                 <div className="add-new-vote-question-type__types-variants-answer">
-                    {/* <div className="add-new-vote-question-type__types-variants-answer-input-text">*/}
-                    {/*    <h3 className="add-new-vote-question-type__types-variants-answer-title">*/}
-                    {/*        Варианты ответа*/}
-                    {/*    </h3>*/}
-                    {/*    <div className="add-new-vote-question-type__type-input-block">*/}
-                    {/*        <input disabled={false} placeholder={'Введите вариант ответа'} className="add-new-vote-question-type__type-input-text"/>*/}
-                    {/*        <div className="add-new-vote-question-type__type-input-icons">*/}
-                    {/*            <img className="add-new-vote-question-type__type-input-gray-plus" src={iconPlus} alt={constants.GENERAL.ALT_ICON}/>*/}
-                    {/*            <img className="add-new-vote-question-type__type-input-gray-basket" src={iconBasket} alt={constants.GENERAL.ALT_ICON}/>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
-                    <div className="add-new-vote-question-type__types-variants-answer-grid-block">
+                    {typeQuestionBtn.typeQuestion === "ynq" || typeQuestionBtn.typeQuestion === "none" || typeQuestionBtn.typeQuestion === "positionMultiple"  || typeQuestionBtn.typeQuestion === "samePositions" || typeQuestionBtn.typeQuestion === "positionSingle" ?
+                        <div className="add-new-vote-question-type__types-variants-answer-input-text">
+                            <h3 className="add-new-vote-question-type__types-variants-answer-title">
+                                Варианты ответа
+                            </h3>
+                        <div className="add-new-vote-question-type__type-input-block">
+                            <input disabled={false} placeholder={typeQuestionBtn.typeQuestion === "ynq" || typeQuestionBtn.typeQuestion === "none" ? 'Введите вариант ответа' : 'ФИО претендента'} className="add-new-vote-question-type__type-input-text"/>
+                            {typeQuestionBtn.typeQuestion === "none" || typeQuestionBtn.typeQuestion === "positionMultiple"  || typeQuestionBtn.typeQuestion === "samePositions" ?
+                                <div className="add-new-vote-question-type__type-input-icons">
+                                <img className="add-new-vote-question-type__type-input-gray-plus" src={iconPlus} alt={constants.GENERAL.ALT_ICON}/>
+                                <img className="add-new-vote-question-type__type-input-gray-basket" src={iconBasket} alt={constants.GENERAL.ALT_ICON}/>
+                            </div> : null}
+                        </div>
+                    </div> : null}
+                    {typeQuestionBtn.typeQuestion === "grid" || typeQuestionBtn.typeQuestion === "radioGrid" ? <div className="add-new-vote-question-type__types-variants-answer-grid-block">
                         <div className="add-new-vote-question-type__types-variants-answer-grid">
                             <div className="add-new-vote-question-type__grid-row">
                                 <h4 className="add-new-vote-question-type__grid-title">Строки</h4>
@@ -127,8 +134,8 @@ const AddNewVoteQuestionType = (props) => {
                             </label>
                             <p className="add-new-vote-question-type__label-checkbox">Все строки обязательны для заполнения</p>
                         </div>
-                    </div>
-                    <div className="add-new-vote-question-type__rules-block">
+                    </div> : null}
+                    {typeQuestionBtn.typeQuestion === "none" ? <div className="add-new-vote-question-type__rules-block">
                         <div onClick={() => setActiveRuleSelect(!activeRuleSelect)}  className="add-new-vote-question-type__title-rules-block">
                             <img className="add-new-vote-question-type__rules-icon-plus" src={iconRulePlus} alt={constants.GENERAL.ALT_ICON}/>
                             <p className="add-new-vote-question-type__rules-add-rule-label">ДОБАВИТЬ ПРАВИЛО</p>
@@ -139,7 +146,7 @@ const AddNewVoteQuestionType = (props) => {
                                  <div className="add-new-vote-question-type__select-rules-restriction">
                                      <div onClick={() => setActiveRuleRestriction(!activeRuleRestriction)} className="add-new-vote__time-zone-select-container _question-type">
                                          <p className="add-new-vote__time-zone-select-value">Выбрать ровно</p>
-                                         <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt="Стрелочка открытия меню"/>
+                                         <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt={constants.GENERAL.ALT_ICON}/>
                                          <div className={activeRuleRestriction ? "add-new-vote__time-zone-options-container _question-type-select" : "add-new-vote__time-zone-options-container hidden"}>
                                              <p className="add-new-vote__time-zone-option">Выбрать меньше чем</p>
                                              <p className="add-new-vote__time-zone-option">Выбрать больше чем</p>
@@ -211,11 +218,12 @@ const AddNewVoteQuestionType = (props) => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="add-new-vote-question-type__import-excel-block">
+                    </div> : null}
+                    {typeQuestionBtn.typeQuestion === "none" || typeQuestionBtn.typeQuestion === "positionMultiple" || typeQuestionBtn.typeQuestion === "samePositions" ?
+                        <div className="add-new-vote-question-type__import-excel-block">
                         <img className="add-new-vote-question-type__icon-excel" src={iconExcel} alt={constants.GENERAL.ALT_ICON}/>
                         <p className="add-new-vote-question-type__import-excel-btn">ИМПОРТ ДАННЫХ ИЗ EXCEL</p>
-                    </div>
+                    </div> : null}
                     <div className="add-new-vote-question-type__add-materials-vote">
                         <AddNewVoteAddMaterialsVote
                             constants={constants}

@@ -34,3 +34,5 @@
 @import url(components/AddNewVoteAddObserversCountingMembers/AddNewVoteAddObserversCountingMembers.css);
 @import url(./components/AddNewVoteExpandList/AddNewVoteExpandList.css);
 @import url(./components/AddNewVoteAddMaterialsVote/AddNewVoteAddMaterialsVote.css);
+@import url(./components/AddNewVoteCreatedQuestion/AddNewVoteCreatedQuestion.css);
+@import url(./components/AddNewVoteCreatedQuestionGrid/AddNewVoteCreatedQuestionGrid.css);

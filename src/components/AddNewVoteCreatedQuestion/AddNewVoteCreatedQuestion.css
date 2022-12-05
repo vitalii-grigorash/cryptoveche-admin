@@ -1,0 +1,36 @@
+/*------Основной контейнер--------------------------------------------------------------------------------------------*/
+.add-new-vote-created-question {
+    margin-bottom: 2em;
+    border-bottom: 1px dashed rgba(54, 59, 77, 0.4);
+    padding-bottom: 2em;
+}
+.add-new-vote-created-question__question-block {
+    display: flex;
+    flex-direction: column;
+    padding: 1.77em 1.77em;
+    box-shadow: -1px 0 8px rgba(54, 58, 72, 0.07);
+    background-color: #FFFFFF;
+    border-radius: 1.33em;
+    width: 49.444vw;
+}
+.add-new-vote-created-question__name-question-materials-rules {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.33em;
+    padding-bottom: 1.33em;
+    border-bottom: 0.5px solid rgba(54, 59, 77, 0.2);
+}
+.add-new-vote-created-question__name-question {
+    font-size: 1em;
+    line-height: 133%;
+    font-weight: 600;
+    color: rgba(54, 59, 77, 0.9);
+    margin-bottom: 0.88em;
+}
+.add-new-vote-created-question__rules {
+    font-size: 0.88em;
+    line-height: 150%;
+    color: rgba(54, 59, 77, 0.4);
+    font-weight: 400;
+    margin-bottom: 0.88em;
+}

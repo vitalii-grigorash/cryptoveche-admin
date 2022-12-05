@@ -546,6 +546,10 @@
 
 }
 /*------Контейнер для блока вопросы-----------------------------------------------------------------------------------*/
+.add-new-vote__questions-block {
+    display: flex;
+    flex-direction: column;
+}
 .add-new-vote__questions {
     display: flex;
     flex-direction: column;
@@ -568,15 +572,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 45vw;
+    width: 100%;
     height: 7.55em;
     border-radius: 0.44em;
     cursor: pointer;
+}
+.add-new-vote__add-question-button.hidden {
+    display: none;
 }
 .add-new-vote__icon-bnt-block {
     display: inline-flex;
     align-items: center;
     gap: 1em;
+}
+.add-new-vote__icon-add-question-bnt {
+    width: 1.11em;
+    height: 1.11em;
 }
 .add-new-vote__add-question-label {
     color: #0084FE;
@@ -584,13 +595,16 @@
     line-height: 133%;
     font-size: 1em;
 }
-.add-new-vote__select-type-questions {
+.add-new-vote__select-type-questions.active {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 0.27em;
     width: 45vw;
     height: 7.55em;
+}
+.add-new-vote__select-type-questions {
+    display: none;
 }
 .add-new-vote__select-type-vote-ynq,
 .add-new-vote__select-type-vote-none,
@@ -638,28 +652,76 @@
     border: 1px solid #0084FE;
     background-color: rgba(0, 132, 254, 0.05);
 }
+/*-----Контейнер для кнопки добавить голосование----------------------------------------------------------------------*/
+.add-new-vote__add-vote-button-block {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    margin-top: 2.22em;
+    position: relative;
+}
+.add-new-vote-question-type__add-vote-btn {
+    width: 29.55em;
+    background: #0084FE;
+    border-radius: 4px;
+    height: 3.11em;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-size: 1em;
+    line-height: 133%;
+}
+.add-new-vote-question-type__add-vote-btn:hover {
+    color: #0084FE;
+    background: #FFFFFF;
+    border: 1px solid #0084FE;
+}
+.add-new-vote-question-type__add-vote-btn-error {
+    position: absolute;
+    top: 4em;
+    font-size: 0.88em;
+    color: #FF4970;
+    line-height: 150%;
+    font-weight: 400;
+}
 /*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
-@media (max-width: 1570px) {
+@media (max-width: 1430px) {
     .add-new-vote__container  {
         font-size: 16px;
         min-height: calc(65vh - 80px);
     }
 }
-@media (max-width: 1120px) {
+@media (max-width: 1230px) {
+    .add-new-vote__container {
+        font-size: 14px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 1070px) {
     .add-new-vote__container {
         font-size: 12px;
         min-height: calc(65vh - 80px);
     }
 }
-@media (max-width: 830px) {
+@media (max-width: 940px) {
     .add-new-vote__container {
         font-size: 10px;
         min-height: calc(65vh - 80px);
     }
 }
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .add-new-vote__container {
         font-size: 8px;
         min-height: calc(65vh - 80px);
     }
+}
+@media (max-width: 650px) {
+    .add-new-vote__container {
+        font-size: 6px;
+        min-height: calc(65vh - 80px);
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 500px) {
+
 }

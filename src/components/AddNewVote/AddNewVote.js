@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import GeneralTitleAllPages from "../GeneralTitleAllPages/GeneralTitleAllPages";
 import AddNewVoteQuestionType from "../AddNewVoteQuestionType/AddNewVoteQuestionType";
 import row_input_select_role from "../../img/Auth_icon_row_select_role.svg";
+import iconAddQuestionPlus from "../../img/AddNewVoteIconPlus.svg";
 import iconPlusTable from "../../img/AddNewVoteIconPlusTable.svg";
 import iconMinusTable from "../../img/AddNewVoteIconMinusTable.svg";
 import PaginationBlock from "../PaginationBlock/PaginationBlock";
@@ -9,6 +10,7 @@ import AddNewVoteAddObserversCountingMembers from "../AddNewVoteAddObserversCoun
 import AddNewVoteExpandList from "../AddNewVoteExpandList/AddNewVoteExpandList";
 import orgSearchIconMobile from "../../img/PaginationSearchIcon.svg";
 import AddNewVoteAddMaterialsVote from "../AddNewVoteAddMaterialsVote/AddNewVoteAddMaterialsVote";
+import AddNewVoteCreatedQuestion from "../AddNewVoteCreatedQuestion/AddNewVoteCreatedQuestion";
 
 const AddNewVote = (props) => {
 
@@ -27,6 +29,18 @@ const AddNewVote = (props) => {
     const [activeSelectUsersGroup, setActiveSelectUserGroup] = useState(false);
     const [activeSelectQuorum, setActiveSelectQuorum] = useState(false);
     const [activeModalTypeQuestion, setActiveModalTypeQuestion] = useState(false);
+    const [activeTypeQuestionBnt, setActiveTypeQuestionBnt] = useState(false);
+    const [typeQuestionBtn, setTypeQuestionBtn] = useState({});
+
+    const typeQuestionButtons = [
+        {nameBtn: 'Голосование по вопросу', classNameBtn: "add-new-vote__select-type-vote-ynq", typeQuestion: "ynq"},
+        {nameBtn: 'Произвольный вопрос', classNameBtn: "add-new-vote__select-type-vote-none", typeQuestion: "none"},
+        {nameBtn: 'На позицию (одна кандидатура)', classNameBtn: "add-new-vote__select-type-vote-position_single", typeQuestion: "positionSingle"},
+        {nameBtn: 'Сетка', classNameBtn: "add-new-vote__select-type-vote-grid", typeQuestion: "grid"},
+        {nameBtn: 'Радиосетка', classNameBtn: "add-new-vote__select-type-vote-radio_grid", typeQuestion: "radioGrid"},
+        {nameBtn: 'На позицию (несколько кандидатур)', classNameBtn: "add-new-vote__select-type-vote-position_multiple", typeQuestion: "positionMultiple"},
+        {nameBtn: 'На несколько позиций (несколько кандидатур)', classNameBtn: "add-new-vote__select-type-vote-same_positions", typeQuestion: "samePositions"}
+    ];
 
     function showSelectOrgForm() {
         setHideSelectOrg(false)
@@ -52,6 +66,10 @@ const AddNewVote = (props) => {
     const onShowSelectAddGroup = () => {
         setActiveAddUsersBtn(false)
         setActiveAddGroupBnt(true)
+    }
+
+    const onGetTypeQuestionBtn = (item) => {
+        setTypeQuestionBtn(item)
     }
 
     return (
@@ -252,36 +270,24 @@ const AddNewVote = (props) => {
                             )}
                     </div>
                     {activeGeneralSettings && (
-                        <div className="add-new-vote__questions">
-                            <h3 className="add-new-vote__title-questions">Вопросы</h3>
-                            {/*<div className="add-new-vote__add-question-button">*/}
-                            {/*    <div className="add-new-vote__icon-bnt-block">*/}
-                            {/*        <img src={iconPlus} className="" alt={iconPlus}/>*/}
-                            {/*        <p className="add-new-vote__add-question-label">Добавить вопрос</p>*/}
-                            {/*    </div>*/}
-                            {/*</div>*/}
-                            <div className="add-new-vote__select-type-questions">
-                                <div onClick={() => setActiveModalTypeQuestion(true)}  className="add-new-vote__select-type-vote-ynq">
-                                    <p>Голосование</p>
-                                    <p>по вопросу</p>
+                        <div className="add-new-vote__questions-block">
+                            <AddNewVoteCreatedQuestion/>
+                            <div className="add-new-vote__questions">
+                                <h3 className="add-new-vote__title-questions">Вопросы</h3>
+                                <div onClick={() => setActiveTypeQuestionBnt(true)} className={activeTypeQuestionBnt ? "add-new-vote__add-question-button hidden" : "add-new-vote__add-question-button"}>
+                                    <div className="add-new-vote__icon-bnt-block">
+                                        <img src={iconAddQuestionPlus} className="add-new-vote__icon-add-question-bnt" alt={constants.GENERAL.ALT_ICON}/>
+                                        <p className="add-new-vote__add-question-label">Добавить вопрос</p>
+                                    </div>
                                 </div>
-                                <div className="add-new-vote__select-type-vote-none">
-                                    <p>Произвольный</p>
-                                    <p>вопрос</p>
-                                </div>
-                                <div className="add-new-vote__select-type-vote-position_single">
-                                    <p>На позицию</p>
-                                    <p>(одна кандидатура)</p>
-                                </div>
-                                <div className="add-new-vote__select-type-vote-grid">Сетка</div>
-                                <div className="add-new-vote__select-type-vote-radio_grid">Радиосетка</div>
-                                <div className="add-new-vote__select-type-vote-position_multiple">
-                                    <p>На позицию</p>
-                                    <p>(несколько кандидатур)</p>
-                                </div>
-                                <div className="add-new-vote__select-type-vote-same_positions">
-                                    <p>На несколько позиций</p>
-                                    <p>(несколько кандидатур)</p>
+                                <div className={activeTypeQuestionBnt ? "add-new-vote__select-type-questions active" : "add-new-vote__select-type-questions"}>
+                                    {typeQuestionButtons.map((item, i) => {
+                                        return (
+                                            <div onClick={() => onGetTypeQuestionBtn(item, setActiveModalTypeQuestion(true))} key={i} className={item.classNameBtn}>
+                                                {item.nameBtn}
+                                            </div>
+                                        )
+                                    })}
                                 </div>
                             </div>
                         </div>
@@ -291,8 +297,14 @@ const AddNewVote = (props) => {
                 activeModalTypeQuestion={activeModalTypeQuestion}
                 setActiveModalTypeQuestion={setActiveModalTypeQuestion}
                 constants={constants}
+                typeQuestionBtn={typeQuestionBtn}
             />
+            {activeGeneralSettings && (
+                <div className="add-new-vote__add-vote-button-block">
+                    <button className="add-new-vote-question-type__add-vote-btn">Добавить голосование</button>
+                    <p className="add-new-vote-question-type__add-vote-btn-error">Чтобы создать голосование, добавьте минимум 1 пользователя.</p>
+                </div>
+            )}
     </div>
-    )
-}
+    )}
 export default AddNewVote;
