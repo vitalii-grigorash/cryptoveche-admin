@@ -166,6 +166,32 @@
 .org-settings__link-container_active:hover {
     cursor: default;
 }
+.org-settings__link-container-red {
+    display: flex;
+    border-radius: 16px;
+    background: #FFFFFF;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: #FF4970;
+}
+.org-settings__link-container-red:hover {
+    background: #f7becb;
+    cursor: pointer;
+}
+.org-settings__link-container-green {
+    display: flex;
+    border-radius: 16px;
+    background: #FFFFFF;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: #4ED4A9;
+}
+.org-settings__link-container-green:hover {
+    background: #c6f7e7;
+    cursor: pointer;
+}
 .org-settings__link-container_admins:hover .org-settings__link-icon_admins {
     background-image: url('../../img/admin-list-hover.svg');
 }
@@ -217,6 +243,15 @@
 }
 .org-settings__link-icon_mailing-active {
     background-image: url('../../img/mailing-settings-hover.svg');
+}
+.org-settings__link-icon_block {
+    background-image: url('../../img/lock-icon.svg');
+}
+.org-settings__link-icon_unlock {
+    background-image: url('../../img/unlock-icon.svg');
+}
+.org-settings__link-icon_delete {
+    background-image: url('../../img/delete-icon.svg');
 }
 .org-settings__link-text {
     margin: 16px auto 16px 0;

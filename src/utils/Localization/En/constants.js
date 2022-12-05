@@ -350,6 +350,9 @@ export const constants = {
         SUPPORT_EMAIL_PLACEGOLDER: 'Введите E-mail службы поддержки',
         DESCRIPTION: 'Примечание',
         DESCRIPTION_PLACEGOLDER: 'Введите примечание',
+        BLOCK_ORG: 'Заблокировать организацию',
+        UNLOCK_ORG: 'Разблокировать организацию',
+        DELETE_ORG: 'Удалить организацию'
     },
     GENERAL: {
         ALT_ICON: "Иконка"
