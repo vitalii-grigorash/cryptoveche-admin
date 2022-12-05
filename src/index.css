@@ -36,3 +36,11 @@
 @import url(./components/AddNewVoteAddMaterialsVote/AddNewVoteAddMaterialsVote.css);
 @import url(./components/AddNewVoteCreatedQuestion/AddNewVoteCreatedQuestion.css);
 @import url(./components/AddNewVoteCreatedQuestionGrid/AddNewVoteCreatedQuestionGrid.css);
+@import url(./components/OrgSettings/OrgSettings.css);
+@import url(./components/AddUsers/AddUsers.css);
+@import url(./components/UsersTable/UsersTable.css);
+@import url(./components/AdminsSettings/AdminsSettings.css);
+@import url(./components/GeneralSettings/GeneralSettings.css);
+@import url(./components/ProtocolSettings/ProtocolSettings.css);
+@import url(./components/VoteSettings/VoteSettings.css);
+@import url(./components/MailingSettings/MailingSettings.css);
