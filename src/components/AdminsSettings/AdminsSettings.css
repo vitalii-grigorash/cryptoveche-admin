@@ -1,0 +1,77 @@
+.admins-settings {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.admins-settings__heading {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 30px;
+    color: rgba(54, 59, 77, 0.9);
+    margin: 0 auto 0 0;
+}
+.admins-settings__add-admin-container {
+    display: flex;
+    margin: 24px auto 24px 0;
+    cursor: pointer;
+}
+.admins-settings__add-admin-icon {
+    background-image: url('../../img/add-icon.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    margin: auto 8px auto 0;
+}
+.admins-settings__add-admin-text {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #0084FE;
+    margin: auto auto auto 0;
+}
+.admins-setting__save-new-admins-button {
+    background-color: #FFFFFF;
+    border: 1px solid #0084FE;
+    border-radius: 4px;
+    margin: 0 auto 32px 0;
+    width: 13.875em;
+    height: 3em;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1em;
+    line-height: 1.5em;
+    color: #0084FE;
+    cursor: pointer;
+}
+.admins-setting__save-new-admins-button_change {
+    margin: 0 auto 0 0;
+}
+@media (max-width: 950px) {
+    .admins-settings__heading {
+        display: none;
+    }
+    .admins-settings__add-admin-container {
+        margin: 0 auto 16px 0;
+        cursor: default;
+    }
+}
+@media (max-width: 500px) {
+    .admins-setting__save-new-admins-button {
+        margin: 0 0 32px;
+        width: 100%;
+        height: 48px;
+        font-size: 2em;
+        line-height: 2em;
+        cursor: default;
+    }
+    .admins-setting__save-new-admins-button_change {
+        margin: 0;
+    }
+}

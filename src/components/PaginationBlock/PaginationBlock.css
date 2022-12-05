@@ -126,12 +126,12 @@
         font-size: 14px;
     }
 }
-@media (max-width: 1120px) {
+@media (max-width: 1350px) {
     .navigation-menu__pagination-search-block {
         font-size: 12px;
     }
     .pagination-search-block__search-table {
-        width: 300px;
+        width: 250px;
     }
 }
 @media (max-width: 900px) {
