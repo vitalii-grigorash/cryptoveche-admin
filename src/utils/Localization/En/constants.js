@@ -343,6 +343,7 @@ export const constants = {
         ADD_TEMPLATES: 'Добавить шаблоны голосований',
         INVALID_BALLOTS: 'Разрешить отправку недействительных бюллетеней',
         PROLONG: 'Разрешить продление времени голосования',
+        STATISTIC: 'Частота обновления статистики',
         MINUTES: 'минут',
         TIME_ZONE: 'Временная зона',
         SUPPORT_EMAIL: 'E-mail службы поддержки',
