@@ -286,6 +286,32 @@ export const constants = {
         ADD_NEW_VOTE_ADD_VOTE_BTN: "Добавить голосование",
         ADD_NEW_VOTE_ERROR_MESSAGE: "Чтобы создать голосование, добавьте минимум 1 пользователя."
     },
+    ORG_SETTINGS: {
+        PLACEHOLDER: 'Введите название компании',
+        BUTTON_SAVE: 'Сохранить',
+        BUTTON_SAVE_NEW_ADMINS: 'Добавить пользователей',
+        BUTTON_CANCEL: 'Отменить',
+        ADMINS_LIST: 'Список секретарей',
+        GENERAL_SETTINGS: 'Общие настройки',
+        PROTOCOL_SETTINGS: 'Настройки протокола подсчета голосов',
+        VOTE_CONSTRUCOR: 'Конструктор создания голосования',
+        MAILING_SETTINGS: 'Управление рассылкой',
+        SETTINGS_BACK: 'К меню настроек',
+        ADD_ADMIN: 'добавить администратора',
+        BUTTON_SAVE_ADMINS_CHANGE: 'Сохранить изменения',
+        BUTTON_LOADING: 'Загрузка...',
+        ADD_OBSERVERS: 'Добавить наблюдателей',
+        ADD_COUNTERS: 'Добавить счетную комиссию',
+        ADD_TEMPLATES: 'Добавить шаблоны голосований',
+        INVALID_BALLOTS: 'Разрешить отправку недействительных бюллетеней',
+        PROLONG: 'Разрешить продление времени голосования',
+        MINUTES: 'минут',
+        TIME_ZONE: 'Временная зона',
+        SUPPORT_EMAIL: 'E-mail службы поддержки',
+        SUPPORT_EMAIL_PLACEGOLDER: 'Введите E-mail службы поддержки',
+        DESCRIPTION: 'Примечание',
+        DESCRIPTION_PLACEGOLDER: 'Введите примечание',
+    },
     GENERAL: {
         ALT_ICON: "Иконка"
     }
