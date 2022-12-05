@@ -209,22 +209,6 @@
     opacity: 0.9;
     margin: auto;
 }
-.download-file-load-button__field-file-load-button {
-    display: flex;
-    flex-direction: row;
-}
-.field-file-load-button__load-btn {
-    height: 3em;
-    background: #FFFFFF;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-    border: 0.5px solid #0084FE;
-    padding: 0.66em 3.55em 0.66em 3.55em;
-    font-size: 0.88em;
-    color: #0084FE;
-    cursor: pointer;
-    margin-right: 1.44em;
-}
 .field-file-load-button__success-info {
     display: flex;
     flex-direction: row;

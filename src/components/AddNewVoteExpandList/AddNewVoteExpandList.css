@@ -1,0 +1,95 @@
+/*------Контейнер для блока c расширенным списком пользователей-------------------------------------------------------*/
+.add-new-vote-expand-list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.77em;
+}
+.add-new-vote-expand-list__add-list-voters-active-btn {
+    display: inline-flex;
+    cursor: pointer;
+    align-items: center;
+    gap: 0.55em;
+    color: #0084FE;
+}
+.add-new-vote-expand-list__materials-vote-icon-plus {
+    display: initial;
+    width: 1em;
+    height: 1em;
+}
+.add-new-vote-expand-list__add-list-voters-active-btn-label {
+    font-size: 0.88em;
+    font-weight: 300;
+    line-height: 150%;
+}
+.add-new-vote-expand-list__add-list-voters-import-excel-mail {
+    display: none;
+}
+.add-new-vote-expand-list__add-list-voters-import-excel-mail.active {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.88em;
+}
+.add-new-vote-expand-list__add-list-voters-search-mail {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.33em;
+}
+.add-new-vote-expand-list__add-list-voters-mail-address-label {
+    margin-bottom: 0.44em;
+    font-size: 1em;
+    line-height: 133%;
+    font-weight: 400;
+    color: #363B4D;
+    opacity: 0.9;
+}
+.add-new-vote-expand-list__add-list-voters-rule {
+    font-size: 0.88em;
+    color: rgba(54, 59, 77, 0.4);
+    margin-bottom: 0.88em;
+}
+.add-new-vote-expand-list__add-list-voters-text-input {
+    outline: none;
+    border: 0.5px solid rgba(54, 59, 77, 0.4);
+    border-radius: 0.44em;
+    height: 2.5em;
+    padding: 0.88em 1.33em 0.88em 1.33em;
+    font-size: 0.88em;
+    color: rgba(54, 59, 77, 0.9);
+    margin-bottom: 0.88em;
+    width: 100%;
+}
+.add-new-vote-expand-list__add-list-voters-search-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5em;
+    border: 1px solid #0084FE;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 20.3vw;
+    color: #0084FE;
+    background-color: #FFFFFF;
+    font-size: 0.88em;
+}
+.add-new-vote-expand-list__add-list-voters-search-btn:hover {
+    background-color: #0084FE;
+    color: #FFFFFF;
+}
+.add-new-vote-expand-list__add-list-voters-import-excel {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.add-new-vote-expand-list__add-list-voters-excel {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+}
+.add-new-vote-expand-list__add-list-voters-excel-icon {
+    width: 1.44em;
+    height: 1.44em;
+}
+.add-new-vote-expand-list__add-list-voters-excel-label {
+    color: #4ED4A9;
+    font-size: 0.88em;
+}

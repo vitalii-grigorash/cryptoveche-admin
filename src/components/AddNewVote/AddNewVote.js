@@ -1,9 +1,16 @@
 import React, {useState} from "react";
 import GeneralTitleAllPages from "../GeneralTitleAllPages/GeneralTitleAllPages";
+import AddNewVoteQuestionType from "../AddNewVoteQuestionType/AddNewVoteQuestionType";
 import row_input_select_role from "../../img/Auth_icon_row_select_role.svg";
-import iconPlus from "../../img/AddNewVoteIconPlus.svg";
-import iconClip from "../../img/AddNewVoteIconClip.svg";
-import iconDelete from "../../img/AddNewOrgDeleteIcon.svg";
+import iconAddQuestionPlus from "../../img/AddNewVoteIconPlus.svg";
+import iconPlusTable from "../../img/AddNewVoteIconPlusTable.svg";
+import iconMinusTable from "../../img/AddNewVoteIconMinusTable.svg";
+import PaginationBlock from "../PaginationBlock/PaginationBlock";
+import AddNewVoteAddObserversCountingMembers from "../AddNewVoteAddObserversCountingMembers/AddNewVoteAddObserversCountingMembers";
+import AddNewVoteExpandList from "../AddNewVoteExpandList/AddNewVoteExpandList";
+import orgSearchIconMobile from "../../img/PaginationSearchIcon.svg";
+import AddNewVoteAddMaterialsVote from "../AddNewVoteAddMaterialsVote/AddNewVoteAddMaterialsVote";
+import AddNewVoteCreatedQuestion from "../AddNewVoteCreatedQuestion/AddNewVoteCreatedQuestion";
 
 const AddNewVote = (props) => {
 
@@ -14,12 +21,55 @@ const AddNewVote = (props) => {
     const [activeGeneralSettings, setActiveGeneralSettings] = useState(false);
     const [hideSelectOrg, setHideSelectOrg] = useState(true);
     const [hideSelectOrgBtn, setHideSelectOrgBnt] = useState(true);
-    const [showAddMaterialsVotes, setShowAddMaterialsVotes] = useState(false);
+    const [activeSelectOrg, setActiveSelectOrg] = useState(false);
+    const [activeCloseList, setActiveCloseList] = useState(true);
+    const [activeOpenList, setActiveOpenList] = useState(false);
+    const [activeAddUsersBtn, setActiveAddUsersBtn] = useState(false);
+    const [activeAddGroupBtn, setActiveAddGroupBnt] = useState(true);
+    const [activeSelectUsersGroup, setActiveSelectUserGroup] = useState(false);
+    const [activeSelectQuorum, setActiveSelectQuorum] = useState(false);
+    const [activeModalTypeQuestion, setActiveModalTypeQuestion] = useState(false);
+    const [activeTypeQuestionBnt, setActiveTypeQuestionBnt] = useState(false);
+    const [typeQuestionBtn, setTypeQuestionBtn] = useState({});
+
+    const typeQuestionButtons = [
+        {nameBtn: 'Голосование по вопросу', classNameBtn: "add-new-vote__select-type-vote-ynq", typeQuestion: "ynq"},
+        {nameBtn: 'Произвольный вопрос', classNameBtn: "add-new-vote__select-type-vote-none", typeQuestion: "none"},
+        {nameBtn: 'На позицию (одна кандидатура)', classNameBtn: "add-new-vote__select-type-vote-position_single", typeQuestion: "positionSingle"},
+        {nameBtn: 'Сетка', classNameBtn: "add-new-vote__select-type-vote-grid", typeQuestion: "grid"},
+        {nameBtn: 'Радиосетка', classNameBtn: "add-new-vote__select-type-vote-radio_grid", typeQuestion: "radioGrid"},
+        {nameBtn: 'На позицию (несколько кандидатур)', classNameBtn: "add-new-vote__select-type-vote-position_multiple", typeQuestion: "positionMultiple"},
+        {nameBtn: 'На несколько позиций (несколько кандидатур)', classNameBtn: "add-new-vote__select-type-vote-same_positions", typeQuestion: "samePositions"}
+    ];
 
     function showSelectOrgForm() {
         setHideSelectOrg(false)
         setActiveGeneralSettings(true)
         setHideSelectOrgBnt(false)
+    }
+
+    const onShowOpenList = () => {
+        setActiveOpenList(true)
+        setActiveCloseList(false)
+    }
+
+    const onShowCloseList = () => {
+        setActiveOpenList(false)
+        setActiveCloseList(true)
+    }
+
+    const onShowSelectAddUsers = () => {
+        setActiveAddUsersBtn(true)
+        setActiveAddGroupBnt(false)
+    }
+
+    const onShowSelectAddGroup = () => {
+        setActiveAddUsersBtn(false)
+        setActiveAddGroupBnt(true)
+    }
+
+    const onGetTypeQuestionBtn = (item) => {
+        setTypeQuestionBtn(item)
     }
 
     return (
@@ -40,10 +90,10 @@ const AddNewVote = (props) => {
                                         <label className="add-new-vote__label">{constants.ADD_NEW_GROUP_USERS.ADD_NEW_GROUP_USERS_ORG}
                                             <span className="add-new-vote__red-star">*</span>
                                         </label>
-                                        <div className="add-new-vote__time-zone-select-container">
+                                        <div onClick={() => setActiveSelectOrg(!activeSelectOrg)} className="add-new-vote__time-zone-select-container">
                                             <p className="add-new-vote__time-zone-select-value">Выбранная нами организация</p>
                                             <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt="Стрелочка открытия меню"/>
-                                            <div className="add-new-vote__time-zone-options-container">
+                                            <div className={activeSelectOrg ? "add-new-vote__time-zone-options-container" : "add-new-vote__time-zone-options-container hidden"}>
                                                 <p className="add-new-vote__time-zone-option"></p>
                                             </div>
                                         </div>
@@ -75,30 +125,32 @@ const AddNewVote = (props) => {
                                     <label className="add-new-vote__label">Условие кворума
                                         <span className="add-new-vote__red-star">*</span>
                                     </label>
-                                    <div className="add-new-vote__time-zone-select-container">
-                                        <p className="add-new-vote__time-zone-select-value">Тайное голосование</p>
+                                    <div onClick={() => setActiveSelectQuorum(!activeSelectQuorum)} className="add-new-vote__time-zone-select-container">
+                                        <p className="add-new-vote__time-zone-select-value">Любое количество</p>
                                         <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt="Стрелочка открытия меню"/>
-                                        <div className="add-new-vote__time-zone-options-container">
-                                            <p className="add-new-vote__time-zone-option"></p>
+                                        <div className={activeSelectQuorum ? "add-new-vote__time-zone-options-container" : "add-new-vote__time-zone-options-container hidden"}>
+                                            <p className="add-new-vote__time-zone-option">50% + 1</p>
+                                            <p className="add-new-vote__time-zone-option">50%</p>
+                                            <p className="add-new-vote__time-zone-option">2/3</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="add-new-vote__select-datetime-events-vote">
-                                    <div className="add-new-vote__select-datatime">
-                                        <label className="add-new-vote__select-datatime-label">Начало регистрации<span className="add-new-vote__red-star">*</span></label>
-                                        <input className="add-new-vote__select-datatime-field" type={"datetime-local"}/>
+                                    <div className="add-new-vote__select-datetime">
+                                        <label className="add-new-vote__select-datetime-label">Начало регистрации<span className="add-new-vote__red-star">*</span></label>
+                                        <input className="add-new-vote__select-datetime-field" type={"datetime-local"}/>
                                     </div>
-                                    <div className="add-new-vote__select-datatime">
-                                        <label className="add-new-vote__select-datatime-label">Окончание регистрации<span className="add-new-vote__red-star">*</span></label>
-                                        <input className="add-new-vote__select-datatime-field" type={"datetime-local"}/>
+                                    <div className="add-new-vote__select-datetime">
+                                        <label className="add-new-vote__select-datetime-label">Окончание регистрации<span className="add-new-vote__red-star">*</span></label>
+                                        <input className="add-new-vote__select-datetime-field" type={"datetime-local"}/>
                                     </div>
-                                    <div className="add-new-vote__select-datatime">
-                                        <label className="add-new-vote__select-datatime-label">Начало голосования<span className="add-new-vote__red-star">*</span></label>
-                                        <input className="add-new-vote__select-datatime-field" type={"datetime-local"}/>
+                                    <div className="add-new-vote__select-datetime">
+                                        <label className="add-new-vote__select-datetime-label">Начало голосования<span className="add-new-vote__red-star">*</span></label>
+                                        <input className="add-new-vote__select-datetime-field" type={"datetime-local"}/>
                                     </div>
-                                    <div className="add-new-vote__select-datatime">
-                                        <label className="add-new-vote__select-datatime-label">Окончание голосования<span className="add-new-vote__red-star">*</span></label>
-                                        <input className="add-new-vote__select-datatime-field" type={"datetime-local"}/>
+                                    <div className="add-new-vote__select-datetime">
+                                        <label className="add-new-vote__select-datetime-label">Окончание голосования<span className="add-new-vote__red-star">*</span></label>
+                                        <input className="add-new-vote__select-datetime-field" type={"datetime-local"}/>
                                     </div>
                                 </div>
                                 <div className="add-new-vote__checkboxes-block">
@@ -118,95 +170,141 @@ const AddNewVote = (props) => {
                                     </div>
                                 </div>
                                 <div className="add-new-vote__materials-vote-block">
-                                    <div className="add-new-vote__materials-vote-btn">
-                                        <img className="add-new-vote__materials-vote-icon-clip" src={iconClip} alt={constants.GENERAL.ALT_ICON}/>
-                                        <p onClick={() => setShowAddMaterialsVotes(!showAddMaterialsVotes)} className="add-new-vote__materials-vote-label">ПРИКРЕПИТЬ МАТЕРИАЛЫ ГОЛОСОВАНИЯ</p>
-                                        <img className={showAddMaterialsVotes ? "add-new-vote__materials-vote-icon-plus" : "add-new-vote__materials-vote-icon-plus hidden"} alt={constants.GENERAL.ALT_ICON} src={iconPlus}/>
-                                    </div>
-                                    {showAddMaterialsVotes && (
-                                        <div className="add-new-vote__materials-vote-add-link-document">
-                                            <div className="add-new-vote__name-materials-vote">
-                                                <div>
-                                                    <input className="add-new-vote__name-materials-vote-input" placeholder={'Заголовок вспомогательного материала'} type={'text'}/>
-                                                    <span className="add-new-vote__red-star">*</span>
-                                                </div>
-                                                <div className="add-new-vote__delete-materials-btn">
-                                                    <img className="add-new-vote__delete-materials-icon" src={iconDelete} alt={constants.GENERAL.ALT_ICON}/>
-                                                    <p>УДАЛИТЬ</p>
-                                                </div>
-                                            </div>
-                                            <div className="add-new-vote__link-document-block">
-                                                <div className="add-new-vote__time-zone-select-container _wight">
-                                                    <p className="add-new-vote__time-zone-select-value">Документ</p>
-                                                    <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt="Стрелочка открытия меню"/>
-                                                    <div className="add-new-vote__time-zone-options-container">
-                                                        <p className="add-new-vote__time-zone-option"></p>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <input placeholder={'fdfd'} type={'text'}/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
+                                    <AddNewVoteAddMaterialsVote
+                                        constants={constants}
+                                        nameMaterialsVote={'ПРИКРЕПИТЬ МАТЕРИАЛЫ ГОЛОСОВАНИЯ'}
+                                    />
                                 </div>
                                 <h3 className="add-new-vote__title-select-org">Настройки пользователей</h3>
                                 <div className="add-new-vote__user-settings-open-close-btn">
-                                    <div className="add-new-vote__settings-button-close-open-list">
+                                    <div onClick={onShowCloseList} className={activeCloseList ? "add-new-vote__settings-button-close-open-list active" : "add-new-vote__settings-button-close-open-list"}>
                                         <p>Закрытые списки</p>
                                     </div>
-                                    <div className="add-new-vote__settings-button-close-open-list">
+                                    <div onClick={onShowOpenList} className={activeOpenList ? "add-new-vote__settings-button-close-open-list active" : "add-new-vote__settings-button-close-open-list"}>
                                         <p>Открытые списки</p>
                                     </div>
                                 </div>
-                                <div className="add-new-vote__user-settings-add-users-group-btn">
-                                    <div className="add-new-vote__settings-button-add-users-group">
-                                        <p>Добавить пользователей</p>
+                                {activeCloseList && (
+                                    <div className="add-new-vote__user-settings-add-users-group-block">
+                                        <div className="add-new-vote__user-settings-add-users-group-btn">
+                                            <div onClick={onShowSelectAddUsers} className={activeAddUsersBtn ? "add-new-vote__settings-button-add-users-group active" : "add-new-vote__settings-button-add-users-group"}>
+                                                <p>Добавить пользователей</p>
+                                            </div>
+                                            <div onClick={onShowSelectAddGroup} className={activeAddGroupBtn ? "add-new-vote__settings-button-add-users-group active" : "add-new-vote__settings-button-add-users-group"}>
+                                                <p>Добавить группу</p>
+                                            </div>
+                                        </div>
+                                        <div className="add-new-vote__select-role">
+                                            <label className="add-new-vote__label">{activeAddGroupBtn ? 'Группа пользователей' : 'Список пользователей'}
+                                            </label>
+                                            <div onClick={() => setActiveSelectUserGroup(!activeSelectUsersGroup)} className="add-new-vote__time-zone-select-container">
+                                                <p className="add-new-vote__time-zone-select-value"></p>
+                                                <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt="Стрелочка открытия меню"/>
+                                                <div className={activeSelectUsersGroup ? "add-new-vote__time-zone-options-container" : "add-new-vote__time-zone-options-container hidden"}>
+                                                    <p className="add-new-vote__time-zone-option"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="add-new-vote__weight-voting-checkbox">
+                                            <div className="add-new-vote__checkbox">
+                                                <label className='add-new-vote__checkbox_container'>
+                                                    <input type="checkbox"/>
+                                                    <span className='add-new-vote__checkmark' />
+                                                </label>
+                                                <p className="add-new-vote__label-checkbox">Разрешить другим пользователям присоединяться к голосованию по ссылке</p>
+                                            </div>
+                                            <div className="add-new-vote__checkbox">
+                                                <label className='add-new-vote__checkbox_container'>
+                                                    <input type="checkbox"/>
+                                                    <span className='add-new-vote__checkmark' />
+                                                </label>
+                                                <p className="add-new-vote__label-checkbox">Весовое голосование</p>
+                                            </div>
+                                        </div>
+                                        {activeAddGroupBtn && (
+                                       <AddNewVoteExpandList
+                                           constants={constants}
+                                       />
+                                        )}
+                                       <div className="add-new-vote__top-pagination">
+                                            {/*<PaginationBlock/>   */}
+                                           Верхнняя пагинация
+                                       </div>
+                                        <div className="add-new-vote__list-users-table">
+                                            <div className="add-new-vote__list-users-table-header">
+                                                <p className="add-new-vote__list-users-table-header-username">ФИО</p>
+                                                <p className="add-new-vote__list-users-table-header-weight-vote">Вес голоса</p>
+                                                <p className="add-new-vote__list-users-table-header-action">Действие</p>
+                                            </div>
+                                            <div className="add-new-vote__list-users-table-row">
+                                                <div className="add-new-vote__table-row-username-email">
+                                                    <p className="add-new-vote__table-row-username">Тимошина Мария Владимировна</p>
+                                                    <p className="add-new-vote__table-row-email">anyauskowa@yandex.ru</p>
+                                                </div>
+                                                <div className="add-new-vote__table-row-count">
+                                                    <img className="add-new-vote__table-row-count-minus" src={iconMinusTable} alt={constants.GENERAL.ALT_ICON}/>
+                                                    <p className="add-new-vote__table-row-count-number">3</p>
+                                                    <img className="add-new-vote__table-row-count-plus" src={iconPlusTable} alt={constants.GENERAL.ALT_ICON}/>
+                                                </div>
+                                                <div className="add-new-vote__table-row-action">
+                                                    <p className="add-new-vote__table-row-action-delete">УДАЛИТЬ</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="add-new-vote__bottom-pagination">
+                                            {/*<PaginationBlock/>   */}
+                                            Нижняя пагинация
+                                        </div>
                                     </div>
-                                    <div className="add-new-vote__settings-button-add-users-group">
-                                        <p>Добавить группу</p>
+                                )}
+                                {activeOpenList && (
+                                    <div className="add-new-vote__open-list-block">
+                                        <label className="add-new-vote__open-list-label-input">Максимальное количество участников</label>
+                                        <input className="add-new-vote__open-list-input" placeholder={'1'} type={"number"} min={1} max={9999} step={1}/>
+                                        <label className="add-new-vote__open-list-info">После создания голосования вам будет доступна пригласительная ссылка</label>
                                     </div>
-                                </div>
+                                )}
+                                <AddNewVoteAddObserversCountingMembers constants={constants} titleObserversCountingMembers={'ДОБАВИТЬ НАБЛЮДАТЕЛЕЙ'}/>
+                                <AddNewVoteAddObserversCountingMembers constants={constants} titleObserversCountingMembers={'ДОБАВИТЬ ЧЛЕНОВ СЧЕТНОЙ КОММИСИИ'}/>
                             </>
                             )}
                     </div>
                     {activeGeneralSettings && (
-                        <div className="add-new-vote__questions">
-                            <h3 className="add-new-vote__title-questions">Вопросы</h3>
-                            {/*<div className="add-new-vote__add-question-button">*/}
-                            {/*    <div className="add-new-vote__icon-bnt-block">*/}
-                            {/*        <img src={iconPlus} className="" alt={iconPlus}/>*/}
-                            {/*        <p className="add-new-vote__add-question-label">Добавить вопрос</p>*/}
-                            {/*    </div>*/}
-                            {/*</div>*/}
-                            <div className="add-new-vote__select-type-questions">
-                                <div className="add-new-vote__select-type-vote-ynq">
-                                    <p>Голосование</p>
-                                    <p>по вопросу</p>
+                        <div className="add-new-vote__questions-block">
+                            <AddNewVoteCreatedQuestion/>
+                            <div className="add-new-vote__questions">
+                                <h3 className="add-new-vote__title-questions">Вопросы</h3>
+                                <div onClick={() => setActiveTypeQuestionBnt(true)} className={activeTypeQuestionBnt ? "add-new-vote__add-question-button hidden" : "add-new-vote__add-question-button"}>
+                                    <div className="add-new-vote__icon-bnt-block">
+                                        <img src={iconAddQuestionPlus} className="add-new-vote__icon-add-question-bnt" alt={constants.GENERAL.ALT_ICON}/>
+                                        <p className="add-new-vote__add-question-label">Добавить вопрос</p>
+                                    </div>
                                 </div>
-                                <div className="add-new-vote__select-type-vote-none">
-                                    <p>Произвольный</p>
-                                    <p>вопрос</p>
-                                </div>
-                                <div className="add-new-vote__select-type-vote-position_single">
-                                    <p>На позицию</p>
-                                    <p>(одна кандидатура)</p>
-                                </div>
-                                <div className="add-new-vote__select-type-vote-grid">Сетка</div>
-                                <div className="add-new-vote__select-type-vote-radio_grid">Радиосетка</div>
-                                <div className="add-new-vote__select-type-vote-position_multiple">
-                                    <p>На позицию</p>
-                                    <p>(несколько кандидатур)</p>
-                                </div>
-                                <div className="add-new-vote__select-type-vote-same_positions">
-                                    <p>На несколько позиций</p>
-                                    <p>(несколько кандидатур)</p>
+                                <div className={activeTypeQuestionBnt ? "add-new-vote__select-type-questions active" : "add-new-vote__select-type-questions"}>
+                                    {typeQuestionButtons.map((item, i) => {
+                                        return (
+                                            <div onClick={() => onGetTypeQuestionBtn(item, setActiveModalTypeQuestion(true))} key={i} className={item.classNameBtn}>
+                                                {item.nameBtn}
+                                            </div>
+                                        )
+                                    })}
                                 </div>
                             </div>
                         </div>
                 )}
         </div>
+            <AddNewVoteQuestionType
+                activeModalTypeQuestion={activeModalTypeQuestion}
+                setActiveModalTypeQuestion={setActiveModalTypeQuestion}
+                constants={constants}
+                typeQuestionBtn={typeQuestionBtn}
+            />
+            {activeGeneralSettings && (
+                <div className="add-new-vote__add-vote-button-block">
+                    <button className="add-new-vote-question-type__add-vote-btn">Добавить голосование</button>
+                    <p className="add-new-vote-question-type__add-vote-btn-error">Чтобы создать голосование, добавьте минимум 1 пользователя.</p>
+                </div>
+            )}
     </div>
-    )
-}
+    )}
 export default AddNewVote;
