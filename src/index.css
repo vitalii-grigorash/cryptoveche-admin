@@ -31,7 +31,7 @@
 @import url(./components/VotesStatusComponents/StartDateVote/DataTimeVote.css);
 @import url(./components/AddNewVote/AddNewVote.css);
 @import url(./components/AddNewVoteQuestionType/AddNewVoteQuestionType.css);
-@import url(components/AddNewVoteAddObserversCountingMembers/AddNewVoteAddObserversCountingMembers.css);
+@import url(./components/AddNewVoteAddObserversCountingMembers/AddNewVoteAddObserversCountingMembers.css);
 @import url(./components/AddNewVoteExpandList/AddNewVoteExpandList.css);
 @import url(./components/AddNewVoteAddMaterialsVote/AddNewVoteAddMaterialsVote.css);
 @import url(./components/AddNewVoteCreatedQuestion/AddNewVoteCreatedQuestion.css);
