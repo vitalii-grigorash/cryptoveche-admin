@@ -9,7 +9,8 @@ const OrganizationsList = (props) => {
 
     const {
         constants,
-        requestHelper
+        requestHelper,
+        onOrgSettingsClick
     } = props;
 
     const orgDetailsSearch = Validation();
@@ -23,7 +24,7 @@ const OrganizationsList = (props) => {
     const [selectedResultsShow, setSelectedResultsShow] = useState(5);
 
     useEffect(() => {
-        requestHelper(Organizations.getOrganizations)
+        requestHelper(Organizations.getOrganizationsDetails)
             .then((data) => {
                 setOrgDetails(data);
             })
@@ -149,7 +150,7 @@ const OrganizationsList = (props) => {
                             <span className="templates-mobile">{constants.ORGANIZATIONS_LIST.ORGANIZATIONS_LIST_TEMPLATES}</span>
                             {orgDetail.numTemplates}
                         </p>
-                        <div className="table-organisations-row__action">
+                        <div className="table-organisations-row__action" onClick={() => onOrgSettingsClick(orgDetail)}>
                             <img alt={editBtnIcon} src={editBtnIcon} className="table-organisations-row__icon-edit" />
                             <span className="table-organisations-row__edit-btn">{constants.ORGANIZATIONS_LIST.ORGANIZATIONS_LIST_EDIT_BTN}</span>
                             <span className="table-organisations-row__edit-btn-mobile">{constants.ORGANIZATIONS_LIST.ORGANIZATIONS_LIST_EDIT_BTN_MOBILE}</span>

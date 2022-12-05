@@ -13,7 +13,7 @@
     background-color: #FFFFFF;
     box-shadow: -3px 0 8px rgba(54, 58, 72, 0.1);
     border-radius: 0.8em;
-    padding: 1.77em 1.77em;
+    padding: 1.77em;
 }
 /*------Контейнер для блока с инпутом названия организации------------------------------------------------------------*/
 .add-new-organization__name-org-input {
@@ -482,7 +482,7 @@
         width: 498px;
     }
 }
-@media (max-width: 1120px) {
+@media (max-width: 1350px) {
     .container__add-new-organization  {
         font-size: 12px;
         min-height: calc(65vh - 80px);
