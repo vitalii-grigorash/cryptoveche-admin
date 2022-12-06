@@ -295,7 +295,12 @@ const OrgSettings = (props) => {
                         />
                     )}
                     {isProtocolSettingsActive && (
-                        <ProtocolSettings />
+                        <ProtocolSettings
+                            constants={constants}
+                            requestHelper={requestHelper}
+                            org={currentOrg}
+                            reloadOrgPage={reloadOrgPage}
+                        />
                     )}
                     {isVoteSettingsActive && (
                         <VoteSettings />
@@ -366,7 +371,12 @@ const OrgSettings = (props) => {
                             />
                         )}
                         {isProtocolSettingsMobileActive && (
-                            <ProtocolSettings />
+                            <ProtocolSettings
+                                constants={constants}
+                                requestHelper={requestHelper}
+                                org={currentOrg}
+                                reloadOrgPage={reloadOrgPage}
+                            />
                         )}
                         {isVoteSettingsMobileActive && (
                             <VoteSettings />

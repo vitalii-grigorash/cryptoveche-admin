@@ -238,3 +238,47 @@ export const deleteOrg = (accessToken, body) => {
             throw new Error(err.message);
         });
 }
+
+export const uploadProtocol = (accessToken, body) => {
+    return fetch(`${API_URL}/upload`, {
+        method: 'POST',
+        // Для корректной работы НЕ нужно указывать 'Content-Type': 'multipart/form-data', 
+        // браузер установит этот заголовок сам и он будет вида: 
+        // Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryzuW5nPZQFQCwQtg4
+        headers: {
+            'Authorization': `Bearer ${accessToken}`,
+        },
+        body: body.data
+    })
+        .then(res => res.ok ? res : Promise.reject(res))
+        .then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+        })
+        .then(data => data)
+        .catch((err) => {
+            throw new Error(err.message);
+        });
+}
+
+export const updateProtocolSettings = (accessToken, body) => {
+    return fetch(`${API_URL}/organizations/${body.org_id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(body)
+    })
+        .then(res => res.ok ? res : Promise.reject(res))
+        .then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+        })
+        .then(data => data)
+        .catch((err) => {
+            throw new Error(err.message);
+        });
+}

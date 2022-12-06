@@ -352,7 +352,12 @@ export const constants = {
         DESCRIPTION_PLACEGOLDER: 'Введите примечание',
         BLOCK_ORG: 'Заблокировать организацию',
         UNLOCK_ORG: 'Разблокировать организацию',
-        DELETE_ORG: 'Удалить организацию'
+        DELETE_ORG: 'Удалить организацию',
+        FORM_PROTOCOL: 'Формировать протокол подсчета голосов для завершенных голосований',
+        CURRENT_PROTOCOL: 'Используемый шаблон протокола',
+        DOWNLOAD_NEW_TEMPLATE_PROTOCOL: 'Загрузить новый шаблон протокола',
+        LOAD_BUTTON: 'Загрузить',
+        LOAD_READY: 'Готово'
     },
     GENERAL: {
         ALT_ICON: "Иконка"
