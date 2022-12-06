@@ -1,10 +1,16 @@
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import GeneralTitleAllPages from "../GeneralTitleAllPages/GeneralTitleAllPages";
 import AddNewVoteQuestionType from "../AddNewVoteQuestionType/AddNewVoteQuestionType";
 import row_input_select_role from "../../img/Auth_icon_row_select_role.svg";
 import iconAddQuestionPlus from "../../img/AddNewVoteIconPlus.svg";
 import iconPlusTable from "../../img/AddNewVoteIconPlusTable.svg";
 import iconMinusTable from "../../img/AddNewVoteIconMinusTable.svg";
+import iconCompleteStep from "../../img/AddNewVoteIconComleteStep.svg";
+import iconTwoStep from "../../img/AddNewVoteIconTwoStep.svg";
+import iconThreeStep from "../../img/AddNewVoteIconThreeStep.svg";
+import iconOneStepGreen from "../../img/AddNewVoteIconOneStep.svg";
+import iconTwoStepGreen from "../../img/AddNewVoteIconTwoGreenStep.svg";
+import iconThreeStepGreen from "../../img/AddNewVoteIconThreeGreenStep.svg";
 import PaginationBlock from "../PaginationBlock/PaginationBlock";
 import AddNewVoteAddObserversCountingMembers from "../AddNewVoteAddObserversCountingMembers/AddNewVoteAddObserversCountingMembers";
 import AddNewVoteExpandList from "../AddNewVoteExpandList/AddNewVoteExpandList";
@@ -19,6 +25,8 @@ const AddNewVote = (props) => {
     } = props;
 
     const [activeGeneralSettings, setActiveGeneralSettings] = useState(false);
+    const [activeQuestionBlock, setActiveQuestionBlock] = useState(false);
+    const [activeAddVoteBlock, setActiveAddVoteBlock] = useState(false);
     const [hideSelectOrg, setHideSelectOrg] = useState(true);
     const [hideSelectOrgBtn, setHideSelectOrgBnt] = useState(true);
     const [activeSelectOrg, setActiveSelectOrg] = useState(false);
@@ -30,6 +38,8 @@ const AddNewVote = (props) => {
     const [activeSelectQuorum, setActiveSelectQuorum] = useState(false);
     const [activeModalTypeQuestion, setActiveModalTypeQuestion] = useState(false);
     const [activeTypeQuestionBnt, setActiveTypeQuestionBnt] = useState(false);
+    const [activeCompleteStep, setActiveCompleteStep] = useState(false);
+    const progressBarRef = useRef(null);
     const [typeQuestionBtn, setTypeQuestionBtn] = useState({});
 
     const typeQuestionButtons = [
@@ -42,10 +52,25 @@ const AddNewVote = (props) => {
         {nameBtn: 'На несколько позиций (несколько кандидатур)', classNameBtn: "add-new-vote__select-type-vote-same_positions", typeQuestion: "samePositions"}
     ];
 
-    function showSelectOrgForm() {
-        setHideSelectOrg(false)
-        setActiveGeneralSettings(true)
-        setHideSelectOrgBnt(false)
+    const onProgressStepBar = () => {
+       setActiveCompleteStep(true);
+       progressBarRef.current.style.width = '50%';
+    }
+
+    const onShowGeneralSettings = () => {
+        const getWightBlock = document.getElementById('addNewVoteWight').clientWidth
+        if (getWightBlock > 491) {
+            setHideSelectOrg(false);
+            setActiveGeneralSettings(true);
+            setActiveQuestionBlock(true);
+            setActiveAddVoteBlock(true);
+            setHideSelectOrgBnt(false);
+        } else {
+            setHideSelectOrg(false);
+            setActiveGeneralSettings(true);
+            setHideSelectOrgBnt(false);
+            onProgressStepBar();
+        }
     }
 
     const onShowOpenList = () => {
@@ -73,7 +98,7 @@ const AddNewVote = (props) => {
     }
 
     return (
-        <div className="add-new-vote__container _container">
+        <div id={'addNewVoteWight'} className="add-new-vote__container _container">
            <GeneralTitleAllPages
                titleName={constants.GENERAL_TITLE.GENERAL_TITLE_TITLENAME_ADD_VOTE}
                firstLetter={constants.GENERAL_TITLE.GENERAL_TITLE_FIRTSLETTER}
@@ -81,9 +106,17 @@ const AddNewVote = (props) => {
            />
             <p className={activeGeneralSettings ? "add-new-vote__current-name-org active" : "add-new-vote__current-name-org"}>
                 Название организации</p>
+            <div className="add-new-vote__progress-step">
+                    <img src={activeCompleteStep ? iconCompleteStep : iconOneStepGreen} className="add-new-vote__progress-one-step" alt={constants.GENERAL.ALT_ICON}/>
+                    <img src={iconTwoStep} className="add-new-vote__progress-two-step" alt={constants.GENERAL.ALT_ICON}/>
+                    <img src={iconThreeStep} className="add-new-vote__progress-three-step" alt={constants.GENERAL.ALT_ICON}/>
+                <div ref={progressBarRef} className="add-new-vote__progress-step-bar">
+                </div>
+            </div>
                 <div className="add-new-vote__general-settings-questions-block">
                     <div className="add-new-vote__general-settings">
-                        <h3 className="add-new-vote__title-select-org">{activeGeneralSettings ? 'Общие настройки' : `${constants.ADD_NEW_GROUP_USERS.ADD_NEW_GROUP_USERS_SELECT_ORG}`}</h3>
+                        <h3 className="add-new-vote__title-select-org">{activeGeneralSettings ? constants.ADD_NEW_VOTE.ADD_NEW_VOTE_GENERAL_SETTINGS_TITLE : constants.ADD_NEW_GROUP_USERS.ADD_NEW_GROUP_USERS_SELECT_ORG}</h3>
+                        <h3 className="add-new-vote__title-select-org-mobile">{activeGeneralSettings ? constants.ADD_NEW_VOTE.ADD_NEW_VOTE_GENERAL_SETTINGS_TITLE_MOBILE : constants.ADD_NEW_VOTE.ADD_NEW_VOTE_SELECT_ORG_STEP_MOBILE}</h3>
                         {hideSelectOrg && (
                                 <>
                                     <div className="add-new-vote__select-role">
@@ -103,7 +136,7 @@ const AddNewVote = (props) => {
                         {hideSelectOrgBtn && (
                                 <>
                                     <div className="add-new-vote__button-block">
-                                        <button onClick={showSelectOrgForm} className="add-new-vote__button-next">{constants.ADD_NEW_GROUP_USERS.ADD_NEW_GROUP_NEXT_BTN}</button>
+                                        <button onClick={onShowGeneralSettings} className="add-new-vote__button-next">{constants.ADD_NEW_GROUP_USERS.ADD_NEW_GROUP_NEXT_BTN}</button>
                                     </div>
                                 </>
                             )}
@@ -269,9 +302,9 @@ const AddNewVote = (props) => {
                             </>
                             )}
                     </div>
-                    {activeGeneralSettings && (
+                    {activeQuestionBlock && (
                         <div className="add-new-vote__questions-block">
-                            <AddNewVoteCreatedQuestion/>
+                                {/*<AddNewVoteCreatedQuestion constants={constants}/>*/}
                             <div className="add-new-vote__questions">
                                 <h3 className="add-new-vote__title-questions">Вопросы</h3>
                                 <div onClick={() => setActiveTypeQuestionBnt(true)} className={activeTypeQuestionBnt ? "add-new-vote__add-question-button hidden" : "add-new-vote__add-question-button"}>
@@ -299,7 +332,7 @@ const AddNewVote = (props) => {
                 constants={constants}
                 typeQuestionBtn={typeQuestionBtn}
             />
-            {activeGeneralSettings && (
+            {activeAddVoteBlock && (
                 <div className="add-new-vote__add-vote-button-block">
                     <button className="add-new-vote-question-type__add-vote-btn">Добавить голосование</button>
                     <p className="add-new-vote-question-type__add-vote-btn-error">Чтобы создать голосование, добавьте минимум 1 пользователя.</p>

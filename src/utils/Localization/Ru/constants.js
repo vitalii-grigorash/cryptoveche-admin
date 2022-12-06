@@ -262,6 +262,9 @@ export const constants = {
     },
     ADD_NEW_VOTE: {
         ADD_NEW_VOTE_GENERAL_SETTINGS_TITLE: "Общие настройки",
+        ADD_NEW_VOTE_SELECT_ORG_STEP_MOBILE: "Шаг 1: Выбор организации",
+        ADD_NEW_VOTE_GENERAL_SETTINGS_TITLE_MOBILE: "Шаг 2: Настройки",
+        ADD_NEW_VOTE_QUESTION_TITLE_MOBILE: "Шаг 3: Вопросы",
         ADD_NEW_VOTE_QUESTION_TITLE: "Вопросы",
         ADD_NEW_VOTE_NAME_VOTING: "Название голосования",
         ADD_NEW_VOTE_CLOSE_VOTING_BTN : "Тайное голосование",
