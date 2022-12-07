@@ -303,7 +303,12 @@ const OrgSettings = (props) => {
                         />
                     )}
                     {isVoteSettingsActive && (
-                        <VoteSettings />
+                        <VoteSettings
+                            constants={constants}
+                            requestHelper={requestHelper}
+                            org={currentOrg}
+                            reloadOrgPage={reloadOrgPage}
+                        />
                     )}
                     {isMailingSettingsActive && (
                         <MailingSettings />
@@ -379,7 +384,12 @@ const OrgSettings = (props) => {
                             />
                         )}
                         {isVoteSettingsMobileActive && (
-                            <VoteSettings />
+                            <VoteSettings
+                                constants={constants}
+                                requestHelper={requestHelper}
+                                org={currentOrg}
+                                reloadOrgPage={reloadOrgPage}
+                            />
                         )}
                         {isMailingSettingsMobileActive && (
                             <MailingSettings />
