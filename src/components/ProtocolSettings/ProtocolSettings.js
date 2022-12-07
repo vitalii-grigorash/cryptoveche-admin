@@ -19,6 +19,29 @@ const ProtocolSettings = (props) => {
     const [isSaveButtonActive, setSaveButtonActive] = useState(false);
     const [currentProtocolName, setCurrentProtocolName] = useState('');
 
+    function downloadFile(url, fileName) {
+        const req = new XMLHttpRequest();
+        req.open("GET", url, true);
+        req.responseType = "blob";
+        const __fileName = fileName;
+        req.onload = function (event) {
+            const blob = req.response;
+            const contentType = req.getResponseHeader("content-type");
+            if (window.navigator.msSaveOrOpenBlob) {
+                // Internet Explorer
+                window.navigator.msSaveOrOpenBlob(new Blob([blob], { type: contentType }), fileName);
+            } else {
+                const link = document.createElement('a');
+                document.body.appendChild(link);
+                link.download = __fileName;
+                link.href = window.URL.createObjectURL(blob);
+                link.click();
+                document.body.removeChild(link); //remove the link when done
+            }
+        };
+        req.send();
+    }
+
     useEffect(() => {
         setCheckboxActive(org.config.protocol.enabled);
     }, [org.config.protocol.enabled])
@@ -26,7 +49,9 @@ const ProtocolSettings = (props) => {
     useEffect(() => {
         setTemplateLink(org.config.protocol.template_link);
         const protocolName = org.config.protocol.template_link.split('/');
-        setCurrentProtocolName(protocolName[3]);
+        const name = protocolName[3].split('_');
+        const nameForDownload = name[1].replace(/--/g, ' ');
+        setCurrentProtocolName(nameForDownload);
     }, [org.config.protocol.template_link])
 
     useEffect(() => {
@@ -48,15 +73,15 @@ const ProtocolSettings = (props) => {
     }
 
     function onSelectFileHandler(e) {
-        // для записи в S3 добавить к имени уникальное значение, например new Date().getTime();
-        // const random = new Date().getTime();
-        // console.log(random);
         const files = e.target.files;
         const file = files[0];
+        const fileName = file.name.replace(/ /g, '--');
+        const random = new Date().getTime();
+        const fileNameForSave = `${random + '_' + fileName}`;
         setSelectedFileName(file.name);
         setFileSelected(true);
         const data = new FormData();
-        data.append(file.name, file, file.name);
+        data.append(file.name, file, fileNameForSave);
         setNewProtocol(data);
     }
 
@@ -133,10 +158,10 @@ const ProtocolSettings = (props) => {
                 <div className="protocol-settings__files-container">
                     <div className="protocol-settings__save-protocol-container">
                         <p className="protocol-settings__save-protocol-heading">{constants.ORG_SETTINGS.CURRENT_PROTOCOL}</p>
-                        <a href={templateLink} className="protocol-settings__save-container">
+                        <div className="protocol-settings__save-container" onClick={() => downloadFile(templateLink, currentProtocolName)}>
                             <p className="protocol-settings__save-protocol-name">{currentProtocolName}</p>
                             <div className="protocol-settings__save-protocol-button" />
-                        </a>
+                        </div>
                     </div>
                     <div className="protocol-settings__download-file-container">
                         <p className="protocol-settings__download-file-label">{constants.ORG_SETTINGS.DOWNLOAD_NEW_TEMPLATE_PROTOCOL}</p>

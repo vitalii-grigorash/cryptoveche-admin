@@ -61,7 +61,6 @@
 .protocol-settings__save-container {
     display: flex;
     margin: 24px auto 0 0;
-    text-decoration: none;
 }
 .protocol-settings__save-protocol-name {
     font-weight: 400;
