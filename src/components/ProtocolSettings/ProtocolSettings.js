@@ -137,7 +137,8 @@ const ProtocolSettings = (props) => {
         setSaveButtonText(constants.ORG_SETTINGS.BUTTON_LOADING);
         const body = {
             protocol: {
-                enabled: isCheckboxActive
+                enabled: isCheckboxActive,
+                template_link: templateLink
             },
             org_id: org.id
         }
