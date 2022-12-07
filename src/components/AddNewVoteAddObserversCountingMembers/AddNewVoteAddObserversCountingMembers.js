@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import iconPlus from "../../img/AddNewVoteIconPlus.svg";
+import iconDelete from "../../img/AddNewVoteDeleteIconMobile.svg";
 import row_input_select_role from "../../img/Auth_icon_row_select_role.svg";
 import AddNewVoteExpandList from "../AddNewVoteExpandList/AddNewVoteExpandList";
 
@@ -72,6 +73,27 @@ const AddNewVoteAddObserversCountingMembers = (props) => {
                                 <p className="add-new-vote-add-observers__table-row-email">anyauskowa@yandex.ru</p>
                             </div>
                             <div className="add-new-vote-add-observers__table-row-action">
+                                <img className="add-new-vote-add-observers__table-row-action-icon" src={iconDelete} alt={constants.GENERAL.ALT_ICON}/>
+                                <p className="add-new-vote-add-observers__table-row-action-delete">УДАЛИТЬ</p>
+                            </div>
+                        </div>
+                        <div className="add-new-vote-add-observers__list-users-table-row">
+                            <div className="add-new-vote-add-observers__table-row-username-email">
+                                <p className="add-new-vote-add-observers__table-row-username">Тимошина Мария Владимировна</p>
+                                <p className="add-new-vote-add-observers__table-row-email">anyauskowa@yandex.ru</p>
+                            </div>
+                            <div className="add-new-vote-add-observers__table-row-action">
+                                <img className="add-new-vote-add-observers__table-row-action-icon" src={iconDelete} alt={constants.GENERAL.ALT_ICON}/>
+                                <p className="add-new-vote-add-observers__table-row-action-delete">УДАЛИТЬ</p>
+                            </div>
+                        </div>
+                        <div className="add-new-vote-add-observers__list-users-table-row">
+                            <div className="add-new-vote-add-observers__table-row-username-email">
+                                <p className="add-new-vote-add-observers__table-row-username">Тимошина Мария Владимировна</p>
+                                <p className="add-new-vote-add-observers__table-row-email">anyauskowa@yandex.ru</p>
+                            </div>
+                            <div className="add-new-vote-add-observers__table-row-action">
+                                <img className="add-new-vote-add-observers__table-row-action-icon" src={iconDelete} alt={constants.GENERAL.ALT_ICON}/>
                                 <p className="add-new-vote-add-observers__table-row-action-delete">УДАЛИТЬ</p>
                             </div>
                         </div>
