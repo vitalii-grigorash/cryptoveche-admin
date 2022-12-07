@@ -49,9 +49,23 @@ const ProtocolSettings = (props) => {
     useEffect(() => {
         setTemplateLink(org.config.protocol.template_link);
         const protocolName = org.config.protocol.template_link.split('/');
-        const name = protocolName[3].split('_');
-        const nameForDownload = name[1].replace(/--/g, ' ');
-        setCurrentProtocolName(nameForDownload);
+        if (protocolName[3].includes('_')) {
+            const name = protocolName[3].split('_');
+            if (name[1].includes('--')) {
+                const nameForDownload = name[1].replace(/--/g, ' ');
+                setCurrentProtocolName(nameForDownload);
+            } else {
+                setCurrentProtocolName(name[1]);
+            }
+        } else {
+            const name = protocolName[3];
+            if (name.includes('--')) {
+                const nameForDownload = name.replace(/--/g, ' ');
+                setCurrentProtocolName(nameForDownload);
+            } else {
+                setCurrentProtocolName(name);
+            }
+        }
     }, [org.config.protocol.template_link])
 
     useEffect(() => {
