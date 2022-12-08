@@ -3,6 +3,7 @@ import GeneralTitleAllPages from "../GeneralTitleAllPages/GeneralTitleAllPages";
 import AddNewVoteQuestionType from "../AddNewVoteQuestionType/AddNewVoteQuestionType";
 import row_input_select_role from "../../img/Auth_icon_row_select_role.svg";
 import iconAddQuestionPlus from "../../img/AddNewVoteIconPlus.svg";
+import iconAddQuestionPlusGreen from "../../img/AddNewVoteIconPlusGreen.svg";
 import iconPlusTable from "../../img/AddNewVoteIconPlusTable.svg";
 import iconMinusTable from "../../img/AddNewVoteIconMinusTable.svg";
 import iconDeleteTable from "../../img/AddNewVoteDeleteIconMobile.svg";
@@ -27,7 +28,7 @@ const AddNewVote = (props) => {
 
     const [activeGeneralSettings, setActiveGeneralSettings] = useState(false);
     const [activeQuestionBlock, setActiveQuestionBlock] = useState(false);
-    const [activeAddVoteBlockBtn, setActiveAddVoteBlockBtn] = useState(false);
+    const [activeAddVoteBtn, setActiveAddVoteBtn] = useState(false);
     const [activeButtonGoQuestionsBlock, setActiveButtonGoQuestionsBlock] = useState(false);
     const [hideGeneralSettingMobile, setHideGeneralSettingMobile] = useState(false);
     const [hideSelectOrg, setHideSelectOrg] = useState(true);
@@ -76,7 +77,7 @@ const AddNewVote = (props) => {
             setHideSelectOrg(false);
             setActiveGeneralSettings(true);
             setActiveQuestionBlock(true);
-            setActiveAddVoteBlockBtn(true);
+            setActiveAddVoteBtn(true);
             setHideSelectOrgBnt(false);
         } else {
             setHideSelectOrg(false);
@@ -91,31 +92,41 @@ const AddNewVote = (props) => {
             setHideGeneralSettingMobile(true);
             setActiveQuestionBlock(true);
             setActiveButtonGoQuestionsBlock(false);
+            setActiveAddVoteBtn(true);
             onProgressBarStepTwo()
     }
 
     const onShowOpenList = () => {
-        setActiveOpenList(true)
-        setActiveCloseList(false)
+        setActiveOpenList(true);
+        setActiveCloseList(false);
     }
 
     const onShowCloseList = () => {
-        setActiveOpenList(false)
-        setActiveCloseList(true)
+        setActiveOpenList(false);
+        setActiveCloseList(true);
     }
 
     const onShowSelectAddUsers = () => {
-        setActiveAddUsersBtn(true)
-        setActiveAddGroupBnt(false)
+        setActiveAddUsersBtn(true);
+        setActiveAddGroupBnt(false);
     }
 
     const onShowSelectAddGroup = () => {
-        setActiveAddUsersBtn(false)
-        setActiveAddGroupBnt(true)
+        setActiveAddUsersBtn(false);
+        setActiveAddGroupBnt(true);
     }
 
-    const onGetTypeQuestionBtn = (item) => {
-        setTypeQuestionBtn(item)
+    const onShowSelectTypeQuestion = () => {
+        const getWightBlock = document.getElementById('addNewVoteWight').clientWidth;
+        if (getWightBlock > 491) {
+            setActiveTypeQuestionBnt(true);
+        } else {
+            setActiveModalTypeQuestion(true);
+            setActiveTypeQuestionBnt(true);
+        }
+    }
+    const onGetTypeQuestionBtn = (nameQuestion, typeQuestion) => {
+        setTypeQuestionBtn({nameQuestion, typeQuestion});
     }
 
     return (
@@ -330,43 +341,54 @@ const AddNewVote = (props) => {
                                 {/*<AddNewVoteCreatedQuestion constants={constants}/>*/}
                             <div className="add-new-vote__questions">
                                 <h3 className="add-new-vote__title-questions">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_TITLE}</h3>
-                                <h3 className="add-new-vote__title-questions-mobile">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_TITLE_MOBILE}</h3>
-                                <div onClick={() => setActiveTypeQuestionBnt(true)} className={activeTypeQuestionBnt ? "add-new-vote__add-question-button hidden" : "add-new-vote__add-question-button"}>
-                                    <div className="add-new-vote__icon-bnt-block">
-                                        <img src={iconAddQuestionPlus} className="add-new-vote__icon-add-question-bnt" alt={constants.GENERAL.ALT_ICON}/>
-                                        <p className="add-new-vote__add-question-label">Добавить вопрос</p>
-                                    </div>
-                                </div>
-                                <div className={activeTypeQuestionBnt ? "add-new-vote__select-type-questions active" : "add-new-vote__select-type-questions"}>
-                                    {typeQuestionButtons.map((item, i) => {
-                                        return (
-                                            <div onClick={() => onGetTypeQuestionBtn(item, setActiveModalTypeQuestion(true))} key={i} className={item.classNameBtn}>
-                                                {item.nameBtn}
+                                    <h3 className="add-new-vote__title-questions-mobile">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_TITLE_MOBILE}</h3>
+                                        <div onClick={() => onShowSelectTypeQuestion()} className={activeTypeQuestionBnt ? "add-new-vote__add-question-button hidden" : "add-new-vote__add-question-button"}>
+                                            <div className="add-new-vote__icon-bnt-block">
+                                                <img src={iconAddQuestionPlus} className="add-new-vote__icon-add-question-bnt" alt={constants.GENERAL.ALT_ICON}/>
+                                                <p className="add-new-vote__add-question-label">Добавить вопрос</p>
                                             </div>
-                                        )
-                                    })}
-                                </div>
-                            </div>
+                                        </div>
+                                        <div className={activeTypeQuestionBnt ? "add-new-vote__select-type-questions active" : "add-new-vote__select-type-questions"}>
+                                            {typeQuestionButtons.map((item, i) => {
+                                                return (
+                                                    <div onClick={() => onGetTypeQuestionBtn(item.nameBtn, item.typeQuestion, setActiveModalTypeQuestion(true))} key={i} className={item.classNameBtn}>
+                                                        {item.nameBtn}
+                                                    </div>
+                                                    )
+                                                })}
+                                        </div>
+                                    </div>
                         </div>
-                )}
-        </div>
-            <AddNewVoteQuestionType
-                activeModalTypeQuestion={activeModalTypeQuestion}
-                setActiveModalTypeQuestion={setActiveModalTypeQuestion}
-                constants={constants}
-                typeQuestionBtn={typeQuestionBtn}
-            />
-            {activeAddVoteBlockBtn && (
-                <div className="add-new-vote__add-vote-button-block">
-                    <button className="add-new-vote-question-type__add-vote-btn">Добавить голосование</button>
-                    <p className="add-new-vote-question-type__add-vote-btn-error">Чтобы создать голосование, добавьте минимум 1 пользователя.</p>
+                    )}
+                </div>
+                <AddNewVoteQuestionType
+                    activeModalTypeQuestion={activeModalTypeQuestion}
+                    setActiveModalTypeQuestion={setActiveModalTypeQuestion}
+                    constants={constants}
+                    typeQuestionBtn={typeQuestionBtn}
+                    setTypeQuestionBtn={setTypeQuestionBtn}
+                    typeQuestionButtons={typeQuestionButtons}
+                />
+            {activeTypeQuestionBnt && (
+                <div className="add-new-vote__add-question-button-mobile">
+                    <img className="add-new-vote__add-question-button-mobile-icon" src={iconAddQuestionPlusGreen} alt={constants.GENERAL.ALT_ICON}/>
+                    <h3 className="add-new-vote__add-question-button-mobile-title">
+                        ДОБАВИТЬ ЕЩЁ ВОПРОС
+                    </h3>
                 </div>
             )}
-            {activeButtonGoQuestionsBlock && (
-                <div className="add-new-vote-question__go-question-block">
-                    <button onClick={onButtonGoQuestionBlock} className="add-new-vote-question__go-question-block-button">Далее</button>
-                </div>
+                {activeAddVoteBtn && (
+                    <div className="add-new-vote__add-vote-button-block">
+                        <button className="add-new-vote-question-type__add-vote-btn">Добавить голосование</button>
+                        <button className="add-new-vote-question-type__save-template-btn">Сохранить как черновик</button>
+                        <p className="add-new-vote-question-type__add-vote-btn-error">Чтобы создать голосование, добавьте минимум 1 пользователя.</p>
+                    </div>
                 )}
-    </div>
+                {activeButtonGoQuestionsBlock && (
+                    <div className="add-new-vote-question__go-question-block">
+                        <button onClick={onButtonGoQuestionBlock} className="add-new-vote-question__go-question-block-button">Далее</button>
+                    </div>
+                )}
+        </div>
     )}
 export default AddNewVote;

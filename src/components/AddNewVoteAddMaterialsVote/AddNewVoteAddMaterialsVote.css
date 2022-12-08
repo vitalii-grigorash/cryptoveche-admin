@@ -203,4 +203,31 @@
         width: 20px;
         height: 20px;
     }
+    .add-new-vote__materials-vote-icon-clip {
+        width: 20px;
+        height: 20px;
+    }
+    .add-new-vote__link-document-block {
+        flex-wrap: wrap;
+
+    }
+    ._add-document-link {
+        max-height: 40px;
+        top: 35px;
+         margin: 4px 4px 8px 4px;
+    }
+    .add-new-vote__time-zone-select-arrow {
+        width: 8px;
+        height: 8px;
+    }
+    .add-new-vote__materials-vote-icon-ready {
+        gap: 6px;
+    }
+    .add-new-vote__materials-vote-ready {
+        font-size: 12px;
+    }
+    .add-new-vote__materials-vote-icon-success {
+        width: 8px;
+        height: 8px;
+    }
 }
