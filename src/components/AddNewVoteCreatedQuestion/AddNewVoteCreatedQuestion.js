@@ -115,11 +115,11 @@ const AddNewVoteCreatedQuestion = (props) => {
                 <div className="add-new-vote-created-question__buttons-block">
                     <div className="add-new-vote-created-question__edit-button">
                         <img className="add-new-vote-created-question__icon-edit" src={iconEditBnt} alt={constants.GENERAL.ALT_ICON}/>
-                        <p>РЕДАКТИРОВАТЬ</p>
+                        <p>{constants.ADD_NEW_VOTE.CREATED_QUESTION_EDIT_BTN}</p>
                     </div>
                     <div className="add-new-vote-created-question__delete-button">
                         <img className="add-new-vote-created-question__icon-delete" src={iconDeleteBtn} alt={constants.GENERAL.ALT_ICON}/>
-                        <p>УДАЛИТЬ</p>
+                        <p>{constants.ADD_NEW_VOTE.CREATED_QUESTION_DELETE_BTN}</p>
                     </div>
                 </div>
             </div>

@@ -574,7 +574,7 @@
         height: 100%;
         background: none;
         display: flex;
-        z-index: 55;
+        z-index: 15;
     }
     .add-new-vote-question-type {
         width: 100%;
@@ -659,4 +659,136 @@
         padding: 12px 24px 12px 24px;
         font-size: 18px;
     }
+    .add-new-vote-question-type__type-input-icons {
+        gap: 15px;
+    }
+    .add-new-vote-question-type__type-input-gray-plus,
+    .add-new-vote-question-type__type-input-gray-basket {
+        width: 20px;
+        height: 20px;
+    }
+    .add-new-vote-question-type__rules-block {
+        margin-bottom: 32px;
+    }
+    .add-new-vote-question-type__title-rules-block {
+        gap: 10px;
+    }
+    .add-new-vote-question-type__rules-icon-plus {
+        width: 20px;
+        height: 20px;
+    }
+    .add-new-vote-question-type__rules-add-rule-label {
+        font-size: 16px;
+        line-height: 150%;
+    }
+    .add-new-vote-question-type__import-excel-block {
+        margin-bottom: 32px;
+        gap: 10px;
+    }
+    .add-new-vote-question-type__icon-excel {
+        width: 20px;
+        height: 20px;
+    }
+    .add-new-vote-question-type__import-excel-btn {
+        font-size: 16px;
+        line-height: 150%;
+    }
+    .add-new-vote-question-type__select-rules-block-restriction {
+        margin-bottom: 24px;
+    }
+    .add-new-vote-question-type__select-rules-title {
+        margin-bottom: 16px;
+        font-size: 16px;
+    }
+    ._question-type {
+        width: 40%;
+        height: 36px;
+        font-size: 14px;
+    }
+    ._question-type-select {
+        overflow: auto;
+        padding: 40px 8px 9px 9px;
+    }
+    .add-new-vote-question-type__select-rules-restriction-input {
+        height: 36px;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+    .add-new-vote-question-type__select-rules-inputs-number {
+        flex-direction: column;
+        font-size: 14px;
+        gap: 8px;
+    }
+    .add-new-vote-question-type__select-rules-input {
+        width: 100%;
+    }
+    .add-new-vote-question-type__number-positions-block {
+        margin-bottom: 32px;
+        justify-content: space-between;
+        gap: 8px;
+    }
+    .add-new-vote-question-type__number-positions-name-positions {
+        height: 48px;
+        border-radius: 8px;
+        font-size: 18px;
+        width: 80%;
+        margin-right: 0;
+        padding: 12px 24px;
+    }
+    .add-new-vote-question-type__numbers-position {
+        height: 48px;
+        font-size: 18px;
+        width: 20%;
+        padding: 12px 12px;
+        margin-right: 0;
+    }
+    .add-new-vote-question-type__types-variants-answer-grid {
+        flex-direction: column;
+        margin-bottom: 24px;
+    }
+    .add-new-vote-question-type__grid-title {
+        margin-bottom: 16px;
+        font-size: 18px;
+    }
+    .add-new-vote-question-type__grid-row {
+        border-bottom: 0.5px solid rgba(54, 59, 77, 0.4);
+        border-right: none;
+        padding: 0 0 24px 0;
+        margin: 0 0 24px 0;
+        gap: 16px;
+    }
+    .add-new-vote-question-type__grid-column {
+        gap: 16px;
+    }
+    .add-new-vote-question-type__grid-input-text {
+        height: 48px;
+        border-radius: 8px;
+        width: 100%;
+        font-size: 18px;
+        padding: 12px 24px;
+    }
+    .add-new-vote-question-type__grid-row-input-block,
+    .add-new-vote-question-type__grid-column-input-block {
+        gap: 10px;
+    }
+    .add-new-vote-question-type__checkbox {
+        margin: 0 0 24px 0;
+        gap: 32px;
+        align-items: normal;
+    }
+    .add-new-vote-question-type__label-checkbox {
+        font-size: 16px;
+        line-height: 133%;
+    }
+    .add-new-vote-question-type__checkmark {
+        width: 24px;
+        height: 24px;
+    }
+    .add-new-vote-question-type__checkbox_container .add-new-vote-question-type__checkmark:after {
+        left: 5px;
+        top: 3px;
+        width: 9px;
+        height: 9px;
+    }
+
 }

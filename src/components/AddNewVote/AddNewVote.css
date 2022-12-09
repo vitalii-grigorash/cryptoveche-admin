@@ -20,6 +20,9 @@
 .add-new-vote__title-select-org-mobile {
     display: none;
 }
+.add-new-vote__add-question-button-mobile {
+    display:none;
+}
 /*------Контейнер для блока с прогрессом------------------------------------------------------------------------------*/
 .add-new-vote__progress-step {
     display: none;
@@ -1144,5 +1147,8 @@
     .add-new-vote__add-question-button-mobile-icon {
         width: 20px;
         height: 20px;
+    }
+    .add-new-vote__time-zone-options-container {
+        width: 100%;
     }
 }
