@@ -368,7 +368,19 @@ export const constants = {
         OPEN_VOTE: 'Открытое голосование',
         QUORUM_ANY_VALUE: 'Любое количество',
         ALLOW: 'Разрешить',
-        PROHIBIT: 'Запретить'
+        PROHIBIT: 'Запретить',
+        STANDART_ALERTS: 'Стандартные оповещения',
+        CREATE_VOTE: 'О создании голосования',
+        START_VOTE: 'О начале голосования',
+        END_VOTE: 'Об окончании голосования',
+        START_REG: 'О начале регистрации',
+        END_REG: 'Об окончании регистрации',
+        INTERIM_ALERTS: 'Промежуточные оповещения',
+        AFTER_START: 'После начала голосования',
+        BEFORE_END: 'Перед окончанием голосования',
+        MINUTE: 'минут',
+        SAVE_NOTIFICATION_ERROR: 'Необходимо заполнить все поля оповещений',
+        ADD_NOTIFICATION: 'добавить оповещение',
     },
     GENERAL: {
         ALT_ICON: "Иконка"

@@ -136,10 +136,6 @@
     color: #FFFFFF;
     cursor: pointer;
 }
-
-
-
-
 @media (max-width: 950px) {
     .vote-settings__heading {
         display: none;

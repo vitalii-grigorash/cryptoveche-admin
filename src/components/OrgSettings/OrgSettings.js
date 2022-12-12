@@ -311,7 +311,12 @@ const OrgSettings = (props) => {
                         />
                     )}
                     {isMailingSettingsActive && (
-                        <MailingSettings />
+                        <MailingSettings
+                            constants={constants}
+                            requestHelper={requestHelper}
+                            org={currentOrg}
+                            reloadOrgPage={reloadOrgPage}
+                        />
                     )}
                 </div>
             </div>
@@ -392,7 +397,12 @@ const OrgSettings = (props) => {
                             />
                         )}
                         {isMailingSettingsMobileActive && (
-                            <MailingSettings />
+                            <MailingSettings
+                                constants={constants}
+                                requestHelper={requestHelper}
+                                org={currentOrg}
+                                reloadOrgPage={reloadOrgPage}
+                            />
                         )}
                     </div>
                 )}
