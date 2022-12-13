@@ -207,6 +207,9 @@
 .org-settings__link-container_mailing:hover .org-settings__link-icon_mailing {
     background-image: url('../../img/mailing-settings-hover.svg');
 }
+.org-settings__link-container_subscription:hover .org-settings__link-icon_subscription {
+    background-image: url('../../img/subscription-hover.svg');
+}
 .org-settings__link-icon {
     min-width: 24px;
     min-height: 24px;
@@ -229,6 +232,9 @@
 .org-settings__link-icon_mailing {
     background-image: url('../../img/mailing-settings.svg');
 }
+.org-settings__link-icon_subscription {
+    background-image: url('../../img/subscription.svg');
+}
 .org-settings__link-icon_admins-active {
     background-image: url('../../img/admin-list-hover.svg');
 }
@@ -243,6 +249,9 @@
 }
 .org-settings__link-icon_mailing-active {
     background-image: url('../../img/mailing-settings-hover.svg');
+}
+.org-settings__link-icon_subscription-active {
+    background-image: url('../../img/subscription-hover.svg');
 }
 .org-settings__link-icon_block {
     background-image: url('../../img/lock-icon.svg');

@@ -334,6 +334,7 @@ export const constants = {
         PROTOCOL_SETTINGS: 'Настройки протокола подсчета голосов',
         VOTE_CONSTRUCOR: 'Конструктор создания голосования',
         MAILING_SETTINGS: 'Управление рассылкой',
+        SUBSCRIPTION_SETTINGS: 'Подписка',
         SETTINGS_BACK: 'К меню настроек',
         ADD_ADMIN: 'добавить администратора',
         BUTTON_SAVE_ADMINS_CHANGE: 'Сохранить изменения',
@@ -381,6 +382,9 @@ export const constants = {
         MINUTE: 'минут',
         SAVE_NOTIFICATION_ERROR: 'Необходимо заполнить все поля оповещений',
         ADD_NOTIFICATION: 'добавить оповещение',
+        DATE_HEADING: 'Срок действия подписки',
+        DATE_FROM: 'с',
+        DATE_TO: 'по',
     },
     GENERAL: {
         ALT_ICON: "Иконка"

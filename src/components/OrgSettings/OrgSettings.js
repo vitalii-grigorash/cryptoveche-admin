@@ -8,6 +8,7 @@ import GeneralSettings from "../GeneralSettings/GeneralSettings";
 import ProtocolSettings from "../ProtocolSettings/ProtocolSettings";
 import VoteSettings from "../VoteSettings/VoteSettings";
 import MailingSettings from '../MailingSettings/MailingSettings';
+import SubscriptionSettings from "../SubscriptionSettings/SubscriptionSettings";
 
 const OrgSettings = (props) => {
 
@@ -26,6 +27,7 @@ const OrgSettings = (props) => {
     const [isProtocolSettingsActive, setProtocolSettingsActive] = useState(false);
     const [isVoteSettingsActive, setVoteSettingsActive] = useState(false);
     const [isMailingSettingsActive, setMailingSettingsActive] = useState(false);
+    const [isSubscriptionSettingsActive, setSubscriptionSettingsActive] = useState(false);
     const [mobileSettingsName, setMobileSettingsName] = useState('');
     const [isMobileNavActive, setMobileNavActive] = useState(true);
     const [isAdminsSettingsMobileActive, setAdminsSettingsMobileActive] = useState(false);
@@ -33,6 +35,7 @@ const OrgSettings = (props) => {
     const [isProtocolSettingsMobileActive, setProtocolSettingsMobileActive] = useState(false);
     const [isVoteSettingsMobileActive, setVoteSettingsMobileActive] = useState(false);
     const [isMailingSettingsMobileActive, setMailingSettingsMobileActive] = useState(false);
+    const [isSubscriptionSettingsMobileActive, setSubscriptionSettingsMobileActive] = useState(false);
     const [isOrganizationActive, setOrganizationActive] = useState(false);
 
     function getCurrentOrg() {
@@ -106,6 +109,7 @@ const OrgSettings = (props) => {
         setProtocolSettingsActive(false);
         setVoteSettingsActive(false);
         setMailingSettingsActive(false);
+        setSubscriptionSettingsActive(false);
     }
 
     function generalSettingsShow() {
@@ -114,6 +118,7 @@ const OrgSettings = (props) => {
         setProtocolSettingsActive(false);
         setVoteSettingsActive(false);
         setMailingSettingsActive(false);
+        setSubscriptionSettingsActive(false);
     }
 
     function protocolSettingsShow() {
@@ -122,6 +127,7 @@ const OrgSettings = (props) => {
         setAdminsSettingsActive(false);
         setVoteSettingsActive(false);
         setMailingSettingsActive(false);
+        setSubscriptionSettingsActive(false);
     }
 
     function voteSettingsShow() {
@@ -130,10 +136,21 @@ const OrgSettings = (props) => {
         setGeneralSettingsActive(false);
         setAdminsSettingsActive(false);
         setMailingSettingsActive(false);
+        setSubscriptionSettingsActive(false);
     }
 
     function mailingSettingsShow() {
         setMailingSettingsActive(true);
+        setVoteSettingsActive(false);
+        setProtocolSettingsActive(false);
+        setGeneralSettingsActive(false);
+        setAdminsSettingsActive(false);
+        setSubscriptionSettingsActive(false);
+    }
+
+    function subscriptionSettingsShow() {
+        setSubscriptionSettingsActive(true);
+        setMailingSettingsActive(false);
         setVoteSettingsActive(false);
         setProtocolSettingsActive(false);
         setGeneralSettingsActive(false);
@@ -178,6 +195,12 @@ const OrgSettings = (props) => {
         setMobileNavActive(false);
         setMailingSettingsMobileActive(true);
         setMobileSettingsName(constants.ORG_SETTINGS.MAILING_SETTINGS);
+    }
+
+    function subscriptionSettingsMobileShow() {
+        setMobileNavActive(false);
+        setSubscriptionSettingsMobileActive(true);
+        setMobileSettingsName(constants.ORG_SETTINGS.SUBSCRIPTION_SETTINGS);
     }
 
     function handleBlockOrg() {
@@ -268,6 +291,12 @@ const OrgSettings = (props) => {
                         <div className={`${isMailingSettingsActive ? 'org-settings__link-icon org-settings__link-icon_mailing-active' : 'org-settings__link-icon org-settings__link-icon_mailing'}`} />
                         <p className="org-settings__link-text">{constants.ORG_SETTINGS.MAILING_SETTINGS}</p>
                     </div>
+
+                    <div className={`${isSubscriptionSettingsActive ? 'org-settings__link-container org-settings__link-container_active' : 'org-settings__link-container org-settings__link-container_subscription'}`} onClick={subscriptionSettingsShow}>
+                        <div className={`${isSubscriptionSettingsActive ? 'org-settings__link-icon org-settings__link-icon_subscription-active' : 'org-settings__link-icon org-settings__link-icon_subscription'}`} />
+                        <p className="org-settings__link-text">{constants.ORG_SETTINGS.SUBSCRIPTION_SETTINGS}</p>
+                    </div>
+
                     <div className={`${isOrganizationActive ? 'org-settings__link-container-green' : 'org-settings__link-container-red'}`} onClick={handleBlockOrg}>
                         <div className={`${isOrganizationActive ? 'org-settings__link-icon org-settings__link-icon_unlock' : 'org-settings__link-icon org-settings__link-icon_block'}`} />
                         <p className="org-settings__link-text">{`${isOrganizationActive ? constants.ORG_SETTINGS.UNLOCK_ORG : constants.ORG_SETTINGS.BLOCK_ORG}`}</p>
@@ -318,6 +347,14 @@ const OrgSettings = (props) => {
                             reloadOrgPage={reloadOrgPage}
                         />
                     )}
+                    {isSubscriptionSettingsActive && (
+                        <SubscriptionSettings
+                            constants={constants}
+                            requestHelper={requestHelper}
+                            org={currentOrg}
+                            reloadOrgPage={reloadOrgPage}
+                        />
+                    )}
                 </div>
             </div>
             {/* Мобильная версия */}
@@ -352,6 +389,10 @@ const OrgSettings = (props) => {
                         <div className="org-settings__link-container" onClick={mailingSettingsMobileShow}>
                             <div className="org-settings__link-icon org-settings__link-icon_mailing" />
                             <p className="org-settings__link-text">{constants.ORG_SETTINGS.MAILING_SETTINGS}</p>
+                        </div>
+                        <div className="org-settings__link-container" onClick={subscriptionSettingsMobileShow}>
+                            <div className="org-settings__link-icon org-settings__link-icon_subscription" />
+                            <p className="org-settings__link-text">{constants.ORG_SETTINGS.SUBSCRIPTION_SETTINGS}</p>
                         </div>
                         <div className={`${isOrganizationActive ? 'org-settings__link-container-green' : 'org-settings__link-container-red'}`} onClick={handleBlockOrg}>
                             <div className={`${isOrganizationActive ? 'org-settings__link-icon org-settings__link-icon_unlock' : 'org-settings__link-icon org-settings__link-icon_block'}`} />
@@ -398,6 +439,14 @@ const OrgSettings = (props) => {
                         )}
                         {isMailingSettingsMobileActive && (
                             <MailingSettings
+                                constants={constants}
+                                requestHelper={requestHelper}
+                                org={currentOrg}
+                                reloadOrgPage={reloadOrgPage}
+                            />
+                        )}
+                        {isSubscriptionSettingsMobileActive && (
+                            <SubscriptionSettings
                                 constants={constants}
                                 requestHelper={requestHelper}
                                 org={currentOrg}
