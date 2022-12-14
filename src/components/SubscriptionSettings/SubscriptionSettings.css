@@ -1,0 +1,257 @@
+.subscription-settings {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.subscription-settings__heading {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 30px;
+    color: rgba(54, 59, 77, 0.9);
+    margin: 0 auto 0 0;
+}
+.subscription-settings__date-main-continer {
+    display: flex;
+    margin: 16px auto 0 0;
+}
+.subscription-settings__date-continer {
+    display: flex;
+    flex-direction: column;
+    margin: 0 24px auto 0;
+}
+.subscription-settings__date-continer:last-of-type {
+    margin: 0 auto 0 0;
+}
+.subscription-settings__date-text {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: #363B4D;
+    opacity: 0.9;
+    margin: 0 auto 0 0;
+}
+.subscription-settings__date-input {
+    outline: none;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: rgba(54, 59, 77, 0.9);
+    opacity: 0.9;
+    background: #FFFFFF;
+    border: 0.5px solid rgba(54, 59, 77, 0.6);
+    border-radius: 8px;
+    width: 309px;
+    height: 48px;
+    cursor: text;
+    margin: 16px auto 0 0;
+    padding: 0 24px;
+}
+.subscription-settings__date-input::-webkit-calendar-picker-indicator {
+   cursor: pointer;
+}
+.subscription-settings__permissions-main-container {
+    display: flex;
+    margin: 24px auto 0 0;
+}
+.subscription-settings__permission-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 24px 0 0;
+}
+.subscription-settings__permission-container:last-of-type {
+    margin: 0 auto 0 0;
+}
+.subscription-settings__permission-heading {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: rgba(54, 59, 77, 0.9);
+    margin: 0 auto 0 0;
+}
+.subscription-settings__permission-input {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: rgba(54, 59, 77, 0.9);
+    opacity: 0.9;
+    background: #FFFFFF;
+    border: 0.5px solid rgba(54, 59, 77, 0.6);
+    border-radius: 8px;
+    width: 309px;
+    height: 48px;
+    padding: 0 24px;
+    margin: 16px auto 0 0;
+}
+.subscription-settings__permission-input::-webkit-outer-spin-button,
+.subscription-settings__permission-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.subscription-settings__permission-input,
+.subscription-settings__permission-input:hover,
+.subscription-settings__permission-input:focus {
+    appearance: none;
+    outline: none;
+    -moz-appearance: textfield;
+}
+.subscription-settings__message-container {
+    display: flex;
+    flex-direction: column;
+    margin: 24px auto 0 0;
+}
+.subscription-settings__message-checkbox-container {
+    display: flex;
+    margin: 0 auto 0 0;
+    cursor: pointer;
+}
+.subscription-settings__message-checkbox {
+    background-image: url('../../img/checkbox-default.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    margin: auto 16px auto 0;
+}
+.subscription-settings__message-checkbox_active {
+    background-image: url('../../img/checkbox-active.svg');
+}
+.subscription-settings__message-checkbox-text {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: #363A48;
+    opacity: 0.9;
+    margin: auto auto auto 0;
+}
+.subscription-settings__message-input-container {
+    display: flex;
+    flex-direction: column;
+    margin: 16px auto 0 0;
+}
+.subscription-settings__message-input-heading {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: rgba(54, 59, 77, 0.9);
+    margin: 0 auto 0 0;
+}
+.subscription-settings__message-input {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: rgba(54, 59, 77, 0.9);
+    opacity: 0.9;
+    background: #FFFFFF;
+    border: 0.5px solid rgba(54, 59, 77, 0.6);
+    border-radius: 8px;
+    width: 309px;
+    height: 48px;
+    padding: 0 24px;
+    margin: 16px auto 0 0;
+}
+.subscription-settings__message-input::-webkit-outer-spin-button,
+.subscription-settings__message-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.subscription-settings__message-input,
+.subscription-settings__message-input:hover,
+.subscription-settings__message-input:focus {
+    appearance: none;
+    outline: none;
+    -moz-appearance: textfield;
+}
+.subscription-settings__save-changes-button {
+    width: 222px;
+    height: 48px;
+    border: 1px solid #0084FE;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #0084FE;
+    margin: 32px auto 0 0;
+}
+.subscription-settings__save-changes-button:hover {
+    background-color: #0084FE;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+@media (max-width: 1120px) {
+    .subscription-settings__date-main-continer {
+        flex-direction: column;
+    }
+    .subscription-settings__date-continer {
+        margin: 0 auto 0 0;
+    }
+    .subscription-settings__date-continer:last-of-type {
+        margin: 24px auto 0 0;
+    }
+    .subscription-settings__permissions-main-container {
+        flex-direction: column;
+    }
+    .subscription-settings__permission-container {
+        margin: 0 auto 0 0;
+    }
+    .subscription-settings__permission-container:last-of-type {
+        margin: 24px auto 0 0;
+    }
+}
+@media (max-width: 950px) {
+    .subscription-settings__heading {
+        display: none;
+    }
+}
+@media (max-width: 375px) {
+    .subscription-settings__date-main-continer {
+        margin: 0 auto;
+        width: 100%;
+    }
+    .subscription-settings__date-continer {
+        margin: 0 auto;
+        width: 100%;
+    }
+    .subscription-settings__date-continer:last-of-type {
+        margin: 24px auto 0;
+    }
+    .subscription-settings__date-text {
+        margin: 0 auto 0 0;
+    }
+    .subscription-settings__date-input {
+        width: 100%;
+        margin: 16px auto 0;
+        padding: 0 16px;
+    }
+    .subscription-settings__permissions-main-container {
+        margin: 24px auto 0;
+        width: 100%;
+    }
+    .subscription-settings__permission-container {
+        margin: 0 auto;
+        width: 100%;
+    }
+    .subscription-settings__permission-container:last-of-type {
+        margin: 24px auto 0;
+    }
+    .subscription-settings__permission-input {
+        width: 100%;
+        padding: 0 16px;
+        margin: 16px auto 0;
+    }
+    .subscription-settings__message-container {
+        margin: 24px auto 0;
+        width: 100%;
+    }
+    .subscription-settings__message-input-container {
+        margin: 16px auto 0;
+        width: 100%;
+    }
+    .subscription-settings__message-input {
+        width: 100%;
+        padding: 0 16px;
+        margin: 16px auto 0;
+    }
+    .subscription-settings__save-changes-button {
+        width: 100%;
+        margin: 32px auto 0;
+    }
+}

@@ -1,3 +1,265 @@
 .protocol-settings {
-    
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.protocol-settings__heading {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 30px;
+    color: rgba(54, 59, 77, 0.9);
+    margin: 0 auto 0 0;
+}
+.protocol-settings__container {
+    display: flex;
+    flex-direction: column;
+    margin: 32px auto 0 0;
+}
+.protocol-settings__checkbox-container {
+    display: flex;
+    margin: 0 auto 0 0;
+    cursor: pointer;
+}
+.protocol-settings__checkbox-icon {
+    background-image: url('../../img/checkbox-default.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-width: 24px;
+    height: 24px;
+    margin: auto 16px auto 0;
+}
+.protocol-settings__checkbox-icon_active {
+    background-image: url('../../img/checkbox-active.svg');
+}
+.protocol-settings__checkbox-text {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(54, 59, 77, 0.9);
+    opacity: 0.9;
+    margin: auto auto auto 0;
+}
+.protocol-settings__files-container {
+    display: flex;
+    margin: 32px auto 0 0;
+}
+.protocol-settings__save-protocol-container {
+    display: flex;
+    flex-direction: column;
+    border-right: 0.5px solid rgba(54, 59, 77, 0.4);
+    box-sizing: border-box;
+}
+.protocol-settings__save-protocol-heading {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    color: rgba(54, 59, 77, 0.9);
+    margin: 0 32px 0 0;
+}
+.protocol-settings__save-container {
+    display: flex;
+    margin: 24px auto 0 0;
+    cursor: pointer;
+}
+.protocol-settings__save-protocol-name {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(54, 59, 77, 0.9);
+    opacity: 0.9;
+    margin: auto 16px auto 0;
+    max-width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.protocol-settings__save-protocol-button {
+    background-image: url('../../img/download-icon.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+    margin: auto auto auto 0;
+}
+.protocol-settings__download-file-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 0 32px;
+}
+.protocol-settings__download-file-label {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    color: rgba(54, 59, 77, 0.9);
+    margin: 0 auto 0 0;
+}
+.protocol-settings__file-add-container {
+    display: flex;
+    position: relative;
+    margin: 16px auto 0 0;
+}
+.protocol-settings__file-add-input {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+}
+.protocol-settings__file-add-input-container {
+    display: flex;
+    cursor: pointer;
+    margin: 0 16px 0 0;
+}
+.protocol-settings__file-add-input-file-name-container {
+    display: flex;
+    width: 350px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 0.5px solid rgba(54, 59, 77, 0.6);
+    border-right: 0;
+    border-radius: 8px 0px 0px 8px;
+}
+.protocol-settings__file-add-input-file-name-text {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: rgba(54, 59, 77, 0.4);
+    opacity: 0.9;
+    margin: auto auto auto 24px;
+    max-width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.protocol-settings__file-add-input-file-name-text_selected {
+    color: rgba(54, 59, 77, 0.9);
+}
+.protocol-settings__file-add-input-button {
+    display: flex;
+    width: 129px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 0.5px solid #0084FE;
+    border-radius: 0px 8px 8px 0px;
+}
+.protocol-settings__file-add-input-button-text {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #0084FE;
+    opacity: 0.9;
+    margin: auto;
+}
+.protocol-settings__success-container {
+    display: flex;
+    margin: auto auto auto 0;
+}
+.protocol-settings__success-icon {
+    background-image: url('../../img/success-icon.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 14px;
+    height: 14px;
+    margin: auto 4px auto 0;
+}
+.protocol-settings__success-label {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 24px;
+    color: #4ED4A9;
+    opacity: 0.9;
+    margin: auto auto auto 0;
+}
+.protocol-settings__save-button {
+    margin: 32px auto 0 0;
+    width: 222px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid #0084FE;
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #0084FE;
+}
+.protocol-settings__save-button:hover {
+    color: #FFFFFF;
+    background: #0084FE;
+    cursor: pointer;
+}
+@media (max-width: 1430px) {
+    .protocol-settings__checkbox-text {
+        max-width: 400px;
+    }
+    .protocol-settings__files-container {
+        flex-direction: column;
+    }
+    .protocol-settings__save-protocol-container {
+        border: none;
+        margin: 0 auto 0 0;
+    }
+    .protocol-settings__save-protocol-heading {
+        margin: 0 auto 0 0;
+    }
+    .protocol-settings__save-protocol-name {
+        max-width: 255px;
+    }
+    .protocol-settings__download-file-container {
+        margin: 32px auto 0 0;
+    }
+    .protocol-settings__file-add-input-container {
+        margin: 0 12px 0 0;
+    }
+    .protocol-settings__file-add-input-file-name-container {
+        width: 300px;
+    }
+    .protocol-settings__file-add-input-file-name-text {
+        margin: auto auto auto 16px;
+        max-width: 260px;
+    }
+    .protocol-settings__file-add-input-button {
+        width: 120px;
+    }
+}
+@media (max-width: 950px) {
+    .protocol-settings__heading {
+        display: none;
+    }
+}
+@media (max-width: 565px) {
+    .protocol-settings__container {
+        margin: 0 auto 0 0;
+    }
+    .protocol-settings__checkbox-container {
+        cursor: default;
+    }
+    .protocol-settings__checkbox-text {
+        max-width: 270px;
+    }
+    .protocol-settings__file-add-input-container {
+        margin: 0 auto 0 0;
+        cursor: default;
+    }
+    .protocol-settings__file-add-input-file-name-container {
+        width: 182px;
+    }
+    .protocol-settings__file-add-input-file-name-text {
+        max-width: 155px;
+    }
+    .protocol-settings__file-add-input-button {
+        width: 129px;
+    }
+    .protocol-settings__file-add-container {
+        flex-direction: column;
+    }
+    .protocol-settings__success-container {
+        margin: 8px auto auto 0;
+    }
+}
+@media (max-width: 375px) {
+    .protocol-settings__save-button {
+        margin: 16px auto 0;
+        width: 100%;
+    }
 }

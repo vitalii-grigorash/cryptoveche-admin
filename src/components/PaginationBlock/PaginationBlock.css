@@ -50,6 +50,7 @@
     cursor: default;
     overflow: hidden;
     border-radius: 0.5em;
+    z-index: 1;
 }
 .pagination-search-block__option-container {
     display: flex;
