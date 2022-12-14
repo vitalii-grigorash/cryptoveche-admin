@@ -205,7 +205,6 @@ const GeneralSettings = (props) => {
         }
         requestHelper(Organizations.updateAdditionalSettings, body)
             .then((res) => {
-                console.log(res);
                 if (res.status === "ok") {
                     reloadOrgPage();
                 } else {
