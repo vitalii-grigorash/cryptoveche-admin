@@ -391,6 +391,16 @@ export const constants = {
         MESSAGE_CHECKBOX: 'Отправка сообщений',
         MESSAGE_INPUT: 'Доступное количество сообщений',
     },
+    ADD_TEMPLATES: {
+        ADD_TEMPLATES_NAME_TEMPLATE: "Название шаблона",
+        ADD_TEMPLATES_DATE_CREATE: "Дата создания",
+        ADD_TEMPLATES_DATE_CREATE_MOBILE: "Дата создания:",
+        ADD_TEMPLATES_ACTION: "Действия",
+        ADD_TEMPLATES_ADD_TEMPLATE_BTN: "Добавить шаблон",
+        ADD_TEMPLATES_SHOW_MORE_BTN: "ПОКАЗАТЬ ПОЛНОСТЬЮ",
+        ADD_TEMPLATES_EDIT_MOBILE_BTN: "Редактировать",
+        ADD_TEMPLATES_DELETE_MOBILE_BTN: "Удалить"
+    },
     GENERAL: {
         ALT_ICON: "Иконка"
     }
