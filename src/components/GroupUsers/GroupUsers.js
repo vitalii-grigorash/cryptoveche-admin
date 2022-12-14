@@ -71,8 +71,8 @@ const GroupUsers = (props) => {
                                             <input defaultChecked={false} type="checkbox"/>
                                             <span className='table-group-users__checkmark'/>
                                         </label> : null}
-                                    <div onClick={() => linkNameGroup('selected-name-group')} className="table-group-users-row__name-group-name-org">
-                                    <p className="table-group-users-row__name-group">
+                                    <div className="table-group-users-row__name-group-name-org">
+                                    <p onClick={() => linkNameGroup('selected-name-group')}  className="table-group-users-row__name-group">
                                         {authAs === 'admin' ?
                                             <label className='table-group-users__checkbox_container _show-check '>
                                             <input defaultChecked={false} type="checkbox"/>

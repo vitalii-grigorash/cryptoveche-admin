@@ -5,7 +5,7 @@ import CurrentStatusVote from "../VotesStatusComponents/CurrentStatusVote/Curren
 import StartDateVote from "../VotesStatusComponents/StartDateVote/StartDateVote";
 import MaterialsVoteQuestion from "../VotesStatusComponents/MaterialsVoteQuestion/MaterialsVoteQuestion";
 import utcIcon from '../../img/VotesPageActiveVotes_time_icon.svg';
-import { useLocation } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import deleteIcon from '../../img/AddNewGroupIconBasket.svg';
 import editIcon from '../../img/OrganizationsLisеIconEditButton.svg';
 import showVote from '../../img/ListUsersIconEye.svg';
@@ -25,6 +25,7 @@ const MyVotesBlockForm = (props) => {
     } = props;
 
     const { pathname } = useLocation();
+    const navigate = useNavigate();
     const [labelText, setLabelText] = useState('');
     const [isVoted, setVoted] = useState(false);
     const [isNotFullyVoted, setNotFullyVoted] = useState(false);
@@ -110,7 +111,7 @@ const MyVotesBlockForm = (props) => {
         <div className={`my-votes-block__vote-form ${pathname === '/votes-page' && 'my-votes-block__vote-form_votes-page'}`}>
             <div className='my-votes-block__container'>
                 <div className='my-votes-block__container-title-block'>
-                    <h3 className='my-votes-block__container-title-h3'>
+                    <h3 onClick={() => navigate('/details-vote')} className='my-votes-block__container-title-h3'>
                         Выбор делегатов конференции в Ученый Совет СПбГУ и еще парочка слов чтобы совсем уже было длинно</h3>
                     <h5 className='my-votes-block__container-title-h5'>Ученый совет</h5>
                 </div>
@@ -144,7 +145,6 @@ const MyVotesBlockForm = (props) => {
                             currentMaterialsVote={votesData} materialsVoteName={constants.VOTES_PAGE.VOTES_PAGE_MATERIALS_VOTE}
                         />
                     </div>
-
                 </div>
                     <div className="my-votes-block__buttons-block">
                         {authAs === 'superAdmin' ? <div className="my-votes-block__btn-block-show">
