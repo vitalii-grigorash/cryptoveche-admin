@@ -382,9 +382,14 @@ export const constants = {
         MINUTE: 'минут',
         SAVE_NOTIFICATION_ERROR: 'Необходимо заполнить все поля оповещений',
         ADD_NOTIFICATION: 'добавить оповещение',
-        DATE_HEADING: 'Срок действия подписки',
+        DATE_START: 'Начало подписки',
+        DATE_END: 'Окончание подписки',
         DATE_FROM: 'с',
         DATE_TO: 'по',
+        VOTERS_LIMIT: 'Количество пользователей',
+        EVENTS_LIMIT: 'Количество голосований',
+        MESSAGE_CHECKBOX: 'Отправка сообщений',
+        MESSAGE_INPUT: 'Доступное количество сообщений',
     },
     GENERAL: {
         ALT_ICON: "Иконка"
