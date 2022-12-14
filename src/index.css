@@ -45,3 +45,10 @@
 @import url(./components/VoteSettings/VoteSettings.css);
 @import url(./components/MailingSettings/MailingSettings.css);
 @import url(./components/SubscriptionSettings/SubscriptionSettings.css);
+@import url(./components/ListTemplates/ListTemplates.css);
+@import url(./components/DetailsVote/DetailsVote.css);
+@import url(./components/DetailsVoteGeneralInfo/DetailsVoteGeneralInfo.css);
+@import url(./components/DetailsVoteStatisticsVote/DetailsVoteStatisticsVote.css);
+@import url(./components/DetailsVoteVoting/DetailsVoteVoting.css);
+@import url(./components/DetailsVoteObservers/DetailsVoteObservers.css);
+@import url(./components/DetailsVoteQuestions/DetailsVoteQuestions.css);
