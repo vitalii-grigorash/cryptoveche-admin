@@ -67,7 +67,7 @@ const Footer = (props) => {
                         </div>
                         <div className={activeVotesBtn ? "map-site__votes-drop-down-list active" : "map-site__votes-drop-down-list"}>
                             <Link to={'/list-votes'}>{constants.FOOTER.FOOTER_LIST_VOTES}</Link>
-                            {authAs === 'admin' ? <Link to={'#'}>{constants.FOOTER.FOOTER_TEMPLATE_VOTES}</Link> : null}
+                            {authAs === 'admin' ? <Link to={'/list-templates'}>{constants.FOOTER.FOOTER_TEMPLATE_VOTES}</Link> : null}
                         </div>
                     </div>
                     {authAs === 'superAdmin' ? <Link className="map-site__org" to={'#'}>{constants.FOOTER.FOOTER_ORG}</Link> : null}

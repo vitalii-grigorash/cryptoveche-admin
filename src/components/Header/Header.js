@@ -86,7 +86,7 @@ const Header = (props) => {
                         </div>
                         <div className={activeVotesButton ? "logotype-link-buttons__users-select-list" : "logotype-link-buttons__users-select-list hidden"}>
                             <Link to={'/list-votes'}>{constants.HEADER.HEADER_LIST_VOTES}</Link>
-                            {authAs === 'admin' ? <Link to={'#'}>{constants.HEADER.HEADER_TEMPLATE_VOTES}</Link> : null}
+                            {authAs === 'admin' ? <Link to={'/list-templates'}>{constants.HEADER.HEADER_TEMPLATE_VOTES}</Link> : null}
                         </div>
                     </div>
                     {authAs === 'superAdmin' ? <span onClick={() => linkButtonOrgPage('/organizations')} className={pathname === '/organizations' ? "logotype-link-buttons__organizations active" : "logotype-link-buttons__organizations"}>{constants.HEADER.HEADER_ORG}</span> : null}
@@ -96,7 +96,7 @@ const Header = (props) => {
                         <div className={activeAddButton ? "logotype-link-buttons__select-list-buttons" : "logotype-link-buttons__select-list-buttons hidden"}>
                             {authAs === 'admin' ? <Link to={'/add-new-vote'}>{constants.HEADER.HEADER_ADD_VOTE}</Link> : null}
                             {authAs === 'admin' ? <Link to={'/add-new-group'}>{constants.HEADER.HEADER_ADD_GROUP_USERS}</Link> : null}
-                            {authAs === 'admin' ? <Link to={'#'}>{constants.HEADER.HEADER_ADD_TEMPLATE_VOTE}</Link> : null}
+                            {authAs === 'admin' ? <Link to={'/add-new-template'}>{constants.HEADER.HEADER_ADD_TEMPLATE_VOTE}</Link> : null}
                             {authAs === 'superAdmin' ? <Link to={'/add-org-page'}>{constants.HEADER.HEADER_ADD_ORG}</Link> : null}
                         </div>
                     </div>: null}

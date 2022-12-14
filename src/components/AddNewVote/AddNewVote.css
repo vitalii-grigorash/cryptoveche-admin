@@ -109,7 +109,7 @@
     color: rgba(54, 59, 77, 0.9);
     opacity: 0.9;
     margin: auto auto auto 1.3em;
-    max-width: 250px;
+    max-width: 15em;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

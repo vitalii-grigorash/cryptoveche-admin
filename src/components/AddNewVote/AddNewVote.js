@@ -1,4 +1,5 @@
 import React, {useRef, useState} from "react";
+import { useLocation } from "react-router-dom";
 import GeneralTitleAllPages from "../GeneralTitleAllPages/GeneralTitleAllPages";
 import AddNewVoteQuestionType from "../AddNewVoteQuestionType/AddNewVoteQuestionType";
 import row_input_select_role from "../../img/Auth_icon_row_select_role.svg";
@@ -45,8 +46,9 @@ const AddNewVote = (props) => {
     const [activeCompleteOneStep, setActiveCompleteOneStep] = useState(false);
     const [activeCompleteTwoStep, setActiveCompleteTwoStep] = useState(iconTwoStep);
     const [activeCompleteThreeStep, setActiveCompleteThreeStep] = useState(iconTwoStep);
+    const { pathname } = useLocation();
     const progressBarRef = useRef(null);
-    const [typeQuestionBtn, setTypeQuestionBtn] = useState({});
+    const [selectedTypeQuestionBtn, setSelectedTypeQuestionBtn] = useState({});
 
     const typeQuestionButtons = [
         {nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_YNQ}`, classNameBtn: "add-new-vote__select-type-vote-ynq", typeQuestion: "ynq"},
@@ -127,15 +129,15 @@ const AddNewVote = (props) => {
         }
     }
     const onGetTypeQuestionBtn = (nameQuestion, typeQuestion) => {
-        setTypeQuestionBtn({nameQuestion, typeQuestion});
+        setSelectedTypeQuestionBtn({nameQuestion, typeQuestion});
     }
 
     return (
         <div id={'addNewVoteWight'} className="add-new-vote__container _container">
            <GeneralTitleAllPages
-               titleName={constants.GENERAL_TITLE.GENERAL_TITLE_TITLENAME_ADD_VOTE}
+               titleName={pathname === '/add-new-vote' ? constants.GENERAL_TITLE.GENERAL_TITLE_TITLENAME_ADD_VOTE : constants.GENERAL_TITLE.GENERAL_TITLE_TITLENAME_ADD_TEMPLATES_VOTE}
                firstLetter={constants.GENERAL_TITLE.GENERAL_TITLE_FIRTSLETTER}
-               secondLetter={constants.GENERAL_TITLE.GENERAL_TITLE_SECONDLETTER_ADD_VOTE}
+               secondLetter={pathname === '/add-new-vote' ? constants.GENERAL_TITLE.GENERAL_TITLE_SECONDLETTER_ADD_VOTE : constants.GENERAL_TITLE.GENERAL_TITLE_TITLENAME_ADD_TEMPLATES_VOTE}
            />
             <p className={activeGeneralSettings ? "add-new-vote__current-name-org active" : "add-new-vote__current-name-org"}>
                 Название организации</p>
@@ -176,8 +178,11 @@ const AddNewVote = (props) => {
                         {activeGeneralSettings && (
                             <>
                                 <div className="add-new-vote__name-new-vote">
-                                    <label className="add-new-vote__name-new-vote-label">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_NAME_VOTING}<span className="add-new-vote__red-star">*</span></label>
-                                    <input className="add-new-vote__name-new-vote-field" placeholder={constants.ADD_NEW_VOTE.ADD_NEW_VOTE_NAME_VOTING_PLACEHOLDER}/>
+                                    <label className="add-new-vote__name-new-vote-label">{pathname === '/add-new-vote' ? constants.ADD_NEW_VOTE.ADD_NEW_VOTE_NAME_VOTING : constants.ADD_NEW_VOTE.ADD_TEMPLATES_NAME_TEMPLATE}
+                                        <span className="add-new-vote__red-star">*</span></label>
+                                    <input className="add-new-vote__name-new-vote-field"
+                                           placeholder={pathname === '/add-new-vote' ? constants.ADD_NEW_VOTE.ADD_NEW_VOTE_NAME_VOTING_PLACEHOLDER : constants.ADD_NEW_VOTE.ADD_TEMPLATES_NAME_TEMPLATE_PLACEHOLDER}
+                                    />
                                 </div>
                                 <div className="add-new-vote__select-open-close-vote-buttons">
                                     <div className="add-new-vote__close-vote-btn">
@@ -366,8 +371,8 @@ const AddNewVote = (props) => {
                     activeModalTypeQuestion={activeModalTypeQuestion}
                     setActiveModalTypeQuestion={setActiveModalTypeQuestion}
                     constants={constants}
-                    typeQuestionBtn={typeQuestionBtn}
-                    setTypeQuestionBtn={setTypeQuestionBtn}
+                    selectedTypeQuestionBtn={selectedTypeQuestionBtn}
+                    setSelectedTypeQuestionBtn={setSelectedTypeQuestionBtn}
                     typeQuestionButtons={typeQuestionButtons}
                 />
             {activeTypeQuestionBnt && (
@@ -378,8 +383,8 @@ const AddNewVote = (props) => {
             )}
             {activeAddVoteBtn && (
                 <div className="add-new-vote__add-vote-button-block">
-                    <button className="add-new-vote-question-type__add-vote-btn">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_ADD_VOTE_BTN}</button>
-                    <button className="add-new-vote-question-type__save-template-btn">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_SAVE_AS_TEMPLATE_BTN}</button>
+                    <button className="add-new-vote-question-type__add-vote-btn">{pathname === '/add-new-vote' ? constants.ADD_NEW_VOTE.ADD_NEW_VOTE_ADD_VOTE_BTN : constants.ADD_NEW_VOTE.ADD_TEMPLATES_SAVE_TEMPLATE_BTN}</button>
+                    {pathname === '/add-new-vote' ? <button className="add-new-vote-question-type__save-template-btn">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_SAVE_AS_TEMPLATE_BTN}</button> : null}
                     <p className="add-new-vote-question-type__add-vote-btn-error">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_ERROR_MESSAGE}</p>
                 </div>
             )}

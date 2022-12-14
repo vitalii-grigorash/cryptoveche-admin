@@ -19,6 +19,8 @@ import GroupUsersSelectNameGroup from "../GroupUsersSelectNameGroup/GroupUsersSe
 import VotesPage from "../VotesPage/VotesPage";
 import AddNewVote from "../AddNewVote/AddNewVote";
 import OrgSettings from "../OrgSettings/OrgSettings";
+import ListTemplates from "../ListTemplates/ListTemplates";
+import DetailsVote from "../DetailsVote/DetailsVote";
 
 function App() {
 
@@ -303,6 +305,11 @@ function App() {
                             constants={constants}
                         />}
                     />
+                    <Route path={'/add-new-template'}
+                           element={<AddNewVote
+                               constants={constants}
+                           />}
+                    />
                     <Route path={'/profile-user'}
                         element={<ProfileUser
                             constants={constants}
@@ -330,6 +337,17 @@ function App() {
                             constants={constants}
                             authAs={authAs}
                         />}
+                    />
+                    <Route path={'/details-vote'}
+                           element={<DetailsVote
+                               constants={constants}
+                               authAs={authAs}
+                           />}
+                    />
+                    <Route exact path={'/list-templates'}
+                           element={<ListTemplates
+                               constants={constants}
+                           />}
                     />
                 </Routes>
                 {isLoggedIn && (

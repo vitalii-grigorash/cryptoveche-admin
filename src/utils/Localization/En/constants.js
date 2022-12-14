@@ -72,11 +72,14 @@ export const constants = {
     GENERAL_TITLE: {
         GENERAL_TITLE_TITLENAME_ORG: "Список организаций",
         GENERAL_TITLE_TITLENAME_VOTES: "Голосования",
+        GENERAL_TITLE_TITLENAME_DETAILS_VOTE: "Детали голосования",
         GENERAL_TITLE_TITLENAME_GROUP_USER: "Группы пользователей",
+        GENERAL_TITLE_TITLENAME_TEMPLATES_VOTE: "Шаблоны голосований",
         GENERAL_TITLE_ADD_ORG: "Добавить организацию",
         GENERAL_TITLE_TITLENAME_ADD_VOTE: "Добавление нового голосования",
         GENERAL_TITLE_TITLENAME_ADD_ORG: "Добавление новой организации",
         GENERAL_TITLE_TITLENAME_ADD_GROUP_USERS: "Добавление группы пользователей",
+        GENERAL_TITLE_TITLENAME_ADD_TEMPLATES_VOTE: "Добавление нового шаблона",
         GENERAL_TITLE_TITLENAME_LIST_USERS: "Список пользователей",
         GENERAL_TITLE_TITLENAME_PROFILE: "Профиль пользователя",
         GENERAL_TITLE_FIRTSLETTER: "АдминистраторКриптовече",
@@ -85,7 +88,10 @@ export const constants = {
         GENERAL_TITLE_SECONDLETTER_GROUP_USERS: "Группы пользователей",
         GENERAL_TITLE_SECONDLETTER_LIST_USERS: "Список пользователей",
         GENERAL_TITLE_SECONDLETTER_VOTES: "Голосования",
-        GENERAL_TITLE_SECONDLETTER_ADD_VOTE: "Добавить голосование"
+        GENERAL_TITLE_SECONDLETTER_DETAILS_VOTE: "Детали голосования",
+        GENERAL_TITLE_SECONDLETTER_ADD_VOTE: "Добавить голосование",
+        GENERAL_TITLE_SECONDLETTER_TEMPLATES_VOTE: "Шаблоны голосований",
+        GENERAL_TITLE_SECONDLETTER_ADD_TEMPLATES_VOTE: "Добавить шаблон"
     },
     PAGINATION: {
         PAGINATION_SHOW_LABEL: "Показать",
@@ -343,7 +349,10 @@ export const constants = {
         CREATED_QUESTION_EDIT_BTN: "РЕДАКТИРОВАТЬ",
         CREATED_QUESTION_DELETE_BTN: "УДАЛИТЬ",
         ADD_OBSERVERS_TITLE_OBSERVER: "ДОБАВИТЬ НАБЛЮДАТЕЛЕЙ",
-        ADD_OBSERVERS_TITLE_COUNTING_MEMBERS: "ДОБАВИТЬ ЧЛЕНОВ СЧЕТНОЙ КОМИССИИ"
+        ADD_OBSERVERS_TITLE_COUNTING_MEMBERS: "ДОБАВИТЬ ЧЛЕНОВ СЧЕТНОЙ КОМИССИИ",
+        ADD_TEMPLATES_NAME_TEMPLATE: "Название шаблона",
+        ADD_TEMPLATES_NAME_TEMPLATE_PLACEHOLDER: "Введите название шаблона",
+        ADD_TEMPLATES_SAVE_TEMPLATE_BTN: "Сохранить шаблон"
     },
     ORG_SETTINGS: {
         PLACEHOLDER: 'Введите название компании',
@@ -370,7 +379,17 @@ export const constants = {
         SUPPORT_EMAIL: 'E-mail службы поддержки',
         SUPPORT_EMAIL_PLACEGOLDER: 'Введите E-mail службы поддержки',
         DESCRIPTION: 'Примечание',
-        DESCRIPTION_PLACEGOLDER: 'Введите примечание',
+        DESCRIPTION_PLACEGOLDER: 'Введите примечание'
+    },
+    ADD_TEMPLATES: {
+        ADD_TEMPLATES_NAME_TEMPLATE: "Название шаблона",
+        ADD_TEMPLATES_DATE_CREATE: "Дата создания",
+        ADD_TEMPLATES_DATE_CREATE_MOBILE: "Дата создания:",
+        ADD_TEMPLATES_ACTION: "Действия",
+        ADD_TEMPLATES_ADD_TEMPLATE_BTN: "Добавить шаблон",
+        ADD_TEMPLATES_SHOW_MORE_BTN: "ПОКАЗАТЬ ПОЛНОСТЬЮ",
+        ADD_TEMPLATES_EDIT_MOBILE_BTN: "Редактировать",
+        ADD_TEMPLATES_DELETE_MOBILE_BTN: "Удалить"
     },
     GENERAL: {
         ALT_ICON: "Иконка"

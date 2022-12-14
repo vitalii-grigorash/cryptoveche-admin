@@ -1,0 +1,174 @@
+/*------Основной контейнер--------------------------------------------------------------------------------------------*/
+.details-vote__container {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(49vh - 80px);
+    font-size: 18px;
+    margin-bottom: 6.22em;
+}
+/*------Контейнер для главного блока----------------------------------------------------------------------------------*/
+.details-vote__main-block {
+    display: flex;
+    flex-direction: row;
+    gap: 0.88em;
+}
+/*------Контейнер для блока-меню--------------------------------------------------------------------------------------*/
+.details-vote__information-menu {
+    display: flex;
+    flex-direction: column;
+    padding: 0.88em 0.88em;
+    box-shadow: -1px 0 8px rgba(54, 58, 72, 0.07);
+    background-color: #FFFFFF;
+    border-radius: 1.33em;
+    align-self: flex-start;
+    width: 26.111vw;
+}
+.details-vote__menu-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.88em;
+    height: 3.33em;
+    width: 100%;
+    cursor: pointer;
+    padding: 0.88em 0 0.88em 2.22em;
+    color: rgba(54, 59, 77, 0.9);
+}
+.details-vote__menu-items.active {
+    color: #0084FE;
+    border-radius: 0.88em;
+    background-color: rgba(0, 132, 254, 0.05);
+    cursor: default;
+}
+.details-vote__menu-items:hover  {
+    color: #0084FE;
+    border-radius: 0.88em;
+    background-color: rgba(0, 132, 254, 0.05);
+}
+.details-vote__menu-icon {
+    width: 1.33em;
+    height: 1.33em;
+}
+.details-vote__menu-label {
+    line-height: 156%;
+    font-size: 1em;
+}
+.details-vote__icon-general-info {
+    background-image: url('../../img/DetailsVoteIconInfo.svg');
+    width: 1.33em;
+    height: 1.33em;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.details-vote__icon-statistics {
+    background-image: url('../../img/DetailsVoteIconStatistics.svg');
+    width: 1.33em;
+    height: 1.33em;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.details-vote__icon-voting {
+    background-image: url('../../img/DetailsVoteIconVoting.svg');
+    width: 1.33em;
+    height: 1.33em;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.details-vote__icon-observers {
+    background-image: url('../../img/DetailsVoteIconObservers.svg');
+    width: 1.33em;
+    height: 1.33em;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.details-vote__icon-questions {
+    background-image: url('../../img/DetailsVoteIconKnowQuestions.svg');
+    width: 1.33em;
+    height: 1.33em;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.details-vote__menu-items:hover .details-vote__icon-general-info {
+    background-image: url('../../img/DetailsVoteIconInfoHover.svg');
+    width: 1.33em;
+    height: 1.33em;
+}
+.details-vote__menu-items.active .details-vote__icon-general-info {
+    background-image: url('../../img/DetailsVoteIconInfoHover.svg');
+    width: 1.33em;
+    height: 1.33em;
+}
+.details-vote__menu-items:hover .details-vote__icon-statistics {
+    background-image: url('../../img/DetailsVoteIconStatisticsHover.svg');
+    width: 1.33em;
+    height: 1.33em;
+}
+.details-vote__menu-items.active .details-vote__icon-statistics {
+    background-image: url('../../img/DetailsVoteIconStatisticsHover.svg');
+    width: 1.33em;
+    height: 1.33em;
+}
+.details-vote__menu-items:hover .details-vote__icon-voting {
+    background-image: url('../../img/DetailsVoteIconVotingHover.svg');
+    width: 1.33em;
+    height: 1.33em;
+}
+.details-vote__menu-items.active .details-vote__icon-voting {
+    background-image: url('../../img/DetailsVoteIconVotingHover.svg');
+    width: 1.33em;
+    height: 1.33em;
+
+}
+.details-vote__menu-items:hover .details-vote__icon-observers {
+    background-image: url('../../img/DetailsVoteIconObserversHover.svg');
+    width: 1.33em;
+    height: 1.33em;
+}
+.details-vote__menu-items.active .details-vote__icon-observers {
+    background-image: url('../../img/DetailsVoteIconObserversHover.svg');
+    width: 1.33em;
+    height: 1.33em;
+}
+.details-vote__menu-items:hover .details-vote__icon-questions {
+    background-image: url('../../img/DetailsVoteIconKnowQuestionsHover.svg');
+    width: 1.33em;
+    height: 1.33em;
+}
+.details-vote__menu-items.active .details-vote__icon-questions {
+    background-image: url('../../img/DetailsVoteIconKnowQuestionsHover.svg');
+    width: 1.33em;
+    height: 1.33em;
+}
+/*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
+@media (max-width: 1420px) {
+    .details-vote__container {
+        font-size: 16px;
+    }
+}
+@media (max-width: 1265px) {
+    .details-vote__container {
+        font-size: 14px;
+    }
+}
+@media (max-width: 1115px) {
+    .details-vote__container {
+        font-size: 12px;
+        min-height: calc(40vh - 50px);
+    }
+}
+@media (max-width: 960px) {
+    .details-vote__container {
+        font-size: 10px;
+    }
+}
+@media (max-width: 810px) {
+    .details-vote__container {
+        font-size: 8px;
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 650px) {
+    .details-vote__main-block {
+        flex-direction: column;
+    }
+}
