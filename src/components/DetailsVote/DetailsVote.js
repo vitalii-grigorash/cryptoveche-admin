@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import GeneralTitleAllPages from "../GeneralTitleAllPages/GeneralTitleAllPages";
 import DetailsVoteGeneralInfo from "../DetailsVoteGeneralInfo/DetailsVoteGeneralInfo";
 import DetailsVoteStatisticsVote from "../DetailsVoteStatisticsVote/DetailsVoteStatisticsVote";
@@ -24,13 +24,13 @@ const DetailsVote = (props) => {
     ]
     const onSelectMenuItems = (i, item) => {
         setSelectMenuItem(i);
-        switch(item) {
+        switch (item) {
             case 'Общая информация' :
                 setSelectMenuComponent('generalInfo')
-            break;
+                break;
             case 'Статистика голосования' :
                 setSelectMenuComponent('statisticsVote')
-            break;
+                break;
             case 'Голосующие' :
                 setSelectMenuComponent('voting')
                 break;
@@ -40,9 +40,23 @@ const DetailsVote = (props) => {
             case 'Ознакомиться с вопросами' :
                 setSelectMenuComponent('questions')
                 break;
-            default: {}
+            default: {
+            }
         }
     }
+
+    const onShowGeneralSettings = () => {
+        const getWightBlock = document.getElementById('addNewVoteWight').clientWidth;
+        console.log(getWightBlock)
+        if (getWightBlock < 600) {
+            setSelectMenuComponent('')
+            console.log(getWightBlock)
+        }
+    }
+
+    useEffect(() => {
+        onShowGeneralSettings()
+    },[])
 
     return (
         <div className="details-vote__container _container">
@@ -50,7 +64,7 @@ const DetailsVote = (props) => {
                 titleName={constants.GENERAL_TITLE.GENERAL_TITLE_TITLENAME_DETAILS_VOTE}
                 firstLetter={constants.GENERAL_TITLE.GENERAL_TITLE_FIRTSLETTER}
                 secondLetter={constants.GENERAL_TITLE.GENERAL_TITLE_SECONDLETTER_DETAILS_VOTE}/>
-            <div className="details-vote__main-block">
+            <div id={'addNewVoteWight'} className="details-vote__main-block">
                 <div className="details-vote__information-menu">
                     {informationMenuItems.map((el, i) => {
                         return (
@@ -67,6 +81,7 @@ const DetailsVote = (props) => {
                 {selectMenuComponent === 'observers' ? <DetailsVoteObservers constants={constants}/> : null}
                 {selectMenuComponent === 'questions' ? <DetailsVoteQuestions constants={constants}/> : null}
             </div>
+
         </div>
     )
 }
