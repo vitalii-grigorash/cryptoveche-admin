@@ -41,14 +41,14 @@ const AddNewVoteExpandList = (props) => {
         <div className="add-new-vote-expand-list">
             <div onClick={() => setActiveAddImportExcelMailUser(!activeAddImportExcelMailUser)} className="add-new-vote-expand-list__add-list-voters-active-btn">
                 <img className="add-new-vote-expand-list__materials-vote-icon-plus" src={iconPlus} alt={constants.GENERAL.ALT_ICON}/>
-                <p className="add-new-vote-expand-list__add-list-voters-active-btn-label">РАСШИРИТЬ СПИСОК</p>
+                <p className="add-new-vote-expand-list__add-list-voters-active-btn-label">{constants.ADD_NEW_VOTE.EXPAND_LIST_TITLE}</p>
             </div>
             <div className={activeAddImportExcelMailUser ? "add-new-vote-expand-list__add-list-voters-import-excel-mail active" : "add-new-vote-expand-list__add-list-voters-import-excel-mail"}>
                 <div className="add-new-vote-expand-list__add-list-voters-search-mail">
-                    <p className="add-new-vote-expand-list__add-list-voters-mail-address-label">Почтовые адреса пользователей</p>
-                    <p className="add-new-vote-expand-list__add-list-voters-rule">(по одному на каждую строчку для каждого пользователя)</p>
+                    <p className="add-new-vote-expand-list__add-list-voters-mail-address-label">{constants.ADD_NEW_VOTE.EXPAND_LIST_MAIL_ADDRESSES_USERS}</p>
+                    <p className="add-new-vote-expand-list__add-list-voters-rule">{constants.ADD_NEW_VOTE.EXPAND_LIST_NOTE}</p>
                     <input className="add-new-vote-expand-list__add-list-voters-text-input" type={"text"}/>
-                    <button className="add-new-vote-expand-list__add-list-voters-search-btn">Найти в базе пользователей</button>
+                    <button className="add-new-vote-expand-list__add-list-voters-search-btn">{constants.ADD_NEW_VOTE.EXPAND_LIST_SEARCH_USERS_BTN}</button>
                 </div>
                 <div className="add-new-vote-expand-list__add-list-voters-import-excel">
                     <div className="add-new-vote__excel-add-container">
@@ -70,7 +70,7 @@ const AddNewVoteExpandList = (props) => {
                     </div>
                     <div className="add-new-vote-expand-list__add-list-voters-excel">
                         <img className="add-new-vote-expand-list__add-list-voters-excel-icon" src={iconExcel} alt={constants.GENERAL.ALT_ICON}/>
-                        <p className="add-new-vote-expand-list__add-list-voters-excel-label">Импорт данных из excel</p>
+                        <p className="add-new-vote-expand-list__add-list-voters-excel-label">{constants.ADD_NEW_VOTE.EXPAND_LIST_IMPORT_EXCEL}</p>
                     </div>
                 </div>
             </div>

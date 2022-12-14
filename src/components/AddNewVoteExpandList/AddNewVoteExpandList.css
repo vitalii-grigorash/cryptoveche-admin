@@ -93,3 +93,49 @@
     color: #4ED4A9;
     font-size: 0.88em;
 }
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 500px) {
+    .add-new-vote-expand-list {
+        margin-bottom: 24px;
+    }
+    .add-new-vote-expand-list__add-list-voters-active-btn {
+        gap: 15px;
+    }
+    .add-new-vote-expand-list__materials-vote-icon-plus {
+        width: 20px;
+        height: 20px;
+    }
+    .add-new-vote-expand-list__add-list-voters-active-btn-label {
+        font-size: 16px;
+    }
+    .add-new-vote-expand-list__add-list-voters-search-mail {
+        margin-bottom: 16px;
+    }
+    .add-new-vote-expand-list__add-list-voters-mail-address-label {
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+    .add-new-vote-expand-list__add-list-voters-rule {
+        font-size: 12px;
+        margin-bottom: 16px;
+    }
+    .add-new-vote-expand-list__add-list-voters-text-input {
+        height: 36px;
+        border-radius: 8px;
+        font-size: 14px;
+        padding: 12px 16px 12px 16px;
+    }
+    .add-new-vote-expand-list__add-list-voters-search-btn {
+        height: 36px;
+        font-size: 14px;
+        width: 100%;
+        border-radius: 8px;
+    }
+    .add-new-vote-expand-list__add-list-voters-excel-label {
+        font-size: 14px;
+    }
+    .add-new-vote-expand-list__add-list-voters-excel-icon {
+        width: 16px;
+        height: 16px;
+    }
+}

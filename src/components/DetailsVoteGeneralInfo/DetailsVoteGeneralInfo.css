@@ -1,0 +1,209 @@
+/*------Основной контейнер--------------------------------------------------------------------------------------------*/
+.details-vote-general-info__container {
+    display: flex;
+    flex-direction: column;
+    padding: 1.77em 1.77em 2.22em 1.77em;
+    box-shadow: -1px 0 8px rgba(54, 58, 72, 0.07);
+    background-color: #FFFFFF;
+    border-radius: 1.33em;
+    font-size: 18px;
+    align-self: flex-start;
+    width: 68.889vw;
+}
+.details-vote-general-info__title-name-vote {
+    margin-bottom: 1.33em;
+    font-size: 1.33em;
+    font-weight: 600;
+    color: rgba(54, 59, 77, 0.9);
+    line-height: 133%;
+    word-break: break-word;
+}
+.details-vote-general-info__main-block {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1.33em;
+}
+/*------Контейнер для блока с названием организации и статусами-------------------------------------------------------*/
+.details-vote-general-info__name-org-status-block {
+    display: flex;
+    flex-direction: column;
+    margin-right: 2.66em;
+    /*min-width: 29.16em;*/
+}
+.details-vote-general-info__name-org {
+    color: rgba(54, 59, 77, 0.8);
+    word-break: break-word;
+    line-height: 133%;
+    font-size: 1em;
+    margin-bottom: 0.88em;
+    max-width: 29em;
+}
+.details-vote-general-info__timezone-vote {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-bottom: 1.55em;
+}
+.details-vote-general-info__time-icon {
+    width: 0.77em;
+    height: 0.77em;
+}
+.details-vote-general-info__timezone-label {
+    color: rgba(54, 59, 77, 0.6);
+    line-height: 153%;
+    font-size: 0.77em;
+    padding-top: 0.16em;
+}
+.details-vote-general-info__status-possible-revote-block {
+    display: flex;
+    flex-direction: row;
+}
+.details-vote-general-info__current-status-vote {
+    display: flex;
+    flex-direction: column;
+    gap: 0.44em;
+    margin-right: 1.33em;
+    padding-right: 1.33em;
+    border-right: 1px solid rgba(54, 59, 77, 0.2);
+}
+.details-vote-general-info__status-vote {
+    font-size: 0.66em;
+    line-height: 167%;
+    color: rgba(54, 59, 77, 0.9);
+    border: 1px solid #4569FF;
+    border-radius: 0.44em;
+    padding: 0.11em 0.66em 0.11em 0.66em;
+    white-space: nowrap;
+    color: #4569FF;
+    max-width: 18em;
+}
+.details-vote-general-info__type-vote {
+    font-size: 0.66em;
+    line-height: 167%;
+    color: rgba(54, 59, 77, 0.9);
+    border: 1px solid rgba(54, 59, 77, 0.6);
+    border-radius: 0.44em;
+    padding: 0.11em 0.66em 0.11em 0.66em;
+    max-width: 8em;
+    white-space: nowrap;
+}
+.details-vote-general-info__possible-revote-cancel-reg {
+    display: flex;
+    flex-direction: column;
+    align-self: end;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    gap: 0.44em;
+}
+.details-vote-general-info__possible-label {
+    color: rgba(54, 59, 77, 0.6);
+    line-height: 171%;
+    font-size: 0.77em;
+}
+.details-vote-general-info__possible-value {
+    color: rgba(54, 59, 77, 0.9);
+}
+/*------Контейнер для блока с датой и временем событий----------------------------------------------------------------*/
+.details-vote-general-info__datetime-block {
+    display: flex;
+    flex-direction: column;
+    align-self: end;
+    gap: 0.44em;
+    padding: 0 1.77em 0 2.66em;
+    border-left: 1px solid rgba(54, 59, 77, 0.2);
+}
+.details-vote-general-info__datetime-event {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 1em;
+}
+.details-vote-general-info__datetime-event-label {
+    font-size: 0.77em;
+    color: rgba(54, 59, 77, 0.6);
+    line-height: 171%;
+    white-space: nowrap;
+    width: 10em;
+}
+.details-vote-general-info__datetime-icons-values {
+    display: inline-flex;
+    align-items: center;
+}
+.details-vote-general-info__datetime-icons-values p {
+    font-size: 0.77em;
+    color: rgba(54, 59, 77, 0.9);
+    margin-right: 0.5em;
+    line-height: 171%;
+}
+.details-vote-general-info__datetime-icons-values img {
+    width: 0.72em;
+    height: 0.72em;
+    margin-right: 0.33em;
+}
+/*------Контейнер для блока с материалами голосования-----------------------------------------------------------------*/
+.details-vote-general-info__materials-vote {
+    margin-bottom: 1.77em;
+    font-size: 0.77em;
+}
+/*------Контейнер для блока с кнопками--------------------------------------------------------------------------------*/
+.details-vote-general-info__buttons-block {
+    display: inline-flex;
+}
+.details-vote-general-info__start-end-vote-btn {
+    height: 2.66em;
+    background: #0084FE;
+    border-radius: 0.22em;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 0.88em;
+    padding: 0.66em 1.33em 0.66em 1.33em;
+    margin-right: 1.77em;
+}
+.details-vote-general-info__start-end-reg-btn {
+    height: 2.66em;
+    background: none;
+    border-radius: 0.22em;
+    color: #FF8A00;;
+    cursor: pointer;
+    font-size: 0.88em;
+    padding: 0.66em 1.33em 0.66em 1.33em;
+    margin-right: 1.77em;
+    border: 1px solid #FF8A00;
+}
+.details-vote-general-info__delete-vote-btn {
+    height: 2.66em;
+    background: none;
+    border-radius: 0.22em;
+    color: #FF4970;
+    cursor: pointer;
+    font-size: 0.88em;
+    padding: 0.66em 1.33em 0.66em 1.33em;
+    margin-right: 1.77em;
+    border: 1px solid #FF4970;
+}
+/*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
+@media (max-width: 1420px) {
+    .details-vote-general-info__container {
+        font-size: 16px;
+    }
+}
+@media (max-width: 1265px) {
+    .details-vote-general-info__container{
+        font-size: 14px;
+    }
+}
+@media (max-width: 1115px) {
+    .details-vote-general-info__container {
+        font-size: 12px;
+    }
+}
+@media (max-width: 960px) {
+    .details-vote-general-info__container {
+        font-size: 10px;
+    }
+}
+@media (max-width: 810px) {
+    .details-vote-general-info__container {
+        font-size: 8px;
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/

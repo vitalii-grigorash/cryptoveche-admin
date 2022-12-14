@@ -364,6 +364,9 @@
     .search-setting-myprofile__myprofile-modal-exit {
         left: -39px;
     }
+    .search-setting-myprofile__label-myprofile {
+        display: none;
+    }
 }
 /*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
 @media (max-width: 375px) {

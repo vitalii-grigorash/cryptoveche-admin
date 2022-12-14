@@ -35,7 +35,6 @@
 @import url(./components/AddNewVoteExpandList/AddNewVoteExpandList.css);
 @import url(./components/AddNewVoteAddMaterialsVote/AddNewVoteAddMaterialsVote.css);
 @import url(./components/AddNewVoteCreatedQuestion/AddNewVoteCreatedQuestion.css);
-@import url(./components/AddNewVoteCreatedQuestionGrid/AddNewVoteCreatedQuestionGrid.css);
 @import url(./components/OrgSettings/OrgSettings.css);
 @import url(./components/AddUsers/AddUsers.css);
 @import url(./components/UsersTable/UsersTable.css);
@@ -44,3 +43,10 @@
 @import url(./components/ProtocolSettings/ProtocolSettings.css);
 @import url(./components/VoteSettings/VoteSettings.css);
 @import url(./components/MailingSettings/MailingSettings.css);
+@import url(./components/ListTemplates/ListTemplates.css);
+@import url(./components/DetailsVote/DetailsVote.css);
+@import url(./components/DetailsVoteGeneralInfo/DetailsVoteGeneralInfo.css);
+@import url(./components/DetailsVoteStatisticsVote/DetailsVoteStatisticsVote.css);
+@import url(./components/DetailsVoteVoting/DetailsVoteVoting.css);
+@import url(./components/DetailsVoteObservers/DetailsVoteObservers.css);
+@import url(./components/DetailsVoteQuestions/DetailsVoteQuestions.css);

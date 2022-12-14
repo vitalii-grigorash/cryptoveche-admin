@@ -62,8 +62,8 @@ const HeaderBurgerMenu = (props) => {
                         <img alt={'иконка стрелочка'} src={burgerMenuIconRow} className={activeUsersBtn ? "burger-menu__users-button-row active" : "burger-menu__users-button-row"}/>
                     </div>
                     <div className={activeUsersBtn ? "burger-menu__users-button-drop-down-list active" : "burger-menu__users-button-drop-down-list"}>
-                        <Link to={'/group-users'}>{constants.HEADER.HEADER_GROUP_USERS}</Link>
-                        <Link to={'/list-users'}>{constants.HEADER.HEADER_USERS_LIST}</Link>
+                        <Link onClick={() => setActive(false)} to={'/group-users'}>{constants.HEADER.HEADER_GROUP_USERS}</Link>
+                        <Link onClick={() => setActive(false)} to={'/list-users'}>{constants.HEADER.HEADER_USERS_LIST}</Link>
                     </div>
                 </div> : null}
                 <div className="burger-menu__votes-button">
@@ -72,8 +72,8 @@ const HeaderBurgerMenu = (props) => {
                         <img alt={'иконка стрелочка'} src={burgerMenuIconRow} className={activeVotesBtn ? "burger-menu__votes-button-row active" : "burger-menu__votes-button-row"}/>
                     </div>
                     <div className={activeVotesBtn ? "burger-menu__votes-button-drop-down-list active" : "burger-menu__votes-button-drop-down-list"}>
-                        <Link to={'/list-votes'}>{constants.HEADER.HEADER_LIST_VOTES}</Link>
-                        {authAs === 'admin' ? <Link to={'#'}>{constants.HEADER.HEADER_TEMPLATE_VOTES}</Link> : null}
+                        <Link onClick={() => setActive(false)} to={'/list-votes'}>{constants.HEADER.HEADER_LIST_VOTES}</Link>
+                        {authAs === 'admin' ? <Link onClick={() => setActive(false)} to={'/list-templates'}>{constants.HEADER.HEADER_TEMPLATE_VOTES}</Link> : null}
                     </div>
                 </div>
                 {authAs === 'admin' || authAs === 'superAdmin' ? <div className="burger-menu__add-button">
@@ -82,9 +82,9 @@ const HeaderBurgerMenu = (props) => {
                         <img alt={'иконка стрелочка'} src={burgerMenuIconRow} className={activeAddBtn ? "burger-menu__add-button-row active" : "burger-menu__add-button-row"}/>
                     </div>
                     <div className={activeAddBtn ? "burger-menu__add-button-drop-down-list active" : "burger-menu__add-button-drop-down-list"}>
-                        {authAs === 'admin' ? <Link to={'/add-new-vote'}>{constants.HEADER.HEADER_ADD_VOTE}</Link> : null}
-                        {authAs === 'admin' ? <Link to={'#'}>{constants.HEADER.HEADER_ADD_GROUP_USERS}</Link> : null}
-                        {authAs === 'admin' ? <Link to={'#'}>{constants.HEADER.HEADER_ADD_TEMPLATE_VOTE}</Link> : null}
+                        {authAs === 'admin' ? <Link onClick={() => setActive(false)} to={'/add-new-vote'}>{constants.HEADER.HEADER_ADD_VOTE}</Link> : null}
+                        {authAs === 'admin' ? <Link onClick={() => setActive(false)} to={'/add-new-group'}>{constants.HEADER.HEADER_ADD_GROUP_USERS}</Link> : null}
+                        {authAs === 'admin' ? <Link onClick={() => setActive(false)} to={'/add-new-template'}>{constants.HEADER.HEADER_ADD_TEMPLATE_VOTE}</Link> : null}
                         {authAs === 'superAdmin' ? <Link to={'/add-org-page'} onClick={() => setActive(false)}>{constants.HEADER.HEADER_BURGER_ADD_ORG}</Link> : null}
                     </div>
                 </div> : null}

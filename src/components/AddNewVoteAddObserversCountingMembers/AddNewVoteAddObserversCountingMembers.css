@@ -97,6 +97,9 @@
     width: 9.61em;
     margin: 0 auto;
 }
+.add-new-vote-add-observers__table-row-action-icon {
+    display: none;
+}
 .add-new-vote-add-observers__table-row-action-delete {
     color: #FF4970;
     line-height: 156%;
@@ -109,4 +112,65 @@
 }
 .add-new-vote-add-observers__bottom-pagination {
 
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 500px) {
+    .add-new-vote-add-observers {
+        margin-bottom: 24px;
+    }
+    .add-new-vote-add-observers__add-list-voters-active-btn {
+        gap: 15px;
+    }
+    .add-new-vote-add-observers__materials-vote-icon-plus {
+        width: 20px;
+        height: 20px;
+    }
+    .add-new-vote__add-list-voters-active-btn-label {
+        font-size: 16px;
+        line-height: 120%;
+    }
+    .add-new-vote-add-observers__add-users-group-btn {
+        margin: 16px 0 16px 0;
+        gap: 8px;
+    }
+    .add-new-vote-add-observers__top-pagination {
+        margin-bottom: 16px;
+        font-size: 16px;
+    }
+    .add-new-vote-add-observers__bottom-pagination {
+        font-size: 16px;
+    }
+    .add-new-vote-add-observers__list-users-table-header {
+        display: none;
+    }
+    .add-new-vote-add-observers__list-users-table {
+        border: none;
+    }
+    .add-new-vote-add-observers__list-users-table-row {
+        border: none;
+        margin-bottom: 16px;
+    }
+    .add-new-vote-add-observers__table-row-username-email {
+        padding: 0;
+        border: none;
+        width: 80%;
+        gap: 8px;
+    }
+    .add-new-vote-add-observers__table-row-username {
+        font-size: 16px;
+        line-height: 130%;
+    }
+    .add-new-vote-add-observers__table-row-email {
+        font-size: 14px;
+        line-height: 130%;
+    }
+    .add-new-vote-add-observers__table-row-action-icon {
+        display: initial;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+    }
+    .add-new-vote-add-observers__table-row-action-delete {
+        display: none;
+    }
 }

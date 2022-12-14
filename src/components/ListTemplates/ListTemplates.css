@@ -1,0 +1,327 @@
+/*------Основной контейнер--------------------------------------------------------------------------------------------*/
+.list-templates__container {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(49vh - 80px);
+    font-size: 18px;
+    margin-bottom: 6.22em;
+}
+.list-templates__add-template-btn-mobile {
+    display: none;
+}
+.list-templates__show-more-btn-mobile {
+    display: none;
+}
+/*------Контейнер для блока с фильтрами,сортировкой и пагинацией------------------------------------------------------*/
+.list-templates__filter-sort-pagination {
+    margin-bottom: 1.33em;
+}
+/*------Контейнер для блока с таблицей--------------------------------------------------------------------------------*/
+.list-templates__main-block {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.7em;
+    box-shadow: -3px 0 8px rgba(54, 58, 72, 0.1);
+    border-top-left-radius:  1.33em;
+    border-top-right-radius: 1.33em;
+    font-size: 1em;
+    background-color: #FFFFFF;
+}
+/*------Контейнер для блока заголовка таблицы-------------------------------------------------------------------------*/
+.list-templates__header-table-templates {
+    display: flex;
+    flex-direction: row;
+    border-top-left-radius: 1.33em;
+    border-top-right-radius: 1.33em;
+    padding: 1.11em 1.33em 1.11em 1.33em;
+}
+.list-templates__header-name {
+    font-weight: 500;
+    line-height: 133%;
+    color: #363B4D;
+    opacity: 0.6;
+    width: 26.77em;
+    margin-right: 4.61em;
+}
+.list-templates__header-created-datetime {
+    font-weight: 500;
+    line-height: 133%;
+    color: #363B4D;
+    opacity: 0.6;
+    width: 12.27em;
+    margin-right: 11.05em;
+    white-space: nowrap;
+}
+.list-templates__header-actions {
+    font-weight: 500;
+    line-height: 133%;
+    color: #363B4D;
+    opacity: 0.6;
+    margin-right: 11em;
+    width: 4.83em;
+}
+/*------Контейнер для с блока со строками таблицы---------------------------------------------------------------------*/
+.list-templates-row {
+    display: flex;
+    flex-direction: row;
+    padding: 1.11em 1.33em 1.11em 1.33em;
+    border-top: 1px solid rgba(54, 59, 77, 0.1);
+    align-items: center;
+}
+.list-templates-row__name-templates-name-org {
+    display: flex;
+    flex-direction: column;
+    gap: 0.22em;
+    width: 26.77em;
+    margin-right: 4.61em;
+    cursor: pointer;
+}
+.list-templates-row__name-templates {
+    font-weight: 400;
+    color: #363B4D;
+    opacity: 90%;
+    line-height: 156%;
+    font-size: 1em;
+    word-break: break-word;
+}
+.list-templates-row__name-org {
+    font-size: 0.88em;
+    line-height: 150%;
+    color: #363B4D;
+    opacity: 40%;
+    word-break: break-word;
+}
+.list-templates-row__created-datetime {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 12.27em;
+    margin-right: 13.6em;
+    font-size: 0.88em;
+    color: #363B4D;
+    opacity: 90%;
+}
+.list-templates-row__created-datetime-label-mobile {
+    display: none;
+}
+.list-templates-row__date-icon-block {
+    display: flex;
+    flex-direction: row;
+    gap: 0.61em;
+    align-items: center;
+    margin-right: 1em;
+}
+.list-templates-row__time-icon-block {
+    display: flex;
+    flex-direction: row;
+    gap: 0.61em;
+    align-items: center;
+}
+.list-templates-row__icon-datetime,
+.list-templates-row__icon-time {
+    width: 1.11em;
+    height: 1.11em;
+}
+.list-templates-row__buttons-block {
+    display: flex;
+    flex-direction: row;
+    width: 16.77em;
+    /*justify-content: space-between;*/
+    gap: 0.88em;
+}
+.list-templates-row__edit-btn {
+    display: flex;
+    flex-direction: row;
+    border-right: 0.5px solid rgba(54, 59, 77, 0.4);
+    padding-right: 0.66em;
+    gap: 0.61em;
+    align-items: center;
+    cursor: pointer;
+}
+.list-templates-row__delete-btn {
+    display: flex;
+    flex-direction: row;
+    gap: 0.61em;
+    align-items: center;
+    cursor: pointer;
+    padding-right: 0.66em;
+
+}
+.list-templates-row__icon-edit {
+    width: 1em;
+    height: 1em;
+}
+.list-templates-row__icon-delete {
+    width: 0.77em;
+    height: 0.77em;
+}
+.list-templates-row__label-edit-btn {
+    font-size: 0.88em;
+    line-height: 150%;
+    color: #0084FE;
+    font-weight: 300;
+}
+.list-templates-row__label-icon-delete {
+    font-size: 0.88em;
+    line-height: 150%;
+    color: #FF4970;
+    font-weight: 300;
+}
+.list-templates-row__label-edit-btn-mobile,
+.list-templates-row__label-icon-delete-mobile {
+    display: none;
+}
+/*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
+@media (max-width: 1570px) {
+    .list-templates__container {
+        font-size: 16px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 1120px) {
+    .list-templates__container {
+        font-size: 12px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 830px) {
+    .list-templates__container {
+        font-size: 10px;
+        min-height: calc(65vh - 80px);
+    }
+}
+@media (max-width: 600px) {
+    .list-templates__container {
+        font-size: 8px;
+        min-height: calc(65vh - 80px);
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 500px) {
+    .list-templates__container {
+        margin-bottom: 0;
+    }
+    .list-templates__filter-sort-pagination {
+        margin-bottom: 24px;
+    }
+    .list-templates__add-template-btn-mobile {
+        display: initial;
+        margin-bottom: 24px;
+        width: 100%;
+        height: 48px;
+        border-radius: 4px;
+        background: none;
+        border: 1px solid #0084FE;
+        color: #0084FE;
+        font-size: 16px;
+        line-height: 150%;
+        cursor: pointer;
+    }
+    .list-templates__main-block {
+        border-radius: 16px;
+        padding: 16px 16px 24px 16px;
+    }
+    .list-templates__header-table-templates {
+        display: none;
+    }
+    .list-templates-row {
+        padding: 0;
+        flex-direction: column;
+    }
+    .list-templates-row:nth-child(2) {
+        border-top: none;
+    }
+    .list-templates-row__name-templates-name-org {
+        margin: 0 0 12px 0;
+        width: 100%;
+    }
+    .list-templates-row__name-templates {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 150%;
+        margin-bottom: 8px;
+    }
+    .list-templates-row__name-org {
+        font-size: 14px;
+        line-height: 157%;
+        font-weight: 400;
+    }
+    .list-templates-row__created-datetime {
+        flex-wrap: wrap;
+        width: 100%;
+        margin: 0 0 16px 0;
+        align-items: start;
+        gap: 6px;
+    }
+    .list-templates-row__created-datetime-label-mobile {
+        display: initial;
+        width: 100%;
+        font-size: 14px;
+    }
+    .list-templates-row__icon-datetime,
+    .list-templates-row__icon-time {
+        width: 13px;
+        height: 13px;
+    }
+    .list-templates-row__date-icon-block,
+    .list-templates-row__time-icon-block {
+        margin: 0;
+        font-size: 13px;
+    }
+    .list-templates-row__buttons-block {
+        gap: 8px;
+        width: 100%;
+        justify-content: space-between;
+    }
+    .list-templates-row__icon-edit,
+    .list-templates-row__icon-delete {
+        display: none;
+    }
+    .list-templates-row__edit-btn {
+        padding: 0;
+        border: none;
+        height: 48px;
+        width: 179px;
+        align-items: center;
+        justify-content: center;
+        background: #0084FE;
+        border-radius: 4px;
+    }
+    .list-templates-row__label-edit-btn {
+        display: none;
+    }
+    .list-templates-row__delete-btn {
+        padding: 0;
+        height: 48px;
+        width: 179px;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: 1px #FF4970 solid;
+        border-radius: 4px;
+    }
+    .list-templates-row__label-icon-delete {
+        display: none;
+    }
+    .list-templates-row__label-edit-btn-mobile {
+        display: initial;
+        color: #FFFFFF;
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .list-templates-row__label-icon-delete-mobile {
+        display: initial;
+        font-size: 16px;
+        font-weight: 500;
+        color: #FF4970;
+    }
+    .list-templates__show-more-btn-mobile {
+        display: flex;
+        padding: 23px 0 0 0;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 171%;
+        color: #0084FE;
+        cursor: pointer;
+    }
+}
