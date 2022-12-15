@@ -7,11 +7,13 @@ import MaterialsVoteQuestion from "../VotesStatusComponents/MaterialsVoteQuestio
 const DetailsVoteGeneralInfo = (props) => {
 
     const {
-        constants
+        constants,
+        authAs
     } = props;
 
     return (
         <div className="details-vote-general-info__container">
+            <h3 className="details-vote-general-info__title-name-menu">Общая информация</h3>
             <h3 className="details-vote-general-info__title-name-vote">Выбор делегатов конференции в Ученый Совет СПбГУ</h3>
             <div className="details-vote-general-info__main-block">
                 <div className="details-vote-general-info__name-org-status-block">
@@ -74,14 +76,14 @@ const DetailsVoteGeneralInfo = (props) => {
                     </div>
                 </div>
             </div>
-            <div className="details-vote-general-info__materials-vote">
+            {authAs === 'admin' ? <div className="details-vote-general-info__materials-vote">
                 <MaterialsVoteQuestion materialsVoteName={constants.VOTES_PAGE.VOTES_PAGE_MATERIALS_VOTE}/>
-            </div>
-            <div className="details-vote-general-info__buttons-block">
+            </div> : null}
+            {authAs === 'admin' ? <div className="details-vote-general-info__buttons-block">
                 <button className="details-vote-general-info__start-end-vote-btn">Начать голосование</button>
                 <button className="details-vote-general-info__start-end-reg-btn">Начать регистрацию</button>
                 <button className="details-vote-general-info__delete-vote-btn">Удалить голосование</button>
-            </div>
+            </div> : null}
         </div>
     )
 }

@@ -431,6 +431,35 @@ export const constants = {
         ADD_TEMPLATES_EDIT_MOBILE_BTN: "Редактировать",
         ADD_TEMPLATES_DELETE_MOBILE_BTN: "Удалить"
     },
+    DETAILS_VOTE: {
+        INFORMATION_MENU_GENERAL_INFO: "Общая информация",
+        INFORMATION_MENU_STATISTIC_VOTE: "Статистика голосования",
+        INFORMATION_MENU_VOTING: "Голосующие",
+        INFORMATION_MENU_OBSERVERS: "Наблюдатели",
+        INFORMATION_MENU_KNOW_QUESTIONS: "Ознакомиться с вопросами",
+        INFORMATION_MENU_ROW_BACK: "Назад к списку голосований",
+        GENERAL_INFO_TITLE: "Общая информация",
+        GENERAL_INFO_STATUS_VOTING_IN_PROGRESS: "Идет голосование",
+        GENERAL_INFO_STATUS_WAITING_FOR_VOTE: "Ожидание голосования",
+        GENERAL_INFO_STATUS_WAITING_FOR_REG: "Ожидание регистрации",
+        GENERAL_INFO_STATUS_REG_IN_PROGRESS: "Идет регистрация",
+        GENERAL_INFO_STATUS_VOTING_END: "Голосование завершено",
+        GENERAL_INFO_STATUS_QUORUM_NOT_REACHED: "Кворум не достигнут",
+        GENERAL_INFO_STATUS_REG_AND_VOTE: "Регистрация и голосование",
+        GENERAL_INFO_TYPE_VOTE_OPEN: "Открытое",
+        GENERAL_INFO_TYPE_VOTE_CLOSE: "Тайное",
+        GENERAL_INFO_POSSIBLE_REVOTING: "Возможность переголосования:",
+        GENERAL_INFO_POSSIBLE_CANCEL_REG: "Возможность отмены регистрации:",
+        GENERAL_INFO_START_REG: "Начало регистрации:",
+        GENERAL_INFO_END_REG: "Конец регистрации:",
+        GENERAL_INFO_START_VOTE: "Начало голосования:",
+        GENERAL_INFO_END_VOTE: "Конец голосования:",
+        GENERAL_INFO_START_VOTE_BTN: "Начать голосование",
+        GENERAL_INFO_END_VOTE_BTN: "Завершить голосование",
+        GENERAL_INFO_START_REG_BTN: "Начать регистрацию",
+        GENERAL_INFO_END_REG_BTN: "Завершить регистрацию",
+        GENERAL_INFO_DELETE_VOTE_BTN: "Удалить голосование"
+    },
     GENERAL: {
         ALT_ICON: "Иконка"
     }
