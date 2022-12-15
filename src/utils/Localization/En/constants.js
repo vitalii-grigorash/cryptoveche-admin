@@ -352,7 +352,9 @@ export const constants = {
         ADD_OBSERVERS_TITLE_COUNTING_MEMBERS: "ДОБАВИТЬ ЧЛЕНОВ СЧЕТНОЙ КОМИССИИ",
         ADD_TEMPLATES_NAME_TEMPLATE: "Название шаблона",
         ADD_TEMPLATES_NAME_TEMPLATE_PLACEHOLDER: "Введите название шаблона",
-        ADD_TEMPLATES_SAVE_TEMPLATE_BTN: "Сохранить шаблон"
+        ADD_TEMPLATES_SAVE_TEMPLATE_BTN: "Сохранить шаблон",
+        SELECT_ORG: 'Выберите организацию',
+        EVENT_NAME_ERR: 'Отсутствует наименование голосования',
     },
     ORG_SETTINGS: {
         PLACEHOLDER: 'Введите название компании',
