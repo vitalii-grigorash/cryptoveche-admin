@@ -60,9 +60,16 @@ const AddNewVote = (props) => {
     const [selectedOrg, setSelectedOrg] = useState({});
     const [currentOrg, setCurrentOrg] = useState({});
     const [errorMessage, setErrorMessage] = useState('');
-    const [isSecretTypeActive, setSecretTypeActive] = useState(true);
-    const [isOpenTypeActive, setOpenTypeActive] = useState(false);
-    const [eventType, setEventType] = useState('secret');
+    const [eventType, setEventType] = useState('');
+    const [eventQuorum, setEventQuorum] = useState('');
+    const [selectedQuorumText, setSelectedQuorumText] = useState('');
+    const [registrationStartTime, setRegistrationStartTime] = useState('');
+    const [registrationEndTime, setRegistrationEndTime] = useState('');
+    const [eventStartTime, setEventStartTime] = useState('');
+    const [eventEndTime, setEventEndTime] = useState('');
+    const [reRegistration, setReRegistration] = useState(false);
+    const [reVoting, setReVoting] = useState(false);
+    const [skipReg, setSkipReg] = useState(false);
 
     const typeQuestionButtons = [
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_YNQ}`, classNameBtn: "add-new-vote__select-type-vote-ynq", typeQuestion: "ynq" },
@@ -84,17 +91,72 @@ const AddNewVote = (props) => {
             })
     }, [])
 
-    function onSecretTypeClick () {
-        setOpenTypeActive(false);
-        setSecretTypeActive(true);
+    function handleCancelReg() {
+        if (reRegistration) {
+            setReRegistration(false);
+        } else {
+            setReRegistration(true);
+        }
+    }
+
+    function handleChangeVote() {
+        if (reVoting) {
+            setReVoting(false);
+        } else {
+            setReVoting(true);
+        }
+    }
+
+    function handleSkipRegistration() {
+        if (skipReg) {
+            setSkipReg(false);
+            setReRegistration(currentOrg.config.event.default_re_registration);
+        } else {
+            setSkipReg(true);
+            setReRegistration(false);
+        }
+    }
+
+    function registrationStartTimeChange(evt) {
+        setRegistrationStartTime(evt.target.value);
+    }
+
+    function registrationEndTimeChange(evt) {
+        setRegistrationEndTime(evt.target.value);
+    }
+
+    function eventStartTimeChange(evt) {
+        setEventStartTime(evt.target.value);
+    }
+
+    function eventEndTimeChange(evt) {
+        setEventEndTime(evt.target.value);
+    }
+
+    function onSecretTypeClick() {
         setEventType('secret');
     }
 
-    function onOpenTypeClick () {
-        setSecretTypeActive(false);
-        setOpenTypeActive(true);
+    function onOpenTypeClick() {
         setEventType('open');
     }
+
+    function eventQuorumChange(quorum) {
+        setEventQuorum(quorum);
+    }
+
+    useEffect(() => {
+        if (eventQuorum === '0') {
+            setSelectedQuorumText(constants.ORG_SETTINGS.QUORUM_ANY_VALUE);
+        } else if (eventQuorum === '51') {
+            setSelectedQuorumText('50% + 1');
+        } else if (eventQuorum === '50') {
+            setSelectedQuorumText('50%');
+        } else if (eventQuorum === '66') {
+            setSelectedQuorumText('2/3');
+        }
+        // eslint-disable-next-line
+    }, [eventQuorum])
 
     function selectOrg(org) {
         setSelectedOrgTitle(org.title);
@@ -115,14 +177,43 @@ const AddNewVote = (props) => {
         setActiveButtonGoQuestionsBlock(false);
     }
 
+    function datePlus(date) {
+        const defaultDate = new Date(date);
+        const datePlus = defaultDate.setHours(defaultDate.getHours() + 4);
+        const newDate = new Date(datePlus);
+        return newDate.toISOString().slice(0, 16)
+    }
+
+    function datePlusRegStart(date) {
+        const defaultDate = new Date(date);
+        const datePlus = defaultDate.setHours(defaultDate.getHours() + 3);
+        const newDate = new Date(datePlus);
+        return newDate.toISOString().slice(0, 16);
+    }
+
     const onShowGeneralSettings = () => {
+        const date = new Date();
+        const regStart = datePlusRegStart(date);
+        const regEnd = datePlus(regStart);
+        const eventStart = datePlus(regEnd);
+        const eventEnd = datePlus(eventStart);
+        setRegistrationStartTime(regStart);
+        setRegistrationEndTime(regEnd);
+        setEventStartTime(eventStart);
+        setEventEndTime(eventEnd);
+
         const body = {
             id: selectedOrg.id
         }
+
         requestHelper(Organizations.getOrganization, body)
             .then((org) => {
                 console.log(org);
                 setCurrentOrg(org);
+                setEventType(org.config.event.default_type);
+                setEventQuorum(org.config.event.default_quorum);
+                setReRegistration(org.config.event.default_re_registration);
+                setReVoting(org.config.event.default_re_voting);
                 const getWightBlock = document.getElementById('addNewVoteWight').clientWidth;
                 if (getWightBlock > 491) {
                     setHideSelectOrg(false);
@@ -185,66 +276,114 @@ const AddNewVote = (props) => {
         setSelectedTypeQuestionBtn({ nameQuestion, typeQuestion });
     }
 
-    function addEvent() {
-        const body = {
-            template_title: eventTitle.value,
-            title: eventTitle.value,
-            registration_start_time: "2022-12-15T13:59:00Z",
-            registration_end_time: "2022-12-15T14:59:00Z",
-            event_start_time: "2022-12-15T14:59:00Z",
-            event_end_time: "2022-12-15T15:59:00Z",
-            re_registration: true,
-            re_voting: false,
-            observers: ["vitalii.grigorash@yandex.ru"],
-            counters: [],
-            voters: ["vitalii.grigorash@gmail.com"],
-            evoters: [],
-            type: eventType,
-            quorum: "0",
-            quorum_type: "voting",
-            materials: [],
-            questions: [{
-                template: "ynq",
-                title: "Простой вопрос",
-                options: {
-                    rows: [
-                        { value: "За" },
-                        { value: "Против" },
-                        { value: "Воздержаться" }
-                    ],
-                    columns: []
-                },
-                materials: [],
-                is_required_grid_rows: false,
-                rules: {
-                    pick_eq: 1,
-                    pick_lt: -1,
-                    pick_gt: -1,
-                    pick_le: -1,
-                    pick_ge: -1
-                }
-            }],
-            report_sign: [],
-            owner: {
-                user_id: currentUser.id,
-                org_id: currentOrg.id
-            },
-            is_voters_expandable: false,
-            onButton: false,
-            max_slots: 50000,
-            signed: false,
-            save_as_template: false,
-            weights: [],
-            created_date: "2022-12-15T13:00:00Z",
-            users_groups: {group_name: {}}
-        }
-        if (eventTitle.value !== '') {
-            console.log(eventTitle.value)
+    function votersValidate() {
+        console.log('Все ок!');
+        return true;
+    }
+
+    function compareDate(firstDate, secondDate, isSoft) {
+        return isSoft ? (firstDate <= secondDate) : (firstDate < secondDate);
+    }
+
+    function dateValidate(date) {
+        if (!compareDate(date.regStart, date.regEnd, false)) {
+            setErrorMessage(constants.ADD_NEW_VOTE.COMPARE_RS_RE);
+            return false;
+        } else if (!compareDate(date.eventStart, date.eventEnd, false)) {
+            setErrorMessage(constants.ADD_NEW_VOTE.COMPARE_ES_EE);
+            return false;
+        } else if (!compareDate(date.regEnd, date.eventEnd, true)) {
+            setErrorMessage(constants.ADD_NEW_VOTE.COMPARE_RE_EE);
+            return false;
+        } else if (!compareDate(date.regStart, date.eventEnd, false)) {
+            setErrorMessage(constants.ADD_NEW_VOTE.COMPARE_EE_RS);
+            return false;
+        } else if (!compareDate(date.regStart, date.eventStart, true)) {
+            setErrorMessage(constants.ADD_NEW_VOTE.COMPARE_ES_RS);
+            return false;
+        } else {
             setErrorMessage('');
+            return votersValidate();
+        }
+    }
+
+    function eventValidation(date) {
+        if (eventTitle.value !== '') {
+            setErrorMessage('');
+            return dateValidate(date);
         } else {
             setErrorMessage(constants.ADD_NEW_VOTE.EVENT_NAME_ERR);
+            return false;
         }
-        console.log(body);
+    }
+
+    function addEvent() {
+
+        const date = {
+            createdDate: new Date(),
+            regStart: new Date(registrationStartTime),
+            regEnd: new Date(registrationEndTime),
+            eventStart: new Date(eventStartTime),
+            eventEnd: new Date(eventEndTime),
+        }
+
+        const isEventValid = eventValidation(date);
+
+        if (isEventValid) {
+            const body = {
+                template_title: eventTitle.value,
+                title: eventTitle.value,
+                registration_start_time: `${date.regStart.toISOString().split('.')[0] + 'Z'}`,
+                registration_end_time: `${date.regEnd.toISOString().split('.')[0] + 'Z'}`,
+                event_start_time: `${date.eventStart.toISOString().split('.')[0] + 'Z'}`,
+                event_end_time: `${date.eventEnd.toISOString().split('.')[0] + 'Z'}`,
+                re_registration: reRegistration,
+                re_voting: reVoting,
+                observers: ["vitalii.grigorash@yandex.ru"],
+                counters: [],
+                voters: ["vitalii.grigorash@gmail.com"],
+                evoters: [],
+                type: eventType,
+                quorum: eventQuorum,
+                quorum_type: "voting",
+                materials: [],
+                questions: [{
+                    template: "ynq",
+                    title: "Простой вопрос",
+                    options: {
+                        rows: [
+                            { value: "За" },
+                            { value: "Против" },
+                            { value: "Воздержаться" }
+                        ],
+                        columns: []
+                    },
+                    materials: [],
+                    is_required_grid_rows: false,
+                    rules: {
+                        pick_eq: 1,
+                        pick_lt: -1,
+                        pick_gt: -1,
+                        pick_le: -1,
+                        pick_ge: -1
+                    }
+                }],
+                report_sign: [],
+                owner: {
+                    user_id: currentUser.id,
+                    org_id: currentOrg.id
+                },
+                is_voters_expandable: false,
+                onButton: skipReg, // пропустить этап регистрации
+                max_slots: 50000,
+                signed: false,
+                save_as_template: false,
+                weights: [],
+                created_date: `${date.createdDate.toISOString().split('.')[0] + 'Z'}`,
+                users_groups: { group_name: {} }
+            }
+            console.log(body);
+        }
     }
 
     function saveTemplate() {
@@ -315,60 +454,159 @@ const AddNewVote = (props) => {
                                     onChange={eventTitle.onChange}
                                 />
                             </div>
-                            <div className="add-new-vote__select-open-close-vote-buttons">
-                                <div className={`add-new-vote__close-vote-btn ${isSecretTypeActive && "add-new-vote__close-vote-btn_active"}`} onClick={onSecretTypeClick}>
-                                    <p>{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_CLOSE_VOTING_BTN}</p>
-                                </div>
-                                <div className={`add-new-vote__open-vote-btn ${isOpenTypeActive && "add-new-vote__open-vote-btn_active"}`} onClick={onOpenTypeClick}>
-                                    <p>{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_OPEN_VOTING_BTN}</p>
-                                </div>
-                            </div>
-                            <div className="add-new-vote__select-role">
-                                <label className="add-new-vote__label">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUORUM_CONDITION}
-                                    <span className="add-new-vote__red-star">*</span>
-                                </label>
-                                <div onClick={() => setActiveSelectQuorum(!activeSelectQuorum)} className="add-new-vote__time-zone-select-container">
-                                    <p className="add-new-vote__time-zone-select-value">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUORUM_ANY_NUMBERS}</p>
-                                    <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt="Стрелочка открытия меню" />
-                                    <div className={activeSelectQuorum ? "add-new-vote__time-zone-options-container" : "add-new-vote__time-zone-options-container hidden"}>
-                                        <p className="add-new-vote__time-zone-option">50% + 1</p>
-                                        <p className="add-new-vote__time-zone-option">50%</p>
-                                        <p className="add-new-vote__time-zone-option">2/3</p>
+                            {currentOrg.config.event.show_type && (
+                                <div className="add-new-vote__select-open-close-vote-buttons">
+                                    <div className={`add-new-vote__close-vote-btn ${eventType === 'secret' && "add-new-vote__close-vote-btn_active"}`} onClick={onSecretTypeClick}>
+                                        <p>{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_CLOSE_VOTING_BTN}</p>
+                                    </div>
+                                    <div className={`add-new-vote__open-vote-btn ${eventType === 'open' && "add-new-vote__open-vote-btn_active"}`} onClick={onOpenTypeClick}>
+                                        <p>{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_OPEN_VOTING_BTN}</p>
                                     </div>
                                 </div>
-                            </div>
+                            )}
+                            {currentOrg.config.event.quorum && (
+                                <div className="add-new-vote__select-role">
+                                    <label className="add-new-vote__label">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUORUM_CONDITION}
+                                        <span className="add-new-vote__red-star">*</span>
+                                    </label>
+                                    <div onClick={() => setActiveSelectQuorum(!activeSelectQuorum)} className="add-new-vote__time-zone-select-container">
+                                        <p className="add-new-vote__time-zone-select-value">{selectedQuorumText}</p>
+                                        <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt="Стрелочка открытия меню" />
+                                        <div className={activeSelectQuorum ? "add-new-vote__time-zone-options-container" : "add-new-vote__time-zone-options-container hidden"}>
+                                            <div className="add-new-vote__time-zone-option-container" onClick={() => eventQuorumChange('51')}>
+                                                <p className="add-new-vote__time-zone-option">50% + 1</p>
+                                            </div>
+                                            <div className="add-new-vote__time-zone-option-container" onClick={() => eventQuorumChange('50')}>
+                                                <p className="add-new-vote__time-zone-option">50%</p>
+                                            </div>
+                                            <div className="add-new-vote__time-zone-option-container" onClick={() => eventQuorumChange('66')}>
+                                                <p className="add-new-vote__time-zone-option">2/3</p>
+                                            </div>
+                                            <div className="add-new-vote__time-zone-option-container" onClick={() => eventQuorumChange('0')}>
+                                                <p className="add-new-vote__time-zone-option">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUORUM_ANY_NUMBERS}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                             <div className="add-new-vote__select-datetime-events-vote">
-                                <div className="add-new-vote__select-datetime">
-                                    <label className="add-new-vote__select-datetime-label">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_START_REG}<span className="add-new-vote__red-star">*</span></label>
-                                    <input className="add-new-vote__select-datetime-field" type={"datetime-local"} />
-                                </div>
-                                <div className="add-new-vote__select-datetime">
-                                    <label className="add-new-vote__select-datetime-label">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_END_REG}<span className="add-new-vote__red-star">*</span></label>
-                                    <input className="add-new-vote__select-datetime-field" type={"datetime-local"} />
-                                </div>
-                                <div className="add-new-vote__select-datetime">
-                                    <label className="add-new-vote__select-datetime-label">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_START_VOTE}<span className="add-new-vote__red-star">*</span></label>
-                                    <input className="add-new-vote__select-datetime-field" type={"datetime-local"} />
-                                </div>
-                                <div className="add-new-vote__select-datetime">
-                                    <label className="add-new-vote__select-datetime-label">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_END_VOTE}<span className="add-new-vote__red-star">*</span></label>
-                                    <input className="add-new-vote__select-datetime-field" type={"datetime-local"} />
-                                </div>
+
+
+
+
+                                {/* Добить с логикой отображения и корректного добавления дат для отправки
+                                при "Исключении регистрации" и "Совмещении регистрации и голосования" */}
+
+
+
+
+                                {!skipReg ? (
+                                    <>
+                                        {!currentOrg.config.event.combined_time ? (
+                                            <>
+                                                <div className="add-new-vote__select-datetime">
+                                                    <label className="add-new-vote__select-datetime-label">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_START_REG}<span className="add-new-vote__red-star"> *</span></label>
+                                                    <input
+                                                        className="add-new-vote__select-datetime-field"
+                                                        type="datetime-local"
+                                                        onChange={registrationStartTimeChange}
+                                                        value={registrationStartTime}
+                                                    />
+                                                </div>
+                                                <div className="add-new-vote__select-datetime">
+                                                    <label className="add-new-vote__select-datetime-label">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_END_REG}<span className="add-new-vote__red-star"> *</span></label>
+                                                    <input
+                                                        className="add-new-vote__select-datetime-field"
+                                                        type="datetime-local"
+                                                        onChange={registrationEndTimeChange}
+                                                        value={registrationEndTime}
+                                                    />
+                                                </div>
+                                                <div className="add-new-vote__select-datetime">
+                                                    <label className="add-new-vote__select-datetime-label">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_START_VOTE}<span className="add-new-vote__red-star"> *</span></label>
+                                                    <input
+                                                        className="add-new-vote__select-datetime-field"
+                                                        type="datetime-local"
+                                                        onChange={eventStartTimeChange}
+                                                        value={eventStartTime}
+                                                    />
+                                                </div>
+                                                <div className="add-new-vote__select-datetime">
+                                                    <label className="add-new-vote__select-datetime-label">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_END_VOTE}<span className="add-new-vote__red-star"> *</span></label>
+                                                    <input
+                                                        className="add-new-vote__select-datetime-field"
+                                                        type="datetime-local"
+                                                        onChange={eventEndTimeChange}
+                                                        value={eventEndTime}
+                                                    />
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <div className="add-new-vote__select-datetime">
+                                                    <label className="add-new-vote__select-datetime-label">{constants.ADD_NEW_VOTE.START_REG_AND_VOTE}<span className="add-new-vote__red-star"> *</span></label>
+                                                    <input
+                                                        className="add-new-vote__select-datetime-field"
+                                                        type="datetime-local"
+                                                        onChange={eventStartTimeChange}
+                                                        value={eventStartTime}
+                                                    />
+                                                </div>
+                                                <div className="add-new-vote__select-datetime">
+                                                    <label className="add-new-vote__select-datetime-label">{constants.ADD_NEW_VOTE.END_REG_AND_VOTE}<span className="add-new-vote__red-star"> *</span></label>
+                                                    <input
+                                                        className="add-new-vote__select-datetime-field"
+                                                        type="datetime-local"
+                                                        onChange={eventEndTimeChange}
+                                                        value={eventEndTime}
+                                                    />
+                                                </div>
+                                            </>
+                                        )}
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className="add-new-vote__select-datetime">
+                                            <label className="add-new-vote__select-datetime-label">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_START_VOTE}<span className="add-new-vote__red-star"> *</span></label>
+                                            <input
+                                                className="add-new-vote__select-datetime-field"
+                                                type="datetime-local"
+                                                onChange={eventStartTimeChange}
+                                                value={eventStartTime}
+                                            />
+                                        </div>
+                                        <div className="add-new-vote__select-datetime">
+                                            <label className="add-new-vote__select-datetime-label">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_END_VOTE}<span className="add-new-vote__red-star"> *</span></label>
+                                            <input
+                                                className="add-new-vote__select-datetime-field"
+                                                type="datetime-local"
+                                                onChange={eventEndTimeChange}
+                                                value={eventEndTime}
+                                            />
+                                        </div>
+                                    </>
+                                )}
                             </div>
                             <div className="add-new-vote__checkboxes-block">
-                                <div className="add-new-vote__checkbox">
-                                    <label className='add-new-vote__checkbox_container'>
-                                        <input type="checkbox" />
-                                        <span className='add-new-vote__checkmark' />
-                                    </label>
-                                    <p className="add-new-vote__label-checkbox">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_POSSIBLE_CANCEL_ONLINE_REG}</p>
-                                </div>
-                                <div className="add-new-vote__checkbox">
-                                    <label className='add-new-vote__checkbox_container'>
-                                        <input type="checkbox" />
-                                        <span className='add-new-vote__checkmark' />
-                                    </label>
-                                    <p className="add-new-vote__label-checkbox">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_POSSIBLE_CHANGE_VOTE}</p>
+                                {!skipReg && (
+                                    <>
+                                        {currentOrg.config.event.re_registration && (
+                                            <div className="add-new-vote__checkbox-container" onClick={handleCancelReg}>
+                                                <div className={`add-new-vote__checkbox ${reRegistration && 'add-new-vote__checkbox_active'}`} />
+                                                <p className="add-new-vote__checkbox-text">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_POSSIBLE_CANCEL_ONLINE_REG}</p>
+                                            </div>
+                                        )}
+                                    </>
+                                )}
+                                {currentOrg.config.event.re_voting && (
+                                    <div className="add-new-vote__checkbox-container" onClick={handleChangeVote}>
+                                        <div className={`add-new-vote__checkbox ${reVoting && 'add-new-vote__checkbox_active'}`} />
+                                        <p className="add-new-vote__checkbox-text">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_POSSIBLE_CHANGE_VOTE}</p>
+                                    </div>
+                                )}
+                                <div className="add-new-vote__checkbox-container" onClick={handleSkipRegistration}>
+                                    <div className={`add-new-vote__checkbox ${skipReg && 'add-new-vote__checkbox_active'}`} />
+                                    <p className="add-new-vote__checkbox-text">{constants.ADD_NEW_VOTE.SKIP_REG}</p>
                                 </div>
                             </div>
                             <div className="add-new-vote__materials-vote-block">
@@ -408,19 +646,13 @@ const AddNewVote = (props) => {
                                         </div>
                                     </div>
                                     <div className="add-new-vote__weight-voting-checkbox">
-                                        <div className="add-new-vote__checkbox">
-                                            <label className='add-new-vote__checkbox_container'>
-                                                <input type="checkbox" />
-                                                <span className='add-new-vote__checkmark' />
-                                            </label>
-                                            <p className="add-new-vote__label-checkbox">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_ALLOW_JOIN_LINK_VOTE}</p>
+                                        <div className="add-new-vote__checkbox-container">
+                                            <div className="add-new-vote__checkbox" />
+                                            <p className="add-new-vote__checkbox-text">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_ALLOW_JOIN_LINK_VOTE}</p>
                                         </div>
-                                        <div className="add-new-vote__checkbox">
-                                            <label className='add-new-vote__checkbox_container'>
-                                                <input type="checkbox" />
-                                                <span className='add-new-vote__checkmark' />
-                                            </label>
-                                            <p className="add-new-vote__label-checkbox">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_WEIGHT_VOTE}</p>
+                                        <div className="add-new-vote__checkbox-container">
+                                            <div className="add-new-vote__checkbox" />
+                                            <p className="add-new-vote__checkbox-text">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_WEIGHT_VOTE}</p>
                                         </div>
                                     </div>
                                     {activeAddGroupBtn && (

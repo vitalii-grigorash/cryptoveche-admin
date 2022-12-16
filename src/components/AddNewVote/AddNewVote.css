@@ -129,7 +129,7 @@
     top: 3.22em;
     left: -1px;
     width: 100%;
-    max-height: 200px;
+    max-height: 210px;
     box-shadow: 0 4px 8px rgba(54, 59, 77, 0.1);
     border: 0.5px solid rgba(54, 59, 77, 0.2);
     border-radius: 4px;
@@ -305,89 +305,47 @@
     height: 3.11em;
     border-radius: 0.44em;
     font-size: 0.88em;
-    cursor: pointer;
     width: 100%;
     color: rgba(54, 59, 77, 0.9);
     border: 1px solid rgba(54, 59, 77, 0.4);
-    padding: 0.88em 1.72em 0.88em 3.11em;
+    padding: 0.88em 1.72em 0.88em 2.11em;
     outline: none;
-    position: relative;
+    cursor: text;
 }
 .add-new-vote__select-datetime-field::-webkit-calendar-picker-indicator {
     cursor: pointer;
-    position: absolute;
-    width: 100%;
-    left: 1.38em;
-    height: 1em;
 }
 /*------Контейнер для блока c чекбоксом-------------------------------------------------------------------------------*/
 .add-new-vote__checkboxes-block {
     display: flex;
     flex-direction: column;
-    gap: 1.33em;
     margin-bottom: 1.77em;
 }
-.add-new-vote__checkbox {
+.add-new-vote__checkbox-container {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.88em;
-    width: 100%;
-    margin-right: 2em;
-    padding-right: 1.9em;
+    margin: 1.5em auto 0 0;
+    cursor: pointer;
 }
-.add-new-vote__label-checkbox {
+.add-new-vote__checkbox-container:first-of-type {
+    margin: 0 auto 0 0;
+}
+.add-new-vote__checkbox {
+    background-image: url('../../img/checkbox-default.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-width: 1.5em;
+    height: 1.5em;
+    margin: auto 1em auto 0;
+}
+.add-new-vote__checkbox_active {
+    background-image: url('../../img/checkbox-active.svg');
+}
+.add-new-vote__checkbox-text {
     font-size: 1em;
     line-height: 133%;
     color: #363B4D;
     opacity: 90%;
-}
-.add-new-vote__checkbox_container {
-    position: relative;
-    width: 1.1em;
-    height: 1.1em;
-    cursor: pointer;
-}
-.add-new-vote__checkbox_container input {
-    position: absolute;
-    opacity: 0;
-}
-.add-new-vote__checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 1.1em;
-    width: 1.1em;
-    background-color: #FFFFFF;
-    border-color: #0084FE;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 2px;
-}
-.add-new-vote__checkbox_container:hover input ~ .add-new-vote__checkmark {
-    background-color: #FFFFFF;
-}
-.add-new-vote__checkbox_container input:checked ~ .add-new-vote__checkmark {
-    background-color: #0084FE;
-}
-.add-new-vote__checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-.add-new-vote__checkbox_container input:checked ~ .add-new-vote__checkmark:after {
-    display: block;
-}
-.add-new-vote__checkbox_container .add-new-vote__checkmark:after {
-    left: 0.3em;
-    top: 0.2em;
-    width: 0.4em;
-    height: 0.4em;
-    border: solid white;
-    border-width: 0 1px 1px 0;
-    /*-webkit-transform: rotate(45deg);*/
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
+    margin: auto auto auto 0;
 }
 /*------Контейнер для блока c прикреплением материалов голосования----------------------------------------------------*/
 .add-new-vote__materials-vote-block {
@@ -484,7 +442,6 @@
 .add-new-vote__weight-voting-checkbox {
     display: flex;
     flex-direction: column;
-    gap: 1.33em;
     margin-bottom: 1.77em;
 }
 /*------Контейнер для блока c таблицей и пагинацией-------------------------------------------------------------------*/
@@ -935,22 +892,8 @@
         margin-bottom: 24px;
         gap: 16px;
     }
-    .add-new-vote__checkbox {
-        gap: 30px;
-        align-items: normal;
-    }
-    .add-new-vote__label-checkbox {
+    .add-new-vote__checkbox-text {
         font-size: 16px;
-    }
-    .add-new-vote__checkmark {
-        width: 20px;
-        height: 20px;
-    }
-    .add-new-vote__checkbox_container .add-new-vote__checkmark:after {
-        left: 5px;
-        top: 4px;
-        width: 8px;
-        height: 8px;
     }
     .add-new-vote__materials-vote-block {
         font-size: 18px;
@@ -1171,5 +1114,10 @@
     }
     .add-new-vote__time-zone-options-container {
         width: 100%;
+    }
+    .add-new-vote__checkbox {
+        min-width: 24px;
+        height: 24px;
+        margin: auto 12px auto 0;
     }
 }
