@@ -282,6 +282,8 @@ export const constants = {
         ADD_NEW_VOTE_END_REG: "Окончание регистрации",
         ADD_NEW_VOTE_START_VOTE: "Начало голосования",
         ADD_NEW_VOTE_END_VOTE: "Окончание голосования",
+        START_REG_AND_VOTE: "Начало регистрации и голосования",
+        END_REG_AND_VOTE: "Окончание регистрации и голосования",
         ADD_NEW_VOTE_POSSIBLE_CANCEL_ONLINE_REG: "Возможность отмены электронной регистрации",
         ADD_NEW_VOTE_POSSIBLE_CHANGE_VOTE: "Возможность изменения голоса",
         ADD_NEW_VOTE_SETTINGS_USERS: "Настройки пользователей",
