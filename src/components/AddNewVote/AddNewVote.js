@@ -18,7 +18,7 @@ import iconThreeStepGreen from "../../img/AddNewVoteIconThreeGreenStep.svg";
 import AddNewVoteAddObserversCountingMembers from "../AddNewVoteAddObserversCountingMembers/AddNewVoteAddObserversCountingMembers";
 import AddNewVoteExpandList from "../AddNewVoteExpandList/AddNewVoteExpandList";
 // import orgSearchIconMobile from "../../img/PaginationSearchIcon.svg";
-import AddNewVoteAddMaterialsVote from "../AddNewVoteAddMaterialsVote/AddNewVoteAddMaterialsVote";
+import AddMaterials from "../AddMaterials/AddMaterials";
 // import AddNewVoteCreatedQuestion from "../AddNewVoteCreatedQuestion/AddNewVoteCreatedQuestion";
 import * as Organizations from '../../Api/Organizations';
 import { Validation } from '../../utils/Validation';
@@ -70,6 +70,7 @@ const AddNewVote = (props) => {
     const [reRegistration, setReRegistration] = useState(false);
     const [reVoting, setReVoting] = useState(false);
     const [skipReg, setSkipReg] = useState(false);
+    const [eventMaterials, setEventMaterials] = useState([]);
 
     const typeQuestionButtons = [
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_YNQ}`, classNameBtn: "add-new-vote__select-type-vote-ynq", typeQuestion: "ynq" },
@@ -90,6 +91,40 @@ const AddNewVote = (props) => {
                 throw new Error(err.message);
             })
     }, [])
+
+    function idGenerate(arr) {
+        if (arr.length < 1) {
+            return 1;
+        } else {
+            const allIdArray = arr.map((arr) => {
+                return arr.id
+            });
+            return Math.max(...allIdArray) + 1;
+        }
+    }
+
+    function addEmptyMaterial() {
+        // link
+        // doc
+        const material = {
+            id: idGenerate(eventMaterials),
+            title: "",
+            type: "link",
+            value: "",
+            isFileSelected: false
+        }
+        setEventMaterials([...eventMaterials, material]);
+    }
+
+    function changeMaterialType(id, type, isEvent) {
+        if (isEvent) {
+            const foundedMaterial = eventMaterials.find(el => el.id === id);
+            const filteredArray = eventMaterials.filter(el => el.id !== id);
+            foundedMaterial.type = type;
+            filteredArray.push(foundedMaterial);
+            setEventMaterials(filteredArray);
+        }
+    }
 
     function handleCancelReg() {
         if (reRegistration) {
@@ -327,20 +362,30 @@ const AddNewVote = (props) => {
             eventEnd: new Date(eventEndTime),
         }
 
-        const isEventValid = eventValidation(date);
+        const combinedDate = {
+            createdDate: new Date(),
+            regStart: new Date(eventStartTime),
+            regEnd: new Date(eventEndTime),
+            eventStart: new Date(eventStartTime),
+            eventEnd: new Date(eventEndTime),
+        }
+
+        const dateForSend = skipReg === true || currentOrg.config.event.combined_time === true ? combinedDate : date;
+
+        const isEventValid = eventValidation(dateForSend);
 
         if (isEventValid) {
             const body = {
                 template_title: eventTitle.value,
                 title: eventTitle.value,
-                registration_start_time: `${date.regStart.toISOString().split('.')[0] + 'Z'}`,
-                registration_end_time: `${date.regEnd.toISOString().split('.')[0] + 'Z'}`,
-                event_start_time: `${date.eventStart.toISOString().split('.')[0] + 'Z'}`,
-                event_end_time: `${date.eventEnd.toISOString().split('.')[0] + 'Z'}`,
+                registration_start_time: `${dateForSend.regStart.toISOString().split('.')[0] + 'Z'}`,
+                registration_end_time: `${dateForSend.regEnd.toISOString().split('.')[0] + 'Z'}`,
+                event_start_time: `${dateForSend.eventStart.toISOString().split('.')[0] + 'Z'}`,
+                event_end_time: `${dateForSend.eventEnd.toISOString().split('.')[0] + 'Z'}`,
                 re_registration: reRegistration,
                 re_voting: reVoting,
                 observers: ["vitalii.grigorash@yandex.ru"],
-                counters: [],
+                counters: ["vitalii.grigorash@yandex.ru"],
                 voters: ["vitalii.grigorash@gmail.com"],
                 evoters: [],
                 type: eventType,
@@ -374,12 +419,12 @@ const AddNewVote = (props) => {
                     org_id: currentOrg.id
                 },
                 is_voters_expandable: false,
-                onButton: skipReg, // пропустить этап регистрации
+                onButton: skipReg,
                 max_slots: 50000,
                 signed: false,
                 save_as_template: false,
                 weights: [],
-                created_date: `${date.createdDate.toISOString().split('.')[0] + 'Z'}`,
+                created_date: `${dateForSend.createdDate.toISOString().split('.')[0] + 'Z'}`,
                 users_groups: { group_name: {} }
             }
             console.log(body);
@@ -490,16 +535,6 @@ const AddNewVote = (props) => {
                                 </div>
                             )}
                             <div className="add-new-vote__select-datetime-events-vote">
-
-
-
-
-                                {/* Добить с логикой отображения и корректного добавления дат для отправки
-                                при "Исключении регистрации" и "Совмещении регистрации и голосования" */}
-
-
-
-
                                 {!skipReg ? (
                                     <>
                                         {!currentOrg.config.event.combined_time ? (
@@ -609,12 +644,13 @@ const AddNewVote = (props) => {
                                     <p className="add-new-vote__checkbox-text">{constants.ADD_NEW_VOTE.SKIP_REG}</p>
                                 </div>
                             </div>
-                            <div className="add-new-vote__materials-vote-block">
-                                <AddNewVoteAddMaterialsVote
-                                    constants={constants}
-                                    nameMaterialsVote={constants.ADD_NEW_VOTE.ADD_MATERIALS_VOTE_TITLE}
-                                />
-                            </div>
+                            <AddMaterials
+                                constants={constants}
+                                eventMaterials={eventMaterials}
+                                isEvent={true}
+                                addEmptyMaterial={addEmptyMaterial}
+                                changeMaterialType={changeMaterialType}
+                            />
                             <h3 className="add-new-vote__title-select-org">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_SETTINGS_USERS}</h3>
                             <div className="add-new-vote__user-settings-open-close-btn">
                                 <div onClick={onShowCloseList} className={activeCloseList ? "add-new-vote__settings-button-close-open-list active" : "add-new-vote__settings-button-close-open-list"}>
@@ -737,6 +773,9 @@ const AddNewVote = (props) => {
                 selectedTypeQuestionBtn={selectedTypeQuestionBtn}
                 setSelectedTypeQuestionBtn={setSelectedTypeQuestionBtn}
                 typeQuestionButtons={typeQuestionButtons}
+                eventMaterials={eventMaterials}
+                addEmptyMaterial={addEmptyMaterial}
+                changeMaterialType={changeMaterialType}
             />
             {activeTypeQuestionBnt && (
                 <div className="add-new-vote__add-question-button-mobile">

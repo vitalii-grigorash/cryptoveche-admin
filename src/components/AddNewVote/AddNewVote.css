@@ -285,7 +285,7 @@
 .add-new-vote__select-datetime-events-vote {
     display: grid;
     grid-template-columns: 20vw 20vw;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: auto;
     grid-row-gap: 1.77em;
     grid-column-gap: 0.88em;
     margin-bottom: 1.77em;
@@ -346,14 +346,6 @@
     color: #363B4D;
     opacity: 90%;
     margin: auto auto auto 0;
-}
-/*------Контейнер для блока c прикреплением материалов голосования----------------------------------------------------*/
-.add-new-vote__materials-vote-block {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 1.77em;
-    margin-bottom: 1.33em;
-    border-bottom: 0.5px solid rgba(54, 59, 77, 0.2);
 }
 /*------Контейнер для блока c настройками пользователя----------------------------------------------------------------*/
 .add-new-vote__user-settings-open-close-btn {
@@ -894,11 +886,6 @@
     }
     .add-new-vote__checkbox-text {
         font-size: 16px;
-    }
-    .add-new-vote__materials-vote-block {
-        font-size: 18px;
-        padding-bottom: 24px;
-        margin-bottom: 32px;
     }
     .add-new-vote__user-settings-open-close-btn {
         margin-bottom: 16px;
