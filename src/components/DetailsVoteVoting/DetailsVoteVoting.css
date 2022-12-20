@@ -1,0 +1,267 @@
+/*------Основной контейнер--------------------------------------------------------------------------------------------*/
+.details-vote-voting__container {
+    display: flex;
+    flex-direction: column;
+    padding: 1.77em 1.77em 2.22em 1.77em;
+    box-shadow: -1px 0 8px rgba(54, 58, 72, 0.07);
+    background-color: #FFFFFF;
+    border-radius: 1.33em;
+    font-size: 18px;
+    align-self: flex-start;
+    width: 68.889vw;
+}
+.details-vote-voting__title-block {
+    display: inline-flex;
+    justify-content: space-between;
+}
+.details-vote-voting__title {
+    margin-bottom: 1em;
+    font-size: 1.33em;
+    font-weight: 600;
+    color: rgba(54, 59, 77, 0.9);
+    line-height: 133%;
+}
+.details-vote-voting__export-excel {
+    display: inline-flex;
+    gap: 0.44em;
+    cursor: pointer;
+}
+.details-vote-voting__export-excel-label {
+    font-weight: 300;
+    font-size: 0.88em;
+    line-height: 150%;
+    color: #4ED4A9;
+}
+.details-vote-voting__export-excel-icon {
+    width: 1.33em;
+    height: 1.33em;
+}
+.details-vote-voting__title-mobile {
+    display: none;
+}
+.details-vote-voting__last-update {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1.44em;
+}
+.details-vote-voting__last-update-label {
+    font-size: 1em;
+    line-height: 111%;
+    margin-right: 0.55em;
+    color: rgba(54, 59, 77, 0.4);
+    font-weight: 500;
+}
+.details-vote-voting__last-update img {
+    width: 0.88em;
+    height: 0.88em;
+    margin-right: 0.33em;
+}
+.details-vote-voting__last-update-icon-label {
+    font-weight: 400;
+    font-size: 1em;
+    line-height: 133%;
+    color: rgba(54, 59, 77, 0.6);
+    margin-right: 0.5em;
+}
+/*------Контейнер для таблицы с голосующими---------------------------------------------------------------------------*/
+.details-vote-voting__table {
+    display: flex;
+    flex-direction: column;
+    border-radius: 1.33em;
+    border: 1px solid rgba(54, 59, 77, 0.4);
+    /*max-width: 928px;*/
+}
+.details-vote-voting__table-row {
+    display: inline-flex;
+    border-top: 1px solid rgba(54, 59, 77, 0.4);
+}
+.details-vote-voting__table-row-username {
+    width: 20.86em;
+    display: flex;
+    align-items: center;
+    margin-right: 1.33em;
+    border-right: 1px solid rgba(54, 59, 77, 0.4);
+    padding: 1.55em 0.66em 1.55em 1.33em;
+    font-size: 0.88em;
+    font-weight: 400;
+    color: rgba(54, 59, 77, 0.9);
+    line-height: 150%;
+    word-break: break-word;
+}
+.details-vote-voting__table-row-email {
+    display: flex;
+    align-items: center;
+    width: 16.71em;
+    margin-right: 1.77em;
+    border-right: 1px solid rgba(54, 59, 77, 0.4);
+    padding: 1.55em 1.33em 1.55em 0;
+    font-size: 0.88em;
+    font-weight: 400;
+    color: rgba(54, 59, 77, 0.9);
+    line-height: 150%;
+    word-break: break-word;
+}
+.details-vote-voting__table-row-status {
+    display: flex;
+    flex-direction: column;
+    gap: 0.22em ;
+    width: 12em;
+    margin-right: 3.55em;
+    padding: 1.55em 0 1.55em 0;
+}
+.details-vote-voting__table-row-status-icon-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.33em;
+}
+.details-vote-voting__table-row-status-icon {
+    width: 0.66em;
+    height: 0.5em;
+}
+.details-vote-voting__table-row-status-label {
+    font-size: 0.77em;
+    line-height: 171%;
+}
+.details-vote-voting__table-row-status-mobile {
+    display: none;
+}
+.details-vote-voting__table-row:first-child {
+    border: none;
+}
+.details-vote-voting__show-more {
+    display: none;
+}
+/*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
+@media (max-width: 1420px) {
+    .details-vote-voting__container {
+        font-size: 16px;
+    }
+}
+@media (max-width: 1265px) {
+    .details-vote-voting__container {
+        font-size: 14px;
+    }
+}
+@media (max-width: 1115px) {
+    .details-vote-voting__container {
+        font-size: 12px;
+    }
+}
+@media (max-width: 960px) {
+    .details-vote-voting__container {
+        font-size: 10px;
+    }
+}
+@media (max-width: 810px) {
+    .details-vote-voting__container{
+        font-size: 8px;
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 650px) {
+    .details-vote-voting__title-mobile {
+        display: initial;
+        margin-bottom: 16px;
+        font-size: 18px;
+        line-height: 144%;
+        font-weight: 500;
+        color: rgba(54, 59, 77, 0.9);
+        border-bottom: 2px solid #0084FE;
+        max-width: 114px;
+    }
+    .details-vote-voting__container {
+        width: 100%;
+        padding: 16px 16px 0 16px
+    }
+    .details-vote-voting__title-block {
+        flex-direction: column;
+        gap: 16px;
+    }
+    .details-vote-voting__title {
+        margin: 0;
+        font-size: 21px;
+        line-height: 138%;
+        font-weight: 500;
+    }
+    .details-vote-voting__last-update {
+        display: none;
+    }
+    .details-vote-voting__export-excel {
+        gap: 8px;
+        align-items: center;
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(54, 59, 77, 0.2);
+    }
+    .details-vote-voting__export-excel-icon {
+        width: 24px;
+        height: 24px;
+    }
+    .details-vote-voting__export-excel-label {
+        font-size: 14px;
+        line-height: 164%;
+    }
+    .details-vote-voting__table {
+        border: none;
+    }
+    .details-vote-voting__table-row {
+        border-top: 1px solid rgba(54, 59, 77, 0.2);
+        padding-top: 16px;
+        display: flex;
+        flex-direction: column;
+    }
+    .details-vote-voting__table-row-username {
+        width: 100%;
+        border: none;
+        padding: 0;
+        margin: 0 0 4px 0;
+        font-size: 16px;
+        line-height: 162%;
+    }
+    .details-vote-voting__table-row-email {
+        width: 100%;
+        border: none;
+        padding: 0;
+        margin: 0 0 18px 0;
+        font-size: 16px;
+        line-height: 162%;
+        color: rgba(54, 59, 77, 0.6);
+    }
+    .details-vote-voting__table-row-status {
+        padding: 0 0 16px 0;
+        width: 100%;
+        flex-direction: row;
+        gap: 8px;
+    }
+    .details-vote-voting__show-more {
+        display: initial;
+        margin-bottom: 23px;
+        font-size: 14px;
+        line-height: 171%;
+        font-weight: 300;
+        color: #0084FE;
+        cursor: pointer;
+        border-top: 1px solid rgba(54, 59, 77, 0.2);
+        padding-top: 15px;
+    }
+
+    .details-vote-voting__table-row-status-icon {
+        display: none;
+    }
+    .details-vote-voting__table-row-status-label {
+        display: none;
+    }
+    .details-vote-voting__table-row-status-mobile {
+        display: flex;
+        align-items: center;
+        max-width: 152px;
+        padding: 2px 10px 2px 8px;
+        border-radius: 10px;
+        height: 22px;
+    }
+    .details-vote-voting__table-row-status-mobile-label {
+        font-size: 12px;
+        line-height: 150%;
+        white-space: nowrap;
+    }
+}
