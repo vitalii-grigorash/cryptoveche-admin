@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import * as Organizations from '../../Api/Organizations';
 
 const AddMaterials = (props) => {
 
@@ -7,12 +8,13 @@ const AddMaterials = (props) => {
         eventMaterials,
         isEvent,
         addEmptyMaterial,
-        changeMaterialType
+        changeMaterialType,
+        linkInputChange,
+        titleInputChange,
+        changeDocLink,
+        deleteMaterial,
+        requestHelper
     } = props;
-
-    console.log(eventMaterials);
-
-    const [selectedFileName, setSelectedFileName] = useState(constants.ADD_NEW_ORG.ADD_NEW_ORG_SELECT_FILE);
 
     function handleOpenOptions(id) {
         const el = document.getElementById(id);
@@ -23,17 +25,26 @@ const AddMaterials = (props) => {
         }
     }
 
-    function onSelectFileHandler(e) {
+    function onSelectFileHandler(e, id) {
         const files = e.target.files;
         const file = files[0];
-        const fileName = file.name.replace(/ /g, '--');
-        const random = new Date().getTime();
-        const fileNameForSave = `${random + '_' + fileName}`;
-        setSelectedFileName(file.name);
-        // setFileSelected(true);
-        const data = new FormData();
-        data.append(file.name, file, fileNameForSave);
-        // setNewProtocol(data);
+        if (file !== undefined) {
+            const fileName = file.name.replace(/ /g, '--');
+            const random = new Date().getTime();
+            const fileNameForSave = `${random + '_' + fileName}`;
+            const data = new FormData();
+            data.append(file.name, file, fileNameForSave);
+            const uploadData = {
+                data: data
+            }
+            requestHelper(Organizations.uploadProtocol, uploadData)
+                .then((res) => {
+                    changeDocLink(id, file.name, res[0]);
+                })
+                .catch((err) => {
+                    throw new Error(err.message);
+                })
+        }
     }
 
     return (
@@ -58,10 +69,12 @@ const AddMaterials = (props) => {
                                 className="add-materials__heading-input"
                                 type="text"
                                 placeholder={constants.ADD_NEW_VOTE.ADD_MATERIALS_VOTE_PLACEHOLDER}
+                                value={material.title}
+                                onChange={(e) => titleInputChange(e, material.id)}
                             />
                             <p className="add-materials__heading-input-red-star">*</p>
                         </div>
-                        <div className="add-materials__delete-container">
+                        <div className="add-materials__delete-container" onClick={() => deleteMaterial(material.id)}>
                             <p className="add-materials__delete-text">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_DELETE_BTN_TABLE}</p>
                             <div className="add-materials__delete-icon" />
                         </div>
@@ -84,32 +97,38 @@ const AddMaterials = (props) => {
                                 className="add-materials__link-input"
                                 type="text"
                                 placeholder="https://example.com"
+                                value={material.valueLink}
+                                onChange={(e) => linkInputChange(e, material.id)}
                             />
                         ) : (
                             <div className="add-materials__file-add-container">
                                 <input
                                     className="add-materials__file-add-input"
-                                    id="file"
+                                    id={material.id + "file"}
                                     type="file"
-                                    accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                                    onChange={(e) => onSelectFileHandler(e)}
+                                    onChange={(e) => onSelectFileHandler(e, material.id)}
                                 />
-                                <label htmlFor="file" className="add-materials__file-add-input-container">
+                                <label htmlFor={material.id + "file"} className="add-materials__file-add-input-container">
                                     <div className="add-materials__file-add-input-file-name-container">
-                                        <p className={`add-materials__file-add-input-file-name-text ${material.isFileSelected && 'add-materials__file-add-input-file-name-text_selected'}`}>{selectedFileName}</p>
+                                        <p className={`add-materials__file-add-input-file-name-text ${material.isFileSelected && 'add-materials__file-add-input-file-name-text_selected'}`}>{material.selectedFileName}</p>
                                     </div>
                                     <div className="add-materials__file-add-input-button">
                                         <p className='add-materials__file-add-input-button-text'>{constants.ORG_SETTINGS.LOAD_BUTTON}</p>
                                     </div>
                                 </label>
-                                {material.isFileSelected && (
-                                    <div className="add-materials__success-container">
-                                        <div className="add-materials__success-icon" />
-                                        <p className="add-materials__success-label">{constants.ORG_SETTINGS.LOAD_READY}</p>
-                                    </div>
-                                )}
+                                <div className="add-materials__success-container">
+                                    {material.isFileSelected && (
+                                        <>
+                                            <div className="add-materials__success-icon" />
+                                            <p className="add-materials__success-label">{constants.ORG_SETTINGS.LOAD_READY}</p>
+                                        </>
+                                    )}
+                                </div>
                             </div>
                         )}
+                    </div>
+                    <div className="add-materials__delete-container-mobile" onClick={() => deleteMaterial(material.id)}>
+                        <p className="add-materials__delete-text-mobile">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_DELETE_BTN_TABLE}</p>
                     </div>
                 </div>
             ))}

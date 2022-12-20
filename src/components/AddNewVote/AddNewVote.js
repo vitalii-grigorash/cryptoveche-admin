@@ -110,10 +110,17 @@ const AddNewVote = (props) => {
             id: idGenerate(eventMaterials),
             title: "",
             type: "link",
-            value: "",
+            valueLink: "",
+            valueDoc: "",
+            selectedFileName: constants.ADD_NEW_ORG.ADD_NEW_ORG_SELECT_FILE,
             isFileSelected: false
         }
         setEventMaterials([...eventMaterials, material]);
+    }
+
+    function deleteMaterial(id) {
+        const filteredArray = eventMaterials.filter(el => el.id !== id);
+        setEventMaterials(filteredArray);
     }
 
     function changeMaterialType(id, type, isEvent) {
@@ -124,6 +131,32 @@ const AddNewVote = (props) => {
             filteredArray.push(foundedMaterial);
             setEventMaterials(filteredArray);
         }
+    }
+
+    function linkInputChange(e, id) {
+        const foundedEl = eventMaterials.find(el => el.id === id);
+        const filteredArray = eventMaterials.filter(el => el.id !== id);
+        foundedEl.valueLink = e.target.value
+        filteredArray.push(foundedEl);
+        setEventMaterials(filteredArray);
+    }
+
+    function titleInputChange(e, id) {
+        const foundedEl = eventMaterials.find(el => el.id === id);
+        const filteredArray = eventMaterials.filter(el => el.id !== id);
+        foundedEl.title = e.target.value
+        filteredArray.push(foundedEl);
+        setEventMaterials(filteredArray);
+    }
+
+    function changeDocLink(id, fileName, link) {
+        const foundedEl = eventMaterials.find(el => el.id === id);
+        const filteredArray = eventMaterials.filter(el => el.id !== id);
+        foundedEl.isFileSelected = true;
+        foundedEl.selectedFileName = fileName;
+        foundedEl.valueDoc = link;
+        filteredArray.push(foundedEl);
+        setEventMaterials(filteredArray);
     }
 
     function handleCancelReg() {
@@ -236,11 +269,9 @@ const AddNewVote = (props) => {
         setRegistrationEndTime(regEnd);
         setEventStartTime(eventStart);
         setEventEndTime(eventEnd);
-
         const body = {
             id: selectedOrg.id
         }
-
         requestHelper(Organizations.getOrganization, body)
             .then((org) => {
                 console.log(org);
@@ -312,15 +343,35 @@ const AddNewVote = (props) => {
     }
 
     function votersValidate() {
-        console.log('Все ок!');
+        console.log("Валидация ОК");
         return true;
+    }
+
+    function materialsValidate(materials) {
+        const materialsValidation = () => {
+            for (let val of materials) {
+                for (let key in val) {
+                    if (!val[key]) {
+                        return false;
+                    }
+                }
+            }
+        }
+        const isMaterialsValid = materialsValidation();
+        if (isMaterialsValid === false) {
+            setErrorMessage(constants.ADD_NEW_VOTE.EVENT_MATERIALS_ERR);
+            return false;
+        } else {
+            setErrorMessage('');
+            return votersValidate();
+        }
     }
 
     function compareDate(firstDate, secondDate, isSoft) {
         return isSoft ? (firstDate <= secondDate) : (firstDate < secondDate);
     }
 
-    function dateValidate(date) {
+    function dateValidate(date, materials) {
         if (!compareDate(date.regStart, date.regEnd, false)) {
             setErrorMessage(constants.ADD_NEW_VOTE.COMPARE_RS_RE);
             return false;
@@ -338,14 +389,14 @@ const AddNewVote = (props) => {
             return false;
         } else {
             setErrorMessage('');
-            return votersValidate();
+            return materialsValidate(materials);
         }
     }
 
-    function eventValidation(date) {
+    function eventValidation(date, materials) {
         if (eventTitle.value !== '') {
             setErrorMessage('');
-            return dateValidate(date);
+            return dateValidate(date, materials);
         } else {
             setErrorMessage(constants.ADD_NEW_VOTE.EVENT_NAME_ERR);
             return false;
@@ -353,7 +404,6 @@ const AddNewVote = (props) => {
     }
 
     function addEvent() {
-
         const date = {
             createdDate: new Date(),
             regStart: new Date(registrationStartTime),
@@ -361,7 +411,6 @@ const AddNewVote = (props) => {
             eventStart: new Date(eventStartTime),
             eventEnd: new Date(eventEndTime),
         }
-
         const combinedDate = {
             createdDate: new Date(),
             regStart: new Date(eventStartTime),
@@ -369,11 +418,26 @@ const AddNewVote = (props) => {
             eventStart: new Date(eventStartTime),
             eventEnd: new Date(eventEndTime),
         }
-
+        const materials = [];
+        eventMaterials.forEach((material) => {
+            if (material.type === "link") {
+                const data = {
+                    title: material.title,
+                    type: material.type,
+                    value: material.valueLink
+                }
+                materials.push(data);
+            } else {
+                const data = {
+                    title: material.title,
+                    type: material.type,
+                    value: material.valueDoc
+                }
+                materials.push(data);
+            }
+        })
         const dateForSend = skipReg === true || currentOrg.config.event.combined_time === true ? combinedDate : date;
-
-        const isEventValid = eventValidation(dateForSend);
-
+        const isEventValid = eventValidation(dateForSend, materials);
         if (isEventValid) {
             const body = {
                 template_title: eventTitle.value,
@@ -391,7 +455,7 @@ const AddNewVote = (props) => {
                 type: eventType,
                 quorum: eventQuorum,
                 quorum_type: "voting",
-                materials: [],
+                materials: materials,
                 questions: [{
                     template: "ynq",
                     title: "Простой вопрос",
@@ -650,6 +714,11 @@ const AddNewVote = (props) => {
                                 isEvent={true}
                                 addEmptyMaterial={addEmptyMaterial}
                                 changeMaterialType={changeMaterialType}
+                                linkInputChange={linkInputChange}
+                                titleInputChange={titleInputChange}
+                                changeDocLink={changeDocLink}
+                                deleteMaterial={deleteMaterial}
+                                requestHelper={requestHelper}
                             />
                             <h3 className="add-new-vote__title-select-org">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_SETTINGS_USERS}</h3>
                             <div className="add-new-vote__user-settings-open-close-btn">
@@ -776,6 +845,11 @@ const AddNewVote = (props) => {
                 eventMaterials={eventMaterials}
                 addEmptyMaterial={addEmptyMaterial}
                 changeMaterialType={changeMaterialType}
+                linkInputChange={linkInputChange}
+                titleInputChange={titleInputChange}
+                changeDocLink={changeDocLink}
+                deleteMaterial={deleteMaterial}
+                requestHelper={requestHelper}
             />
             {activeTypeQuestionBnt && (
                 <div className="add-new-vote__add-question-button-mobile">

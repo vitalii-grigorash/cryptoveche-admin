@@ -18,7 +18,12 @@ const AddNewVoteQuestionType = (props) => {
         typeQuestionButtons,
         eventMaterials,
         addEmptyMaterial,
-        changeMaterialType
+        changeMaterialType,
+        linkInputChange,
+        titleInputChange,
+        changeDocLink,
+        deleteMaterial,
+        requestHelper
     } = props;
 
     const [activeRuleSelect, setActiveRuleSelect] = useState(false);
@@ -263,6 +268,11 @@ const AddNewVoteQuestionType = (props) => {
                             isEvent={false}
                             addEmptyMaterial={addEmptyMaterial}
                             changeMaterialType={changeMaterialType}
+                            linkInputChange={linkInputChange}
+                            titleInputChange={titleInputChange}
+                            changeDocLink={changeDocLink}
+                            deleteMaterial={deleteMaterial}
+                            requestHelper={requestHelper}
                         />
                     </div>
                     <div className="add-new-vote-question-type__add-button-block">
