@@ -2,7 +2,6 @@
 .add-new-vote-expand-list {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1.77em;
 }
 .add-new-vote-expand-list__add-list-voters-active-btn {
     display: inline-flex;

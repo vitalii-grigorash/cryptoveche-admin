@@ -109,7 +109,7 @@
     color: rgba(54, 59, 77, 0.9);
     opacity: 0.9;
     margin: auto auto auto 1.3em;
-    max-width: 15em;
+    max-width: 20em;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -434,7 +434,7 @@
 .add-new-vote__weight-voting-checkbox {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1.77em;
+    margin: 1.77em auto 0 0;
 }
 /*------Контейнер для блока c таблицей и пагинацией-------------------------------------------------------------------*/
 .add-new-vote__list-users-table {
@@ -495,7 +495,7 @@
     gap: 0.22em;
     width: 18.11em;
     word-break: break-word;
-    padding: 0.88em 0 0.88em 1.33em;
+    padding: 0.88em 1.33em 0.88em 1.33em;
     border-right: 1px solid rgba(54, 59, 77, 0.3);
 }
 .add-new-vote__table-row-username {
@@ -556,7 +556,7 @@
     display: none;
 }
 .add-new-vote__top-pagination {
-    margin-bottom: 0.88em;
+    margin: 1.77em auto 0.88em 0;
 }
 .add-new-vote__bottom-pagination {
 

@@ -21,6 +21,7 @@ import AddNewVoteExpandList from "../AddNewVoteExpandList/AddNewVoteExpandList";
 import AddMaterials from "../AddMaterials/AddMaterials";
 // import AddNewVoteCreatedQuestion from "../AddNewVoteCreatedQuestion/AddNewVoteCreatedQuestion";
 import * as Organizations from '../../Api/Organizations';
+import * as AddEvent from '../../Api/AddEvent';
 import { Validation } from '../../utils/Validation';
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
@@ -43,9 +44,8 @@ const AddNewVote = (props) => {
     const [activeSelectOrg, setActiveSelectOrg] = useState(false);
     const [activeCloseList, setActiveCloseList] = useState(true);
     const [activeOpenList, setActiveOpenList] = useState(false);
-    const [activeAddUsersBtn, setActiveAddUsersBtn] = useState(false);
-    const [activeAddGroupBtn, setActiveAddGroupBnt] = useState(true);
-    const [activeSelectUsersGroup, setActiveSelectUserGroup] = useState(false);
+    const [activeAddUsersBtn, setActiveAddUsersBtn] = useState(true);
+    const [activeAddGroupBtn, setActiveAddGroupBnt] = useState(false);
     const [activeSelectQuorum, setActiveSelectQuorum] = useState(false);
     const [activeModalTypeQuestion, setActiveModalTypeQuestion] = useState(false);
     const [activeTypeQuestionBnt, setActiveTypeQuestionBnt] = useState(false);
@@ -71,6 +71,16 @@ const AddNewVote = (props) => {
     const [reVoting, setReVoting] = useState(false);
     const [skipReg, setSkipReg] = useState(false);
     const [eventMaterials, setEventMaterials] = useState([]);
+    const [isLinkUsersActive, setLinkUsersActive] = useState(false);
+    const [isWeightActive, setWeightActive] = useState(false);
+    const [votersList, setVotersList] = useState([]);
+    const [usersListForSelect, setUsersListForSelect] = useState([]);
+    const [isUsersDropDownActive, setUsersDropDownActive] = useState(false);
+    const [isGroupsDropDownActive, setGroupsDropDownActive] = useState(false);
+    const [usersSelectedValue, setUsersSelectedValue] = useState(constants.ADD_NEW_VOTE.SELECT_LIST_USERS);
+    const [groupSelectedValue, setGroupSelectedValue] = useState(constants.ADD_NEW_VOTE.SELECT_LIST_GROUP);
+
+    console.log(usersListForSelect);
 
     const typeQuestionButtons = [
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_YNQ}`, classNameBtn: "add-new-vote__select-type-vote-ynq", typeQuestion: "ynq" },
@@ -91,6 +101,22 @@ const AddNewVote = (props) => {
                 throw new Error(err.message);
             })
     }, [])
+
+    function handleUsersDropDownActive() {
+        if (isUsersDropDownActive) {
+            setUsersDropDownActive(false);
+        } else {
+            setUsersDropDownActive(true);
+        }
+    }
+
+    function handleGroupsDropDownActive() {
+        if (isGroupsDropDownActive) {
+            setGroupsDropDownActive(false);
+        } else {
+            setGroupsDropDownActive(true);
+        }
+    }
 
     function idGenerate(arr) {
         if (arr.length < 1) {
@@ -259,6 +285,30 @@ const AddNewVote = (props) => {
         return newDate.toISOString().slice(0, 16);
     }
 
+    function addUsersForSelectFromGroups(orgUsers) {
+        // Подумать еще над одинаковыми элементами из групп
+        const users = orgUsers;
+        if (selectedOrg.groupIds.length !== 0) {
+            selectedOrg.groupIds.forEach((id) => {
+                const body = {
+                    groupId: id
+                }
+                requestHelper(AddEvent.getGroup, body)
+                    .then((data) => {
+                        data.users.forEach((user) => {
+                            if ((orgUsers.find(orgUsers => orgUsers.id === user.id)) === undefined) {
+                                users.push(user);
+                            }
+                        })
+                    })
+                    .catch((err) => {
+                        throw new Error(err.message);
+                    })
+            })
+        }
+        setUsersListForSelect(users);
+    }
+
     const onShowGeneralSettings = () => {
         const date = new Date();
         const regStart = datePlusRegStart(date);
@@ -274,8 +324,8 @@ const AddNewVote = (props) => {
         }
         requestHelper(Organizations.getOrganization, body)
             .then((org) => {
-                console.log(org);
                 setCurrentOrg(org);
+                addUsersForSelectFromGroups(org.users);
                 setEventType(org.config.event.default_type);
                 setEventQuorum(org.config.event.default_quorum);
                 setReRegistration(org.config.event.default_re_registration);
@@ -309,6 +359,22 @@ const AddNewVote = (props) => {
         window.scrollTo(0, 0);
     }
 
+    function handleWeightActive() {
+        if (isWeightActive) {
+            setWeightActive(false);
+        } else {
+            setWeightActive(true);
+        }
+    }
+
+    function showLinkUsers() {
+        if (isLinkUsersActive) {
+            setLinkUsersActive(false);
+        } else {
+            setLinkUsersActive(true);
+        }
+    }
+
     const onShowOpenList = () => {
         setActiveOpenList(true);
         setActiveCloseList(false);
@@ -322,11 +388,15 @@ const AddNewVote = (props) => {
     const onShowSelectAddUsers = () => {
         setActiveAddUsersBtn(true);
         setActiveAddGroupBnt(false);
+        setUsersDropDownActive(false);
+        setGroupsDropDownActive(false);
     }
 
     const onShowSelectAddGroup = () => {
         setActiveAddUsersBtn(false);
         setActiveAddGroupBnt(true);
+        setUsersDropDownActive(false);
+        setGroupsDropDownActive(false);
     }
 
     const onShowSelectTypeQuestion = () => {
@@ -739,74 +809,104 @@ const AddNewVote = (props) => {
                                             <p>{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_ADD_GROUP_BTN}</p>
                                         </div>
                                     </div>
-                                    <div className="add-new-vote__select-role">
-                                        <label className="add-new-vote__label">{activeAddGroupBtn ? `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_GROUP_USERS}` : `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_LIST_USERS}`}
-                                        </label>
-                                        <div onClick={() => setActiveSelectUserGroup(!activeSelectUsersGroup)} className="add-new-vote__time-zone-select-container">
-                                            <p className="add-new-vote__time-zone-select-value"></p>
-                                            <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt="Стрелочка открытия меню" />
-                                            <div className={activeSelectUsersGroup ? "add-new-vote__time-zone-options-container" : "add-new-vote__time-zone-options-container hidden"}>
-                                                <p className="add-new-vote__time-zone-option"></p>
+                                    {activeAddUsersBtn && (
+                                        <div className="add-new-vote__select-role">
+                                            <label className="add-new-vote__label">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_LIST_USERS}</label>
+                                            <div onClick={handleUsersDropDownActive} className="add-new-vote__time-zone-select-container">
+                                                <p className="add-new-vote__time-zone-select-value">{usersSelectedValue}</p>
+                                                <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt="Стрелочка открытия меню" />
+                                                <div className={isUsersDropDownActive ? "add-new-vote__time-zone-options-container" : "add-new-vote__time-zone-options-container hidden"}>
+                                                    {usersListForSelect.map((user) => (
+                                                        // Сделать стили для каждого элемента с ФИО и email
+                                                        <div key={user.id}>
+                                                            <p className="add-new-vote__time-zone-option">{user.email}</p>
+                                                        </div>
+                                                    ))}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    )}
+                                    {activeAddGroupBtn && (
+                                        <div className="add-new-vote__select-role">
+                                            <label className="add-new-vote__label">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_GROUP_USERS}</label>
+                                            <div onClick={handleGroupsDropDownActive} className="add-new-vote__time-zone-select-container">
+                                                <p className="add-new-vote__time-zone-select-value">{groupSelectedValue}</p>
+                                                <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt="Стрелочка открытия меню" />
+                                                <div className={isGroupsDropDownActive ? "add-new-vote__time-zone-options-container" : "add-new-vote__time-zone-options-container hidden"}>
+                                                    <p className="add-new-vote__time-zone-option"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+                                    <AddNewVoteExpandList
+                                        constants={constants}
+                                    />
+                                    {votersList.length !== 0 && (
+                                        <>
+                                            <div className="add-new-vote__top-pagination">
+                                                {/*<PaginationBlock/>   */}
+                                                Верхнняя пагинация
+                                            </div>
+                                            <div className="add-new-vote__list-users-table">
+                                                <div className="add-new-vote__list-users-table-header">
+                                                    <p className="add-new-vote__list-users-table-header-username">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_USERNAME_TABLE}</p>
+                                                    {isWeightActive && (
+                                                        <p className="add-new-vote__list-users-table-header-weight-vote">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_WEIGHT_VOTE_TABLE}</p>
+                                                    )}
+                                                    <p className="add-new-vote__list-users-table-header-action">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_ACTION_TABLE}</p>
+                                                </div>
+                                                <div className="add-new-vote__list-users-table-row">
+                                                    <div className="add-new-vote__table-row-username-email">
+                                                        <p className="add-new-vote__table-row-username">Тимошина Мария Владимиров</p>
+                                                        <p className="add-new-vote__table-row-email">anyauskowa@yandex.ru</p>
+                                                    </div>
+                                                    {isWeightActive && (
+                                                        <div className="add-new-vote__table-row-count">
+                                                            <p className="add-new-vote__table-row-count-weight-mobile">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_WEIGHT_VOTE_TABLE}</p>
+                                                            <img className="add-new-vote__table-row-count-minus" src={iconMinusTable} alt={constants.GENERAL.ALT_ICON} />
+                                                            <p className="add-new-vote__table-row-count-number">3</p>
+                                                            <img className="add-new-vote__table-row-count-plus" src={iconPlusTable} alt={constants.GENERAL.ALT_ICON} />
+                                                        </div>
+                                                    )}
+                                                    <div className="add-new-vote__table-row-action">
+                                                        <img className="add-new-vote__table-row-action-icon-delete" src={iconDeleteTable} alt={constants.GENERAL.ALT_ICON} />
+                                                        <p className="add-new-vote__table-row-action-delete">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_DELETE_BTN_TABLE}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="add-new-vote__bottom-pagination">
+                                                {/*<PaginationBlock/>   */}
+                                                Нижняя пагинация
+                                            </div>
+                                        </>
+                                    )}
                                     <div className="add-new-vote__weight-voting-checkbox">
-                                        <div className="add-new-vote__checkbox-container">
-                                            <div className="add-new-vote__checkbox" />
+                                        {votersList.length !== 0 && (
+                                            <div className="add-new-vote__checkbox-container" onClick={handleWeightActive}>
+                                                <div className={`add-new-vote__checkbox ${isWeightActive && "add-new-vote__checkbox_active"}`} />
+                                                <p className="add-new-vote__checkbox-text">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_WEIGHT_VOTE}</p>
+                                            </div>
+                                        )}
+                                        <div className="add-new-vote__checkbox-container" onClick={showLinkUsers}>
+                                            <div className={`add-new-vote__checkbox ${isLinkUsersActive && "add-new-vote__checkbox_active"}`} />
                                             <p className="add-new-vote__checkbox-text">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_ALLOW_JOIN_LINK_VOTE}</p>
                                         </div>
-                                        <div className="add-new-vote__checkbox-container">
-                                            <div className="add-new-vote__checkbox" />
-                                            <p className="add-new-vote__checkbox-text">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_WEIGHT_VOTE}</p>
-                                        </div>
-                                    </div>
-                                    {activeAddGroupBtn && (
-                                        <AddNewVoteExpandList
-                                            constants={constants}
-                                        />
-                                    )}
-                                    <div className="add-new-vote__top-pagination">
-                                        {/*<PaginationBlock/>   */}
-                                        Верхнняя пагинация
-                                    </div>
-                                    <div className="add-new-vote__list-users-table">
-                                        <div className="add-new-vote__list-users-table-header">
-                                            <p className="add-new-vote__list-users-table-header-username">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_USERNAME_TABLE}</p>
-                                            <p className="add-new-vote__list-users-table-header-weight-vote">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_WEIGHT_VOTE_TABLE}</p>
-                                            <p className="add-new-vote__list-users-table-header-action">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_ACTION_TABLE}</p>
-                                        </div>
-                                        <div className="add-new-vote__list-users-table-row">
-                                            <div className="add-new-vote__table-row-username-email">
-                                                <p className="add-new-vote__table-row-username">Тимошина Мария Владимировна</p>
-                                                <p className="add-new-vote__table-row-email">anyauskowa@yandex.ru</p>
-                                            </div>
-                                            <div className="add-new-vote__table-row-count">
-                                                <p className="add-new-vote__table-row-count-weight-mobile">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_WEIGHT_VOTE_TABLE}</p>
-                                                <img className="add-new-vote__table-row-count-minus" src={iconMinusTable} alt={constants.GENERAL.ALT_ICON} />
-                                                <p className="add-new-vote__table-row-count-number">3</p>
-                                                <img className="add-new-vote__table-row-count-plus" src={iconPlusTable} alt={constants.GENERAL.ALT_ICON} />
-                                            </div>
-                                            <div className="add-new-vote__table-row-action">
-                                                <img className="add-new-vote__table-row-action-icon-delete" src={iconDeleteTable} alt={constants.GENERAL.ALT_ICON} />
-                                                <p className="add-new-vote__table-row-action-delete">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_DELETE_BTN_TABLE}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="add-new-vote__bottom-pagination">
-                                        {/*<PaginationBlock/>   */}
-                                        Нижняя пагинация
                                     </div>
                                 </div>
                             )}
-                            {activeOpenList && (
+                            {(isLinkUsersActive || activeOpenList) && (
                                 <div className="add-new-vote__open-list-block">
                                     <label className="add-new-vote__open-list-label-input">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_MAX_NUMBERS_MEMBERS}</label>
                                     <input className="add-new-vote__open-list-input" placeholder={'1'} type={"number"} min={1} max={9999} step={1} />
                                     <label className="add-new-vote__open-list-info">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_AFTER_CREATE_VOTE_AVAILABLE_LINK}</label>
                                 </div>
                             )}
-                            <AddNewVoteAddObserversCountingMembers constants={constants} titleObserversCountingMembers={constants.ADD_NEW_VOTE.ADD_OBSERVERS_TITLE_OBSERVER} />
-                            <AddNewVoteAddObserversCountingMembers constants={constants} titleObserversCountingMembers={constants.ADD_NEW_VOTE.ADD_OBSERVERS_TITLE_COUNTING_MEMBERS} />
+                            {!currentOrg.config.general.observers && (
+                                <AddNewVoteAddObserversCountingMembers constants={constants} titleObserversCountingMembers={constants.ADD_NEW_VOTE.ADD_OBSERVERS_TITLE_OBSERVER} />
+                            )}
+                            {currentOrg.config.general.counters && (
+                                <AddNewVoteAddObserversCountingMembers constants={constants} titleObserversCountingMembers={constants.ADD_NEW_VOTE.ADD_OBSERVERS_TITLE_COUNTING_MEMBERS} />
+                            )}
                         </>
                     )}
                 </div>
