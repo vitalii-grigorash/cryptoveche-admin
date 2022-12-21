@@ -48,6 +48,6 @@
 @import url(./components/DetailsVote/DetailsVote.css);
 @import url(./components/DetailsVoteGeneralInfo/DetailsVoteGeneralInfo.css);
 @import url(./components/DetailsVoteStatisticsVote/DetailsVoteStatisticsVote.css);
-@import url(./components/DetailsVoteVoting/DetailsVoteVoting.css);
-@import url(./components/DetailsVoteObservers/DetailsVoteObservers.css);
+@import url(components/DetailsVoteVotingObserversCounting/DetailsVoteVotingObserversCounting.css);
 @import url(./components/DetailsVoteQuestions/DetailsVoteQuestions.css);
+@import url(./components/DetailsVoteResults/DetailsVoteResults.css);

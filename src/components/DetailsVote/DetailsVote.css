@@ -83,6 +83,13 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+.details-vote__icon-counting {
+    background-image: url('../../img/admin-list.svg');
+    width: 1.33em;
+    height: 1.33em;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 .details-vote__icon-questions {
     background-image: url('../../img/DetailsVoteIconKnowQuestions.svg');
     width: 1.33em;
@@ -127,6 +134,16 @@
 }
 .details-vote__menu-items.active .details-vote__icon-observers {
     background-image: url('../../img/DetailsVoteIconObserversHover.svg');
+    width: 1.33em;
+    height: 1.33em;
+}
+.details-vote__menu-items:hover .details-vote__icon-counting {
+    background-image: url('../../img/admin-list-hover.svg');
+    width: 1.33em;
+    height: 1.33em;
+}
+.details-vote__menu-items.active .details-vote__icon-counting {
+    background-image: url('../../img/admin-list-hover.svg');
     width: 1.33em;
     height: 1.33em;
 }
@@ -211,6 +228,7 @@
     .details-vote__icon-statistics,
     .details-vote__icon-voting,
     .details-vote__icon-observers,
+    .details-vote__icon-counting,
     .details-vote__icon-questions {
         width: 20px;
         height: 20px;
@@ -252,6 +270,16 @@
     }
     .details-vote__menu-items.active .details-vote__icon-observers {
         background-image: url('../../img/DetailsVoteIconObservers.svg');
+        width: 20px;
+        height: 20px;
+    }
+    .details-vote__menu-items:hover .details-vote__icon-counting {
+        background-image: url('../../img/admin-list.svg');
+        width: 20px;
+        height: 20px;
+    }
+    .details-vote__menu-items.active .details-vote__icon-counting {
+        background-image: url('../../img/admin-list.svg');
         width: 20px;
         height: 20px;
     }

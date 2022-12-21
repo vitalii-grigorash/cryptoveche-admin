@@ -222,8 +222,6 @@
         line-height: 144%;
         font-weight: 500;
         color: rgba(54, 59, 77, 0.9);
-        border-bottom: 2px solid #0084FE;
-        max-width: 179px;
     }
     .details-vote-general-info__title-name-vote {
         font-size: 16px;
