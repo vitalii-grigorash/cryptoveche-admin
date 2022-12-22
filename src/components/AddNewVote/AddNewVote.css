@@ -345,6 +345,7 @@
     line-height: 133%;
     color: #363B4D;
     opacity: 90%;
+    max-width: 500px;
     margin: auto auto auto 0;
 }
 /*------Контейнер для блока c настройками пользователя----------------------------------------------------------------*/
@@ -435,6 +436,9 @@
     display: flex;
     flex-direction: column;
     margin: 1.77em auto 0 0;
+}
+.add-new-vote__weight-voting-checkbox_with-table {
+    margin: 0 auto 0 0;
 }
 /*------Контейнер для блока c таблицей и пагинацией-------------------------------------------------------------------*/
 .add-new-vote__list-users-table {
@@ -543,7 +547,7 @@
     justify-content: center;
     align-items: center;
     width: 6.77em;
-    margin: 0 auto;
+    margin: auto;
 }
 .add-new-vote__table-row-action-delete {
     color: #FF4970;
@@ -551,15 +555,33 @@
     font-weight: 400;
     font-size: 1em;
     cursor: pointer;
+    margin: auto;
 }
 .add-new-vote__table-row-action-icon-delete {
     display: none;
 }
 .add-new-vote__top-pagination {
-    margin: 1.77em auto 0.88em 0;
+    margin: 1.77em 0 0.88em 0;
 }
 .add-new-vote__bottom-pagination {
-
+    margin: 0;
+}
+.add-new-vote__no-users-container {
+    display: flex;
+    border-radius: 8px;
+    border: 0.5px solid rgba(54, 59, 77, 0.2);
+    margin-bottom: 0.88em;
+    width: 100%;
+    height: 48px;
+}
+.add-new-vote__no-users {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(54, 59, 77, 0.9);
+    opacity: 0.9;
+    margin: auto;
 }
 /*------Контейнер для блока вопросы-----------------------------------------------------------------------------------*/
 .add-new-vote__questions-block {
@@ -740,7 +762,6 @@
     background-color: #0084FE;
     cursor: pointer;
 }
-
 /*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
 @media (max-width: 1430px) {
     .add-new-vote__container  {
@@ -909,6 +930,9 @@
     .add-new-vote__weight-voting-checkbox {
         margin-bottom: 24px;
     }
+    .add-new-vote__weight-voting-checkbox_with-table {
+        margin-bottom: 24px;
+    }
     .add-new-vote__open-list-block {
         gap: 16px;
         margin-bottom: 24px;
@@ -973,10 +997,8 @@
         margin-right: 16px;
     }
     .add-new-vote__table-row-action {
-        grid-area: loadbtn;
-        margin: 0 0 0 auto;
-        width: 40%;
-        justify-content: right;
+        margin: auto 0 auto auto;
+        width: auto;
     }
     .add-new-vote__table-row-action-delete {
         display: none;
@@ -984,8 +1006,8 @@
     .add-new-vote__table-row-action-icon-delete {
         display: initial;
         width: 40px;
-        cursor: pointer;
         height: 40px;
+        margin: 0;
     }
     .add-new-vote__bottom-pagination {
         margin-bottom: 8px;

@@ -14,7 +14,7 @@ import iconTwoStep from "../../img/AddNewVoteIconTwoStep.svg";
 import iconOneStepGreen from "../../img/AddNewVoteIconOneStep.svg";
 import iconTwoStepGreen from "../../img/AddNewVoteIconTwoGreenStep.svg";
 import iconThreeStepGreen from "../../img/AddNewVoteIconThreeGreenStep.svg";
-// import PaginationBlock from "../PaginationBlock/PaginationBlock";
+import PaginationBlock from "../PaginationBlock/PaginationBlock";
 import AddNewVoteAddObserversCountingMembers from "../AddNewVoteAddObserversCountingMembers/AddNewVoteAddObserversCountingMembers";
 import AddNewVoteExpandList from "../AddNewVoteExpandList/AddNewVoteExpandList";
 // import orgSearchIconMobile from "../../img/PaginationSearchIcon.svg";
@@ -33,7 +33,15 @@ const AddNewVote = (props) => {
     } = props;
 
     const eventTitle = Validation();
+    const votersListSearch = Validation();
     const currentUser = React.useContext(CurrentUserContext);
+    const [votersListForRender, setVotersListForRender] = useState([]);
+    const [votersListSearchInput, setVotersListSearchInput] = useState('');
+    const [showResultsFrom, setShowResultsFrom] = useState(0);
+    const [resultsShow, setResultsShow] = useState(5);
+    const [result, setResult] = useState(5);
+    const [pageCount, setPageCount] = useState(1);
+    const [selectedResultsShow, setSelectedResultsShow] = useState(5);
     const [activeGeneralSettings, setActiveGeneralSettings] = useState(false);
     const [activeQuestionBlock, setActiveQuestionBlock] = useState(false);
     const [activeAddVoteBtn, setActiveAddVoteBtn] = useState(false);
@@ -75,13 +83,11 @@ const AddNewVote = (props) => {
     const [isWeightActive, setWeightActive] = useState(false);
     const [votersList, setVotersList] = useState([]);
     const [usersListForSelect, setUsersListForSelect] = useState([]);
+    const [groupsListForSelect, setGroupsListForSelect] = useState([]);
     const [isUsersDropDownActive, setUsersDropDownActive] = useState(false);
     const [isGroupsDropDownActive, setGroupsDropDownActive] = useState(false);
     const [usersSelectedValue, setUsersSelectedValue] = useState(constants.ADD_NEW_VOTE.SELECT_LIST_USERS);
     const [groupSelectedValue, setGroupSelectedValue] = useState(constants.ADD_NEW_VOTE.SELECT_LIST_GROUP);
-
-    console.log(usersListForSelect);
-
     const typeQuestionButtons = [
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_YNQ}`, classNameBtn: "add-new-vote__select-type-vote-ynq", typeQuestion: "ynq" },
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_NONE}`, classNameBtn: "add-new-vote__select-type-vote-none", typeQuestion: "none" },
@@ -91,6 +97,77 @@ const AddNewVote = (props) => {
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_POSITION_MULTIPLE}`, classNameBtn: "add-new-vote__select-type-vote-position_multiple", typeQuestion: "positionMultiple" },
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_SAME_POSITIONS}`, classNameBtn: "add-new-vote__select-type-vote-same_positions", typeQuestion: "samePositions" }
     ];
+
+    function handleShowResultsFrom(value) {
+        setShowResultsFrom(value);
+    }
+
+    function handleResultsShow(value) {
+        setResultsShow(value);
+    }
+
+    function showPrevResults() {
+        if (resultsShow <= result) {
+            return
+        } else {
+            setShowResultsFrom(showResultsFrom - result);
+            handleShowResultsFrom(showResultsFrom - result);
+            setResultsShow(resultsShow - result);
+            handleResultsShow(resultsShow - result);
+            setPageCount(pageCount - 1);
+        }
+    }
+
+    function showNextResults() {
+        if (resultsShow >= votersListForRender.length) {
+            return
+        } else {
+            setShowResultsFrom(0 + resultsShow);
+            handleShowResultsFrom(0 + resultsShow);
+            setResultsShow(result + resultsShow);
+            handleResultsShow(result + resultsShow);
+            setPageCount(pageCount + 1);
+        }
+    }
+
+    function onChoiceClick(value) {
+        setResultsShow(value);
+        handleResultsShow(value);
+        setResult(value);
+        setSelectedResultsShow(value);
+        setShowResultsFrom(0);
+        handleShowResultsFrom(0);
+        setPageCount(1);
+    }
+
+    function searchInput(value) {
+        setVotersListSearchInput(value);
+    }
+
+    useEffect(() => {
+        if (votersListSearchInput === '') {
+            setVotersListForRender(votersList);
+        } else {
+            const dataForRender = [];
+            votersList.forEach((user) => {
+                if (user.email.toLowerCase().includes(votersListSearchInput.toLowerCase())) {
+                    dataForRender.push(user);
+                } else if (user.last_name.toLowerCase().includes(votersListSearchInput.toLowerCase())) {
+                    dataForRender.push(user);
+                } else if (user.first_name.toLowerCase().includes(votersListSearchInput.toLowerCase())) {
+                    dataForRender.push(user);
+                } else if (user.second_name.toLowerCase().includes(votersListSearchInput.toLowerCase())) {
+                    dataForRender.push(user);
+                }
+            })
+            setVotersListForRender(dataForRender);
+        }
+    },
+        [
+            votersListSearchInput,
+            votersList,
+        ]
+    );
 
     useEffect(() => {
         requestHelper(Organizations.getUserOrganizations)
@@ -285,9 +362,89 @@ const AddNewVote = (props) => {
         return newDate.toISOString().slice(0, 16);
     }
 
+    function increaseWeight(user) {
+        const foundedUser = votersList.find(userFromList => userFromList.id === user.id);
+        const filteredUsers = votersList.filter(userFromList => userFromList.id !== user.id);
+        foundedUser.weight = foundedUser.weight + 1;
+        filteredUsers.push(foundedUser);
+        setVotersList(filteredUsers);
+    }
+
+    function decreaseWeight(user) {
+        const foundedUser = votersList.find(userFromList => userFromList.id === user.id);
+        const filteredUsers = votersList.filter(userFromList => userFromList.id !== user.id);
+        foundedUser.weight = foundedUser.weight === 1 ? foundedUser.weight : foundedUser.weight - 1;
+        filteredUsers.push(foundedUser);
+        setVotersList(filteredUsers);
+    }
+
+    useEffect(() => {
+        if (votersList.length === 0) {
+            setUsersSelectedValue(constants.ADD_NEW_VOTE.SELECT_LIST_USERS);
+            setGroupSelectedValue(constants.ADD_NEW_VOTE.SELECT_LIST_GROUP);
+        }
+        // eslint-disable-next-line
+    }, [votersList.length])
+
+    function deleteUserFromTable(user) {
+        const filteredUsers = votersList.filter(userFromList => userFromList.id !== user.id);
+        setVotersList(filteredUsers);
+    }
+
+    function addUsersFromGroup(group) {
+        setGroupSelectedValue(group.group_title);
+        const users = votersList;
+        group.users.forEach((user) => {
+            if ((votersList.find(userFromList => userFromList.id === user.id)) === undefined) {
+                if (user.last_name === undefined) {
+                    const userToAdd = {
+                        email: user.email,
+                        first_name: 'Без',
+                        id: user.id,
+                        last_name: 'Пользователь',
+                        second_name: 'Имени',
+                        weight: 1,
+                        userFields: user.userFields
+                    }
+                    users.push(userToAdd);
+                } else {
+                    const userToAdd = {
+                        email: user.email,
+                        first_name: user.first_name,
+                        id: user.id,
+                        last_name: user.last_name,
+                        second_name: user.second_name,
+                        weight: 1,
+                        userFields: user.userFields
+                    }
+                    users.push(userToAdd);
+                }
+            }
+        })
+        setVotersList(users);
+    }
+
+    function addUsersFromList(user) {
+        setUsersSelectedValue(`${user.email} - ${user.last_name} ${user.first_name} ${user.second_name}`);
+        const users = votersList;
+        if ((votersList.find(userFromList => userFromList.id === user.id)) === undefined) {
+            const userToAdd = {
+                email: user.email,
+                first_name: user.first_name,
+                id: user.id,
+                last_name: user.last_name,
+                second_name: user.second_name,
+                weight: 1,
+                userFields: user.userFields
+            }
+            users.push(userToAdd);
+        }
+        setVotersList(users);
+    }
+
     function addUsersForSelectFromGroups(orgUsers) {
-        // Подумать еще над одинаковыми элементами из групп
         const users = orgUsers;
+        const groups = [];
         if (selectedOrg.groupIds.length !== 0) {
             selectedOrg.groupIds.forEach((id) => {
                 const body = {
@@ -295,9 +452,32 @@ const AddNewVote = (props) => {
                 }
                 requestHelper(AddEvent.getGroup, body)
                     .then((data) => {
+                        groups.push(data);
                         data.users.forEach((user) => {
                             if ((orgUsers.find(orgUsers => orgUsers.id === user.id)) === undefined) {
-                                users.push(user);
+                                if (user.last_name === undefined) {
+                                    const userToAdd = {
+                                        email: user.email,
+                                        first_name: 'Без',
+                                        id: user.id,
+                                        last_name: 'Пользователь',
+                                        second_name: 'Имени',
+                                        weight: 1,
+                                        userFields: user.userFields
+                                    }
+                                    users.push(userToAdd);
+                                } else {
+                                    const userToAdd = {
+                                        email: user.email,
+                                        first_name: user.first_name,
+                                        id: user.id,
+                                        last_name: user.last_name,
+                                        second_name: user.second_name,
+                                        weight: 1,
+                                        userFields: user.userFields
+                                    }
+                                    users.push(userToAdd);
+                                }
                             }
                         })
                     })
@@ -307,6 +487,7 @@ const AddNewVote = (props) => {
             })
         }
         setUsersListForSelect(users);
+        setGroupsListForSelect(groups);
     }
 
     const onShowGeneralSettings = () => {
@@ -325,7 +506,33 @@ const AddNewVote = (props) => {
         requestHelper(Organizations.getOrganization, body)
             .then((org) => {
                 setCurrentOrg(org);
-                addUsersForSelectFromGroups(org.users);
+                const users = [];
+                org.users.forEach((user) => {
+                    if (user.last_name === undefined) {
+                        const userToAdd = {
+                            email: user.email,
+                            first_name: 'Без',
+                            id: user.id,
+                            last_name: 'Пользователь',
+                            second_name: 'Имени',
+                            weight: 1,
+                            userFields: user.userFields
+                        }
+                        users.push(userToAdd);
+                    } else {
+                        const userToAdd = {
+                            email: user.email,
+                            first_name: user.first_name,
+                            id: user.id,
+                            last_name: user.last_name,
+                            second_name: user.second_name,
+                            weight: 1,
+                            userFields: user.userFields
+                        }
+                        users.push(userToAdd);
+                    }
+                })
+                addUsersForSelectFromGroups(users);
                 setEventType(org.config.event.default_type);
                 setEventQuorum(org.config.event.default_quorum);
                 setReRegistration(org.config.event.default_re_registration);
@@ -413,8 +620,13 @@ const AddNewVote = (props) => {
     }
 
     function votersValidate() {
-        console.log("Валидация ОК");
-        return true;
+        if (votersList.length === 0) {
+            setErrorMessage(constants.ADD_NEW_VOTE.VOTERS_ERR);
+            return false;
+        } else {
+            setErrorMessage('');
+            return true;
+        }
     }
 
     function materialsValidate(materials) {
@@ -506,6 +718,16 @@ const AddNewVote = (props) => {
                 materials.push(data);
             }
         })
+        const voters = [];
+        const weights = [];
+        votersList.forEach((user) => {
+            const voter = {
+                id: user.id,
+                weight: user.weight
+            }
+            weights.push(voter);
+            voters.push(user.id);
+        })
         const dateForSend = skipReg === true || currentOrg.config.event.combined_time === true ? combinedDate : date;
         const isEventValid = eventValidation(dateForSend, materials);
         if (isEventValid) {
@@ -520,7 +742,7 @@ const AddNewVote = (props) => {
                 re_voting: reVoting,
                 observers: ["vitalii.grigorash@yandex.ru"],
                 counters: ["vitalii.grigorash@yandex.ru"],
-                voters: ["vitalii.grigorash@gmail.com"],
+                voters: voters,
                 evoters: [],
                 type: eventType,
                 quorum: eventQuorum,
@@ -557,7 +779,7 @@ const AddNewVote = (props) => {
                 max_slots: 50000,
                 signed: false,
                 save_as_template: false,
-                weights: [],
+                weights: isWeightActive ? weights : [],
                 created_date: `${dateForSend.createdDate.toISOString().split('.')[0] + 'Z'}`,
                 users_groups: { group_name: {} }
             }
@@ -613,11 +835,9 @@ const AddNewVote = (props) => {
                         </>
                     )}
                     {hideSelectOrgBtn && (
-                        <>
-                            <div className="add-new-vote__button-block">
-                                <button onClick={onShowGeneralSettings} className="add-new-vote__button-next">{constants.ADD_NEW_GROUP_USERS.ADD_NEW_GROUP_NEXT_BTN}</button>
-                            </div>
-                        </>
+                        <div className="add-new-vote__button-block">
+                            <button onClick={onShowGeneralSettings} className="add-new-vote__button-next">{constants.ADD_NEW_GROUP_USERS.ADD_NEW_GROUP_NEXT_BTN}</button>
+                        </div>
                     )}
                     {activeGeneralSettings && (
                         <>
@@ -814,12 +1034,11 @@ const AddNewVote = (props) => {
                                             <label className="add-new-vote__label">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_LIST_USERS}</label>
                                             <div onClick={handleUsersDropDownActive} className="add-new-vote__time-zone-select-container">
                                                 <p className="add-new-vote__time-zone-select-value">{usersSelectedValue}</p>
-                                                <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt="Стрелочка открытия меню" />
+                                                <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt={constants.GENERAL.ALT_ICON} />
                                                 <div className={isUsersDropDownActive ? "add-new-vote__time-zone-options-container" : "add-new-vote__time-zone-options-container hidden"}>
                                                     {usersListForSelect.map((user) => (
-                                                        // Сделать стили для каждого элемента с ФИО и email
-                                                        <div key={user.id}>
-                                                            <p className="add-new-vote__time-zone-option">{user.email}</p>
+                                                        <div key={user.id} className="add-new-vote__time-zone-option-container" onClick={() => addUsersFromList(user)}>
+                                                            <p className="add-new-vote__time-zone-option">{user.email} - {user.last_name} {user.first_name} {user.second_name}</p>
                                                         </div>
                                                     ))}
                                                 </div>
@@ -831,9 +1050,21 @@ const AddNewVote = (props) => {
                                             <label className="add-new-vote__label">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_GROUP_USERS}</label>
                                             <div onClick={handleGroupsDropDownActive} className="add-new-vote__time-zone-select-container">
                                                 <p className="add-new-vote__time-zone-select-value">{groupSelectedValue}</p>
-                                                <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt="Стрелочка открытия меню" />
+                                                <img className="add-new-vote__time-zone-select-arrow" src={row_input_select_role} alt={constants.GENERAL.ALT_ICON} />
                                                 <div className={isGroupsDropDownActive ? "add-new-vote__time-zone-options-container" : "add-new-vote__time-zone-options-container hidden"}>
-                                                    <p className="add-new-vote__time-zone-option"></p>
+                                                    {groupsListForSelect.length === 0 ? (
+                                                        <div className="add-new-vote__time-zone-option-container">
+                                                            <p className="add-new-vote__time-zone-option">{constants.ADD_NEW_VOTE.NO_GROUPS}</p>
+                                                        </div>
+                                                    ) : (
+                                                        <>
+                                                            {groupsListForSelect.map((group) => (
+                                                                <div key={group.id} className="add-new-vote__time-zone-option-container" onClick={() => addUsersFromGroup(group)}>
+                                                                    <p className="add-new-vote__time-zone-option">{group.group_title} ({constants.ADD_NEW_VOTE.USERS_IN_GROUP}: {group.member_count})</p>
+                                                                </div>
+                                                            ))}
+                                                        </>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
@@ -844,43 +1075,79 @@ const AddNewVote = (props) => {
                                     {votersList.length !== 0 && (
                                         <>
                                             <div className="add-new-vote__top-pagination">
-                                                {/*<PaginationBlock/>   */}
-                                                Верхнняя пагинация
+                                                <PaginationBlock
+                                                    sortList={votersListForRender}
+                                                    search={votersListSearch}
+                                                    searchInput={searchInput}
+                                                    onChoiceClick={onChoiceClick}
+                                                    selectedResultsShow={selectedResultsShow}
+                                                    pageCount={pageCount}
+                                                    showPrevResults={showPrevResults}
+                                                    showNextResults={showNextResults}
+                                                    constants={constants}
+                                                />
                                             </div>
-                                            <div className="add-new-vote__list-users-table">
-                                                <div className="add-new-vote__list-users-table-header">
-                                                    <p className="add-new-vote__list-users-table-header-username">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_USERNAME_TABLE}</p>
-                                                    {isWeightActive && (
-                                                        <p className="add-new-vote__list-users-table-header-weight-vote">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_WEIGHT_VOTE_TABLE}</p>
-                                                    )}
-                                                    <p className="add-new-vote__list-users-table-header-action">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_ACTION_TABLE}</p>
-                                                </div>
-                                                <div className="add-new-vote__list-users-table-row">
-                                                    <div className="add-new-vote__table-row-username-email">
-                                                        <p className="add-new-vote__table-row-username">Тимошина Мария Владимиров</p>
-                                                        <p className="add-new-vote__table-row-email">anyauskowa@yandex.ru</p>
+                                            {votersListForRender.length !== 0 ? (
+                                                <div className="add-new-vote__list-users-table">
+                                                    <div className="add-new-vote__list-users-table-header">
+                                                        <p className="add-new-vote__list-users-table-header-username">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_USERNAME_TABLE}</p>
+                                                        {isWeightActive && (
+                                                            <p className="add-new-vote__list-users-table-header-weight-vote">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_WEIGHT_VOTE_TABLE}</p>
+                                                        )}
+                                                        <p className="add-new-vote__list-users-table-header-action">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_ACTION_TABLE}</p>
                                                     </div>
-                                                    {isWeightActive && (
-                                                        <div className="add-new-vote__table-row-count">
-                                                            <p className="add-new-vote__table-row-count-weight-mobile">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_WEIGHT_VOTE_TABLE}</p>
-                                                            <img className="add-new-vote__table-row-count-minus" src={iconMinusTable} alt={constants.GENERAL.ALT_ICON} />
-                                                            <p className="add-new-vote__table-row-count-number">3</p>
-                                                            <img className="add-new-vote__table-row-count-plus" src={iconPlusTable} alt={constants.GENERAL.ALT_ICON} />
+                                                    {votersListForRender.sort(function (a, b) {
+                                                        const emailA = a.email.toLowerCase();
+                                                        const emailB = b.email.toLowerCase();
+                                                        if (emailA < emailB)
+                                                            return -1
+                                                        if (emailA > emailB)
+                                                            return 1
+                                                        return 0
+                                                    }).slice(showResultsFrom, resultsShow).map((user) => (
+                                                        <div key={user.id} className="add-new-vote__list-users-table-row">
+                                                            <div className="add-new-vote__table-row-username-email">
+                                                                <p className="add-new-vote__table-row-username">{user.last_name} {user.first_name} {user.second_name}</p>
+                                                                <p className="add-new-vote__table-row-email">{user.email}</p>
+                                                            </div>
+                                                            {isWeightActive && (
+                                                                <div className="add-new-vote__table-row-count">
+                                                                    <p className="add-new-vote__table-row-count-weight-mobile">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_WEIGHT_VOTE_TABLE}</p>
+                                                                    <img className="add-new-vote__table-row-count-minus" onClick={() => decreaseWeight(user)} src={iconMinusTable} alt={constants.GENERAL.ALT_ICON} />
+                                                                    <p className="add-new-vote__table-row-count-number">{user.weight}</p>
+                                                                    <img className="add-new-vote__table-row-count-plus" onClick={() => increaseWeight(user)} src={iconPlusTable} alt={constants.GENERAL.ALT_ICON} />
+                                                                </div>
+                                                            )}
+                                                            <div className="add-new-vote__table-row-action">
+                                                                <img className="add-new-vote__table-row-action-icon-delete" onClick={() => deleteUserFromTable(user)} src={iconDeleteTable} alt={constants.GENERAL.ALT_ICON} />
+                                                                <p className="add-new-vote__table-row-action-delete" onClick={() => deleteUserFromTable(user)}>{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_DELETE_BTN_TABLE}</p>
+                                                            </div>
                                                         </div>
-                                                    )}
-                                                    <div className="add-new-vote__table-row-action">
-                                                        <img className="add-new-vote__table-row-action-icon-delete" src={iconDeleteTable} alt={constants.GENERAL.ALT_ICON} />
-                                                        <p className="add-new-vote__table-row-action-delete">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_DELETE_BTN_TABLE}</p>
-                                                    </div>
+                                                    ))}
                                                 </div>
-                                            </div>
+                                            ) : (
+                                                <div className="add-new-vote__no-users-container">
+                                                    <p className="add-new-vote__no-users">{constants.ADD_NEW_ORG.ADD_NEW_ORG_NO_USERS}<span className="name-org-input__red-star"> *</span></p>
+                                                </div>
+                                            )}
                                             <div className="add-new-vote__bottom-pagination">
-                                                {/*<PaginationBlock/>   */}
-                                                Нижняя пагинация
+                                                <div className="add-new-organization__bottom-pagination">
+                                                    <PaginationBlock
+                                                        sortList={votersListForRender}
+                                                        search={votersListSearch}
+                                                        searchInput={searchInput}
+                                                        onChoiceClick={onChoiceClick}
+                                                        selectedResultsShow={selectedResultsShow}
+                                                        pageCount={pageCount}
+                                                        showPrevResults={showPrevResults}
+                                                        showNextResults={showNextResults}
+                                                        constants={constants}
+                                                    />
+                                                </div>
                                             </div>
                                         </>
                                     )}
-                                    <div className="add-new-vote__weight-voting-checkbox">
+                                    <div className={`add-new-vote__weight-voting-checkbox ${votersList.length !== 0 && 'add-new-vote__weight-voting-checkbox_with-table'}`}>
                                         {votersList.length !== 0 && (
                                             <div className="add-new-vote__checkbox-container" onClick={handleWeightActive}>
                                                 <div className={`add-new-vote__checkbox ${isWeightActive && "add-new-vote__checkbox_active"}`} />
