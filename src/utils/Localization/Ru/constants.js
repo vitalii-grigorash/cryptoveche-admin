@@ -369,6 +369,7 @@ export const constants = {
         VOTERS_ERR: 'Список голосующих пуст',
         USERS_IN_GROUP: 'Количество участников',
         NO_GROUPS: 'Нет групп для выбора',
+        BUTTON_ADD: 'Добавить',
     },
     ORG_SETTINGS: {
         PLACEHOLDER: 'Введите название компании',

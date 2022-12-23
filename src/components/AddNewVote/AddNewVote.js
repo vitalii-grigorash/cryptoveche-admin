@@ -88,6 +88,7 @@ const AddNewVote = (props) => {
     const [isGroupsDropDownActive, setGroupsDropDownActive] = useState(false);
     const [usersSelectedValue, setUsersSelectedValue] = useState(constants.ADD_NEW_VOTE.SELECT_LIST_USERS);
     const [groupSelectedValue, setGroupSelectedValue] = useState(constants.ADD_NEW_VOTE.SELECT_LIST_GROUP);
+    const [isExpandListActive, setExpandListActive] = useState(false);
     const typeQuestionButtons = [
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_YNQ}`, classNameBtn: "add-new-vote__select-type-vote-ynq", typeQuestion: "ynq" },
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_NONE}`, classNameBtn: "add-new-vote__select-type-vote-none", typeQuestion: "none" },
@@ -97,6 +98,14 @@ const AddNewVote = (props) => {
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_POSITION_MULTIPLE}`, classNameBtn: "add-new-vote__select-type-vote-position_multiple", typeQuestion: "positionMultiple" },
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_SAME_POSITIONS}`, classNameBtn: "add-new-vote__select-type-vote-same_positions", typeQuestion: "samePositions" }
     ];
+
+    function handleOpenExpandList() {
+        if (isExpandListActive) {
+            setExpandListActive(false);
+        } else {
+            setExpandListActive(true);
+        }
+    }
 
     function handleShowResultsFrom(value) {
         setShowResultsFrom(value);
@@ -165,7 +174,7 @@ const AddNewVote = (props) => {
     },
         [
             votersListSearchInput,
-            votersList,
+            votersList
         ]
     );
 
@@ -391,6 +400,17 @@ const AddNewVote = (props) => {
         setVotersList(filteredUsers);
     }
 
+    function addUsersFromExpandList(usersArr) {
+        const users = votersList;
+        setVotersList([]);
+        usersArr.forEach((user) => {
+            if ((votersList.find(userFromList => userFromList.id === user.id)) === undefined) {
+                users.push(user);
+            }
+        })
+        setVotersList(users);
+    }
+
     function addUsersFromGroup(group) {
         setGroupSelectedValue(group.group_title);
         const users = votersList;
@@ -399,10 +419,10 @@ const AddNewVote = (props) => {
                 if (user.last_name === undefined) {
                     const userToAdd = {
                         email: user.email,
-                        first_name: 'Без',
+                        first_name: `${constants.ADD_NEW_ORG.ADD_NEW_ORG_DEFAULT_FIRST_NAME}`,
                         id: user.id,
-                        last_name: 'Пользователь',
-                        second_name: 'Имени',
+                        last_name: `${constants.ADD_NEW_ORG.ADD_NEW_ORG_DEFAULT_LAST_NAME}`,
+                        second_name: `${constants.ADD_NEW_ORG.ADD_NEW_ORG_DEFAULT_SECOND_NAME}`,
                         weight: 1,
                         userFields: user.userFields
                     }
@@ -458,10 +478,10 @@ const AddNewVote = (props) => {
                                 if (user.last_name === undefined) {
                                     const userToAdd = {
                                         email: user.email,
-                                        first_name: 'Без',
+                                        first_name: `${constants.ADD_NEW_ORG.ADD_NEW_ORG_DEFAULT_FIRST_NAME}`,
                                         id: user.id,
-                                        last_name: 'Пользователь',
-                                        second_name: 'Имени',
+                                        last_name: `${constants.ADD_NEW_ORG.ADD_NEW_ORG_DEFAULT_LAST_NAME}`,
+                                        second_name: `${constants.ADD_NEW_ORG.ADD_NEW_ORG_DEFAULT_SECOND_NAME}`,
                                         weight: 1,
                                         userFields: user.userFields
                                     }
@@ -511,10 +531,10 @@ const AddNewVote = (props) => {
                     if (user.last_name === undefined) {
                         const userToAdd = {
                             email: user.email,
-                            first_name: 'Без',
+                            first_name: `${constants.ADD_NEW_ORG.ADD_NEW_ORG_DEFAULT_FIRST_NAME}`,
                             id: user.id,
-                            last_name: 'Пользователь',
-                            second_name: 'Имени',
+                            last_name: `${constants.ADD_NEW_ORG.ADD_NEW_ORG_DEFAULT_LAST_NAME}`,
+                            second_name: `${constants.ADD_NEW_ORG.ADD_NEW_ORG_DEFAULT_SECOND_NAME}`,
                             weight: 1,
                             userFields: user.userFields
                         }
@@ -1069,9 +1089,17 @@ const AddNewVote = (props) => {
                                             </div>
                                         </div>
                                     )}
-                                    <AddNewVoteExpandList
-                                        constants={constants}
-                                    />
+                                    <div onClick={handleOpenExpandList} className="add-new-vote__expand-list-container">
+                                        <div className="add-new-vote__expand-list-icon" />
+                                        <p className="add-new-vote__expand-list-text">{constants.ADD_NEW_VOTE.EXPAND_LIST_TITLE}</p>
+                                    </div>
+                                    {isExpandListActive && (
+                                        <AddNewVoteExpandList
+                                            constants={constants}
+                                            requestHelper={requestHelper}
+                                            addUsersFromExpandList={addUsersFromExpandList}
+                                        />
+                                    )}
                                     {votersList.length !== 0 && (
                                         <>
                                             <div className="add-new-vote__top-pagination">
