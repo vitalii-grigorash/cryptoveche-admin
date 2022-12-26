@@ -1,0 +1,12 @@
+/*------Основной контейнер--------------------------------------------------------------------------------------------*/
+.details-vote-results__container {
+    display: flex;
+    flex-direction: column;
+    padding: 1.77em 1.77em 2.22em 1.77em;
+    box-shadow: -1px 0 8px rgba(54, 58, 72, 0.07);
+    background-color: #FFFFFF;
+    border-radius: 1.33em;
+    font-size: 18px;
+    align-self: flex-start;
+    width: 68.889vw;
+}

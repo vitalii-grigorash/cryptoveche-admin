@@ -4,8 +4,10 @@ import DetailsVoteGeneralInfo from "../DetailsVoteGeneralInfo/DetailsVoteGeneral
 import DetailsVoteStatisticsVote from "../DetailsVoteStatisticsVote/DetailsVoteStatisticsVote";
 import DetailsVoteVotingObserversCounting from "../DetailsVoteVotingObserversCounting/DetailsVoteVotingObserversCounting";
 import DetailsVoteQuestions from "../DetailsVoteQuestions/DetailsVoteQuestions";
+import DetailsVoteResults from "../DetailsVoteResults/DetailsVoteResults";
 import iconRowBack from "../../img/back-button-icon.svg";
 import {Link, useLocation} from "react-router-dom";
+
 
 const DetailsVote = (props) => {
 
@@ -17,6 +19,8 @@ const DetailsVote = (props) => {
     const [selectMenuItem, setSelectMenuItem] = useState(0);
     const [hideMenuBlockMobile, setHideMeniBlockMobile] = useState(false);
     const [selectMenuComponent, setSelectMenuComponent] = useState('generalInfo');
+    const [changeQuestionResult, setChangeQuestionResult] = useState(false);
+    const { pathname } = useLocation();
     const [informationMenuItems, setInformationMenuItems] = useState(
         [
                     {nameItem: "Общая информация", iconClassName: "details-vote__icon-general-info"},
@@ -24,9 +28,8 @@ const DetailsVote = (props) => {
                     {nameItem: "Голосующие", iconClassName: "details-vote__icon-voting"},
                     {nameItem: "Наблюдатели", iconClassName: "details-vote__icon-observers"},
                     {nameItem: "Счетная коммисия", iconClassName: "details-vote__icon-counting"},
-                    {nameItem: "Ознакомиться с вопросами", iconClassName: "details-vote__icon-questions"}
+                    {nameItem: changeQuestionResult ? "Ознакомиться с вопросами" : "Результаты", iconClassName: "details-vote__icon-questions"}
                 ]);
-    const { pathname } = useLocation();
 
     const onSelectMenuItems = (i, item) => {
         const getWightBlock = document.getElementById('getWidthMainBlock').clientWidth;
@@ -57,6 +60,10 @@ const DetailsVote = (props) => {
                     setSelectMenuComponent('questions');
                     setHideMeniBlockMobile(true);
                     break;
+                case 'Результаты' :
+                    setSelectMenuComponent('results');
+                    setHideMeniBlockMobile(true);
+                    break;
                 default: {
                 }
             }
@@ -79,6 +86,9 @@ const DetailsVote = (props) => {
                     break
                 case 'Ознакомиться с вопросами' :
                     setSelectMenuComponent('questions');
+                    break;
+                case 'Результаты' :
+                    setSelectMenuComponent('results');
                     break;
                 default: {
                 }
@@ -116,8 +126,10 @@ const DetailsVote = (props) => {
                         )
                     })}
                 </div>
-                    {selectMenuComponent === 'generalInfo' ? <DetailsVoteGeneralInfo constants={constants} authAs={authAs}/> : null}
-                    {selectMenuComponent === 'statisticsVote' ? <DetailsVoteStatisticsVote constants={constants}/> : null}
+                    {selectMenuComponent === 'generalInfo' ? <DetailsVoteGeneralInfo
+                                                            constants={constants} authAs={authAs}/> : null}
+                    {selectMenuComponent === 'statisticsVote' ? <DetailsVoteStatisticsVote
+                                                            constants={constants}/> : null}
                     {selectMenuComponent === 'voting' ? <DetailsVoteVotingObserversCounting
                                                             constants={constants}
                                                             titleName={'Список голосующих'}
@@ -133,7 +145,10 @@ const DetailsVote = (props) => {
                                                             titleName={'Счетная комиссия'}
                                                             titleNameMobile={'Наблюдатели'}
                                                             changeStatusColumn={'counting'}/> : null}
-                    {selectMenuComponent === 'questions' ? <DetailsVoteQuestions constants={constants}/> : null}
+                    {selectMenuComponent === 'questions' ? <DetailsVoteQuestions
+                                                            constants={constants}/> : null}
+                    {selectMenuComponent === 'results' ? <DetailsVoteResults
+                                                            constants={constants}/> : null}
                 </div>
         </div>
     )
