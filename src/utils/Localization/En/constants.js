@@ -370,6 +370,7 @@ export const constants = {
         USERS_IN_GROUP: 'Количество участников',
         NO_GROUPS: 'Нет групп для выбора',
         BUTTON_ADD: 'Добавить',
+        VOTERS_EXPANDABLE_ERR: 'Максимальное количество участников заполнено некорректно',
     },
     ORG_SETTINGS: {
         PLACEHOLDER: 'Введите название компании',

@@ -34,6 +34,9 @@ const AddNewVote = (props) => {
 
     const eventTitle = Validation();
     const votersListSearch = Validation();
+    const countersListSearch = Validation();
+    const observersListSearch = Validation();
+    const votersExpandableValue = Validation();
     const currentUser = React.useContext(CurrentUserContext);
     const [votersListForRender, setVotersListForRender] = useState([]);
     const [votersListSearchInput, setVotersListSearchInput] = useState('');
@@ -89,6 +92,10 @@ const AddNewVote = (props) => {
     const [usersSelectedValue, setUsersSelectedValue] = useState(constants.ADD_NEW_VOTE.SELECT_LIST_USERS);
     const [groupSelectedValue, setGroupSelectedValue] = useState(constants.ADD_NEW_VOTE.SELECT_LIST_GROUP);
     const [isExpandListActive, setExpandListActive] = useState(false);
+    const [countersList, setCountersList] = useState([]);
+    const [observersList, setObserversList] = useState([]);
+    const [isCountersAddOpen, setCountersAddOpen] = useState(false);
+    const [isObserversAddOpen, setObserversAddOpen] = useState(false);
     const typeQuestionButtons = [
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_YNQ}`, classNameBtn: "add-new-vote__select-type-vote-ynq", typeQuestion: "ynq" },
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_NONE}`, classNameBtn: "add-new-vote__select-type-vote-none", typeQuestion: "none" },
@@ -98,6 +105,22 @@ const AddNewVote = (props) => {
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_POSITION_MULTIPLE}`, classNameBtn: "add-new-vote__select-type-vote-position_multiple", typeQuestion: "positionMultiple" },
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_SAME_POSITIONS}`, classNameBtn: "add-new-vote__select-type-vote-same_positions", typeQuestion: "samePositions" }
     ];
+
+    function handleOpenCountersAdd() {
+        if (isCountersAddOpen) {
+            setCountersAddOpen(false);
+        } else {
+            setCountersAddOpen(true);
+        }
+    }
+
+    function handleOpenObserversAdd() {
+        if (isObserversAddOpen) {
+            setObserversAddOpen(false);
+        } else {
+            setObserversAddOpen(true);
+        }
+    }
 
     function handleOpenExpandList() {
         if (isExpandListActive) {
@@ -186,6 +209,7 @@ const AddNewVote = (props) => {
             .catch((err) => {
                 throw new Error(err.message);
             })
+        // eslint-disable-next-line
     }, [])
 
     function handleUsersDropDownActive() {
@@ -400,6 +424,16 @@ const AddNewVote = (props) => {
         setVotersList(filteredUsers);
     }
 
+    function deleteCountersFromTable(user) {
+        const filteredUsers = countersList.filter(userFromList => userFromList.id !== user.id);
+        setCountersList(filteredUsers);
+    }
+
+    function deleteObserversFromTable(user) {
+        const filteredUsers = observersList.filter(userFromList => userFromList.id !== user.id);
+        setObserversList(filteredUsers);
+    }
+
     function addUsersFromExpandList(usersArr) {
         const users = votersList;
         setVotersList([]);
@@ -409,6 +443,28 @@ const AddNewVote = (props) => {
             }
         })
         setVotersList(users);
+    }
+
+    function addCountersFromExpandList(usersArr) {
+        const users = countersList;
+        setCountersList([]);
+        usersArr.forEach((user) => {
+            if ((countersList.find(userFromList => userFromList.id === user.id)) === undefined) {
+                users.push(user);
+            }
+        })
+        setCountersList(users);
+    }
+
+    function addObserversFromExpandList(usersArr) {
+        const users = observersList;
+        setObserversList([]);
+        usersArr.forEach((user) => {
+            if ((observersList.find(userFromList => userFromList.id === user.id)) === undefined) {
+                users.push(user);
+            }
+        })
+        setObserversList(users);
     }
 
     function addUsersFromGroup(group) {
@@ -444,6 +500,14 @@ const AddNewVote = (props) => {
         setVotersList(users);
     }
 
+    function addCountersFromGroup(users) {
+        setCountersList(users);
+    }
+
+    function addObserversFromGroup(users) {
+        setObserversList(users);
+    }
+
     function addUsersFromList(user) {
         setUsersSelectedValue(`${user.email} - ${user.last_name} ${user.first_name} ${user.second_name}`);
         const users = votersList;
@@ -460,6 +524,14 @@ const AddNewVote = (props) => {
             users.push(userToAdd);
         }
         setVotersList(users);
+    }
+
+    function addCountersFromList(users) {
+        setCountersList(users);
+    }
+
+    function addObserversFromList(users) {
+        setObserversList(users);
     }
 
     function addUsersForSelectFromGroups(orgUsers) {
@@ -520,6 +592,7 @@ const AddNewVote = (props) => {
         setRegistrationEndTime(regEnd);
         setEventStartTime(eventStart);
         setEventEndTime(eventEnd);
+        votersExpandableValue.setValue('100');
         const body = {
             id: selectedOrg.id
         }
@@ -640,12 +713,25 @@ const AddNewVote = (props) => {
     }
 
     function votersValidate() {
-        if (votersList.length === 0) {
-            setErrorMessage(constants.ADD_NEW_VOTE.VOTERS_ERR);
-            return false;
+        if (activeOpenList || isLinkUsersActive) {
+            if (votersExpandableValue.value === '') {
+                setErrorMessage(constants.ADD_NEW_VOTE.VOTERS_EXPANDABLE_ERR);
+                return false;
+            } else if (Number(votersExpandableValue.value) < 1) {
+                setErrorMessage(constants.ADD_NEW_VOTE.VOTERS_EXPANDABLE_ERR);
+                return false;
+            } else {
+                setErrorMessage('');
+                return true;
+            }
         } else {
-            setErrorMessage('');
-            return true;
+            if (votersList.length === 0) {
+                setErrorMessage(constants.ADD_NEW_VOTE.VOTERS_ERR);
+                return false;
+            } else {
+                setErrorMessage('');
+                return true;
+            }
         }
     }
 
@@ -748,6 +834,14 @@ const AddNewVote = (props) => {
             weights.push(voter);
             voters.push(user.id);
         })
+        const observers = [];
+        observersList.forEach((user) => {
+            observers.push(user.id);
+        })
+        const counters = [];
+        countersList.forEach((user) => {
+            counters.push(user.id);
+        })
         const dateForSend = skipReg === true || currentOrg.config.event.combined_time === true ? combinedDate : date;
         const isEventValid = eventValidation(dateForSend, materials);
         if (isEventValid) {
@@ -760,8 +854,8 @@ const AddNewVote = (props) => {
                 event_end_time: `${dateForSend.eventEnd.toISOString().split('.')[0] + 'Z'}`,
                 re_registration: reRegistration,
                 re_voting: reVoting,
-                observers: ["vitalii.grigorash@yandex.ru"],
-                counters: ["vitalii.grigorash@yandex.ru"],
+                observers: observers,
+                counters: counters,
                 voters: voters,
                 evoters: [],
                 type: eventType,
@@ -794,9 +888,9 @@ const AddNewVote = (props) => {
                     user_id: currentUser.id,
                     org_id: currentOrg.id
                 },
-                is_voters_expandable: false,
+                is_voters_expandable: (isLinkUsersActive || activeOpenList) ? true : false,
                 onButton: skipReg,
-                max_slots: 50000,
+                max_slots: (isLinkUsersActive || activeOpenList) ? votersExpandableValue.value : 50000,
                 signed: false,
                 save_as_template: false,
                 weights: isWeightActive ? weights : [],
@@ -1192,15 +1286,60 @@ const AddNewVote = (props) => {
                             {(isLinkUsersActive || activeOpenList) && (
                                 <div className="add-new-vote__open-list-block">
                                     <label className="add-new-vote__open-list-label-input">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_MAX_NUMBERS_MEMBERS}</label>
-                                    <input className="add-new-vote__open-list-input" placeholder={'1'} type={"number"} min={1} max={9999} step={1} />
+                                    <input
+                                        className="add-new-vote__open-list-input"
+                                        placeholder='1'
+                                        type="number"
+                                        name="voters-expandable"
+                                        value={votersExpandableValue.value}
+                                        onChange={votersExpandableValue.onChange}
+                                    />
                                     <label className="add-new-vote__open-list-info">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_AFTER_CREATE_VOTE_AVAILABLE_LINK}</label>
                                 </div>
                             )}
-                            {!currentOrg.config.general.observers && (
-                                <AddNewVoteAddObserversCountingMembers constants={constants} titleObserversCountingMembers={constants.ADD_NEW_VOTE.ADD_OBSERVERS_TITLE_OBSERVER} />
-                            )}
                             {currentOrg.config.general.counters && (
-                                <AddNewVoteAddObserversCountingMembers constants={constants} titleObserversCountingMembers={constants.ADD_NEW_VOTE.ADD_OBSERVERS_TITLE_COUNTING_MEMBERS} />
+                                <>
+                                    <div onClick={handleOpenCountersAdd} className="add-new-vote__expand-list-container add-new-vote__expand-list-container_margin">
+                                        <div className="add-new-vote__expand-list-icon" />
+                                        <p className="add-new-vote__expand-list-text">{constants.ADD_NEW_VOTE.ADD_OBSERVERS_TITLE_COUNTING_MEMBERS}</p>
+                                    </div>
+                                    {isCountersAddOpen && (
+                                        <AddNewVoteAddObserversCountingMembers
+                                            constants={constants}
+                                            usersListForSelect={usersListForSelect}
+                                            groupsListForSelect={groupsListForSelect}
+                                            addFromList={addCountersFromList}
+                                            addFromGroup={addCountersFromGroup}
+                                            addFromExpandList={addCountersFromExpandList}
+                                            deleteFromTable={deleteCountersFromTable}
+                                            usersList={countersList}
+                                            requestHelper={requestHelper}
+                                            listSearch={countersListSearch}
+                                        />
+                                    )}
+                                </>
+                            )}
+                            {currentOrg.config.general.observers && (
+                                <>
+                                    <div onClick={handleOpenObserversAdd} className="add-new-vote__expand-list-container add-new-vote__expand-list-container_margin">
+                                        <div className="add-new-vote__expand-list-icon" />
+                                        <p className="add-new-vote__expand-list-text">{constants.ADD_NEW_VOTE.ADD_OBSERVERS_TITLE_OBSERVER}</p>
+                                    </div>
+                                    {isObserversAddOpen && (
+                                        <AddNewVoteAddObserversCountingMembers
+                                            constants={constants}
+                                            usersListForSelect={usersListForSelect}
+                                            groupsListForSelect={groupsListForSelect}
+                                            addFromList={addObserversFromList}
+                                            addFromGroup={addObserversFromGroup}
+                                            addFromExpandList={addObserversFromExpandList}
+                                            deleteFromTable={deleteObserversFromTable}
+                                            usersList={observersList}
+                                            requestHelper={requestHelper}
+                                            listSearch={observersListSearch}
+                                        />
+                                    )}
+                                </>
                             )}
                         </>
                     )}
