@@ -19,7 +19,7 @@ import AddNewVoteAddObserversCountingMembers from "../AddNewVoteAddObserversCoun
 import AddNewVoteExpandList from "../AddNewVoteExpandList/AddNewVoteExpandList";
 // import orgSearchIconMobile from "../../img/PaginationSearchIcon.svg";
 import AddMaterials from "../AddMaterials/AddMaterials";
-// import AddNewVoteCreatedQuestion from "../AddNewVoteCreatedQuestion/AddNewVoteCreatedQuestion";
+import AddNewVoteCreatedQuestion from "../AddNewVoteCreatedQuestion/AddNewVoteCreatedQuestion";
 import * as Organizations from '../../Api/Organizations';
 import * as AddEvent from '../../Api/AddEvent';
 import { Validation } from '../../utils/Validation';
@@ -96,6 +96,154 @@ const AddNewVote = (props) => {
     const [observersList, setObserversList] = useState([]);
     const [isCountersAddOpen, setCountersAddOpen] = useState(false);
     const [isObserversAddOpen, setObserversAddOpen] = useState(false);
+
+    const example = {
+        "template_title": "Все вопросы",
+        "title": "Все вопросы",
+        "registration_start_time": "2022-12-27T09:14:00Z",
+        "registration_end_time": "2022-12-27T10:14:00Z",
+        "event_start_time": "2022-12-27T09:14:00Z",
+        "event_end_time": "2022-12-27T10:14:00Z",
+        "re_registration": true,
+        "re_voting": false,
+        "observers": [],
+        "counters": [],
+        "voters": ["vitalii.grigorash@gmail.com"],
+        "evoters": [],
+        "type": "secret",
+        "quorum": "0",
+        "quorum_type": "voting",
+        "materials": [],
+        "questions": [
+            {
+                "template": "ynq",
+                "title": "Обычный",
+                "options": {
+                    "rows": [
+                        { "value": "За" },
+                        { "value": "Против" },
+                        { "value": "Воздержаться" }
+                    ],
+                    "columns": []
+                },
+                "materials": [],
+                "is_required_grid_rows": false,
+                "rules": {
+                    "pick_eq": 1,
+                    "pick_lt": -1,
+                    "pick_gt": -1,
+                    "pick_le": -1,
+                    "pick_ge": -1
+                }
+            },
+            {
+                "template": "none",
+                "title": "Произвольный (Без правил)",
+                "options": {
+                    "rows": [
+                        { "value": "Вариант 1" },
+                        { "value": "Вариант 2" },
+                        { "value": "Вариант 3" }
+                    ],
+                    "columns": []
+                },
+                "materials": [],
+                "is_required_grid_rows": false,
+                "rules": {
+                    "pick_eq": -1,
+                    "pick_lt": -1,
+                    "pick_gt": -1,
+                    "pick_le": -1,
+                    "pick_ge": -1
+                }
+            },
+            {
+                "template": "none",
+                "title": "Произвольный (С правилом)",
+                "options": {
+                    "rows": [
+                        { "value": "Вариант 1" },
+                        { "value": "Вариант 2" },
+                        { "value": "Вариант 3" },
+                        { "value": "Вариант 4" }
+                    ],
+                    "columns": []
+                }, 
+                "materials": [],
+                "is_required_grid_rows": false,
+                "rules": {
+                    "pick_eq": -1,
+                    "pick_lt": 3,
+                    "pick_gt": 1,
+                    "pick_le": -1,
+                    "pick_ge": -1
+                }
+            },
+            {
+                "template": "position_single",
+                "title": "На позицию (Одна кандидатура)",
+                "options": {
+                    "rows": [
+                        { "value": "Григораш Витлий Юрьевич" }
+                    ],
+                    "columns": []
+                }, 
+                "materials": [],
+                "is_required_grid_rows": false,
+                "rules": {
+                    "pick_eq": -1,
+                    "pick_lt": -1,
+                    "pick_gt": -1,
+                    "pick_le": 1,
+                    "pick_ge": -1
+                }
+            },
+            {
+                "template": "position_multiple",
+                "title": "На позицию (Несколько кандидатур)",
+                "options": {
+                    "rows": [
+                        { "value": "Иванов" },
+                        { "value": "Петров" },
+                        { "value": "Сидоров" }
+                    ],
+                    "columns": []
+                },
+                "materials": [],
+                "is_required_grid_rows": false,
+                "rules": {
+                    "pick_eq": -1,
+                    "pick_lt": -1,
+                    "pick_gt": -1,
+                    "pick_le": 1,
+                    "pick_ge": -1
+                }
+            },
+            {
+                "template": "same_positions",
+                "title": "На несколько позиций (Несколько кандидатур)",
+                "options": {
+                    "rows": [
+                        { "value": "Иванов" },
+                        { "value": "Петров" },
+                        { "value": "Сидоров" },
+                        { "value": "Гагарин" }
+                    ],
+                    "columns": []
+                },
+                "materials": [],
+                "is_required_grid_rows": false,
+                "rules": {
+                    "pick_eq": -1,
+                    "pick_lt": -1,
+                    "pick_gt": -1,
+                    "pick_le": 3,
+                    "pick_ge": -1
+                }
+            }
+        ]
+    }
+
     const typeQuestionButtons = [
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_YNQ}`, classNameBtn: "add-new-vote__select-type-vote-ynq", typeQuestion: "ynq" },
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_NONE}`, classNameBtn: "add-new-vote__select-type-vote-none", typeQuestion: "none" },
@@ -1346,7 +1494,7 @@ const AddNewVote = (props) => {
                 </div>
                 {activeQuestionBlock && (
                     <div className="add-new-vote__questions-block">
-                        {/*<AddNewVoteCreatedQuestion constants={constants}/>*/}
+                        <AddNewVoteCreatedQuestion constants={constants} />
                         <div className="add-new-vote__questions">
                             <h3 className="add-new-vote__title-questions">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_TITLE}</h3>
                             <h3 className="add-new-vote__title-questions-mobile">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_TITLE_MOBILE}</h3>
