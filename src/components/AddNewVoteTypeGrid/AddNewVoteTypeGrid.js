@@ -1,9 +1,8 @@
-import React, {useCallback, useEffect, useRef, useState} from "react";
+import React from "react";
 import iconCloseModal from "../../img/AddNewVoteQuestuionTypeIconCloseModal.svg";
 import iconPlus from "../../img/AddNewVoteQuestuionTypeIconPlus.svg";
 import iconBasket from "../../img/AddNewVoteQuestuionTypeIconBasket.svg";
 import AddMaterials from "../AddMaterials/AddMaterials";
-import row_input_select_role from "../../img/Auth_icon_row_select_role.svg";
 
 const AddNewVoteTypeGrid = (props) => {
 
@@ -12,8 +11,6 @@ const AddNewVoteTypeGrid = (props) => {
         setActiveModalTypeQuestion,
         constants,
         selectedTypeQuestionBtn,
-        setSelectedTypeQuestionBtn,
-        typeQuestionButtons,
         eventMaterials,
         addEmptyMaterial,
         changeMaterialType,
@@ -21,27 +18,20 @@ const AddNewVoteTypeGrid = (props) => {
         titleInputChange,
         changeDocLink,
         deleteMaterial,
-        requestHelper
+        requestHelper,
+        questionsList
     } = props;
 
-    const [activeSelectTypeQuestion, setActiveSelectTypeQuestion] = useState(false);
-
-    const onGetTypeQuestion = (typeQuestion, nameQuestion) => {
-        setSelectedTypeQuestionBtn({typeQuestion, nameQuestion})
-    }
-
     const onCloseModal = () => {
-        setActiveModalTypeQuestion(false)
+        setActiveModalTypeQuestion(false);
     }
 
     return (
         <div className={activeModalTypeQuestion ? "add-new-vote-type-grid__container active" : "add-new-vote-type-grid__container"}>
             <div className="add-new-vote-type-grid">
                 <div className="add-new-vote-type-grid__title">
-                    <h3 className="add-new-vote-type-grid__title-number-question">
-                        Вопрос #1
-                    </h3>
-                    <img onClick={onCloseModal} className="add-new-vote-type-grid__title-icon-close" src={iconCloseModal} alt={constants.GENERAL.ALT_ICON}/>
+                    <h3 className="add-new-vote-type-grid__title-number-question">Вопрос #{questionsList.length + 1}</h3>
+                    <img onClick={onCloseModal} className="add-new-vote-type-grid__title-icon-close" src={iconCloseModal} alt={constants.GENERAL.ALT_ICON} />
                 </div>
                 <h5 className="add-new-vote-type-grid__title-current-type-question">{selectedTypeQuestionBtn.nameQuestion}</h5>
                 <div className="add-new-vote-type-grid__name-question">
@@ -50,8 +40,8 @@ const AddNewVoteTypeGrid = (props) => {
                         <span className="add-new-vote__red-star">*</span>
                     </label>
                     <input className="add-new-vote-type-grid__name-question-input"
-                           type={'text'}
-                           placeholder={constants.ADD_NEW_VOTE.QUESTION_TYPE_NAME_QUESTION_PLACEHOLDER_ENTER_YOUR_QUESTION}
+                        type={'text'}
+                        placeholder={constants.ADD_NEW_VOTE.QUESTION_TYPE_NAME_QUESTION_PLACEHOLDER_ENTER_YOUR_QUESTION}
                     />
                 </div>
                 <div className="add-new-vote-type-grid__types-variants-answer">
@@ -60,10 +50,10 @@ const AddNewVoteTypeGrid = (props) => {
                             <div className="add-new-vote-type-grid__grid-row">
                                 <h4 className="add-new-vote-type-grid__grid-title">{constants.ADD_NEW_VOTE.QUESTION_TYPE_GRID_ROWS}</h4>
                                 <div className="add-new-vote-type-grid__grid-row-input-block">
-                                    <input className="add-new-vote-type-grid__grid-input-text" type={"text"} placeholder={'Введите значение'}/>
+                                    <input className="add-new-vote-type-grid__grid-input-text" type={"text"} placeholder={'Введите значение'} />
                                     <div className="add-new-vote-type-grid__type-input-icons">
-                                        <img className="add-new-vote-type-grid__type-input-gray-plus" src={iconPlus} alt={constants.GENERAL.ALT_ICON}/>
-                                        <img className="add-new-vote-type-grid__type-input-gray-basket" src={iconBasket} alt={constants.GENERAL.ALT_ICON}/>
+                                        <img className="add-new-vote-type-grid__type-input-gray-plus" src={iconPlus} alt={constants.GENERAL.ALT_ICON} />
+                                        <img className="add-new-vote-type-grid__type-input-gray-basket" src={iconBasket} alt={constants.GENERAL.ALT_ICON} />
                                     </div>
                                 </div>
                             </div>
@@ -71,18 +61,18 @@ const AddNewVoteTypeGrid = (props) => {
                                 <h4 className="add-new-vote-type-grid__grid-title">{constants.ADD_NEW_VOTE.QUESTION_TYPE_GRID_COLUMNS}</h4>
                                 <div className="add-new-vote-type-grid__grid-column-input-block">
                                     <input className="add-new-vote-type-grid__grid-input-text"
-                                           type={"text"}
-                                           placeholder={constants.ADD_NEW_VOTE.QUESTION_TYPE_GRID_ENTER_VALUES}/>
+                                        type={"text"}
+                                        placeholder={constants.ADD_NEW_VOTE.QUESTION_TYPE_GRID_ENTER_VALUES} />
                                     <div className="add-new-vote-type-grid__type-input-icons">
-                                        <img className="add-new-vote-type-grid__type-input-gray-plus" src={iconPlus} alt={constants.GENERAL.ALT_ICON}/>
-                                        <img className="add-new-vote-type-grid__type-input-gray-basket" src={iconBasket} alt={constants.GENERAL.ALT_ICON}/>
+                                        <img className="add-new-vote-type-grid__type-input-gray-plus" src={iconPlus} alt={constants.GENERAL.ALT_ICON} />
+                                        <img className="add-new-vote-type-grid__type-input-gray-basket" src={iconBasket} alt={constants.GENERAL.ALT_ICON} />
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="add-new-vote-type-grid__checkbox">
                             <label className='add-new-vote-type-grid__checkbox_container'>
-                                <input type="checkbox"/>
+                                <input type="checkbox" />
                                 <span className='add-new-vote-type-grid__checkmark' />
                             </label>
                             <p className="add-new-vote-type-grid__label-checkbox">{constants.ADD_NEW_VOTE.QUESTION_TYPE_GRID_NOTE}</p>
@@ -110,4 +100,5 @@ const AddNewVoteTypeGrid = (props) => {
         </div>
     )
 }
+
 export default AddNewVoteTypeGrid;

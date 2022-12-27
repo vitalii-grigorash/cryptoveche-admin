@@ -103,6 +103,7 @@ const AddNewVote = (props) => {
     const [observersList, setObserversList] = useState([]);
     const [isCountersAddOpen, setCountersAddOpen] = useState(false);
     const [isObserversAddOpen, setObserversAddOpen] = useState(false);
+    const [questionsList, setQuestionsList] = useState([]);
 
     const example = {
         "template_title": "Все вопросы",
@@ -175,7 +176,7 @@ const AddNewVote = (props) => {
                         { "value": "Вариант 4" }
                     ],
                     "columns": []
-                }, 
+                },
                 "materials": [],
                 "is_required_grid_rows": false,
                 "rules": {
@@ -194,7 +195,7 @@ const AddNewVote = (props) => {
                         { "value": "Григораш Витлий Юрьевич" }
                     ],
                     "columns": []
-                }, 
+                },
                 "materials": [],
                 "is_required_grid_rows": false,
                 "rules": {
@@ -395,8 +396,6 @@ const AddNewVote = (props) => {
     }
 
     function addEmptyMaterial() {
-        // link
-        // doc
         const material = {
             id: idGenerate(eventMaterials),
             title: "",
@@ -867,44 +866,44 @@ const AddNewVote = (props) => {
     useEffect(() => {
         const getWightBlock = document.getElementById('addNewVoteWight').clientWidth;
         if (getWightBlock > 491 || activeModalTypeQuestion === false) {
-             setActiveAddQuestionMobileBnt(false)
-            } else if (getWightBlock < 491 && activeModalTypeQuestion === true) {
+            setActiveAddQuestionMobileBnt(false)
+        } else if (getWightBlock < 491 && activeModalTypeQuestion === true) {
             setActiveAddQuestionMobileBnt(true)
         }
-    },[activeModalTypeQuestion])
+    }, [activeModalTypeQuestion])
 
     const onShowSelectTypeQuestion = () => {
         setActiveTypeQuestionBnt(true);
     }
 
-    const onGetTypeQuestionBtn = (nameQuestion, typeQuestion) => {
+    const onGetTypeQuestionBtn = (typeQuestion) => {
         setSelectedTypeQuestionBtn(typeQuestion)
         switch (typeQuestion) {
-            case 'ynq' :
+            case 'ynq':
                 setActiveModalTypeQuestion(true)
                 setActiveTypeQuestionBnt(false)
                 break;
-            case 'none' :
+            case 'none':
                 setActiveModalTypeQuestion(true)
                 setActiveTypeQuestionBnt(false)
                 break;
-            case 'positionSingle' :
+            case 'positionSingle':
                 setActiveModalTypeQuestion(true)
                 setActiveTypeQuestionBnt(false)
                 break;
-            case 'grid' :
+            case 'grid':
                 setActiveModalTypeQuestion(true)
                 setActiveTypeQuestionBnt(false)
                 break;
-            case 'radioGrid' :
+            case 'radioGrid':
                 setActiveModalTypeQuestion(true)
                 setActiveTypeQuestionBnt(false)
                 break;
-            case 'positionMultiple' :
+            case 'positionMultiple':
                 setActiveModalTypeQuestion(true)
                 setActiveTypeQuestionBnt(false)
                 break;
-            case 'samePositions' :
+            case 'samePositions':
                 setActiveModalTypeQuestion(true)
                 setActiveTypeQuestionBnt(false)
                 break;
@@ -912,8 +911,6 @@ const AddNewVote = (props) => {
             }
         }
     }
-
-    console.log(selectedTypeQuestionBtn)
 
     function votersValidate() {
         if (activeOpenList || isLinkUsersActive) {
@@ -1327,7 +1324,6 @@ const AddNewVote = (props) => {
                                 deleteMaterial={deleteMaterial}
                                 requestHelper={requestHelper}
                             />
-
                             <h3 className="add-new-vote__title-select-org">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_SETTINGS_USERS}</h3>
                             <div className="add-new-vote__user-settings-open-close-btn">
                                 <div onClick={onShowCloseList} className={activeCloseList ? "add-new-vote__settings-button-close-open-list active" : "add-new-vote__settings-button-close-open-list"}>
@@ -1550,7 +1546,7 @@ const AddNewVote = (props) => {
                 </div>
                 {activeQuestionBlock && (
                     <div className="add-new-vote__questions-block">
-                        <AddNewVoteCreatedQuestion constants={constants} />
+                        {/* <AddNewVoteCreatedQuestion constants={constants} /> */}
                         <div className="add-new-vote__questions">
                             <h3 className="add-new-vote__title-questions">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_TITLE}</h3>
                             <h3 className="add-new-vote__title-questions-mobile">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_TITLE_MOBILE}</h3>
@@ -1563,7 +1559,7 @@ const AddNewVote = (props) => {
                             <div className={activeTypeQuestionBnt ? "add-new-vote__select-type-questions active" : "add-new-vote__select-type-questions"}>
                                 {typeQuestionButtons.map((item, i) => {
                                     return (
-                                        <div onClick={() => onGetTypeQuestionBtn(item.nameBtn, item.typeQuestion)} key={i} className={item.classNameBtn}>
+                                        <div onClick={() => onGetTypeQuestionBtn(item.typeQuestion)} key={i} className={item.classNameBtn}>
                                             {item.nameBtn}
                                         </div>
                                     )
@@ -1573,111 +1569,125 @@ const AddNewVote = (props) => {
                     </div>
                 )}
             </div>
-            {selectedTypeQuestionBtn === 'ynq' ? <AddNewVoteTypeYnq
-                activeModalTypeQuestion={activeModalTypeQuestion}
-                setActiveModalTypeQuestion={setActiveModalTypeQuestion}
-                constants={constants}
-                selectedTypeQuestionBtn={selectedTypeQuestionBtn}
-                setSelectedTypeQuestionBtn={setSelectedTypeQuestionBtn}
-                typeQuestionButtons={typeQuestionButtons}
-                eventMaterials={eventMaterials}
-                addEmptyMaterial={addEmptyMaterial}
-                changeMaterialType={changeMaterialType}
-                linkInputChange={linkInputChange}
-                titleInputChange={titleInputChange}
-                changeDocLink={changeDocLink}
-                deleteMaterial={deleteMaterial}
-                requestHelper={requestHelper}/> : null}
-            {selectedTypeQuestionBtn === 'none' ? <AddNewVoteTypeNone
-                activeModalTypeQuestion={activeModalTypeQuestion}
-                setActiveModalTypeQuestion={setActiveModalTypeQuestion}
-                constants={constants}
-                selectedTypeQuestionBtn={selectedTypeQuestionBtn}
-                setSelectedTypeQuestionBtn={setSelectedTypeQuestionBtn}
-                typeQuestionButtons={typeQuestionButtons}
-                eventMaterials={eventMaterials}
-                addEmptyMaterial={addEmptyMaterial}
-                changeMaterialType={changeMaterialType}
-                linkInputChange={linkInputChange}
-                titleInputChange={titleInputChange}
-                changeDocLink={changeDocLink}
-                deleteMaterial={deleteMaterial}
-                requestHelper={requestHelper}/> : null}
-            {selectedTypeQuestionBtn === 'positionSingle' ? <AddNewVoteTypePositionSingle
-                activeModalTypeQuestion={activeModalTypeQuestion}
-                setActiveModalTypeQuestion={setActiveModalTypeQuestion}
-                constants={constants}
-                selectedTypeQuestionBtn={selectedTypeQuestionBtn}
-                setSelectedTypeQuestionBtn={setSelectedTypeQuestionBtn}
-                typeQuestionButtons={typeQuestionButtons}
-                eventMaterials={eventMaterials}
-                addEmptyMaterial={addEmptyMaterial}
-                changeMaterialType={changeMaterialType}
-                linkInputChange={linkInputChange}
-                titleInputChange={titleInputChange}
-                changeDocLink={changeDocLink}
-                deleteMaterial={deleteMaterial}
-                requestHelper={requestHelper}/> : null}
-            {selectedTypeQuestionBtn === 'grid' ? <AddNewVoteTypeGrid
-                activeModalTypeQuestion={activeModalTypeQuestion}
-                setActiveModalTypeQuestion={setActiveModalTypeQuestion}
-                constants={constants}
-                selectedTypeQuestionBtn={selectedTypeQuestionBtn}
-                setSelectedTypeQuestionBtn={setSelectedTypeQuestionBtn}
-                typeQuestionButtons={typeQuestionButtons}
-                eventMaterials={eventMaterials}
-                addEmptyMaterial={addEmptyMaterial}
-                changeMaterialType={changeMaterialType}
-                linkInputChange={linkInputChange}
-                titleInputChange={titleInputChange}
-                changeDocLink={changeDocLink}
-                deleteMaterial={deleteMaterial}
-                requestHelper={requestHelper}/> : null}
-            {selectedTypeQuestionBtn === 'radioGrid' ? <AddNewVoteTypeRadioGrid
-                activeModalTypeQuestion={activeModalTypeQuestion}
-                setActiveModalTypeQuestion={setActiveModalTypeQuestion}
-                constants={constants}
-                selectedTypeQuestionBtn={selectedTypeQuestionBtn}
-                setSelectedTypeQuestionBtn={setSelectedTypeQuestionBtn}
-                typeQuestionButtons={typeQuestionButtons}
-                eventMaterials={eventMaterials}
-                addEmptyMaterial={addEmptyMaterial}
-                changeMaterialType={changeMaterialType}
-                linkInputChange={linkInputChange}
-                titleInputChange={titleInputChange}
-                changeDocLink={changeDocLink}
-                deleteMaterial={deleteMaterial}
-                requestHelper={requestHelper}/> : null}
-            {selectedTypeQuestionBtn === 'positionMultiple' ? <AddNewVoteTypePositionMultiple
-                activeModalTypeQuestion={activeModalTypeQuestion}
-                setActiveModalTypeQuestion={setActiveModalTypeQuestion}
-                constants={constants}
-                selectedTypeQuestionBtn={selectedTypeQuestionBtn}
-                setSelectedTypeQuestionBtn={setSelectedTypeQuestionBtn}
-                typeQuestionButtons={typeQuestionButtons}
-                eventMaterials={eventMaterials}
-                addEmptyMaterial={addEmptyMaterial}
-                changeMaterialType={changeMaterialType}
-                linkInputChange={linkInputChange}
-                titleInputChange={titleInputChange}
-                changeDocLink={changeDocLink}
-                deleteMaterial={deleteMaterial}
-                requestHelper={requestHelper}/> : null}
-            {selectedTypeQuestionBtn === 'samePositions' ? <AddNewVoteTypeSamePositions
-                activeModalTypeQuestion={activeModalTypeQuestion}
-                setActiveModalTypeQuestion={setActiveModalTypeQuestion}
-                constants={constants}
-                selectedTypeQuestionBtn={selectedTypeQuestionBtn}
-                setSelectedTypeQuestionBtn={setSelectedTypeQuestionBtn}
-                typeQuestionButtons={typeQuestionButtons}
-                eventMaterials={eventMaterials}
-                addEmptyMaterial={addEmptyMaterial}
-                changeMaterialType={changeMaterialType}
-                linkInputChange={linkInputChange}
-                titleInputChange={titleInputChange}
-                changeDocLink={changeDocLink}
-                deleteMaterial={deleteMaterial}
-                requestHelper={requestHelper}/> : null}
+            {selectedTypeQuestionBtn === 'ynq' &&
+                <AddNewVoteTypeYnq
+                    activeModalTypeQuestion={activeModalTypeQuestion}
+                    setActiveModalTypeQuestion={setActiveModalTypeQuestion}
+                    constants={constants}
+                    selectedTypeQuestionBtn={selectedTypeQuestionBtn}
+                    eventMaterials={eventMaterials}
+                    addEmptyMaterial={addEmptyMaterial}
+                    changeMaterialType={changeMaterialType}
+                    linkInputChange={linkInputChange}
+                    titleInputChange={titleInputChange}
+                    changeDocLink={changeDocLink}
+                    deleteMaterial={deleteMaterial}
+                    requestHelper={requestHelper}
+                    questionsList={questionsList}
+                />
+            }
+            {selectedTypeQuestionBtn === 'none' &&
+                <AddNewVoteTypeNone
+                    activeModalTypeQuestion={activeModalTypeQuestion}
+                    setActiveModalTypeQuestion={setActiveModalTypeQuestion}
+                    constants={constants}
+                    selectedTypeQuestionBtn={selectedTypeQuestionBtn}
+                    eventMaterials={eventMaterials}
+                    addEmptyMaterial={addEmptyMaterial}
+                    changeMaterialType={changeMaterialType}
+                    linkInputChange={linkInputChange}
+                    titleInputChange={titleInputChange}
+                    changeDocLink={changeDocLink}
+                    deleteMaterial={deleteMaterial}
+                    requestHelper={requestHelper}
+                    questionsList={questionsList}
+                />
+            }
+            {selectedTypeQuestionBtn === 'positionSingle' &&
+                <AddNewVoteTypePositionSingle
+                    activeModalTypeQuestion={activeModalTypeQuestion}
+                    setActiveModalTypeQuestion={setActiveModalTypeQuestion}
+                    constants={constants}
+                    selectedTypeQuestionBtn={selectedTypeQuestionBtn}
+                    eventMaterials={eventMaterials}
+                    addEmptyMaterial={addEmptyMaterial}
+                    changeMaterialType={changeMaterialType}
+                    linkInputChange={linkInputChange}
+                    titleInputChange={titleInputChange}
+                    changeDocLink={changeDocLink}
+                    deleteMaterial={deleteMaterial}
+                    requestHelper={requestHelper}
+                    questionsList={questionsList}
+                />
+            }
+            {selectedTypeQuestionBtn === 'grid' &&
+                <AddNewVoteTypeGrid
+                    activeModalTypeQuestion={activeModalTypeQuestion}
+                    setActiveModalTypeQuestion={setActiveModalTypeQuestion}
+                    constants={constants}
+                    selectedTypeQuestionBtn={selectedTypeQuestionBtn}
+                    eventMaterials={eventMaterials}
+                    addEmptyMaterial={addEmptyMaterial}
+                    changeMaterialType={changeMaterialType}
+                    linkInputChange={linkInputChange}
+                    titleInputChange={titleInputChange}
+                    changeDocLink={changeDocLink}
+                    deleteMaterial={deleteMaterial}
+                    requestHelper={requestHelper}
+                    questionsList={questionsList}
+                />
+            }
+            {selectedTypeQuestionBtn === 'radioGrid' &&
+                <AddNewVoteTypeRadioGrid
+                    activeModalTypeQuestion={activeModalTypeQuestion}
+                    setActiveModalTypeQuestion={setActiveModalTypeQuestion}
+                    constants={constants}
+                    selectedTypeQuestionBtn={selectedTypeQuestionBtn}
+                    eventMaterials={eventMaterials}
+                    addEmptyMaterial={addEmptyMaterial}
+                    changeMaterialType={changeMaterialType}
+                    linkInputChange={linkInputChange}
+                    titleInputChange={titleInputChange}
+                    changeDocLink={changeDocLink}
+                    deleteMaterial={deleteMaterial}
+                    requestHelper={requestHelper}
+                    questionsList={questionsList}
+                />
+            }
+            {selectedTypeQuestionBtn === 'positionMultiple' &&
+                <AddNewVoteTypePositionMultiple
+                    activeModalTypeQuestion={activeModalTypeQuestion}
+                    setActiveModalTypeQuestion={setActiveModalTypeQuestion}
+                    constants={constants}
+                    selectedTypeQuestionBtn={selectedTypeQuestionBtn}
+                    eventMaterials={eventMaterials}
+                    addEmptyMaterial={addEmptyMaterial}
+                    changeMaterialType={changeMaterialType}
+                    linkInputChange={linkInputChange}
+                    titleInputChange={titleInputChange}
+                    changeDocLink={changeDocLink}
+                    deleteMaterial={deleteMaterial}
+                    requestHelper={requestHelper}
+                    questionsList={questionsList}
+                />
+            }
+            {selectedTypeQuestionBtn === 'samePositions' &&
+                <AddNewVoteTypeSamePositions
+                    activeModalTypeQuestion={activeModalTypeQuestion}
+                    setActiveModalTypeQuestion={setActiveModalTypeQuestion}
+                    constants={constants}
+                    selectedTypeQuestionBtn={selectedTypeQuestionBtn}
+                    eventMaterials={eventMaterials}
+                    addEmptyMaterial={addEmptyMaterial}
+                    changeMaterialType={changeMaterialType}
+                    linkInputChange={linkInputChange}
+                    titleInputChange={titleInputChange}
+                    changeDocLink={changeDocLink}
+                    deleteMaterial={deleteMaterial}
+                    requestHelper={requestHelper}
+                    questionsList={questionsList}
+                />
+            }
             {activeAddQuestionMobileBnt && (
                 <div className="add-new-vote__add-question-button-mobile">
                     <img className="add-new-vote__add-question-button-mobile-icon" src={iconAddQuestionPlusGreen} alt={constants.GENERAL.ALT_ICON} />
