@@ -1,0 +1,207 @@
+/*------Основной контейнер--------------------------------------------------------------------------------------------*/
+.details-vote-questions-card {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1.77em;
+    margin-bottom: 1.77em;
+    border-bottom: 1px solid rgba(54, 59, 77, 0.2);
+}
+.details-vote-questions-card__qq {
+    background-color: #0084FE;
+}
+/*------Контейнер для блока с названием вопроса-----------------------------------------------------------------------*/
+.details-vote-questions-card__question {
+    display: flex;
+    flex-direction: column;
+    gap: 0.88em;
+    margin-bottom: 1.77em;
+}
+.details-vote-questions-card__question-name {
+    font-size: 1em;
+    line-height: 133%;
+    font-weight: 600;
+    color: rgba(54, 59, 77, 0.9);
+}
+.details-vote-questions-card__question-note {
+    font-size: 0.88em;
+    font-weight: 400;
+    line-height: 150%;
+    color: rgba(54, 59, 77, 0.4);
+}
+.details-vote-questions-card__materials-vote {
+    font-size: 0.77em;
+}
+/*------Контейнер для блока с типом row-------------------------------------------------------------------------------*/
+.details-vote-questions-card__row-answer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.88em;
+}
+.details-vote-questions-card__row-answer-variant {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.66em;
+}
+.details-vote-questions-card__row-answer-variant-square {
+    width: 10px;
+    height: 10px;
+    background: #CCE4FF;
+}
+.details-vote-questions-card__row-answer-variant-name {
+    font-size: 1em;
+    line-height: 133%;
+    color: rgba(54, 59, 77, 0.9);
+}
+/*------Контейнер для блока с типом grid------------------------------------------------------------------------------*/
+.details-vote-questions-card__grid {
+    display: flex;
+    height: 15em;
+    overflow: auto;
+    flex-direction: column;
+    gap: 1.77em;
+    max-width: 774px;
+}
+.details-vote-questions-card__grid-answer-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.33em;
+    height: 1.33em;
+}
+.details-vote-questions-card__grid-answer-header-empty-block {
+    min-width: 11em;
+    max-width: 11em;
+}
+.details-vote-questions-card__grid-answer-header-item {
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*min-width: 7.11em;*/
+    /*max-width: 7.11em;*/
+    /*font-size: 1em;*/
+    /*color: rgba(54, 59, 77, 0.9);*/
+    /*line-height: 133%;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    text-align: center;
+    min-width: 7.11em;
+    max-width: 7.11em;
+    font-size: 1em;
+    color: rgba(54, 59, 77, 0.9);
+    line-height: 133%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.details-vote-questions-card__grid-answer-row {
+    display: flex;
+    flex-direction: column;
+}
+.details-vote-questions-card__grid-answer-row-name {
+    min-width: 11em;
+    max-width: 11em;
+    word-break: break-word;
+}
+.details-vote-questions-card__grid-answer-row-item {
+    display: flex;
+    flex-direction: row;
+    gap: 1.33em;
+    font-size: 1em;
+    color: rgba(54, 59, 77, 0.9);
+    line-height: 133%;
+}
+.details-vote-questions-card__grid-answer-row-checkbox {
+    display: flex;
+    justify-content: center;
+    min-width: 7.11em;
+    max-width: 7.11em;
+}
+.details-vote-questions-card__grid-answer-row-checkmark {
+    width: 1.33em;
+    height: 1.33em;
+    background: #FBFBFB;
+    border: 1px solid rgba(54, 59, 77, 0.2);
+    border-radius: 2px;
+}
+.details-vote-questions-card__grid-answer-row-radio {
+    width: 1.33em;
+    height: 1.33em;
+    background: #FBFBFB;
+    border: 1px solid rgba(54, 59, 77, 0.2);
+    border-radius: 50%
+}
+.details-vote-questions-card__grid::-webkit-scrollbar {
+    width: 0.44em;
+    height: 0.44em;/* ширина всей полосы прокрутки */
+}
+.details-vote-questions-card__grid::-webkit-scrollbar-track {
+    background: rgba(54, 59, 77, 0.1);        /* цвет зоны отслеживания */
+}
+.details-vote-questions-card__grid::-webkit-scrollbar-thumb {
+    background-color: gray;    /* цвет бегунка */
+    border-radius: 1.11em;       /* округлось бегунка */
+    /* отступ вокруг бегунка */
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 650px) {
+    .details-vote-questions-card {
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+    }
+    .details-vote-questions-card__question {
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+    .details-vote-questions-card__question-name {
+        font-size: 16px;
+        line-height: 150%;
+        font-weight: 500;
+    }
+    .details-vote-questions-card__question-note {
+        font-size: 14px;
+        line-height: 157%;
+    }
+    .details-vote-questions-card__materials-vote {
+        font-size: 14px;
+        line-height: 157%;
+    }
+    .details-vote-questions-card__row-answer-variant {
+        gap: 12px;
+    }
+    .details-vote-questions-card__row-answer-variant-square {
+        width: 8px;
+        height: 8px;
+    }
+    .details-vote-questions-card__row-answer-variant-name {
+        font-size: 16px;
+        line-height: 138%;
+    }
+    .details-vote-questions-card__grid {
+        gap: 24px;
+        height: 382px;
+    }
+    .details-vote-questions-card__grid-answer-header {
+        gap: 32px;
+        min-height: 22px;
+    }
+    .details-vote-questions-card__grid-answer-header-item {
+        font-size: 16px;
+        line-height: 138%;
+    }
+    .details-vote-questions-card__grid-answer-row-item {
+        font-size: 16px;
+        gap: 32px;
+    }
+    .details-vote-questions-card__grid-answer-header-empty-block {
+        max-width: 136px;
+        min-width: 136px;
+    }
+    .details-vote-questions-card__grid-answer-row-name {
+        max-width: 136px;
+        min-width: 136px;
+    }
+    .details-vote-questions-card__grid::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;/* ширина всей полосы прокрутки */
+    }
+}

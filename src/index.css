@@ -48,6 +48,26 @@
 @import url(./components/DetailsVote/DetailsVote.css);
 @import url(./components/DetailsVoteGeneralInfo/DetailsVoteGeneralInfo.css);
 @import url(./components/DetailsVoteStatisticsVote/DetailsVoteStatisticsVote.css);
-@import url(./components/DetailsVoteVoting/DetailsVoteVoting.css);
-@import url(./components/DetailsVoteObservers/DetailsVoteObservers.css);
+@import url(components/DetailsVoteVotingObserversCounting/DetailsVoteVotingObserversCounting.css);
 @import url(./components/DetailsVoteQuestions/DetailsVoteQuestions.css);
+@import url(./components/DetailsVoteResults/DetailsVoteResults.css);
+@import url(./components/DetailsVoteQuestionsCard/DetailsVoteQuestionsCard.css);
+@import url(./components/DetailsVotesPageResultGridTable/DetailsVotesPageResultGridTable.css);
+@import url(./components/DetailsVotesPageResultQuestionGrid/DetailsVotesPageResultQuestionGrid.css);
+@import url(./components/DetailsVotesPageResultQuestionRow/DetailsVotesPageResultQuestionRow.css);
+@import url(./components/DetailsVotesPageResultVotesCardQuestionGraph/DetailsVotesPageResultVotesCardQuestionGraphGrid.css);
+@import url(./components/DetailsVotesPageResultVotesCardQuestionGraph/DetailsVotesPageResultVotesCardQuestionGraphRow.css);
+@import url(./components/DetailsVotesPageResultVotesCardQuestionGraph/CardQuestionGraphNameColumn/CardQuestionGraphNameColumnGrid.css);
+@import url(./components/DetailsVotesPageResultVotesCardQuestionGraph/CardQuestionGraphNameColumn/CardQuestionGraphNameColumnRow.css);
+@import url(./components/DetailsVotesPageResultVotesCardQuestionGraph/CardQuestionHorizontalGraph/CardQuestionHorizontalGraphRow.css);
+@import url(./components/DetailsVotesPageResultVotesCardQuestionGraph/CardQuestionHorizontalGraphColumn/CardQuestionHorizontalGraphColumnGrid.css);
+@import url(./components/DetailsVotesPageResultVotesCardQuestionGraph/CardQuestionHorizontalGraphColumn/CardQuestionHorizontalGraphColumnRow.css);
+@import url(./components/DetailsVotesPageResultVotesCardQuestionGraph/CardQuestionVerticalGraph/CardQuestionVerticalGraphGrid.css);
+@import url(./components/DetailsVotesPageResultVotesCardQuestionGraph/CardQuestionVerticalGraph/CardQuestionVerticalGraphRow.css);
+@import url(./components/DetailsVotesPageResultVotesCardQuestionGraph/CardQuestionVerticalGraphThinColumn/CardQuestionVerticalGraphThinColumn.css);
+@import url(./components/DetailsVotesPageResultVotesCardQuestionGraph/CardQuestionVerticalGraphWideColumn/CardQuestionVerticalGraphWideColumn.css);
+@import url(./components/DetailsVotesPageResultVotesCardQuestionTable/DetailsVotesPageResultVotesCardQuestionTable.css);
+@import url(./components/DetailsVotesPageResultVotesCardQuestionTable/CardQuestionCellsTable/CardQuestionCellsTable.css);
+
+
+

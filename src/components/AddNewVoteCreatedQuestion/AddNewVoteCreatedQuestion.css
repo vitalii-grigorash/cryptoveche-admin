@@ -171,15 +171,15 @@
     max-width: 7.11em;
 }
 .add-new-vote-created-question__grid::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;/* ширина всей полосы прокрутки */
+    width: 0.44em;
+    height: 0.44em;/* ширина всей полосы прокрутки */
 }
 .add-new-vote-created-question__grid::-webkit-scrollbar-track {
     background: rgba(54, 59, 77, 0.1);        /* цвет зоны отслеживания */
 }
 .add-new-vote-created-question__grid::-webkit-scrollbar-thumb {
     background-color: gray;    /* цвет бегунка */
-    border-radius: 20px;       /* округлось бегунка */
+    border-radius: 1.11em;       /* округлось бегунка */
     /* отступ вокруг бегунка */
 }
 /*------Контейнер для блока с кнопками редактировать и удалить--------------------------------------------------------*/

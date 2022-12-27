@@ -342,6 +342,7 @@ function App() {
                            element={<DetailsVote
                                constants={constants}
                                authAs={authAs}
+                               requestHelper={requestHelper}
                            />}
                     />
                     <Route exact path={'/list-templates'}

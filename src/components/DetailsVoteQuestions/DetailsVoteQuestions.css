@@ -1,0 +1,39 @@
+/*------Основной контейнер--------------------------------------------------------------------------------------------*/
+.details-vote-questions__container {
+    display: flex;
+    flex-direction: column;
+    padding: 1.77em 1.77em 2.22em 1.77em;
+    box-shadow: -1px 0 8px rgba(54, 58, 72, 0.07);
+    background-color: #FFFFFF;
+    border-radius: 1.33em;
+    align-self: flex-start;
+    width: 68.889vw;
+}
+.details-vote-questions__title {
+    font-size: 1.33em;
+    line-height: 133%;
+    font-weight: 600;
+    color: rgba(54, 59, 77, 0.9);
+    margin-bottom: 1.33em;
+}
+.details-vote-questions__title-mobile {
+    display: none;
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 650px) {
+    .details-vote-questions__container {
+        width: 100%;
+        padding: 16px 16px 24px 16px;
+    }
+    .details-vote-questions__title-mobile {
+        display: initial;
+        margin-bottom: 16px;
+        font-size: 18px;
+        line-height: 144%;
+        font-weight: 500;
+        color: rgba(54, 59, 77, 0.9);
+    }
+    .details-vote-questions__title {
+        display: none;
+    }
+}
