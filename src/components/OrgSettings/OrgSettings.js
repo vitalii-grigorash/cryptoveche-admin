@@ -9,16 +9,19 @@ import ProtocolSettings from "../ProtocolSettings/ProtocolSettings";
 import VoteSettings from "../VoteSettings/VoteSettings";
 import MailingSettings from '../MailingSettings/MailingSettings';
 import SubscriptionSettings from "../SubscriptionSettings/SubscriptionSettings";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const OrgSettings = (props) => {
 
     const {
         constants,
-        requestHelper
+        requestHelper,
+        authAs
     } = props;
 
     const navigate = useNavigate();
     const title = Validation();
+    const currentUser = React.useContext(CurrentUserContext);
     const [isEditUserActive, setEditUserActive] = useState(false);
     const [currentOrg, setCurrentOrg] = useState({});
     const [orgTitle, setOrgTitle] = useState('');
@@ -37,6 +40,28 @@ const OrgSettings = (props) => {
     const [isMailingSettingsMobileActive, setMailingSettingsMobileActive] = useState(false);
     const [isSubscriptionSettingsMobileActive, setSubscriptionSettingsMobileActive] = useState(false);
     const [isOrganizationActive, setOrganizationActive] = useState(false);
+    const [isOrgSuperAdmin, setOrgSuperAdmin] = useState(false);
+
+    useEffect(() => {
+        if (currentOrg.admins !== undefined) {
+            if (authAs === 'admin') {
+                const isOrgSuperUser = currentOrg.admins.find(admin => admin.id === currentUser.id);
+                if (isOrgSuperUser === undefined) {
+                    setOrgSuperAdmin(false);
+                    setAdminsSettingsActive(false);
+                    setGeneralSettingsActive(true);
+                } else {
+                    setOrgSuperAdmin(true);
+                    setAdminsSettingsActive(true);
+                    setGeneralSettingsActive(false);
+                }
+            }
+        } else if (authAs === 'superAdmin') {
+            setOrgSuperAdmin(true);
+            setAdminsSettingsActive(true);
+            setGeneralSettingsActive(false);
+        }
+    }, [currentOrg, authAs, currentUser.id])
 
     function getCurrentOrg() {
         if (localStorage.getItem('currentOrgId')) {
@@ -271,10 +296,12 @@ const OrgSettings = (props) => {
             </div>
             <div className="org-settings__main-container">
                 <div className="org-settings__nav-container">
-                    <div className={`${isAdminsSettingsActive ? 'org-settings__link-container org-settings__link-container_active' : 'org-settings__link-container org-settings__link-container_admins'}`} onClick={adminsSettingsShow}>
-                        <div className={`${isAdminsSettingsActive ? 'org-settings__link-icon org-settings__link-icon_admins-active' : 'org-settings__link-icon org-settings__link-icon_admins'}`} />
-                        <p className="org-settings__link-text">{constants.ORG_SETTINGS.ADMINS_LIST}</p>
-                    </div>
+                    {isOrgSuperAdmin && (
+                        <div className={`${isAdminsSettingsActive ? 'org-settings__link-container org-settings__link-container_active' : 'org-settings__link-container org-settings__link-container_admins'}`} onClick={adminsSettingsShow}>
+                            <div className={`${isAdminsSettingsActive ? 'org-settings__link-icon org-settings__link-icon_admins-active' : 'org-settings__link-icon org-settings__link-icon_admins'}`} />
+                            <p className="org-settings__link-text">{constants.ORG_SETTINGS.ADMINS_LIST}</p>
+                        </div>
+                    )}
                     <div className={`${isGeneralSettingsActive ? 'org-settings__link-container org-settings__link-container_active' : 'org-settings__link-container org-settings__link-container_general'}`} onClick={generalSettingsShow}>
                         <div className={`${isGeneralSettingsActive ? 'org-settings__link-icon org-settings__link-icon_general-active' : 'org-settings__link-icon org-settings__link-icon_general'}`} />
                         <p className="org-settings__link-text">{constants.ORG_SETTINGS.GENERAL_SETTINGS}</p>
@@ -291,20 +318,22 @@ const OrgSettings = (props) => {
                         <div className={`${isMailingSettingsActive ? 'org-settings__link-icon org-settings__link-icon_mailing-active' : 'org-settings__link-icon org-settings__link-icon_mailing'}`} />
                         <p className="org-settings__link-text">{constants.ORG_SETTINGS.MAILING_SETTINGS}</p>
                     </div>
-
-                    <div className={`${isSubscriptionSettingsActive ? 'org-settings__link-container org-settings__link-container_active' : 'org-settings__link-container org-settings__link-container_subscription'}`} onClick={subscriptionSettingsShow}>
-                        <div className={`${isSubscriptionSettingsActive ? 'org-settings__link-icon org-settings__link-icon_subscription-active' : 'org-settings__link-icon org-settings__link-icon_subscription'}`} />
-                        <p className="org-settings__link-text">{constants.ORG_SETTINGS.SUBSCRIPTION_SETTINGS}</p>
-                    </div>
-
-                    <div className={`${isOrganizationActive ? 'org-settings__link-container-green' : 'org-settings__link-container-red'}`} onClick={handleBlockOrg}>
-                        <div className={`${isOrganizationActive ? 'org-settings__link-icon org-settings__link-icon_unlock' : 'org-settings__link-icon org-settings__link-icon_block'}`} />
-                        <p className="org-settings__link-text">{`${isOrganizationActive ? constants.ORG_SETTINGS.UNLOCK_ORG : constants.ORG_SETTINGS.BLOCK_ORG}`}</p>
-                    </div>
-                    <div className="org-settings__link-container-red" onClick={onDeleteOrgClick}>
-                        <div className="org-settings__link-icon org-settings__link-icon_delete" />
-                        <p className="org-settings__link-text">{constants.ORG_SETTINGS.DELETE_ORG}</p>
-                    </div>
+                    {authAs === 'superAdmin' && (
+                        <>
+                            <div className={`${isSubscriptionSettingsActive ? 'org-settings__link-container org-settings__link-container_active' : 'org-settings__link-container org-settings__link-container_subscription'}`} onClick={subscriptionSettingsShow}>
+                                <div className={`${isSubscriptionSettingsActive ? 'org-settings__link-icon org-settings__link-icon_subscription-active' : 'org-settings__link-icon org-settings__link-icon_subscription'}`} />
+                                <p className="org-settings__link-text">{constants.ORG_SETTINGS.SUBSCRIPTION_SETTINGS}</p>
+                            </div>
+                            <div className={`${isOrganizationActive ? 'org-settings__link-container-green' : 'org-settings__link-container-red'}`} onClick={handleBlockOrg}>
+                                <div className={`${isOrganizationActive ? 'org-settings__link-icon org-settings__link-icon_unlock' : 'org-settings__link-icon org-settings__link-icon_block'}`} />
+                                <p className="org-settings__link-text">{`${isOrganizationActive ? constants.ORG_SETTINGS.UNLOCK_ORG : constants.ORG_SETTINGS.BLOCK_ORG}`}</p>
+                            </div>
+                            <div className="org-settings__link-container-red" onClick={onDeleteOrgClick}>
+                                <div className="org-settings__link-icon org-settings__link-icon_delete" />
+                                <p className="org-settings__link-text">{constants.ORG_SETTINGS.DELETE_ORG}</p>
+                            </div>
+                        </>
+                    )}
                 </div>
                 <div className="org-settings__container">
                     {isAdminsSettingsActive && (
@@ -312,6 +341,8 @@ const OrgSettings = (props) => {
                             constants={constants}
                             requestHelper={requestHelper}
                             org={currentOrg}
+                            currentUser={currentUser}
+                            authAs={authAs}
                             reloadOrgPage={reloadOrgPage}
                         />
                     )}
@@ -321,6 +352,7 @@ const OrgSettings = (props) => {
                             requestHelper={requestHelper}
                             org={currentOrg}
                             reloadOrgPage={reloadOrgPage}
+                            isOrgSuperAdmin={isOrgSuperAdmin}
                         />
                     )}
                     {isProtocolSettingsActive && (
@@ -329,6 +361,7 @@ const OrgSettings = (props) => {
                             requestHelper={requestHelper}
                             org={currentOrg}
                             reloadOrgPage={reloadOrgPage}
+                            isOrgSuperAdmin={isOrgSuperAdmin}
                         />
                     )}
                     {isVoteSettingsActive && (
@@ -337,6 +370,7 @@ const OrgSettings = (props) => {
                             requestHelper={requestHelper}
                             org={currentOrg}
                             reloadOrgPage={reloadOrgPage}
+                            isOrgSuperAdmin={isOrgSuperAdmin}
                         />
                     )}
                     {isMailingSettingsActive && (
@@ -345,6 +379,7 @@ const OrgSettings = (props) => {
                             requestHelper={requestHelper}
                             org={currentOrg}
                             reloadOrgPage={reloadOrgPage}
+                            isOrgSuperAdmin={isOrgSuperAdmin}
                         />
                     )}
                     {isSubscriptionSettingsActive && (
@@ -370,10 +405,12 @@ const OrgSettings = (props) => {
                 )}
                 {isMobileNavActive ? (
                     <div className="org-settings__nav-container-mobile">
-                        <div className="org-settings__link-container" onClick={adminsSettingsMobileShow}>
-                            <div className="org-settings__link-icon org-settings__link-icon_admins" />
-                            <p className="org-settings__link-text">{constants.ORG_SETTINGS.ADMINS_LIST}</p>
-                        </div>
+                        {isOrgSuperAdmin && (
+                            <div className="org-settings__link-container" onClick={adminsSettingsMobileShow}>
+                                <div className="org-settings__link-icon org-settings__link-icon_admins" />
+                                <p className="org-settings__link-text">{constants.ORG_SETTINGS.ADMINS_LIST}</p>
+                            </div>
+                        )}
                         <div className="org-settings__link-container" onClick={generalSettingsMobileShow}>
                             <div className="org-settings__link-icon org-settings__link-icon_general" />
                             <p className="org-settings__link-text">{constants.ORG_SETTINGS.GENERAL_SETTINGS}</p>
@@ -390,18 +427,22 @@ const OrgSettings = (props) => {
                             <div className="org-settings__link-icon org-settings__link-icon_mailing" />
                             <p className="org-settings__link-text">{constants.ORG_SETTINGS.MAILING_SETTINGS}</p>
                         </div>
-                        <div className="org-settings__link-container" onClick={subscriptionSettingsMobileShow}>
-                            <div className="org-settings__link-icon org-settings__link-icon_subscription" />
-                            <p className="org-settings__link-text">{constants.ORG_SETTINGS.SUBSCRIPTION_SETTINGS}</p>
-                        </div>
-                        <div className={`${isOrganizationActive ? 'org-settings__link-container-green' : 'org-settings__link-container-red'}`} onClick={handleBlockOrg}>
-                            <div className={`${isOrganizationActive ? 'org-settings__link-icon org-settings__link-icon_unlock' : 'org-settings__link-icon org-settings__link-icon_block'}`} />
-                            <p className="org-settings__link-text">{`${isOrganizationActive ? constants.ORG_SETTINGS.UNLOCK_ORG : constants.ORG_SETTINGS.BLOCK_ORG}`}</p>
-                        </div>
-                        <div className="org-settings__link-container-red" onClick={onDeleteOrgClick}>
-                            <div className="org-settings__link-icon org-settings__link-icon_delete" />
-                            <p className="org-settings__link-text">{constants.ORG_SETTINGS.DELETE_ORG}</p>
-                        </div>
+                        {authAs === 'superAdmin' && (
+                            <>
+                                <div className="org-settings__link-container" onClick={subscriptionSettingsMobileShow}>
+                                    <div className="org-settings__link-icon org-settings__link-icon_subscription" />
+                                    <p className="org-settings__link-text">{constants.ORG_SETTINGS.SUBSCRIPTION_SETTINGS}</p>
+                                </div>
+                                <div className={`${isOrganizationActive ? 'org-settings__link-container-green' : 'org-settings__link-container-red'}`} onClick={handleBlockOrg}>
+                                    <div className={`${isOrganizationActive ? 'org-settings__link-icon org-settings__link-icon_unlock' : 'org-settings__link-icon org-settings__link-icon_block'}`} />
+                                    <p className="org-settings__link-text">{`${isOrganizationActive ? constants.ORG_SETTINGS.UNLOCK_ORG : constants.ORG_SETTINGS.BLOCK_ORG}`}</p>
+                                </div>
+                                <div className="org-settings__link-container-red" onClick={onDeleteOrgClick}>
+                                    <div className="org-settings__link-icon org-settings__link-icon_delete" />
+                                    <p className="org-settings__link-text">{constants.ORG_SETTINGS.DELETE_ORG}</p>
+                                </div>
+                            </>
+                        )}
                     </div>
                 ) : (
                     <div className="org-settings__container-mobile">
@@ -410,6 +451,8 @@ const OrgSettings = (props) => {
                                 constants={constants}
                                 requestHelper={requestHelper}
                                 org={currentOrg}
+                                currentUser={currentUser}
+                                authAs={authAs}
                                 reloadOrgPage={reloadOrgPage}
                             />
                         )}
@@ -419,6 +462,7 @@ const OrgSettings = (props) => {
                                 requestHelper={requestHelper}
                                 org={currentOrg}
                                 reloadOrgPage={reloadOrgPage}
+                                isOrgSuperAdmin={isOrgSuperAdmin}
                             />
                         )}
                         {isProtocolSettingsMobileActive && (
@@ -427,6 +471,7 @@ const OrgSettings = (props) => {
                                 requestHelper={requestHelper}
                                 org={currentOrg}
                                 reloadOrgPage={reloadOrgPage}
+                                isOrgSuperAdmin={isOrgSuperAdmin}
                             />
                         )}
                         {isVoteSettingsMobileActive && (
@@ -435,6 +480,7 @@ const OrgSettings = (props) => {
                                 requestHelper={requestHelper}
                                 org={currentOrg}
                                 reloadOrgPage={reloadOrgPage}
+                                isOrgSuperAdmin={isOrgSuperAdmin}
                             />
                         )}
                         {isMailingSettingsMobileActive && (
@@ -443,6 +489,7 @@ const OrgSettings = (props) => {
                                 requestHelper={requestHelper}
                                 org={currentOrg}
                                 reloadOrgPage={reloadOrgPage}
+                                isOrgSuperAdmin={isOrgSuperAdmin}
                             />
                         )}
                         {isSubscriptionSettingsMobileActive && (

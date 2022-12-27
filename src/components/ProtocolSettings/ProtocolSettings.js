@@ -7,7 +7,8 @@ const ProtocolSettings = (props) => {
         constants,
         requestHelper,
         org,
-        reloadOrgPage
+        reloadOrgPage,
+        isOrgSuperAdmin
     } = props;
 
     const [saveButtonText, setSaveButtonText] = useState(constants.ORG_SETTINGS.BUTTON_SAVE_ADMINS_CHANGE);

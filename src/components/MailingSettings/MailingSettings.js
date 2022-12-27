@@ -6,7 +6,8 @@ const MailingSettings = (props) => {
         constants,
         requestHelper,
         org,
-        reloadOrgPage
+        reloadOrgPage,
+        isOrgSuperAdmin
     } = props;
 
     const [isCreateVoteActive, setCreateVoteActive] = useState(false);
