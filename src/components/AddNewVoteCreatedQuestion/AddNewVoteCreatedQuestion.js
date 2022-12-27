@@ -9,8 +9,8 @@ const AddNewVoteCreatedQuestion = (props) => {
         constants
     } = props;
 
-    const [activeTypeRow, setActiveTypeRow] = useState(false);
-    const [activeTypeGrid, setActiveTypeGrid] = useState(true);
+    const [activeTypeRow, setActiveTypeRow] = useState(true);
+    const [activeTypeGrid, setActiveTypeGrid] = useState(false);
 
     return (
         <div className="add-new-vote-created-question">

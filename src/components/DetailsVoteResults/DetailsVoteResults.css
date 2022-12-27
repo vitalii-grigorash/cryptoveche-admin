@@ -1,0 +1,108 @@
+/*------Основной контейнер--------------------------------------------------------------------------------------------*/
+.details-vote-results__container {
+    display: flex;
+    flex-direction: column;
+    padding: 1.77em 1.77em 2.22em 1.77em;
+    box-shadow: -1px 0 8px rgba(54, 58, 72, 0.07);
+    background-color: #FFFFFF;
+    border-radius: 1.33em;
+    font-size: 18px;
+    align-self: flex-start;
+    width: 68.889vw;
+}
+/*------Стилизация кнопок иконок---------------------------------------------------------------------------------------*/
+.details-votes-page-result-votes-card__switch-table-gistogramma {
+    display: flex;
+    flex-direction: row;
+    gap: 0.44em;
+    margin: 0 auto 1.33em 0;
+}
+.switch-table-gistogramma__gistogramma {
+    width: 2.66em;
+    height: 2.66em;
+    cursor: pointer;
+    background-image: url("../../img/DetailsVoteStatisticsVoteIconGraph.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.switch-table-gistogramma__table {
+    width: 2.66em;
+    height: 2.66em;
+    cursor: pointer;
+    background-image: url("../../img/DetailsVoteStatisticsVoteIconTable.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.switch-table-gistogramma__gistogramma:hover {
+    background-image: url("../../img/DetailsVoteStatisticsVoteIconGraphActive.svg");
+    width: 2.66em;
+    height: 2.66em;
+}
+.switch-table-gistogramma__table:hover {
+    background-image: url("../../img/DetailsVoteStatisticsVoteIconTableActive.svg");
+    width: 2.66em;
+    height: 2.66em;
+}
+.switch-table-gistogramma__gistogramma.active {
+    background-image: url("../../img/DetailsVoteStatisticsVoteIconGraphActive.svg");
+    width: 2.66em;
+    height: 2.66em;
+}
+.switch-table-gistogramma__table.active {
+    background-image: url("../../img/DetailsVoteStatisticsVoteIconTableActive.svg");
+    width: 2.66em;
+    height: 2.66em;
+}
+/*-----Адаптивная версия(под разные устройства)-----------------------------------------------------------------------*/
+@media (max-width: 1420px) {
+    .details-vote-results__container {
+        font-size: 16px;
+    }
+}
+@media (max-width: 1265px) {
+    .details-vote-results__container {
+        font-size: 14px;
+    }
+}
+@media (max-width: 1115px) {
+    .details-vote-results__container {
+        font-size: 12px;
+    }
+}
+@media (max-width: 960px) {
+    .details-vote-results__container {
+        font-size: 10px;
+    }
+}
+@media (max-width: 810px) {
+    .details-vote-results__container {
+        font-size: 8px;
+    }
+}
+/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 650px) {
+    .details-vote-results__container {
+        width: 100%;
+        padding: 16px 16px 16px 16px;
+    }
+    .details-votes-page-result-votes-card__switch-table-gistogramma {
+        gap: 8px;
+        margin: 0 0 16px 0;
+    }
+    .switch-table-gistogramma__gistogramma,
+    .switch-table-gistogramma__table {
+        width: 40px;
+        height: 40px;
+    }
+    .switch-table-gistogramma__gistogramma:hover,
+    .switch-table-gistogramma__table:hover {
+        width: 40px;
+        height: 40px;
+    }
+    .switch-table-gistogramma__gistogramma.active,
+    .switch-table-gistogramma__table.active {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+    }
+}

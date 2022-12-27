@@ -1,0 +1,61 @@
+/*------Стилизация колонки графика------------------------------------------------------------------------------------*/
+.card-question-horizontal-graph-column-row__columns {
+    display: flex;
+    flex-direction: column;
+    gap: 0.22em;
+    max-height: 60px;
+    max-width: 500px;
+    position: relative;
+}
+.card-question-horizontal-graph-column-row__column-svg {
+    width: 28.88em;
+    height: 100%;
+}
+.card-question-horizontal-graph-column-row__column-svg rect {
+    max-width: 200px;
+}
+.card-question-horizontal-graph-column-row__column-svg text {
+
+}
+.card-question-horizontal-graph-column-row__columns-text-percent {
+    position: absolute;
+    font-size: 0.77em;
+    color: rgba(54, 59, 77, 0.9);
+    bottom: 0.66em;
+    right: 0;
+    display: none;
+}
+.card-question-horizontal-graph-column-row__columns-text-percent.active {
+    display: block;
+}
+/*-----Адаптивная версия---------------------------------------------------------------------------------------------*/
+@media (max-width: 900px) {
+    .card-question-horizontal-graph-column-row__column-svg {
+        width: 420px;
+    }
+    .card-question-horizontal-graph-column-row__column-svg text {
+        font-size: 12px;
+    }
+    .card-question-horizontal-graph-column-row__column-svg text {
+        font-size: 10px;
+    }
+    .card-question-horizontal-graph-column-row__column-svg rect {
+        height: 16px;
+    }
+    .card-question-horizontal-graph-column-row__columns {
+        height: 40px;
+    }
+    .card-question-horizontal-graph-column-row__columns-text-percent {
+        font-size: 10px;
+        bottom: 26px;
+        right: 0;
+    }
+    .card-question-horizontal-graph-column-row__columns {
+        max-width: 500px;
+    }
+}
+@media (max-width: 600px) {
+    .card-question-horizontal-graph-column-row__column-svg {
+        width: 450px;
+    }
+}

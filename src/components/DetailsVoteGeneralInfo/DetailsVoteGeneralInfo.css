@@ -18,6 +18,9 @@
     line-height: 133%;
     word-break: break-word;
 }
+.details-vote-general-info__title-name-menu {
+    display: none;
+}
 .details-vote-general-info__main-block {
     display: flex;
     flex-direction: row;
@@ -207,3 +210,136 @@
     }
 }
 /*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
+@media (max-width: 650px) {
+    .details-vote-general-info__container {
+        width: 100%;
+        padding: 16px 16px 24px 16px;
+    }
+    .details-vote-general-info__title-name-menu {
+        display: initial;
+        margin-bottom: 16px;
+        font-size: 18px;
+        line-height: 144%;
+        font-weight: 500;
+        color: rgba(54, 59, 77, 0.9);
+    }
+    .details-vote-general-info__title-name-vote {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 150%;
+        margin-bottom: 8px;
+    }
+    .details-vote-general-info__name-org {
+        font-size: 16px;
+        line-height: 150%;
+        margin-bottom: 8px;
+        color: rgba(54, 59, 77, 0.6);
+    }
+    .details-vote-general-info__name-org-status-block {
+        margin: 0;
+    }
+    .details-vote-general-info__timezone-vote {
+        margin-bottom: 16px;
+    }
+    .details-vote-general-info__time-icon {
+        display: none;
+    }
+    .details-vote-general-info__timezone-label {
+        font-size: 14px;
+        line-height: 157%;
+    }
+    .details-vote-general-info__main-block {
+        flex-direction: column;
+        margin-bottom: 16px;
+    }
+    .details-vote-general-info__status-possible-revote-block {
+        width: 100%;
+        flex-direction: column;
+    }
+    .details-vote-general-info__current-status-vote {
+        flex-direction: row;
+        width: 100%;
+        border-right: none;
+        gap: 8px;
+        padding: 0 0 16px 0;
+        margin: 0 0 16px 0;
+        border-bottom: 1px solid rgba(54, 59, 77, 0.2);
+    }
+    .details-vote-general-info__status-vote {
+        font-size: 12px;
+        line-height: 150%;
+        padding: 2px 12px 2px 12px;
+        border-radius: 8px;
+    }
+    .details-vote-general-info__type-vote {
+        font-size: 12px;
+        line-height: 150%;
+        padding: 2px 12px 2px 12px;
+        border-radius: 8px;
+    }
+    .details-vote-general-info__possible-revote-cancel-reg {
+        width: 100%;
+        gap: 8px;
+        padding: 0 0 16px 0;
+        margin: 0 0 16px 0;
+        border-bottom: 1px solid rgba(54, 59, 77, 0.2);
+    }
+    .details-vote-general-info__possible-label {
+        font-size: 14px;
+        line-height: 157%;
+    }
+   .details-vote-general-info__datetime-block {
+       width: 100%;
+       padding: 0;
+       border: none;
+       gap: 16px;
+   }
+   .details-vote-general-info__datetime-event {
+        gap: 10px;
+   }
+   .details-vote-general-info__datetime-event-label {
+       font-size: 14px;
+       line-height: 157%;
+   }
+   .details-vote-general-info__datetime-icons-values img {
+       width: 13px;
+       height: 13px;
+       margin-right: 6px;
+   }
+    .details-vote-general-info__datetime-icons-values p {
+        font-size: 13px;
+        margin-right: 6px;
+    }
+    .details-vote-general-info__materials-vote {
+        margin-bottom: 16px;
+        font-size: 16px;
+        line-height: 162%;
+    }
+    .details-vote-general-info__buttons-block {
+        flex-direction: column;
+    }
+    .details-vote-general-info__start-end-vote-btn {
+        border-radius: 4px;
+        margin: 0 0 16px 0;
+        height: 48px;
+        font-size: 16px;
+        line-height: 150%;
+        width: 100%;
+    }
+    .details-vote-general-info__start-end-reg-btn {
+        border-radius: 4px;
+        margin: 0 0 16px 0;
+        height: 48px;
+        font-size: 16px;
+        line-height: 150%;
+        width: 100%;
+    }
+    .details-vote-general-info__delete-vote-btn {
+        border-radius: 4px;
+        height: 48px;
+        font-size: 16px;
+        width: 100%;
+        line-height: 150%;
+    }
+}
+
