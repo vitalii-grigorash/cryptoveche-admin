@@ -30,7 +30,6 @@
 @import url(./components/VotesStatusComponents/StartDateVote/StartDateVote.css);
 @import url(./components/VotesStatusComponents/StartDateVote/DataTimeVote.css);
 @import url(./components/AddNewVote/AddNewVote.css);
-@import url(./components/AddNewVoteQuestionType/AddNewVoteQuestionType.css);
 @import url(./components/AddNewVoteAddObserversCountingMembers/AddNewVoteAddObserversCountingMembers.css);
 @import url(./components/AddNewVoteExpandList/AddNewVoteExpandList.css);
 @import url(./components/AddMaterials/AddMaterials.css);
@@ -68,6 +67,14 @@
 @import url(./components/DetailsVotesPageResultVotesCardQuestionGraph/CardQuestionVerticalGraphWideColumn/CardQuestionVerticalGraphWideColumn.css);
 @import url(./components/DetailsVotesPageResultVotesCardQuestionTable/DetailsVotesPageResultVotesCardQuestionTable.css);
 @import url(./components/DetailsVotesPageResultVotesCardQuestionTable/CardQuestionCellsTable/CardQuestionCellsTable.css);
+@import url(./components/AddNewVoteTypeYnq/AddNewVoteTypeYnq.css);
+@import url(./components/AddNewVoteTypeNone/AddNewVoteTypeNone.css);
+@import url(./components/AddNewVoteTypeGrid/AddNewVoteTypeGrid.css);
+@import url(./components/AddNewVoteTypeRadioGrid/AddNewVoteTypeRadioGrid.css);
+@import url(./components/AddNewVoteTypeSamePositions/AddNewVoteTypeSamePositions.css);
+@import url(./components/AddNewVoteTypePositionSingle/AddNewVoteTypePositionSingle.css);
+@import url(./components/AddNewVoteTypePositionMultiple/AddNewVoteTypePositionMultiple.css);
+
 
 
 
