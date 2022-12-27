@@ -205,6 +205,7 @@ const AddUsers = (props) => {
                 deleteUserButtonText={deleteUserButtonText}
                 deleteUserButtonTextMobile={deleteUserButtonTextMobile}
                 deleteUserId={deleteUserId}
+                adminId={''}
             />
         </div>
     )

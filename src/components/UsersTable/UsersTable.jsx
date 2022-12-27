@@ -12,7 +12,8 @@ const UsersTable = (props) => {
         users,
         deleteUserButtonText,
         deleteUserButtonTextMobile,
-        deleteUserId
+        deleteUserId,
+        adminId
     } = props;
 
     const usersSearch = Validation();
@@ -23,6 +24,10 @@ const UsersTable = (props) => {
     const [result, setResult] = useState(5);
     const [pageCount, setPageCount] = useState(1);
     const [selectedResultsShow, setSelectedResultsShow] = useState(5);
+
+    function noAction() {
+
+    }
 
     function handleShowResultsFrom(value) {
         setShowResultsFrom(value);
@@ -127,11 +132,19 @@ const UsersTable = (props) => {
                             <p className="table-list-users__column-e-mail">{user.email}</p>
                             <div className="table-list-users__column-checkbox-superuser">
                                 <label className='table-list-users__checkbox_container'>
-                                    <input
-                                        checked={user.isAdmin}
-                                        onChange={() => handleChangeSuperUser(user)}
-                                        type="checkbox"
-                                    />
+                                    {user.id === adminId ? (
+                                        <input
+                                            checked={user.isAdmin}
+                                            onChange={noAction}
+                                            type="checkbox"
+                                        />
+                                    ) : (
+                                        <input
+                                            checked={user.isAdmin}
+                                            onChange={() => handleChangeSuperUser(user)}
+                                            type="checkbox"
+                                        />
+                                    )}
                                     <span className='table-list-users__checkmark' />
                                 </label>
                                 <p className="column-checkbox-superuser__label">{constants.ADD_NEW_ORG.ADD_NEW_ORG_SUPERUSER}</p>

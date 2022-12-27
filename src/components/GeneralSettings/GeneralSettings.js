@@ -10,7 +10,8 @@ const GeneralSettings = (props) => {
         constants,
         requestHelper,
         org,
-        reloadOrgPage
+        reloadOrgPage,
+        isOrgSuperAdmin
     } = props;
 
     const email = Validation();

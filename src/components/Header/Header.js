@@ -89,7 +89,7 @@ const Header = (props) => {
                             {authAs === 'admin' ? <Link to={'/list-templates'}>{constants.HEADER.HEADER_TEMPLATE_VOTES}</Link> : null}
                         </div>
                     </div>
-                    {authAs === 'superAdmin' ? <span onClick={() => linkButtonOrgPage('/organizations')} className={pathname === '/organizations' ? "logotype-link-buttons__organizations active" : "logotype-link-buttons__organizations"}>{constants.HEADER.HEADER_ORG}</span> : null}
+                    {authAs === 'admin' || authAs === 'superAdmin' ? <span onClick={() => linkButtonOrgPage('/organizations')} className={pathname === '/organizations' ? "logotype-link-buttons__organizations active" : "logotype-link-buttons__organizations"}>{constants.HEADER.HEADER_ORG}</span> : null}
                     {authAs === 'admin' || authAs === 'superAdmin' ? <div onClick={showAddButtonList} className="logotype-link-buttons__add-button">
                         <p className="logotype-link-buttons__label-add-button">{constants.HEADER.HEADER_ADD_BTN}</p>
                         <img alt={'стрелочка для кнопки'} className="add-button__row-btn-open-list" src={headerRowBtn} />
