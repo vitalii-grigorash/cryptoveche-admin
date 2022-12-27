@@ -303,11 +303,13 @@ function App() {
                     <Route path={'/add-new-vote'}
                         element={<AddNewVote
                             constants={constants}
+                            requestHelper={requestHelper}
                         />}
                     />
                     <Route path={'/add-new-template'}
                            element={<AddNewVote
                                constants={constants}
+                               requestHelper={requestHelper}
                            />}
                     />
                     <Route path={'/profile-user'}

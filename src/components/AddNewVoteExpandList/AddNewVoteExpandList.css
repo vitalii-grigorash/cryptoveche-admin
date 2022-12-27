@@ -1,141 +1,437 @@
-/*------Контейнер для блока c расширенным списком пользователей-------------------------------------------------------*/
 .add-new-vote-expand-list {
     display: flex;
     flex-direction: column;
+    margin: 24px auto 0 0;
+}
+.add-new-vote-expand-list__import-excel-add-email-buttons {
+    display: flex;
     margin-bottom: 1.77em;
-}
-.add-new-vote-expand-list__add-list-voters-active-btn {
-    display: inline-flex;
-    cursor: pointer;
     align-items: center;
-    gap: 0.55em;
-    color: #0084FE;
 }
-.add-new-vote-expand-list__materials-vote-icon-plus {
-    display: initial;
-    width: 1em;
-    height: 1em;
-}
-.add-new-vote-expand-list__add-list-voters-active-btn-label {
-    font-size: 0.88em;
-    font-weight: 300;
-    line-height: 150%;
-}
-.add-new-vote-expand-list__add-list-voters-import-excel-mail {
-    display: none;
-}
-.add-new-vote-expand-list__add-list-voters-import-excel-mail.active {
+.add-new-vote-expand-list__import-excel-btn {
     display: flex;
-    flex-direction: column;
-    margin-top: 0.88em;
-}
-.add-new-vote-expand-list__add-list-voters-search-mail {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1.33em;
-}
-.add-new-vote-expand-list__add-list-voters-mail-address-label {
-    margin-bottom: 0.44em;
-    font-size: 1em;
-    line-height: 133%;
-    font-weight: 400;
-    color: #363B4D;
-    opacity: 0.9;
-}
-.add-new-vote-expand-list__add-list-voters-rule {
-    font-size: 0.88em;
-    color: rgba(54, 59, 77, 0.4);
-    margin-bottom: 0.88em;
-}
-.add-new-vote-expand-list__add-list-voters-text-input {
-    outline: none;
-    border: 0.5px solid rgba(54, 59, 77, 0.4);
-    border-radius: 0.44em;
-    height: 2.5em;
-    padding: 0.88em 1.33em 0.88em 1.33em;
-    font-size: 0.88em;
-    color: rgba(54, 59, 77, 0.9);
-    margin-bottom: 0.88em;
-    width: 100%;
-}
-.add-new-vote-expand-list__add-list-voters-search-btn {
-    display: flex;
+    flex-direction: row;
+    gap: 0.66em;
     align-items: center;
-    justify-content: center;
-    height: 2.5em;
-    border: 1px solid #0084FE;
+    font-size: 0.88em;
+    color: #4ED4A9;
+    border: 1px solid #4ED4A9;
     border-radius: 4px;
     cursor: pointer;
-    width: 20.3vw;
-    color: #0084FE;
-    background-color: #FFFFFF;
-    font-size: 0.88em;
+    padding: 0.66em 1.66em 0.66em 1.66em;
+    height: 2.66em;
+    margin: 0 17px 0 0;
 }
-.add-new-vote-expand-list__add-list-voters-search-btn:hover {
+.add-new-vote-expand-list__import-excel-btn.active {
+    background-color: #4ED4A9;
+    color: #FFFFFF;
+}
+.add-new-vote-expand-list__excel-icon {
+    width: 1.33em;
+    height: 1.33em;
+}
+.add-new-vote-expand-list__add-email-btn {
+    display: flex;
+    flex-direction: row;
+    gap: 0.66em;
+    align-items: center;
+    font-size: 0.88em;
+    color: #0084FE;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0.66em 1.66em 0.66em 1.66em;
+    border: 1px solid #0084FE;
+    height: 2.66em;
+}
+.add-new-vote-expand-list__add-email-btn.active {
     background-color: #0084FE;
     color: #FFFFFF;
 }
-.add-new-vote-expand-list__add-list-voters-import-excel {
+.add-new-vote-expand-list__email-icon {
+    width: 1.33em;
+    height: 0.88em;
+}
+.add-new-vote-expand-list__button-desktop {
+
+}
+.add-new-vote-expand-list__button-mobile {
+    display: none;
+}
+.add-new-vote-expand-list__mail-addresses-users {
+    display: flex;
+    flex-direction: column;
+    gap: 0.88em;
+    margin-bottom: 1.77em;
+}
+.add-new-vote-expand-list__label-mail {
+    font-size: 1em;
+    color: #363B4D;
+    opacity: 90%;
+}
+.add-new-vote-expand-list__red-star {
+    color: #FF4970;
+}
+.add-new-vote-expand-list__input-field {
+    font-family: 'Inter';
+    outline: none;
+    font-size: 1em;
+    color: #363B4D;
+    border: 0.5px solid rgba(54, 59, 77, 0.2);
+    border-radius: 0.44em;
+    line-height: 110%;
+    opacity: 90%;
+    padding: 0.88em 1.33em 0.88em 1.33em;
+    height: 7.11em;
+    resize: none;
+}
+.add-new-vote-expand-list__error-message {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #FF4970;
+    opacity: 0.9;
+    margin: 0 auto 0 0;
+}
+.add-new-vote-expand-list__search-base-users {
+    font-size: 0.88em;
+    line-height: 124%;
+    cursor: pointer;
+    color: #0084FE;
+    background-color: #FFFFFF;
+    width: 17em;
+    height: 2.66em;
+    border: 1px solid  #0084FE;
+    border-radius: 4px;
+}
+.add-new-vote-expand-list__search-base-users:hover {
+    background-color: #0084FE;
+    color: #FFFFFF;
+}
+.add-new-vote-expand-list__download-file-load-button {
+    display: flex;
+    flex-direction: column;
+    gap: 0.88em;
+    margin: 0 auto 0 0;
+}
+.add-new-vote-expand-list__label {
+    font-size: 1em;
+    line-height: 133%;
+    color: #363B4D;
+    opacity: 90%;
+}
+.add-new-vote-expand-list__excel-add-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 0 auto 0 0;
+}
+.add-new-vote-expand-list__excel-add-input {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+}
+.add-new-vote-expand-list__excel-add-input-container {
+    display: flex;
+    cursor: pointer;
+    margin: 0 auto 0 0;
+}
+.add-new-vote-expand-list__excel-add-input-file-name-container {
+    display: flex;
+    width: 580px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 0.5px solid rgba(54, 59, 77, 0.6);
+    border-right: 0;
+    border-radius: 8px 0px 0px 8px;
+}
+.add-new-vote-expand-list__excel-add-input-file-name-text {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: rgba(54, 59, 77, 0.4);
+    opacity: 0.9;
+    margin: auto auto auto 24px;
+}
+.add-new-vote-expand-list__excel-add-input-file-name-text_selected {
+    color: rgba(54, 59, 77, 0.9);
+}
+.add-new-vote-expand-list__excel-add-input-button {
+    display: flex;
+    width: 129px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 0.5px solid #0084FE;
+    border-radius: 0px 8px 8px 0px;
+}
+.add-new-vote-expand-list__excel-add-input-button-text {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #0084FE;
+    opacity: 0.9;
+    margin: auto;
+}
+.add-new-vote-expand-list__success-info {
     display: flex;
     align-items: center;
-    flex-direction: row;
+    margin: 0 auto 0 0;
 }
-.add-new-vote-expand-list__add-list-voters-excel {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4em;
+.add-new-vote-expand-list__icon-success {
+    width: 0.66em;
+    height: 0.44em;
+    margin: auto 6px auto 0;
 }
-.add-new-vote-expand-list__add-list-voters-excel-icon {
-    width: 1.44em;
-    height: 1.44em;
-}
-.add-new-vote-expand-list__add-list-voters-excel-label {
+.add-new-vote-expand-list__label-success {
     color: #4ED4A9;
-    font-size: 0.88em;
+    line-height: 200%;
+    font-size: 0.66em;
+    margin: auto auto auto 0;
 }
-/*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
-@media (max-width: 500px) {
-    .add-new-vote-expand-list {
-        margin-bottom: 24px;
-    }
-    .add-new-vote-expand-list__add-list-voters-active-btn {
-        gap: 15px;
-    }
-    .add-new-vote-expand-list__materials-vote-icon-plus {
-        width: 20px;
-        height: 20px;
-    }
-    .add-new-vote-expand-list__add-list-voters-active-btn-label {
-        font-size: 16px;
-    }
-    .add-new-vote-expand-list__add-list-voters-search-mail {
-        margin-bottom: 16px;
-    }
-    .add-new-vote-expand-list__add-list-voters-mail-address-label {
-        margin-bottom: 8px;
+@media (max-width: 1665px) {
+    .add-new-vote-expand-list__import-excel-btn {
         font-size: 14px;
     }
-    .add-new-vote-expand-list__add-list-voters-rule {
+    .add-new-vote-expand-list__add-email-btn {
+        font-size: 14px;
+    }
+    .add-new-vote-expand-list__excel-add-input-file-name-container {
+        width: 497px;
+    }
+}
+@media (max-width: 1570px) {
+    .add-new-vote-expand-list__excel-add-input-file-name-container {
+        width: 498px;
+    }
+}
+@media (max-width: 1485px) {
+    .add-new-vote-expand-list__import-excel-btn {
         font-size: 12px;
+    }
+    .add-new-vote-expand-list__add-email-btn {
+        font-size: 12px;
+    }
+    .add-new-vote-expand-list__excel-add-input-file-name-container {
+        width: 410px;
+    }
+}
+@media (max-width: 1350px) {
+    .add-new-vote-expand-list__error-message {
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .add-new-vote-expand-list__excel-add-input-file-name-container {
+        width: 419px;
+        height: 35px;
+    }
+    .add-new-vote-expand-list__excel-add-input-file-name-text {
+        font-size: 14px;
+        line-height: 18px;
+        margin: auto auto auto 18px;
+    }
+    .add-new-vote-expand-list__excel-add-input-button {
+        width: 120px;
+        height: 35px;
+    }
+    .add-new-vote-expand-list__excel-add-input-button-text {
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+@media (max-width: 1280px) {
+    .add-new-vote-expand-list__import-excel-btn {
+        font-size: 9px;
+    }
+    .add-new-vote-expand-list__add-email-btn {
+        font-size: 9px;
+    }
+    .add-new-vote-expand-list__label {
+        font-size: 0.8em;
+        line-height: 80%;
+    }
+    .add-new-vote-expand-list__excel-add-input-file-name-container {
+        width: 290px;
+    }
+}
+@media (max-width: 975px) {
+    .add-new-vote-expand-list__import-excel-btn {
+        font-size: 8px;
+    }
+    .add-new-vote-expand-list__add-email-btn {
+        font-size: 8px;
+    }
+    .add-new-vote-expand-list__excel-add-input-file-name-container {
+        width: 247px;
+        height: 30px;
+    }
+    .add-new-vote-expand-list__excel-add-input-file-name-text {
+        font-size: 12px;
+        line-height: 16px;
+        margin: auto auto auto 16px;
+    }
+    .add-new-vote-expand-list__excel-add-input-button {
+        height: 30px;
+    }
+}
+@media (max-width: 870px) {
+    .add-new-vote-expand-list__import-excel-btn {
+        font-size: 6px;
+    }
+    .add-new-vote-expand-list__add-email-btn {
+        font-size: 6px;
+    }
+    .add-new-vote-expand-list__excel-add-input-file-name-container {
+        width: 180px;
+    }
+    .add-new-vote-expand-list__excel-add-input-button {
+        width: 100px;
+    }
+}
+@media (max-width: 830px) {
+    .add-new-vote-expand-list__error-message {
+        font-size: 10px;
+        line-height: 16px;
+    }
+}
+@media (max-width: 660px) {
+    .add-new-vote-expand-list {
+        width: 100%;
+        margin: 16px auto 0;
+    }
+    .add-new-vote-expand-list__import-excel-add-email-buttons {
+        margin-bottom: 1.2em;
+    }
+    .add-new-vote-expand-list__import-excel-btn {
+        margin: 0 16px 0 0;
+    }
+    .add-new-vote-expand-list__add-email-btn {
+       margin: 0 0 0 auto;
+    }
+    .add-new-vote-expand-list__excel-add-input-file-name-container {
+        width: 150px;
+    }
+    .add-new-vote-expand-list__excel-add-input-button {
+        width: 90px;
+    }
+}
+@media (max-width: 600px) {
+    .add-new-vote-expand-list__import-excel-btn {
+        font-size: 5px;
+    }
+    .add-new-vote-expand-list__add-email-btn {
+        font-size: 5px;
+    }
+    .add-new-vote-expand-list__error-message {
+        font-size: 8px;
+        line-height: 12px;
+    }
+}
+@media (max-width: 570px) {
+    .add-new-vote-expand-list__excel-add-input-file-name-container {
+        width: 140px;
+        height: 25px;
+    }
+    .add-new-vote-expand-list__excel-add-input-button {
+        width: 70px;
+        height: 25px;
+    }
+}
+@media (max-width: 500px) {
+    .add-new-vote-expand-list__import-excel-add-email-buttons {
+        flex-direction: column;
+        margin-bottom: 16px;
+        gap: 16px;
+    }
+    .add-new-vote-expand-list__import-excel-btn {
+        width: 100%;
+        height: 48px;
+        font-size: 16px;
+        padding: 0;
+        justify-content: center;
+        margin: 0 auto;
+    }
+    .add-new-vote-expand-list__add-email-btn {
+        width: 100%;
+        height: 48px;
+        font-size: 16px;
+        padding: 0;
+        justify-content: center;
+        margin: 0 auto;
+    }
+    .add-new-vote-expand-list__button-desktop {
+        display: none;
+    }
+    .add-new-vote-expand-list__button-mobile {
+        display: initial;
+    }
+    .add-new-vote-expand-list__mail-addresses-users {
+        gap: 0;
+        margin-bottom: 0;
+        margin: 0;
+    }
+    .add-new-vote-expand-list__label-mail {
+        font-size: 16px;
+        line-height: 114%;
+        margin-bottom: 8px;
+    }
+    .add-new-vote-expand-list__input-field {
+        margin-bottom: 16px;
+        border: 1px solid rgba(54, 59, 77, 0.4);
+        font-size: 18px;
+        padding: 12px 12px;
+    }
+    .add-new-vote-expand-list__error-message {
+        font-size: 12px;
+        line-height: 16px;
+        margin: 0 auto 12px 0;
+    }
+    .add-new-vote-expand-list__search-base-users {
+        width: 100%;
+        height: 48px;
+        font-size: 16px;
+        line-height: 124%;
+    }
+    .add-new-vote-expand-list__download-file-load-button {
+        gap: 0;
+        width: 100%;
+    }
+    .add-new-vote-expand-list__label {
+        font-size: 16px;
+        line-height: 138%;
         margin-bottom: 16px;
     }
-    .add-new-vote-expand-list__add-list-voters-text-input {
-        height: 36px;
-        border-radius: 8px;
-        font-size: 14px;
-        padding: 12px 16px 12px 16px;
-    }
-    .add-new-vote-expand-list__add-list-voters-search-btn {
-        height: 36px;
-        font-size: 14px;
+    .add-new-vote-expand-list__excel-add-container {
         width: 100%;
-        border-radius: 8px;
+        margin: 0;
     }
-    .add-new-vote-expand-list__add-list-voters-excel-label {
+    .add-new-vote-expand-list__excel-add-input-container {
+        width: 100%;
+        margin: 0;
+    }
+    .add-new-vote-expand-list__excel-add-input-file-name-container {
+        width: 70%;
+        max-width: 330px;
+        height: 48px;
+    }
+    .add-new-vote-expand-list__excel-add-input-file-name-text {
         font-size: 14px;
+        line-height: 18px;
     }
-    .add-new-vote-expand-list__add-list-voters-excel-icon {
-        width: 16px;
-        height: 16px;
+    .add-new-vote-expand-list__excel-add-input-button {
+        width: 30%;
+        height: 48px;
+    }
+    .add-new-vote-expand-list__excel-add-input-button-text {
+        font-size: 14px;
+        line-height: 18px;
+    }
+    .add-new-vote-expand-list__icon-success {
+        width: 12px;
+        height: 9px;
+    }
+    .add-new-vote-expand-list__label-success {
+        font-size: 12px;
+        line-height: 200%;
     }
 }

@@ -4,7 +4,7 @@ import iconPlus from "../../img/AddNewVoteQuestuionTypeIconPlus.svg";
 import iconBasket from "../../img/AddNewVoteQuestuionTypeIconBasket.svg";
 import iconRulePlus from "../../img/AddNewVoteIconPlus.svg";
 import iconExcel from "../../img/AddNewVoteIconExcel.svg";
-import AddNewVoteAddMaterialsVote from "../AddNewVoteAddMaterialsVote/AddNewVoteAddMaterialsVote";
+import AddMaterials from "../AddMaterials/AddMaterials";
 import row_input_select_role from "../../img/Auth_icon_row_select_role.svg";
 
 const AddNewVoteQuestionType = (props) => {
@@ -15,7 +15,15 @@ const AddNewVoteQuestionType = (props) => {
         constants,
         selectedTypeQuestionBtn,
         setSelectedTypeQuestionBtn,
-        typeQuestionButtons
+        typeQuestionButtons,
+        eventMaterials,
+        addEmptyMaterial,
+        changeMaterialType,
+        linkInputChange,
+        titleInputChange,
+        changeDocLink,
+        deleteMaterial,
+        requestHelper
     } = props;
 
     const [activeRuleSelect, setActiveRuleSelect] = useState(false);
@@ -254,9 +262,17 @@ const AddNewVoteQuestionType = (props) => {
                         <p className="add-new-vote-question-type__import-excel-btn">{constants.ADD_NEW_VOTE.EXPAND_LIST_IMPORT_EXCEL}</p>
                     </div> : null}
                     <div className="add-new-vote-question-type__add-materials-vote">
-                        <AddNewVoteAddMaterialsVote
+                        <AddMaterials
                             constants={constants}
-                            nameMaterialsVote={'ПРИКРЕПИТЬ МАТЕРИАЛЫ К ВОПРОСУ'}
+                            eventMaterials={eventMaterials}
+                            isEvent={false}
+                            addEmptyMaterial={addEmptyMaterial}
+                            changeMaterialType={changeMaterialType}
+                            linkInputChange={linkInputChange}
+                            titleInputChange={titleInputChange}
+                            changeDocLink={changeDocLink}
+                            deleteMaterial={deleteMaterial}
+                            requestHelper={requestHelper}
                         />
                     </div>
                     <div className="add-new-vote-question-type__add-button-block">
