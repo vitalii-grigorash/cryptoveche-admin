@@ -7,13 +7,14 @@ import DetailsVoteQuestions from "../DetailsVoteQuestions/DetailsVoteQuestions";
 import DetailsVoteResults from "../DetailsVoteResults/DetailsVoteResults";
 import iconRowBack from "../../img/back-button-icon.svg";
 import {Link, useLocation} from "react-router-dom";
-
+import * as Event from "../../Api/Events";
 
 const DetailsVote = (props) => {
 
     const {
         constants,
-        authAs
+        authAs,
+        requestHelper
     } = props;
 
     const [selectMenuItem, setSelectMenuItem] = useState(0);
@@ -21,6 +22,8 @@ const DetailsVote = (props) => {
     const [selectMenuComponent, setSelectMenuComponent] = useState('generalInfo');
     const [changeQuestionResult, setChangeQuestionResult] = useState(false);
     const { pathname } = useLocation();
+    const [getEventsData, setGetEventsData] = useState({});
+    const currentEventData = getEventsData[33];
     const [informationMenuItems, setInformationMenuItems] = useState(
         [
                     {nameItem: "Общая информация", iconClassName: "details-vote__icon-general-info"},
@@ -30,6 +33,19 @@ const DetailsVote = (props) => {
                     {nameItem: "Счетная коммисия", iconClassName: "details-vote__icon-counting"},
                     {nameItem: changeQuestionResult ? "Ознакомиться с вопросами" : "Результаты", iconClassName: "details-vote__icon-questions"}
                 ]);
+
+    useEffect(() => {
+        if (currentEventData !== {}) {
+            requestHelper(Event.getEvents)
+                .then((data) => {
+                    setGetEventsData(data);
+                })
+                .catch((err) => {
+                    throw new Error(err.message);
+                })
+        }
+        // eslint-disable-next-line
+    }, []);
 
     const onSelectMenuItems = (i, item) => {
         const getWightBlock = document.getElementById('getWidthMainBlock').clientWidth;
@@ -132,23 +148,24 @@ const DetailsVote = (props) => {
                                                             constants={constants}/> : null}
                     {selectMenuComponent === 'voting' ? <DetailsVoteVotingObserversCounting
                                                             constants={constants}
-                                                            titleName={'Список голосующих'}
-                                                            titleNameMobile={'Голосующие'}
+                                                            titleName={constants.DETAILS_VOTE.VOTING_TITLE}
+                                                            titleNameMobile={constants.DETAILS_VOTE.VOTING_TITLE_MOBILE}
                                                             changeStatusColumn={'voting'}/> : null}
                     {selectMenuComponent === 'observers' ? <DetailsVoteVotingObserversCounting
                                                             constants={constants}
-                                                            titleName={'Список наблюдателей'}
-                                                            titleNameMobile={'Наблюдатели'}
+                                                            titleName={constants.DETAILS_VOTE.OBSERVERS_TITLE}
+                                                            titleNameMobile={constants.DETAILS_VOTE.OBSERVERS_TITLE_MOBILE}
                                                             changeStatusColumn={'observers'}/> : null}
                     {selectMenuComponent === 'counting' ? <DetailsVoteVotingObserversCounting
                                                             constants={constants}
-                                                            titleName={'Счетная комиссия'}
-                                                            titleNameMobile={'Наблюдатели'}
+                                                            titleName={constants.DETAILS_VOTE.COUNTING_TITLE}
+                                                            titleNameMobile={constants.DETAILS_VOTE.OBSERVERS_TITLE_MOBILE}
                                                             changeStatusColumn={'counting'}/> : null}
                     {selectMenuComponent === 'questions' ? <DetailsVoteQuestions
                                                             constants={constants}/> : null}
                     {selectMenuComponent === 'results' ? <DetailsVoteResults
-                                                            constants={constants}/> : null}
+                                                            constants={constants}
+                                                            currentEventData={currentEventData}/> : null}
                 </div>
         </div>
     )

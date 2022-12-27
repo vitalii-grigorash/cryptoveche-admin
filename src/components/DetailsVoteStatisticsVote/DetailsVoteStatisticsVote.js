@@ -54,10 +54,10 @@ const DetailsVoteStatisticsVote = (props) => {
 
     return (
         <div className="details-vote-statistics-vote__container">
-            <h3 className="details-vote-statistics-vote__title-mobile">Статистика</h3>
-            <h3 className="details-vote-statistics-vote__title">Ход регистрации</h3>
+            <h3 className="details-vote-statistics-vote__title-mobile">{constants.DETAILS_VOTE.STATISTICS_TITLE_MOBILE}</h3>
+            <h3 className="details-vote-statistics-vote__title">{constants.DETAILS_VOTE.STATISTIC_TITLE}</h3>
             <div className="details-vote-statistics-vote__last-update">
-                <p className="details-vote-statistics-vote__last-update-label">Последнее обновление:</p>
+                <p className="details-vote-statistics-vote__last-update-label">{constants.DETAILS_VOTE.STATISTIC_LATEST_UPDATE}</p>
                 <img src={iconDate} alt={constants.GENERAL.ALT_ICON}/>
                 <p className="details-vote-statistics-vote__last-update-icon-label">10.12.2020</p>
                 <img src={iconTime} alt={constants.GENERAL.ALT_ICON}/>
@@ -68,21 +68,21 @@ const DetailsVoteStatisticsVote = (props) => {
                     <div className="details-vote-statistics-vote__result-registred">
                         <div className="details-vote-statistics-vote__result-registred-items">
                             <img className="details-vote-statistics-vote__result-registred-icon" src={iconGreenCircle} alt={constants.GENERAL.ALT_ICON}/>
-                            <p className="details-vote-statistics-vote__result-registred-label">Зарегистрированы (65%)</p>
+                            <p className="details-vote-statistics-vote__result-registred-label">{constants.DETAILS_VOTE.STATISTIC_REGISTRED_MEMBERS} (65%)</p>
                         </div>
                         <div className="details-vote-statistics-vote__result-registred-items">
                             <img className="details-vote-statistics-vote__result-registred-icon" src={iconYellowCircle} alt={constants.GENERAL.ALT_ICON}/>
-                            <p className="details-vote-statistics-vote__result-registred-label">Не зарегистрированы (35%)</p>
+                            <p className="details-vote-statistics-vote__result-registred-label">{constants.DETAILS_VOTE.STATISTIC_NOT_REGISTRED_MEMBERS} (35%)</p>
                         </div>
                     </div>
                     <div className="details-vote-statistics-vote__result-voted">
                         <div className="details-vote-statistics-vote__result-voted-items">
                             <img className="details-vote-statistics-vote__result-voted-icon" src={iconGreenDash} alt={constants.GENERAL.ALT_ICON}/>
-                            <p className="details-vote-statistics-vote__result-voted-label">Проголосовали (40%) </p>
+                            <p className="details-vote-statistics-vote__result-voted-label">{constants.DETAILS_VOTE.STATISTIC_VOTED} (40%) </p>
                         </div>
                         <div className="details-vote-statistics-vote__result-voted-items">
                             <img className="details-vote-statistics-vote__result-voted-icon" src={iconYellowDash} alt={constants.GENERAL.ALT_ICON}/>
-                            <p className="details-vote-statistics-vote__result-voted-label">Не проголосовали (60%)</p>
+                            <p className="details-vote-statistics-vote__result-voted-label">{constants.DETAILS_VOTE.STATISTIC_NOT_VOTED} (60%)</p>
                         </div>
                     </div>
                 </div>
@@ -90,23 +90,23 @@ const DetailsVoteStatisticsVote = (props) => {
                     {drawCircles(22, sectorCircle, ['#4ED4A9', '#F9C521'])}
                     <div className="details-vote-statistics-vote__diagramm-block-numbers-reg-voting">
                         <p className="details-vote-statistics-vote__diagramm-num-reg">12 387</p>
-                        <p className="details-vote-statistics-vote__diagramm-label-reg">зарегистрировано</p>
+                        <p className="details-vote-statistics-vote__diagramm-label-reg">{constants.DETAILS_VOTE.STATISTIC_REG_GENERAL_MEMBERS}</p>
                         {/*<p className="details-vote-statistics-vote__diagramm-num-vote">2 387</p>*/}
                         {/*<p className="details-vote-statistics-vote__diagramm-label-vote">проголосовало</p>*/}
                     </div>
                 </div>
                 <div className="details-vote-statistics-vote__status-event-quorum-condition">
                     <div className="details-vote-statistics-vote__quorum">
-                        <p className="details-vote-statistics-vote__quorum-label">Условие кворума</p>
+                        <p className="details-vote-statistics-vote__quorum-label">{constants.DETAILS_VOTE.STATISTIC_QUORUM_CONDITION}</p>
                         <p className="details-vote-statistics-vote__quorum-note">Необходимо участие в голосовании более чем половины участников</p>
                     </div>
                     <div className="details-vote-statistics-vote__status-event">
-                        <p className="details-vote-statistics-vote__status-event-label">Статус события</p>
+                        <p className="details-vote-statistics-vote__status-event-label">{constants.DETAILS_VOTE.STATISTIC_STATUS_EVENT}</p>
                         <p className="details-vote-statistics-vote__status-event-icon">
-                            <img src={iconSuccess} alt={constants.GENERAL.ALT_ICON}/>Кворум достигнут</p>
+                            <img src={iconSuccess} alt={constants.GENERAL.ALT_ICON}/>{constants.DETAILS_VOTE.STATISTIC_QUORUM_SUCCESS}</p>
                     </div>
                    <div className="details-vote-statistics-vote__progress-visit-vote">
-                       <p className="details-vote-statistics-vote__progress-visit-vote-label">Электронная явка (70%)</p>
+                       <p className="details-vote-statistics-vote__progress-visit-vote-label">{constants.DETAILS_VOTE.STATISTIC_ELECTRONIC_VISIT} (70%)</p>
                        <div className="details-vote-statistics-vote__progress">
                            <div className="details-vote-statistics-vote__progress-bar"></div>
                        </div>
@@ -114,10 +114,10 @@ const DetailsVoteStatisticsVote = (props) => {
                 </div>
             </div>
                 <p onClick={() => setActiveDynamicsVisit(true)} className={activeDynamicsVisit ? "details-vote-statistics-vote__show-more-btn hidden" : "details-vote-statistics-vote__show-more-btn" }>
-                    ПОКАЗАТЬ ПОЛНОСТЬЮ
+                    {constants.DETAILS_VOTE.STATISTIC_SHOW_MORE_BTN}
                 </p>
                 <div className={activeDynamicsVisit ? "details-vote-statistics-vote__dynamics-visit" : "details-vote-statistics-vote__dynamics-visit hidden"}>
-                    <p className="details-vote-statistics-vote__dynamics-visit-title">Динамика явки</p>
+                    <p className="details-vote-statistics-vote__dynamics-visit-title">{constants.DETAILS_VOTE.STATISTIC_DYNAMIC_VISIT}</p>
                     <div className="details-vote-statistics-vote__dynamics-visit-change-graph-table">
                         <div onClick={() => onChangeGraphVisit()} className={activeGraphVisit ? "details-vote-statistics-vote__change-graph-btn active" : "details-vote-statistics-vote__change-graph-btn"}>
                         </div>
@@ -129,11 +129,11 @@ const DetailsVoteStatisticsVote = (props) => {
                             <div className="details-vote-statistics-vote__visit-graph-explanations">
                                 <div className="details-vote-statistics-vote__visit-graph-explanations-general-visit">
                                     <img src={iconBlueDashGraph} alt={constants.GENERAL.ALT_ICON}/>
-                                    <p>Общая явка</p>
+                                    <p>{constants.DETAILS_VOTE.STATISTIC_GENERAL_VISIT}</p>
                                 </div>
                                 <div className="details-vote-statistics-vote__visit-graph-explanations-voting-visit">
                                     <img src={iconGreenDashGraph} alt={constants.GENERAL.ALT_ICON}/>
-                                    <p>Явка голосующих</p>
+                                    <p>{constants.DETAILS_VOTE.STATISTIC_VISIT_VOTING}</p>
                                 </div>
                             </div>
                          <div className="details-vote-statistics-vote__visit-graph">
@@ -173,9 +173,9 @@ const DetailsVoteStatisticsVote = (props) => {
                             {/*<PaginationBlock/>*/}
                             <div className="details-vote-statistics-vote__visit-table">
                                 <div className="details-vote-statistics-vote__visit-table-header">
-                                    <p className="details-vote-statistics-vote__visit-table-header-time">Время</p>
-                                    <p className="details-vote-statistics-vote__visit-table-header-visit-time">Явка за время</p>
-                                    <p className="details-vote-statistics-vote__visit-table-header-general-visit">Общая явка</p>
+                                    <p className="details-vote-statistics-vote__visit-table-header-time">{constants.DETAILS_VOTE.STATISTIC_TABLE_TIME}</p>
+                                    <p className="details-vote-statistics-vote__visit-table-header-visit-time">{constants.DETAILS_VOTE.STATISTIC_TABLE_VISIT_TIME}</p>
+                                    <p className="details-vote-statistics-vote__visit-table-header-general-visit">{constants.DETAILS_VOTE.STATISTIC_GENERAL_VISIT}</p>
                                 </div>
                                 <div className="details-vote-statistics-vote__visit-table-row">
                                     <p className="details-vote-statistics-vote__visit-table-row-colimn-time">12:00 - 13:00</p>
@@ -188,7 +188,7 @@ const DetailsVoteStatisticsVote = (props) => {
                     )}
                 </div>
             <p onClick={() => setActiveDynamicsVisit(false)} className={activeDynamicsVisit ? "details-vote-statistics-vote__roll-up-btn" : "details-vote-statistics-vote__roll-up-btn hidden"}>
-                СВЕРНУТЬ
+                {constants.DETAILS_VOTE.STATISTIC_HIDE_BTN}
             </p>
         </div>
     )

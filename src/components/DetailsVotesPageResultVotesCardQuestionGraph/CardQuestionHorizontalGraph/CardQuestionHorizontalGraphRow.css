@@ -1,0 +1,80 @@
+/*------Стилизация горизонтальной сетки для графика------------------------------------------------------------------*/
+.card-question-horizontal-graph__horizontal-grid {
+    width: 33.33em;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.66em;
+    margin-right: 5.27em;
+    overflow: auto;
+    height: 19.44em;
+}
+.horizontal-grid__position-table {
+    position: absolute;
+    border-bottom: 1px solid rgba(54, 59, 77, 0.05);
+    max-height: 513px;
+    width: 20.88em;
+    rotate: -90deg;
+    top: -4.16em;
+    left: 4em;
+    /*width: 568px;*/
+}
+.horizontal-grid__position-table td {
+    border-top: 1px solid rgba(54, 59, 77, 0.05);
+    border-left: 1px solid rgba(54, 59, 77, 0.05);
+    height: 2.77em;
+}
+.horizontal-grid__position-table td:nth-child(10) {
+    border: none;
+}
+.card-question-horizontal-graph__horizontal-grid::-webkit-scrollbar {
+    width: 0.44em;
+    height: 0.44em;/* ширина всей полосы прокрутки */
+}
+.card-question-horizontal-graph__horizontal-grid::-webkit-scrollbar-track {
+    background: rgba(54, 59, 77, 0.1);        /* цвет зоны отслеживания */
+}
+.card-question-horizontal-graph__horizontal-grid::-webkit-scrollbar-thumb {
+    background-color: darkgray;    /* цвет бегунка */
+    border-radius: 1.11em;       /* округлось бегунка */
+    /* отступ вокруг бегунка */
+}
+/*-----Адаптивная версия---------------------------------------------------------------------------------------------*/
+@media (max-width: 960px) {
+    .card-question-horizontal-graph__horizontal-grid {
+        margin-right: 90px;
+    }
+    .horizontal-grid__position-table td {
+        height: 40px;
+    }
+    .horizontal-grid__position-table {
+        max-height: 513px;
+        width: 376px;
+        rotate: -90deg;
+        top: -22px;
+        left: 23px;
+        /*width: 568px;*/
+    }
+}
+@media (max-width: 760px) {
+    .card-question-horizontal-graph__horizontal-grid {
+        height: 350px;
+        width: 100%;
+    }
+    .horizontal-grid__position-table td {
+        height: 48px;
+    }
+    .horizontal-grid__position-table {
+        width: 400px;
+    }
+    .horizontal-grid__position-table {
+        top: -122px;
+        left: 0;
+    }
+}
+@media (max-width: 530px) {
+    .card-question-horizontal-graph__horizontal-grid {
+        overflow: auto;
+        max-height: 300px;
+    }
+}

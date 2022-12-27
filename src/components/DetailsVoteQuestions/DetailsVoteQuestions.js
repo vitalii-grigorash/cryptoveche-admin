@@ -17,8 +17,8 @@ const DetailsVoteQuestions = (props) => {
 
     return (
         <div className="details-vote-questions__container">
-            <h3 className="details-vote-questions__title-mobile">Ознакомиться с вопросами</h3>
-            <h3 className="details-vote-questions__title">Вопросы для голосования</h3>
+            <h3 className="details-vote-questions__title-mobile">{constants.DETAILS_VOTE.QUESTIONS_TITLE_MOBILE}</h3>
+            <h3 className="details-vote-questions__title">{constants.DETAILS_VOTE.QUESTIONS_TITLE}</h3>
             {
                 testObj.map((el, i) => {
                     return (

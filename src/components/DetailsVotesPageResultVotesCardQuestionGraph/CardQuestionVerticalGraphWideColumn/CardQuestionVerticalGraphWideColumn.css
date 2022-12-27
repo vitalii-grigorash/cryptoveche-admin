@@ -1,0 +1,47 @@
+/*------Основной контейнер--------------------------------------------------------------------------------------------*/
+.card-question-vertical-graph-wide-column__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-right: 32px;
+    height: 98%;
+    justify-content: flex-end;
+}
+/*------Стилизация колонки графика------------------------------------------------------------------------------------*/
+.card-question-vertical-graph-wide-column__columns {
+    width: 64px;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+.card-question-vertical-graph-wide-column__column-svg {
+    transform: rotate(180deg);
+    opacity: 0.5;
+    height: 100%;
+}
+/*------Имя колонки---------------------------------------------------------------------------------------------------*/
+.card-question-vertical-graph-wide-column__name-column {
+    position: absolute;
+    top: 101%;
+    color: rgba(54, 59, 77, 0.6);
+    font-size: 0.77em;
+    line-height: 135%;
+    font-weight: 400;
+}
+/*-----Адаптивная версия---------------------------------------------------------------------------------------------*/
+@media (max-width: 900px) {
+    .card-question-vertical-graph-wide-column__wrapper {
+        /*padding-right: 0;*/
+        height: 100%;
+    }
+}
+@media (max-width: 810px) {
+    .card-question-vertical-graph-wide-column__wrapper {
+        padding-right: 0;
+        /*height: 100%;*/
+    }
+    .card-question-vertical-graph-wide-column__column-svg {
+        width: 32px;
+    }
+}

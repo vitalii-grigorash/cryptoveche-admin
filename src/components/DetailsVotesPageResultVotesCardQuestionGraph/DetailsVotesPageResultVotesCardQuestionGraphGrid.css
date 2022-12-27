@@ -1,0 +1,26 @@
+/*------Основной контейнер--------------------------------------------------------------------------------------------*/
+.details-votes-page-result-card-graph__wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 4em;
+    height: 19.55em;
+    margin-bottom: 1.88em;
+}
+/*------Стилизация для списка названий колонок------------------------------------------------------------------------*/
+.details-votes-page-result-card-graph__column-list {
+    display: flex;
+    gap: 0.66em;
+    flex-direction: column;
+    justify-content: center;
+}
+/*-----Адаптивная версия---------------------------------------------------------------------------------------------*/
+@media (max-width: 650px) {
+    .details-votes-page-result-card-graph__wrapper {
+        flex-direction: column;
+        gap: 50px;
+        height: 100%;
+        margin-bottom: 0;
+    }
+    .details-votes-page-result-card-graph__column-list {
+    }
+}

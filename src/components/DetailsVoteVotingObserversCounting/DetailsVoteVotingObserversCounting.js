@@ -77,7 +77,7 @@ const DetailsVoteVotingObserversCounting = (props) => {
                 )}
             </div>
             <div className="details-vote-voting-observers-counting__last-update">
-                <p className="details-vote-voting-observers-counting__last-update-label">Последнее обновление:</p>
+                <p className="details-vote-voting-observers-counting__last-update-label">{constants.DETAILS_VOTE.STATISTIC_LATEST_UPDATE}</p>
                 <img src={iconDate} alt={constants.GENERAL.ALT_ICON}/>
                 <p className="details-vote-voting-observers-counting__last-update-icon-label">10.12.2020</p>
                 <img src={iconTime} alt={constants.GENERAL.ALT_ICON}/>
@@ -86,9 +86,7 @@ const DetailsVoteVotingObserversCounting = (props) => {
             {showNoActiveVotingObservers && (
                 <div className="details-vote-voting-observers-counting__no-active-voting-block">
                     <img className="details-vote-voting-observers-counting__no-active-voting-img" src={imageNoActiveVoting} alt={constants.GENERAL.ALT_ICON}/>
-                    <p>Кажется, в этом голосовании не участвовали наблюдатели!
-                        Если вы хотите, чтобы в следующем голосовании были наблюдатели,
-                        пожалуйста, добавьте их на этапе <Link to={'/add-new-vote'}>создания голосования.</Link></p>
+                    <p>{constants.DETAILS_VOTE.VOTING_EMPTY_INFO} <Link to={'/add-new-vote'}>{constants.DETAILS_VOTE.VOTING_EMPTY_INFO_LINK}</Link></p>
                 </div>
                 )
             }
@@ -106,20 +104,20 @@ const DetailsVoteVotingObserversCounting = (props) => {
                         <div className="details-vote-voting-observers-counting__table-row-status-icon-label">
                             <img className="details-vote-voting-observers-counting__table-row-status-icon" src={el.statusReg ? iconReg : iconNoReg} alt={constants.GENERAL.ALT_ICON}/>
                             <span className="details-vote-voting-observers-counting__table-row-status-label" style={el.statusReg ? {color: '#4ED4A9'} : {color: 'rgba(54, 59, 77, 0.6)'}}>
-                                {el.statusReg ? 'Зарегистрирован' : 'Не зарегистрирован'}</span>
+                                {el.statusReg ? `${constants.DETAILS_VOTE.VOTING_STATUS_REGISTRED}` : `${constants.DETAILS_VOTE.VOTING_STATUS_NO_REGISTRED}`}</span>
                             <div className="details-vote-voting-observers-counting__table-row-status-mobile" style={el.statusReg ? {background: 'rgba(78, 212, 169, 0.15)'} : {background: 'rgba(55, 60, 78, 0.1)'}}>
                                 <li className="details-vote-voting-observers-counting__table-row-status-mobile-label" style={el.statusReg ? {color: '#4ED4A9'} : {color: 'rgba(54, 59, 77, 0.6)'}}>
-                                    {el.statusReg ? 'Зарегистрирован' : 'Не зарегистрирован'}
+                                    {el.statusReg ? `${constants.DETAILS_VOTE.VOTING_STATUS_REGISTRED}` : `${constants.DETAILS_VOTE.VOTING_STATUS_NO_REGISTRED}`}
                                 </li>
                             </div>
                         </div>
                         <div className="details-vote-voting-observers-counting__table-row-status-icon-label">
                             <img className="details-vote-voting-observers-counting__table-row-status-icon" src={el.statusVote ? iconVoted : iconNoVoted} alt={constants.GENERAL.ALT_ICON}/>
                             <span className="details-vote-voting-observers-counting__table-row-status-label" style={el.statusVote ? {color: '#4569FF'} : {color: '#FF4970'}}>
-                                {el.statusVote ? 'Проголосовал' : 'Не проголосовал'}</span>
+                                {el.statusVote ? `${constants.DETAILS_VOTE.VOTING_STATUS_VOTED}` : `${constants.DETAILS_VOTE.VOTING_STATUS_NO_VOTED}`}</span>
                             <div className="details-vote-voting-observers-counting__table-row-status-mobile" style={el.statusVote ? {background: 'rgba(69, 105, 255, 0.15)'} : {background: 'rgba(255, 73, 112, 0.15)'}}>
                                 <li className="details-vote-voting-observers-counting__table-row-status-mobile-label" style={el.statusVote ? {color: '#4569FF'} : {color: '#FF4970'}}>
-                                    {el.statusVote ? 'Проголосовал' : 'Не проголосовал'}
+                                    {el.statusVote ? `${constants.DETAILS_VOTE.VOTING_STATUS_VOTED}` : `${constants.DETAILS_VOTE.VOTING_STATUS_NO_VOTED}`}
                                 </li>
                             </div>
                         </div>
@@ -129,7 +127,7 @@ const DetailsVoteVotingObserversCounting = (props) => {
                         <div className="details-vote-voting-observers-counting__table-row-status-counting-icon-label">
                             <img className="details-vote-voting-observers-counting__table-row-status-counting-icon" src={el.status ? iconReg : iconNoVoted} alt={constants.GENERAL.ALT_ICON}/>
                             <p className="details-vote-voting-observers-counting__table-row-status-counting-label" style={el.status ? {color: '#4ED4A9'} : {color: '#FF4970'}}>
-                                {el.status ? 'Подписал' : 'Не подписал'}</p>
+                                {el.status ? `${constants.DETAILS_VOTE.COUNTING_STATUS_SIGNED}` : `${constants.DETAILS_VOTE.COUNTING_STATUS_NO_SIGNED}`}</p>
                         </div>
                     </div> : null}
                     {changeStatusColumn === 'observers' ?
@@ -138,7 +136,7 @@ const DetailsVoteVotingObserversCounting = (props) => {
                     </div> : null}
                 </div>
                 )})}
-                <p className="details-vote-voting-observers-counting__show-more">ПОКАЗАТЬ ПОЛНОСТЬЮ</p>
+                <p className="details-vote-voting-observers-counting__show-more">{constants.DETAILS_VOTE.STATISTIC_SHOW_MORE_BTN}</p>
             </div>
             </>
             )}
