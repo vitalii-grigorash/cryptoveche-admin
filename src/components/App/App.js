@@ -287,6 +287,7 @@ function App() {
                         element={<OrgSettings
                             constants={constants}
                             requestHelper={requestHelper}
+                            authAs={authAs}
                         />}
                     />
                     <Route path={'/add-org-page'}

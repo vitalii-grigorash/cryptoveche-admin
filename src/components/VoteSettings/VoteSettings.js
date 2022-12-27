@@ -7,7 +7,8 @@ const VoteSettings = (props) => {
         constants,
         requestHelper,
         org,
-        reloadOrgPage
+        reloadOrgPage,
+        isOrgSuperAdmin
     } = props;
 
     const [showType, setShowType] = useState(false);

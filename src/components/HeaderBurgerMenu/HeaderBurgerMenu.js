@@ -54,7 +54,7 @@ const HeaderBurgerMenu = (props) => {
                 </div>
                 <div className='burger-menu__link-page'>
                     <Link to={'/'} onClick={() => setActive(false)}>{constants.HEADER.HEADER_MAIN}</Link>
-                    {authAs === 'superAdmin' ? <Link to={'/organizations'} onClick={() => setActive(false)}>{constants.HEADER.HEADER_BURGER_ORG}</Link> : null}
+                    {authAs === 'admin' || authAs === 'superAdmin' ? <Link to={'/organizations'} onClick={() => setActive(false)}>{constants.HEADER.HEADER_BURGER_ORG}</Link> : null}
                 </div>
                 {authAs === 'admin' || authAs === 'superAdmin' ? <div className="burger-menu__users-button">
                     <div onClick={() => setActiveUsersBtn(!activeUsersBtn)} className="burger-menu__users-button-label-row">

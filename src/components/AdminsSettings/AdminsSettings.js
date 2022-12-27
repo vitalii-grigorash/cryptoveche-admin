@@ -9,6 +9,8 @@ const AdminsSettings = (props) => {
         constants,
         requestHelper,
         org,
+        currentUser,
+        authAs,
         reloadOrgPage
     } = props;
 
@@ -23,6 +25,22 @@ const AdminsSettings = (props) => {
     const [deleteUserButtonText, setDeleteUserButtonText] = useState(constants.ADD_NEW_ORG.ADD_NEW_ORG_DELETE_BTN);
     const [deleteUserButtonTextMobile, setDeleteUserButtonTextMobile] = useState(constants.ADD_NEW_ORG.ADD_NEW_ORG_DELETE_BTN_MOBILE);
     const [deleteUserId, setDeleteUserId] = useState('');
+    const [adminId, setAdminId] = useState('');
+
+    useEffect(() => {
+        if (org.admins !== undefined) {
+            if (authAs === 'admin') {
+                const isOrgSuperUser = org.admins.find(admin => admin.id === currentUser.id);
+                if (isOrgSuperUser === undefined) {
+                    setAdminId('');
+                } else {
+                    setAdminId(isOrgSuperUser.id);
+                }
+            }
+        } else if (authAs === 'superAdmin') {
+            setAdminId('');
+        }
+    }, [org, authAs, currentUser.id])
 
     function handleShowAddAdmin() {
         if (isAddAdminOpen) {
@@ -230,6 +248,7 @@ const AdminsSettings = (props) => {
                 deleteUserButtonText={deleteUserButtonText}
                 deleteUserButtonTextMobile={deleteUserButtonTextMobile}
                 deleteUserId={deleteUserId}
+                adminId={adminId}
             />
             {isSaveButtonActive && (
                 <button className="admins-setting__save-new-admins-button admins-setting__save-new-admins-button_change" onClick={onSaveAdminsChangeClick}>{changeAdminsStatusButtonText}</button>
