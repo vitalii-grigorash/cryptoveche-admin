@@ -23,10 +23,7 @@ const AddNewVoteTypeSamePositions = (props) => {
         deleteMaterial,
         requestHelper
     } = props;
-
-    const onCloseModal = () => {
-        setActiveModalTypeQuestion(false)
-    }
+    
     return (
         <div className={activeModalTypeQuestion ? "add-new-vote-type-same-positions__container active" : "add-new-vote-type-same-positions__container"}>
             <div className="add-new-vote-type-same-positions">
