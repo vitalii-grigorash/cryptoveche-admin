@@ -4,7 +4,6 @@ import iconPlus from "../../img/AddNewVoteQuestuionTypeIconPlus.svg";
 import iconBasket from "../../img/AddNewVoteQuestuionTypeIconBasket.svg";
 import iconExcel from "../../img/AddNewVoteIconExcel.svg";
 import AddMaterials from "../AddMaterials/AddMaterials";
-import row_input_select_role from "../../img/Auth_icon_row_select_role.svg";
 
 const AddNewVoteTypeSamePositions = (props) => {
 
@@ -24,12 +23,6 @@ const AddNewVoteTypeSamePositions = (props) => {
         deleteMaterial,
         requestHelper
     } = props;
-
-    const [activeSelectTypeQuestion, setActiveSelectTypeQuestion] = useState(false);
-
-    const onGetTypeQuestion = (typeQuestion, nameQuestion) => {
-        setSelectedTypeQuestionBtn({typeQuestion, nameQuestion})
-    }
 
     const onCloseModal = () => {
         setActiveModalTypeQuestion(false)

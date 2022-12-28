@@ -22,6 +22,11 @@
     margin: 0 auto 0 0;
     cursor: pointer;
 }
+.protocol-settings__checkbox-container-default {
+    display: flex;
+    margin: 0 auto 0 0;
+    cursor: default;
+}
 .protocol-settings__checkbox-icon {
     background-image: url('../../img/checkbox-default.svg');
     background-size: cover;
@@ -32,6 +37,17 @@
 }
 .protocol-settings__checkbox-icon_active {
     background-image: url('../../img/checkbox-active.svg');
+}
+.protocol-settings__checkbox-icon-default {
+    background-image: url('../../img/checkbox-no-active-empty.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-width: 24px;
+    height: 24px;
+    margin: auto 16px auto 0;
+}
+.protocol-settings__checkbox-icon_active-default {
+    background-image: url('../../img/checkbox-no-active.svg');
 }
 .protocol-settings__checkbox-text {
     font-weight: 400;
@@ -110,6 +126,10 @@
     cursor: pointer;
     margin: 0 16px 0 0;
 }
+.protocol-settings__file-add-input-container-default {
+    display: flex;
+    margin: 0 16px 0 0;
+}
 .protocol-settings__file-add-input-file-name-container {
     display: flex;
     width: 350px;
@@ -140,7 +160,15 @@
     height: 48px;
     background: #FFFFFF;
     border: 0.5px solid #0084FE;
-    border-radius: 0px 8px 8px 0px;
+    border-radius: 0 8px 8px 0;
+}
+.protocol-settings__file-add-input-button-default {
+    display: flex;
+    width: 129px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 0.5px solid rgba(54, 59, 77, 0.6);
+    border-radius: 0 8px 8px 0;
 }
 .protocol-settings__file-add-input-button-text {
     font-style: normal;
@@ -148,6 +176,15 @@
     font-size: 16px;
     line-height: 24px;
     color: #0084FE;
+    opacity: 0.9;
+    margin: auto;
+}
+.protocol-settings__file-add-input-button-text-default {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #C5C7C9;
     opacity: 0.9;
     margin: auto;
 }
@@ -211,6 +248,9 @@
     .protocol-settings__file-add-input-container {
         margin: 0 12px 0 0;
     }
+    .protocol-settings__file-add-input-container-default {
+        margin: 0 12px 0 0;
+    }
     .protocol-settings__file-add-input-file-name-container {
         width: 300px;
     }
@@ -219,6 +259,9 @@
         max-width: 260px;
     }
     .protocol-settings__file-add-input-button {
+        width: 120px;
+    }
+    .protocol-settings__file-add-input-button-default {
         width: 120px;
     }
 }
@@ -234,12 +277,18 @@
     .protocol-settings__checkbox-container {
         cursor: default;
     }
+    .protocol-settings__checkbox-container-default {
+        cursor: default;
+    }
     .protocol-settings__checkbox-text {
         max-width: 270px;
     }
     .protocol-settings__file-add-input-container {
         margin: 0 auto 0 0;
         cursor: default;
+    }
+    .protocol-settings__file-add-input-container-default {
+        margin: 0 12px 0 0;
     }
     .protocol-settings__file-add-input-file-name-container {
         width: 182px;
@@ -248,6 +297,9 @@
         max-width: 155px;
     }
     .protocol-settings__file-add-input-button {
+        width: 129px;
+    }
+    .protocol-settings__file-add-input-button-default {
         width: 129px;
     }
     .protocol-settings__file-add-container {

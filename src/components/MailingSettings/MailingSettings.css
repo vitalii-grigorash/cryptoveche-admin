@@ -35,6 +35,11 @@
     margin: 24px auto 0 0;
     cursor: pointer;
 }
+.mailing-settings__checkbox-container-default {
+    display: flex;
+    margin: 24px auto 0 0;
+    cursor: default;
+}
 .mailing-settings__checkbox-container:first-of-type {
     margin: 32px auto 0 0;
 }
@@ -48,6 +53,17 @@
 }
 .mailing-settings__checkbox_active {
     background-image: url('../../img/checkbox-active.svg');
+}
+.mailing-settings__checkbox-default {
+    background-image: url('../../img/checkbox-no-active-empty.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    margin: auto 16px auto 0;
+}
+.mailing-settings__checkbox_active-default {
+    background-image: url('../../img/checkbox-no-active.svg');
 }
 .mailing-settings__checkbox-text {
     font-weight: 400;
@@ -129,6 +145,18 @@
     background: #FFFFFF;
     cursor: pointer;
 }
+.mailing-settings__alert-selected-option-container-default {
+    display: flex;
+    position: relative;
+    height: 48px;
+    width: 364px;
+    margin: auto 16px auto 0;
+    border: 0.5px solid rgba(54, 59, 77, 0.6);
+    border-radius: 8px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    cursor: default;
+}
 .mailing-settings__alert-selected-option-value {
     font-weight: 400;
     font-size: 18px;
@@ -195,10 +223,16 @@
     margin: auto auto auto 0;
     cursor: pointer;
 }
+.mailing-settings__alert-remove-button-default {
+    display: none;
+}
 .mailing-settings__add-notification-container {
     display: flex;
     margin: 32px auto 0 0;
     cursor: pointer;
+}
+.mailing-settings__add-notification-container-default {
+    display: none;
 }
 .mailing-settings__add-notification-icon {
     background-image: url('../../img/add-icon.svg');
@@ -250,6 +284,9 @@
     .mailing-settings__alert-selected-option-container {
         width: 300px;
     }
+    .mailing-settings__alert-selected-option-container-default {
+        width: 300px;
+    }
     .mailing-settings__alert-options-container {
         width: 300px;
     }
@@ -286,6 +323,9 @@
 }
 @media (max-width: 405px) {
     .mailing-settings__alert-selected-option-container {
+        width: 263px;
+    }
+    .mailing-settings__alert-selected-option-container-default {
         width: 263px;
     }
     .mailing-settings__alert-options-container {

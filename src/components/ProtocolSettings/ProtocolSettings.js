@@ -164,54 +164,103 @@ const ProtocolSettings = (props) => {
     }
 
     return (
-        <div className="protocol-settings">
-            <h2 className="protocol-settings__heading">{constants.ORG_SETTINGS.PROTOCOL_SETTINGS}</h2>
-            <div className="protocol-settings__container">
-                <div className="protocol-settings__checkbox-container" onClick={handleChangeProtocolEnable}>
-                    <div className={`protocol-settings__checkbox-icon ${isCheckboxActive && 'protocol-settings__checkbox-icon_active'}`} />
-                    <p className="protocol-settings__checkbox-text">{constants.ORG_SETTINGS.FORM_PROTOCOL}</p>
+        <>
+            {isOrgSuperAdmin ? (
+                <div className="protocol-settings">
+                    <h2 className="protocol-settings__heading">{constants.ORG_SETTINGS.PROTOCOL_SETTINGS}</h2>
+                    <div className="protocol-settings__container">
+                        <div className="protocol-settings__checkbox-container" onClick={handleChangeProtocolEnable}>
+                            <div className={`protocol-settings__checkbox-icon ${isCheckboxActive && 'protocol-settings__checkbox-icon_active'}`} />
+                            <p className="protocol-settings__checkbox-text">{constants.ORG_SETTINGS.FORM_PROTOCOL}</p>
+                        </div>
+                        <div className="protocol-settings__files-container">
+                            <div className="protocol-settings__save-protocol-container">
+                                <p className="protocol-settings__save-protocol-heading">{constants.ORG_SETTINGS.CURRENT_PROTOCOL}</p>
+                                <div className="protocol-settings__save-container" onClick={() => downloadFile(templateLink, currentProtocolName)}>
+                                    <p className="protocol-settings__save-protocol-name">{currentProtocolName}</p>
+                                    <div className="protocol-settings__save-protocol-button" />
+                                </div>
+                            </div>
+                            <div className="protocol-settings__download-file-container">
+                                <p className="protocol-settings__download-file-label">{constants.ORG_SETTINGS.DOWNLOAD_NEW_TEMPLATE_PROTOCOL}</p>
+                                <div className="protocol-settings__file-add-container">
+                                    <input
+                                        className="protocol-settings__file-add-input"
+                                        id="file"
+                                        type="file"
+                                        accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                        onChange={(e) => onSelectFileHandler(e)}
+                                    />
+                                    <label htmlFor="file" className="protocol-settings__file-add-input-container">
+                                        <div className="protocol-settings__file-add-input-file-name-container">
+                                            <p className={`protocol-settings__file-add-input-file-name-text ${isFileSelected && 'protocol-settings__file-add-input-file-name-text_selected'}`}>{selectedFileName}</p>
+                                        </div>
+                                        <div className="protocol-settings__file-add-input-button">
+                                            <p className='protocol-settings__file-add-input-button-text'>{constants.ORG_SETTINGS.LOAD_BUTTON}</p>
+                                        </div>
+                                    </label>
+                                    {isFileSelected && (
+                                        <div className="protocol-settings__success-container">
+                                            <div className="protocol-settings__success-icon" />
+                                            <p className="protocol-settings__success-label">{constants.ORG_SETTINGS.LOAD_READY}</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                        {isSaveButtonActive && (
+                            <button className="protocol-settings__save-button" onClick={saveChanges}>{saveButtonText}</button>
+                        )}
+                    </div>
                 </div>
-                <div className="protocol-settings__files-container">
-                    <div className="protocol-settings__save-protocol-container">
-                        <p className="protocol-settings__save-protocol-heading">{constants.ORG_SETTINGS.CURRENT_PROTOCOL}</p>
-                        <div className="protocol-settings__save-container" onClick={() => downloadFile(templateLink, currentProtocolName)}>
-                            <p className="protocol-settings__save-protocol-name">{currentProtocolName}</p>
-                            <div className="protocol-settings__save-protocol-button" />
+            ) : (
+                <div className="protocol-settings">
+                    <h2 className="protocol-settings__heading">{constants.ORG_SETTINGS.PROTOCOL_SETTINGS}</h2>
+                    <div className="protocol-settings__container">
+                        <div className="protocol-settings__checkbox-container-default">
+                            <div className={`protocol-settings__checkbox-icon-default ${isCheckboxActive && 'protocol-settings__checkbox-icon_active-default'}`} />
+                            <p className="protocol-settings__checkbox-text">{constants.ORG_SETTINGS.FORM_PROTOCOL}</p>
+                        </div>
+                        <div className="protocol-settings__files-container">
+                            <div className="protocol-settings__save-protocol-container">
+                                <p className="protocol-settings__save-protocol-heading">{constants.ORG_SETTINGS.CURRENT_PROTOCOL}</p>
+                                <div className="protocol-settings__save-container" onClick={() => downloadFile(templateLink, currentProtocolName)}>
+                                    <p className="protocol-settings__save-protocol-name">{currentProtocolName}</p>
+                                    <div className="protocol-settings__save-protocol-button" />
+                                </div>
+                            </div>
+                            <div className="protocol-settings__download-file-container">
+                                <p className="protocol-settings__download-file-label">{constants.ORG_SETTINGS.DOWNLOAD_NEW_TEMPLATE_PROTOCOL}</p>
+                                <div className="protocol-settings__file-add-container">
+                                    <input
+                                        className="protocol-settings__file-add-input"
+                                        id="file"
+                                        type="file"
+                                        accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                        onChange={(e) => onSelectFileHandler(e)}
+                                        disabled={true}
+                                    />
+                                    <label htmlFor="file" className="protocol-settings__file-add-input-container-default">
+                                        <div className="protocol-settings__file-add-input-file-name-container">
+                                            <p className={`protocol-settings__file-add-input-file-name-text ${isFileSelected && 'protocol-settings__file-add-input-file-name-text_selected'}`}>{selectedFileName}</p>
+                                        </div>
+                                        <div className="protocol-settings__file-add-input-button-default">
+                                            <p className='protocol-settings__file-add-input-button-text-default'>{constants.ORG_SETTINGS.LOAD_BUTTON}</p>
+                                        </div>
+                                    </label>
+                                    {isFileSelected && (
+                                        <div className="protocol-settings__success-container">
+                                            <div className="protocol-settings__success-icon" />
+                                            <p className="protocol-settings__success-label">{constants.ORG_SETTINGS.LOAD_READY}</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className="protocol-settings__download-file-container">
-                        <p className="protocol-settings__download-file-label">{constants.ORG_SETTINGS.DOWNLOAD_NEW_TEMPLATE_PROTOCOL}</p>
-                        <div className="protocol-settings__file-add-container">
-                            <input
-                                className="protocol-settings__file-add-input"
-                                id="file"
-                                type="file"
-                                accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                                onChange={(e) => onSelectFileHandler(e)}
-                            />
-                            <label htmlFor="file" className="protocol-settings__file-add-input-container">
-                                <div className="protocol-settings__file-add-input-file-name-container">
-                                    <p className={`protocol-settings__file-add-input-file-name-text ${isFileSelected && 'protocol-settings__file-add-input-file-name-text_selected'}`}>{selectedFileName}</p>
-                                </div>
-                                <div className="protocol-settings__file-add-input-button">
-                                    <p className='protocol-settings__file-add-input-button-text'>{constants.ORG_SETTINGS.LOAD_BUTTON}</p>
-                                </div>
-                            </label>
-                            {isFileSelected && (
-                                <div className="protocol-settings__success-container">
-                                    <div className="protocol-settings__success-icon" />
-                                    <p className="protocol-settings__success-label">{constants.ORG_SETTINGS.LOAD_READY}</p>
-                                </div>
-                            )}
-                        </div>
-                    </div>
                 </div>
-                {isSaveButtonActive && (
-                    <button className="protocol-settings__save-button" onClick={saveChanges}>{saveButtonText}</button>
-                )}
-            </div>
-        </div>
+            )}
+        </>
     )
 }
-
 export default ProtocolSettings;

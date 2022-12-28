@@ -194,82 +194,161 @@ const MailingSettings = (props) => {
     }
 
     return (
-        <div className="mailing-settings">
-            <h2 className="mailing-settings__heading">{constants.ORG_SETTINGS.MAILING_SETTINGS}</h2>
-            <div className="mailing-settings__container">
-                <div className="mailing-settings__standard-alerts-container">
-                    <p className="mailing-settings__alerts-heading">{constants.ORG_SETTINGS.STANDART_ALERTS}</p>
-                    <div className="mailing-settings__checkbox-container" onClick={handleCreateVoteActive}>
-                        <div className={`mailing-settings__checkbox ${isCreateVoteActive && 'mailing-settings__checkbox_active'}`} />
-                        <p className="mailing-settings__checkbox-text">{constants.ORG_SETTINGS.CREATE_VOTE}</p>
-                    </div>
-                    <div className="mailing-settings__checkbox-container" onClick={handleStartVoteActive}>
-                        <div className={`mailing-settings__checkbox ${isStartVoteActive && 'mailing-settings__checkbox_active'}`} />
-                        <p className="mailing-settings__checkbox-text">{constants.ORG_SETTINGS.START_VOTE}</p>
-                    </div>
-                    <div className="mailing-settings__checkbox-container" onClick={handleEndVoteActive}>
-                        <div className={`mailing-settings__checkbox ${isEndVoteActive && 'mailing-settings__checkbox_active'}`} />
-                        <p className="mailing-settings__checkbox-text">{constants.ORG_SETTINGS.END_VOTE}</p>
-                    </div>
-                    <div className="mailing-settings__checkbox-container" onClick={handleStartRegActive}>
-                        <div className={`mailing-settings__checkbox ${isStartRegActive && 'mailing-settings__checkbox_active'}`} />
-                        <p className="mailing-settings__checkbox-text">{constants.ORG_SETTINGS.START_REG}</p>
-                    </div>
-                    <div className="mailing-settings__checkbox-container" onClick={handleEndRegActive}>
-                        <div className={`mailing-settings__checkbox ${isEndRegActive && 'mailing-settings__checkbox_active'}`} />
-                        <p className="mailing-settings__checkbox-text">{constants.ORG_SETTINGS.END_REG}</p>
-                    </div>
-                </div>
-                <div className="mailing-settings__interim-alerts-container">
-                    <p className="mailing-settings__alerts-heading">{constants.ORG_SETTINGS.INTERIM_ALERTS}</p>
-                    <div className="mailing-settings__interim-alerts-options-container">
-                        {notificationTime.sort(function (a, b) {
-                            const aId = a.id;
-                            const bId = b.id;
-                            if (aId < bId)
-                                return -1
-                            if (aId > bId)
-                                return 1
-                            return 0
-                        }).map((notification) => (
-                            <div className="mailing-settings__alert-container" key={notification.id}>
-                                <div className="mailing-settings__alert-minutes-container">
-                                    <input
-                                        type='number'
-                                        className={`mailing-settings__alert-value-input ${notification.value === '' && 'mailing-settings__alert-value-input_error'}`}
-                                        placeholder="10"
-                                        value={notification.value}
-                                        onChange={(e) => notificationInputChange(e, notification.id)}
-                                    />
-                                    <p className="mailing-settings__alert-minutes">{constants.ORG_SETTINGS.MINUTE}</p>
-                                </div>
-                                <div className="mailing-settings__alert-options-main-container">
-                                    <div className="mailing-settings__alert-selected-option-container" onClick={() => handleOpenOptions(notification.id)}>
-                                        <p className="mailing-settings__alert-selected-option-value">{notification.afterStart ? constants.ORG_SETTINGS.AFTER_START : constants.ORG_SETTINGS.BEFORE_END}</p>
-                                        <div className="mailing-settings__alert-selected-option-arrow" />
-                                        <div className="mailing-settings__alert-options-container" id={notification.id}>
-                                            <div className="mailing-settings__alert-option-container" onClick={(e) => selectAfterStartNotification(notification.id)}>
-                                                <p className="mailing-settings__alert-option">{constants.ORG_SETTINGS.AFTER_START}</p>
+        <>
+            {isOrgSuperAdmin ? (
+                <div className="mailing-settings">
+                    <h2 className="mailing-settings__heading">{constants.ORG_SETTINGS.MAILING_SETTINGS}</h2>
+                    <div className="mailing-settings__container">
+                        <div className="mailing-settings__standard-alerts-container">
+                            <p className="mailing-settings__alerts-heading">{constants.ORG_SETTINGS.STANDART_ALERTS}</p>
+                            <div className="mailing-settings__checkbox-container" onClick={handleCreateVoteActive}>
+                                <div className={`mailing-settings__checkbox ${isCreateVoteActive && 'mailing-settings__checkbox_active'}`} />
+                                <p className="mailing-settings__checkbox-text">{constants.ORG_SETTINGS.CREATE_VOTE}</p>
+                            </div>
+                            <div className="mailing-settings__checkbox-container" onClick={handleStartVoteActive}>
+                                <div className={`mailing-settings__checkbox ${isStartVoteActive && 'mailing-settings__checkbox_active'}`} />
+                                <p className="mailing-settings__checkbox-text">{constants.ORG_SETTINGS.START_VOTE}</p>
+                            </div>
+                            <div className="mailing-settings__checkbox-container" onClick={handleEndVoteActive}>
+                                <div className={`mailing-settings__checkbox ${isEndVoteActive && 'mailing-settings__checkbox_active'}`} />
+                                <p className="mailing-settings__checkbox-text">{constants.ORG_SETTINGS.END_VOTE}</p>
+                            </div>
+                            <div className="mailing-settings__checkbox-container" onClick={handleStartRegActive}>
+                                <div className={`mailing-settings__checkbox ${isStartRegActive && 'mailing-settings__checkbox_active'}`} />
+                                <p className="mailing-settings__checkbox-text">{constants.ORG_SETTINGS.START_REG}</p>
+                            </div>
+                            <div className="mailing-settings__checkbox-container" onClick={handleEndRegActive}>
+                                <div className={`mailing-settings__checkbox ${isEndRegActive && 'mailing-settings__checkbox_active'}`} />
+                                <p className="mailing-settings__checkbox-text">{constants.ORG_SETTINGS.END_REG}</p>
+                            </div>
+                        </div>
+                        <div className="mailing-settings__interim-alerts-container">
+                            <p className="mailing-settings__alerts-heading">{constants.ORG_SETTINGS.INTERIM_ALERTS}</p>
+                            <div className="mailing-settings__interim-alerts-options-container">
+                                {notificationTime.sort(function (a, b) {
+                                    const aId = a.id;
+                                    const bId = b.id;
+                                    if (aId < bId)
+                                        return -1
+                                    if (aId > bId)
+                                        return 1
+                                    return 0
+                                }).map((notification) => (
+                                    <div className="mailing-settings__alert-container" key={notification.id}>
+                                        <div className="mailing-settings__alert-minutes-container">
+                                            <input
+                                                type='number'
+                                                className={`mailing-settings__alert-value-input ${notification.value === '' && 'mailing-settings__alert-value-input_error'}`}
+                                                placeholder="10"
+                                                value={notification.value}
+                                                onChange={(e) => notificationInputChange(e, notification.id)}
+                                            />
+                                            <p className="mailing-settings__alert-minutes">{constants.ORG_SETTINGS.MINUTE}</p>
+                                        </div>
+                                        <div className="mailing-settings__alert-options-main-container">
+                                            <div className="mailing-settings__alert-selected-option-container" onClick={() => handleOpenOptions(notification.id)}>
+                                                <p className="mailing-settings__alert-selected-option-value">{notification.afterStart ? constants.ORG_SETTINGS.AFTER_START : constants.ORG_SETTINGS.BEFORE_END}</p>
+                                                <div className="mailing-settings__alert-selected-option-arrow" />
+                                                <div className="mailing-settings__alert-options-container" id={notification.id}>
+                                                    <div className="mailing-settings__alert-option-container" onClick={(e) => selectAfterStartNotification(notification.id)}>
+                                                        <p className="mailing-settings__alert-option">{constants.ORG_SETTINGS.AFTER_START}</p>
+                                                    </div>
+                                                    <div className="mailing-settings__alert-option-container" onClick={(e) => selectBeforeEndNotification(notification.id)}>
+                                                        <p className="mailing-settings__alert-option">{constants.ORG_SETTINGS.BEFORE_END}</p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className="mailing-settings__alert-option-container" onClick={(e) => selectBeforeEndNotification(notification.id)}>
-                                                <p className="mailing-settings__alert-option">{constants.ORG_SETTINGS.BEFORE_END}</p>
-                                            </div>
+                                            <div className="mailing-settings__alert-remove-button" onClick={() => removeNotification(notification.id)} />
                                         </div>
                                     </div>
-                                    <div className="mailing-settings__alert-remove-button" onClick={() => removeNotification(notification.id)} />
-                                </div>
+                                ))}
                             </div>
-                        ))}
+                            <div className="mailing-settings__add-notification-container" onClick={addNotification}>
+                                <div className="mailing-settings__add-notification-icon" />
+                                <p className="mailing-settings__add-notification-text">{constants.ORG_SETTINGS.ADD_NOTIFICATION}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div className="mailing-settings__add-notification-container" onClick={addNotification}>
-                        <div className="mailing-settings__add-notification-icon" />
-                        <p className="mailing-settings__add-notification-text">{constants.ORG_SETTINGS.ADD_NOTIFICATION}</p>
+                    <button className="mailing-settings__save-changes-button" onClick={saveChanges}>{constants.ORG_SETTINGS.BUTTON_SAVE_ADMINS_CHANGE}</button>
+                </div>
+            ) : (
+                <div className="mailing-settings">
+                    <h2 className="mailing-settings__heading">{constants.ORG_SETTINGS.MAILING_SETTINGS}</h2>
+                    <div className="mailing-settings__container">
+                        <div className="mailing-settings__standard-alerts-container">
+                            <p className="mailing-settings__alerts-heading">{constants.ORG_SETTINGS.STANDART_ALERTS}</p>
+                            <div className="mailing-settings__checkbox-container-default">
+                                <div className={`mailing-settings__checkbox-default ${isCreateVoteActive && 'mailing-settings__checkbox_active-default'}`} />
+                                <p className="mailing-settings__checkbox-text">{constants.ORG_SETTINGS.CREATE_VOTE}</p>
+                            </div>
+                            <div className="mailing-settings__checkbox-container-default">
+                                <div className={`mailing-settings__checkbox-default ${isStartVoteActive && 'mailing-settings__checkbox_active-default'}`} />
+                                <p className="mailing-settings__checkbox-text">{constants.ORG_SETTINGS.START_VOTE}</p>
+                            </div>
+                            <div className="mailing-settings__checkbox-container-default">
+                                <div className={`mailing-settings__checkbox-default ${isEndVoteActive && 'mailing-settings__checkbox_active-default'}`} />
+                                <p className="mailing-settings__checkbox-text">{constants.ORG_SETTINGS.END_VOTE}</p>
+                            </div>
+                            <div className="mailing-settings__checkbox-container-default">
+                                <div className={`mailing-settings__checkbox-default ${isStartRegActive && 'mailing-settings__checkbox_active-default'}`} />
+                                <p className="mailing-settings__checkbox-text">{constants.ORG_SETTINGS.START_REG}</p>
+                            </div>
+                            <div className="mailing-settings__checkbox-container-default">
+                                <div className={`mailing-settings__checkbox-default ${isEndRegActive && 'mailing-settings__checkbox_active-default'}`} />
+                                <p className="mailing-settings__checkbox-text">{constants.ORG_SETTINGS.END_REG}</p>
+                            </div>
+                        </div>
+                        <div className="mailing-settings__interim-alerts-container">
+                            <p className="mailing-settings__alerts-heading">{constants.ORG_SETTINGS.INTERIM_ALERTS}</p>
+                            <div className="mailing-settings__interim-alerts-options-container">
+                                {notificationTime.sort(function (a, b) {
+                                    const aId = a.id;
+                                    const bId = b.id;
+                                    if (aId < bId)
+                                        return -1
+                                    if (aId > bId)
+                                        return 1
+                                    return 0
+                                }).map((notification) => (
+                                    <div className="mailing-settings__alert-container" key={notification.id}>
+                                        <div className="mailing-settings__alert-minutes-container">
+                                            <input
+                                                type='number'
+                                                className={`mailing-settings__alert-value-input ${notification.value === '' && 'mailing-settings__alert-value-input_error'}`}
+                                                placeholder="10"
+                                                value={notification.value}
+                                                onChange={(e) => notificationInputChange(e, notification.id)}
+                                                disabled={true}
+                                            />
+                                            <p className="mailing-settings__alert-minutes">{constants.ORG_SETTINGS.MINUTE}</p>
+                                        </div>
+                                        <div className="mailing-settings__alert-options-main-container">
+                                            <div className="mailing-settings__alert-selected-option-container-default">
+                                                <p className="mailing-settings__alert-selected-option-value">{notification.afterStart ? constants.ORG_SETTINGS.AFTER_START : constants.ORG_SETTINGS.BEFORE_END}</p>
+                                                <div className="mailing-settings__alert-selected-option-arrow" />
+                                                <div className="mailing-settings__alert-options-container" id={notification.id}>
+                                                    <div className="mailing-settings__alert-option-container">
+                                                        <p className="mailing-settings__alert-option">{constants.ORG_SETTINGS.AFTER_START}</p>
+                                                    </div>
+                                                    <div className="mailing-settings__alert-option-container">
+                                                        <p className="mailing-settings__alert-option">{constants.ORG_SETTINGS.BEFORE_END}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="mailing-settings__alert-remove-button-default"/>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="mailing-settings__add-notification-container-default">
+                                <div className="mailing-settings__add-notification-icon" />
+                                <p className="mailing-settings__add-notification-text">{constants.ORG_SETTINGS.ADD_NOTIFICATION}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <button className="mailing-settings__save-changes-button" onClick={saveChanges}>{constants.ORG_SETTINGS.BUTTON_SAVE_ADMINS_CHANGE}</button>
-        </div>
+            )}
+        </>
     )
 }
-
 export default MailingSettings;
