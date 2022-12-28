@@ -22,15 +22,6 @@ const AddNewVoteTypePositionSingle = (props) => {
         requestHelper
     } = props;
 
-    const [activeSelectTypeQuestion, setActiveSelectTypeQuestion] = useState(false);
-
-    const onGetTypeQuestion = (typeQuestion, nameQuestion) => {
-        setSelectedTypeQuestionBtn({typeQuestion, nameQuestion})
-    }
-
-    const onCloseModal = () => {
-        setActiveModalTypeQuestion(false)
-    }
     return (
         <div className={activeModalTypeQuestion ? "add-new-vote-type-position-single__container active" : "add-new-vote-type-position-single__container"}>
             <div className="add-new-vote-type-position-single">
