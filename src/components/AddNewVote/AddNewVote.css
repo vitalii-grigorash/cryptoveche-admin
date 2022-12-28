@@ -1173,4 +1173,5 @@
         height: 24px;
         margin: auto 12px auto 0;
     }
+    .add-new-vote__questions-block-created-question{order: 1}
 }
