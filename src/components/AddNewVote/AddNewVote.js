@@ -72,7 +72,7 @@ const AddNewVote = (props) => {
     const [activeCompleteThreeStep, setActiveCompleteThreeStep] = useState(iconTwoStep);
     const { pathname } = useLocation();
     const progressBarRef = useRef(null);
-    const [selectedTypeQuestionBtn, setSelectedTypeQuestionBtn] = useState({});
+    const [selectedTypeQuestionBtn, setSelectedTypeQuestionBtn] = useState('');
     const [orgList, setOrgList] = useState([]);
     const [selectedOrgTitle, setSelectedOrgTitle] = useState(constants.ADD_NEW_VOTE.SELECT_ORG);
     const [selectedOrg, setSelectedOrg] = useState({});
@@ -103,6 +103,9 @@ const AddNewVote = (props) => {
     const [observersList, setObserversList] = useState([]);
     const [isCountersAddOpen, setCountersAddOpen] = useState(false);
     const [isObserversAddOpen, setObserversAddOpen] = useState(false);
+    const [questionsList, setQuestionsList] = useState([]);
+
+    console.log(questionsList);
 
     const typeQuestionButtons = [
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_YNQ}`, classNameBtn: "add-new-vote__select-type-vote-ynq", typeQuestion: "ynq" },
@@ -113,6 +116,10 @@ const AddNewVote = (props) => {
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_POSITION_MULTIPLE}`, classNameBtn: "add-new-vote__select-type-vote-position_multiple", typeQuestion: "positionMultiple" },
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_SAME_POSITIONS}`, classNameBtn: "add-new-vote__select-type-vote-same_positions", typeQuestion: "samePositions" }
     ];
+
+    function questionModalClose() {
+        setSelectedTypeQuestionBtn('');
+    }
 
     function handleOpenCountersAdd() {
         if (isCountersAddOpen) {
@@ -248,15 +255,13 @@ const AddNewVote = (props) => {
     }
 
     function addEmptyMaterial() {
-        // link
-        // doc
         const material = {
             id: idGenerate(eventMaterials),
             title: "",
             type: "link",
             valueLink: "",
             valueDoc: "",
-            selectedFileName: constants.ADD_NEW_ORG.ADD_NEW_ORG_SELECT_FILE,
+            selecte2dFileName: constants.ADD_NEW_ORG.ADD_NEW_ORG_SELECT_FILE,
             isFileSelected: false
         }
         setEventMaterials([...eventMaterials, material]);
@@ -735,7 +740,62 @@ const AddNewVote = (props) => {
         setActiveTypeQuestionBnt(false);
     }
 
-    function votersValidate() {
+    function addQuestion(question) {
+        setQuestionsList([...questionsList, question]);
+    }
+
+    function prepareYnq(question) {
+        const materials = [];
+        question.materials.forEach((material) => {
+            if (material.type === "link") {
+                const data = {
+                    title: material.title,
+                    type: material.type,
+                    value: material.valueLink
+                }
+                materials.push(data);
+            } else {
+                const data = {
+                    title: material.title,
+                    type: material.type,
+                    value: material.valueDoc
+                }
+                materials.push(data);
+            }
+        })
+        const preparedQuestion = {
+            template: question.template,
+            title: question.title,
+            options: question.options,
+            materials: materials,
+            is_required_grid_rows: question.is_required_grid_rows,
+            rules: question.rules
+        }
+        return preparedQuestion;
+    }
+
+    function prepareQuestions() {
+        const questions = [];
+        questionsList.forEach((question) => {
+            if (question.template === "ynq") {
+                const preparedQuestion = prepareYnq(question);
+                questions.push(preparedQuestion);
+            }
+        })
+        return questions;
+    }
+
+    function questionsValidate(questions) {
+        if (questions.length === 0) {
+            setErrorMessage(constants.ADD_NEW_VOTE.QUESTIONS_ERR);
+            return false;
+        } else {
+            setErrorMessage('');
+            return true;
+        }
+    }
+
+    function votersValidate(questions) {
         if (activeOpenList || isLinkUsersActive) {
             if (votersExpandableValue.value === '') {
                 setErrorMessage(constants.ADD_NEW_VOTE.VOTERS_EXPANDABLE_ERR);
@@ -753,12 +813,12 @@ const AddNewVote = (props) => {
                 return false;
             } else {
                 setErrorMessage('');
-                return true;
+                return questionsValidate(questions);
             }
         }
     }
 
-    function materialsValidate(materials) {
+    function materialsValidate(materials, questions) {
         const materialsValidation = () => {
             for (let val of materials) {
                 for (let key in val) {
@@ -774,7 +834,7 @@ const AddNewVote = (props) => {
             return false;
         } else {
             setErrorMessage('');
-            return votersValidate();
+            return votersValidate(questions);
         }
     }
 
@@ -782,7 +842,7 @@ const AddNewVote = (props) => {
         return isSoft ? (firstDate <= secondDate) : (firstDate < secondDate);
     }
 
-    function dateValidate(date, materials) {
+    function dateValidate(date, materials, questions) {
         if (!compareDate(date.regStart, date.regEnd, false)) {
             setErrorMessage(constants.ADD_NEW_VOTE.COMPARE_RS_RE);
             return false;
@@ -800,14 +860,14 @@ const AddNewVote = (props) => {
             return false;
         } else {
             setErrorMessage('');
-            return materialsValidate(materials);
+            return materialsValidate(materials, questions);
         }
     }
 
-    function eventValidation(date, materials) {
+    function eventValidation(date, materials, questions) {
         if (eventTitle.value !== '') {
             setErrorMessage('');
-            return dateValidate(date, materials);
+            return dateValidate(date, materials, questions);
         } else {
             setErrorMessage(constants.ADD_NEW_VOTE.EVENT_NAME_ERR);
             return false;
@@ -866,7 +926,8 @@ const AddNewVote = (props) => {
             counters.push(user.id);
         })
         const dateForSend = skipReg === true || currentOrg.config.event.combined_time === true ? combinedDate : date;
-        const isEventValid = eventValidation(dateForSend, materials);
+        const questions = prepareQuestions();
+        const isEventValid = eventValidation(dateForSend, materials, questions);
         if (isEventValid) {
             const body = {
                 template_title: eventTitle.value,
@@ -885,27 +946,7 @@ const AddNewVote = (props) => {
                 quorum: eventQuorum,
                 quorum_type: "voting",
                 materials: materials,
-                questions: [{
-                    template: "ynq",
-                    title: "Простой вопрос",
-                    options: {
-                        rows: [
-                            { value: "За" },
-                            { value: "Против" },
-                            { value: "Воздержаться" }
-                        ],
-                        columns: []
-                    },
-                    materials: [],
-                    is_required_grid_rows: false,
-                    rules: {
-                        pick_eq: 1,
-                        pick_lt: -1,
-                        pick_gt: -1,
-                        pick_le: -1,
-                        pick_ge: -1
-                    }
-                }],
+                questions: questions,
                 report_sign: [],
                 owner: {
                     user_id: currentUser.id,
@@ -1147,7 +1188,6 @@ const AddNewVote = (props) => {
                                 deleteMaterial={deleteMaterial}
                                 requestHelper={requestHelper}
                             />
-
                             <h3 className="add-new-vote__title-select-org">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_SETTINGS_USERS}</h3>
                             <div className="add-new-vote__user-settings-open-close-btn">
                                 <div onClick={onShowCloseList} className={activeCloseList ? "add-new-vote__settings-button-close-open-list active" : "add-new-vote__settings-button-close-open-list"}>
@@ -1385,7 +1425,7 @@ const AddNewVote = (props) => {
                             <div className={activeTypeQuestionBnt ? "add-new-vote__select-type-questions active" : "add-new-vote__select-type-questions"}>
                                 {typeQuestionButtons.map((item, i) => {
                                     return (
-                                        <div onClick={() => onGetTypeQuestionBtn(item.nameBtn, item.typeQuestion)} key={i} className={item.classNameBtn}>
+                                        <div onClick={() => onGetTypeQuestionBtn(item.typeQuestion)} key={i} className={item.classNameBtn}>
                                             {item.nameBtn}
                                         </div>
                                     )
