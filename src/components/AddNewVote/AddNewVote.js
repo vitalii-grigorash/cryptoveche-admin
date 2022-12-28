@@ -1410,7 +1410,9 @@ const AddNewVote = (props) => {
                 </div>
                 {activeQuestionBlock && (
                     <div className="add-new-vote__questions-block">
-                        {/* <AddNewVoteCreatedQuestion constants={constants} /> */}
+                        <div className="add-new-vote__questions-block-created-question">
+                            <AddNewVoteCreatedQuestion constants={constants} />
+                        </div>
                         <div className="add-new-vote__questions">
                             <h3 className="add-new-vote__title-questions">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_TITLE}</h3>
                             <h3 className="add-new-vote__title-questions-mobile">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_TITLE_MOBILE}</h3>
