@@ -1573,111 +1573,111 @@ const AddNewVote = (props) => {
                             </div>
                         </div>
                         <div className="add-new-vote__questions-block-type-question">
-                            {selectedTypeQuestionBtn === 'ynq' ? <AddNewVoteTypeYnq
-                                activeModalTypeQuestion={activeModalTypeQuestion}
-                                setActiveModalTypeQuestion={setActiveModalTypeQuestion}
-                                constants={constants}
-                                selectedTypeQuestionBtn={selectedTypeQuestionBtn}
-                                setSelectedTypeQuestionBtn={setSelectedTypeQuestionBtn}
-                                typeQuestionButtons={typeQuestionButtons}
-                                eventMaterials={eventMaterials}
-                                addEmptyMaterial={addEmptyMaterial}
-                                changeMaterialType={changeMaterialType}
-                                linkInputChange={linkInputChange}
-                                titleInputChange={titleInputChange}
-                                changeDocLink={changeDocLink}
-                                deleteMaterial={deleteMaterial}
-                                requestHelper={requestHelper} /> : null}
-                            {selectedTypeQuestionBtn === 'none' ? <AddNewVoteTypeNone
-                                activeModalTypeQuestion={activeModalTypeQuestion}
-                                setActiveModalTypeQuestion={setActiveModalTypeQuestion}
-                                constants={constants}
-                                selectedTypeQuestionBtn={selectedTypeQuestionBtn}
-                                setSelectedTypeQuestionBtn={setSelectedTypeQuestionBtn}
-                                typeQuestionButtons={typeQuestionButtons}
-                                eventMaterials={eventMaterials}
-                                addEmptyMaterial={addEmptyMaterial}
-                                changeMaterialType={changeMaterialType}
-                                linkInputChange={linkInputChange}
-                                titleInputChange={titleInputChange}
-                                changeDocLink={changeDocLink}
-                                deleteMaterial={deleteMaterial}
-                                requestHelper={requestHelper} /> : null}
-                            {selectedTypeQuestionBtn === 'positionSingle' ? <AddNewVoteTypePositionSingle
-                                activeModalTypeQuestion={activeModalTypeQuestion}
-                                setActiveModalTypeQuestion={setActiveModalTypeQuestion}
-                                constants={constants}
-                                selectedTypeQuestionBtn={selectedTypeQuestionBtn}
-                                setSelectedTypeQuestionBtn={setSelectedTypeQuestionBtn}
-                                typeQuestionButtons={typeQuestionButtons}
-                                eventMaterials={eventMaterials}
-                                addEmptyMaterial={addEmptyMaterial}
-                                changeMaterialType={changeMaterialType}
-                                linkInputChange={linkInputChange}
-                                titleInputChange={titleInputChange}
-                                changeDocLink={changeDocLink}
-                                deleteMaterial={deleteMaterial}
-                                requestHelper={requestHelper} /> : null}
-                            {selectedTypeQuestionBtn === 'grid' ? <AddNewVoteTypeGrid
-                                activeModalTypeQuestion={activeModalTypeQuestion}
-                                setActiveModalTypeQuestion={setActiveModalTypeQuestion}
-                                constants={constants}
-                                selectedTypeQuestionBtn={selectedTypeQuestionBtn}
-                                setSelectedTypeQuestionBtn={setSelectedTypeQuestionBtn}
-                                typeQuestionButtons={typeQuestionButtons}
-                                eventMaterials={eventMaterials}
-                                addEmptyMaterial={addEmptyMaterial}
-                                changeMaterialType={changeMaterialType}
-                                linkInputChange={linkInputChange}
-                                titleInputChange={titleInputChange}
-                                changeDocLink={changeDocLink}
-                                deleteMaterial={deleteMaterial}
-                                requestHelper={requestHelper} /> : null}
-                            {selectedTypeQuestionBtn === 'radioGrid' ? <AddNewVoteTypeRadioGrid
-                                activeModalTypeQuestion={activeModalTypeQuestion}
-                                setActiveModalTypeQuestion={setActiveModalTypeQuestion}
-                                constants={constants}
-                                selectedTypeQuestionBtn={selectedTypeQuestionBtn}
-                                setSelectedTypeQuestionBtn={setSelectedTypeQuestionBtn}
-                                typeQuestionButtons={typeQuestionButtons}
-                                eventMaterials={eventMaterials}
-                                addEmptyMaterial={addEmptyMaterial}
-                                changeMaterialType={changeMaterialType}
-                                linkInputChange={linkInputChange}
-                                titleInputChange={titleInputChange}
-                                changeDocLink={changeDocLink}
-                                deleteMaterial={deleteMaterial}
-                                requestHelper={requestHelper} /> : null}
-                            {selectedTypeQuestionBtn === 'positionMultiple' ? <AddNewVoteTypePositionMultiple
-                                activeModalTypeQuestion={activeModalTypeQuestion}
-                                setActiveModalTypeQuestion={setActiveModalTypeQuestion}
-                                constants={constants}
-                                selectedTypeQuestionBtn={selectedTypeQuestionBtn}
-                                setSelectedTypeQuestionBtn={setSelectedTypeQuestionBtn}
-                                typeQuestionButtons={typeQuestionButtons}
-                                eventMaterials={eventMaterials}
-                                addEmptyMaterial={addEmptyMaterial}
-                                changeMaterialType={changeMaterialType}
-                                linkInputChange={linkInputChange}
-                                titleInputChange={titleInputChange}
-                                changeDocLink={changeDocLink}
-                                deleteMaterial={deleteMaterial}
-                                requestHelper={requestHelper} /> : null}
-                            {selectedTypeQuestionBtn === 'samePositions' ? <AddNewVoteTypeSamePositions
-                                activeModalTypeQuestion={activeModalTypeQuestion}
-                                setActiveModalTypeQuestion={setActiveModalTypeQuestion}
-                                constants={constants}
-                                selectedTypeQuestionBtn={selectedTypeQuestionBtn}
-                                setSelectedTypeQuestionBtn={setSelectedTypeQuestionBtn}
-                                typeQuestionButtons={typeQuestionButtons}
-                                eventMaterials={eventMaterials}
-                                addEmptyMaterial={addEmptyMaterial}
-                                changeMaterialType={changeMaterialType}
-                                linkInputChange={linkInputChange}
-                                titleInputChange={titleInputChange}
-                                changeDocLink={changeDocLink}
-                                deleteMaterial={deleteMaterial}
-                                requestHelper={requestHelper} /> : null}
+                            {selectedTypeQuestionBtn === 'ynq' &&
+                                <AddNewVoteTypeYnq
+                                    onCloseModal={questionModalClose}
+                                    constants={constants}
+                                    requestHelper={requestHelper}
+                                    questionsList={questionsList}
+                                    addQuestion={addQuestion}
+                                />
+                            }
+                            {selectedTypeQuestionBtn === 'none' &&
+                                <AddNewVoteTypeNone
+                                    onCloseModal={questionModalClose}
+                                    constants={constants}
+                                    eventMaterials={eventMaterials}
+                                    addEmptyMaterial={addEmptyMaterial}
+                                    changeMaterialType={changeMaterialType}
+                                    linkInputChange={linkInputChange}
+                                    titleInputChange={titleInputChange}
+                                    changeDocLink={changeDocLink}
+                                    deleteMaterial={deleteMaterial}
+                                    requestHelper={requestHelper}
+                                    questionsList={questionsList}
+                                    addQuestion={addQuestion}
+                                />
+                            }
+                            {selectedTypeQuestionBtn === 'positionSingle' &&
+                                <AddNewVoteTypePositionSingle
+                                    onCloseModal={questionModalClose}
+                                    constants={constants}
+                                    eventMaterials={eventMaterials}
+                                    addEmptyMaterial={addEmptyMaterial}
+                                    changeMaterialType={changeMaterialType}
+                                    linkInputChange={linkInputChange}
+                                    titleInputChange={titleInputChange}
+                                    changeDocLink={changeDocLink}
+                                    deleteMaterial={deleteMaterial}
+                                    requestHelper={requestHelper}
+                                    questionsList={questionsList}
+                                    addQuestion={addQuestion}
+                                />
+                            }
+                            {selectedTypeQuestionBtn === 'grid' &&
+                                <AddNewVoteTypeGrid
+                                    onCloseModal={questionModalClose}
+                                    constants={constants}
+                                    eventMaterials={eventMaterials}
+                                    addEmptyMaterial={addEmptyMaterial}
+                                    changeMaterialType={changeMaterialType}
+                                    linkInputChange={linkInputChange}
+                                    titleInputChange={titleInputChange}
+                                    changeDocLink={changeDocLink}
+                                    deleteMaterial={deleteMaterial}
+                                    requestHelper={requestHelper}
+                                    questionsList={questionsList}
+                                    addQuestion={addQuestion}
+                                />
+                            }
+                            {selectedTypeQuestionBtn === 'radioGrid' &&
+                                <AddNewVoteTypeRadioGrid
+                                    onCloseModal={questionModalClose}
+                                    constants={constants}
+                                    eventMaterials={eventMaterials}
+                                    addEmptyMaterial={addEmptyMaterial}
+                                    changeMaterialType={changeMaterialType}
+                                    linkInputChange={linkInputChange}
+                                    titleInputChange={titleInputChange}
+                                    changeDocLink={changeDocLink}
+                                    deleteMaterial={deleteMaterial}
+                                    requestHelper={requestHelper}
+                                    questionsList={questionsList}
+                                    addQuestion={addQuestion}
+                                />
+                            }
+                            {selectedTypeQuestionBtn === 'positionMultiple' &&
+                                <AddNewVoteTypePositionMultiple
+                                    onCloseModal={questionModalClose}
+                                    constants={constants}
+                                    eventMaterials={eventMaterials}
+                                    addEmptyMaterial={addEmptyMaterial}
+                                    changeMaterialType={changeMaterialType}
+                                    linkInputChange={linkInputChange}
+                                    titleInputChange={titleInputChange}
+                                    changeDocLink={changeDocLink}
+                                    deleteMaterial={deleteMaterial}
+                                    requestHelper={requestHelper}
+                                    questionsList={questionsList}
+                                    addQuestion={addQuestion}
+                                />
+                            }
+                            {selectedTypeQuestionBtn === 'samePositions' &&
+                                <AddNewVoteTypeSamePositions
+                                    onCloseModal={questionModalClose}
+                                    constants={constants}
+                                    eventMaterials={eventMaterials}
+                                    addEmptyMaterial={addEmptyMaterial}
+                                    changeMaterialType={changeMaterialType}
+                                    linkInputChange={linkInputChange}
+                                    titleInputChange={titleInputChange}
+                                    changeDocLink={changeDocLink}
+                                    deleteMaterial={deleteMaterial}
+                                    requestHelper={requestHelper}
+                                    questionsList={questionsList}
+                                    addQuestion={addQuestion}
+                                />
+                            }
                         </div>
                     </div>
                 )}
