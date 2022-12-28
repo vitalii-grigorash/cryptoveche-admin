@@ -7,10 +7,8 @@ import AddMaterials from "../AddMaterials/AddMaterials";
 const AddNewVoteTypeRadioGrid = (props) => {
 
     const {
-        activeModalTypeQuestion,
-        setActiveModalTypeQuestion,
+        onCloseModal,
         constants,
-        selectedTypeQuestionBtn,
         eventMaterials,
         addEmptyMaterial,
         changeMaterialType,
@@ -19,24 +17,22 @@ const AddNewVoteTypeRadioGrid = (props) => {
         changeDocLink,
         deleteMaterial,
         requestHelper,
-        questionsList
+        questionsList,
+        addQuestion
     } = props;
 
-    const onCloseModal = () => {
-        setActiveModalTypeQuestion(false);
-    }
     return (
-        <div className={activeModalTypeQuestion ? "add-new-vote-type-radio-grid__container active" : "add-new-vote-type-radio-grid__container"}>
+        <div className="add-new-vote-type-radio-grid__container active">
             <div className="add-new-vote-type-radio-grid">
                 <div className="add-new-vote-type-radio-grid__title">
-                    <h3 className="add-new-vote-type-radio-grid__title-number-question">Вопрос #{questionsList.length + 1}</h3>
+                    <h3 className="add-new-vote-type-radio-grid__title-number-question">{constants.ADD_NEW_VOTE.QUESTION} #{questionsList.length + 1}</h3>
                     <img onClick={onCloseModal} className="add-new-vote-type-radio-grid__title-icon-close" src={iconCloseModal} alt={constants.GENERAL.ALT_ICON} />
                 </div>
-                <h5 className="add-new-vote-type-radio-grid__title-current-type-question">{selectedTypeQuestionBtn.nameQuestion}</h5>
+                <h5 className="add-new-vote-type-radio-grid__title-current-type-question">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_RADIO_GRID}</h5>
                 <div className="add-new-vote-type-radio-grid__name-question">
                     <label className="add-new-vote-type-radio-grid__name-question-label">
                         {constants.ADD_NEW_VOTE.QUESTION_TYPE_NAME_QUESTION}
-                        <span className="add-new-vote__red-star">*</span>
+                        <span className="add-new-vote__red-star"> *</span>
                     </label>
                     <input className="add-new-vote-type-radio-grid__name-question-input"
                         type={'text'}

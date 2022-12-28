@@ -10,10 +10,8 @@ import row_input_select_role from "../../img/Auth_icon_row_select_role.svg";
 const AddNewVoteTypeNone = (props) => {
 
     const {
-        activeModalTypeQuestion,
-        setActiveModalTypeQuestion,
+        onCloseModal,
         constants,
-        selectedTypeQuestionBtn,
         eventMaterials,
         addEmptyMaterial,
         changeMaterialType,
@@ -22,7 +20,8 @@ const AddNewVoteTypeNone = (props) => {
         changeDocLink,
         deleteMaterial,
         requestHelper,
-        questionsList
+        questionsList,
+        addQuestion
     } = props;
 
     const [activeRuleSelect, setActiveRuleSelect] = useState(false);
@@ -37,13 +36,13 @@ const AddNewVoteTypeNone = (props) => {
     let minGapRange = 1;
 
     const onChangeSliderOne = (e) => {
-        setStartValueRange(e.target.value)
-        setStartValueInput(e.target.value)
+        setStartValueRange(e.target.value);
+        setStartValueInput(e.target.value);
     }
 
     const onChangeSliderTwo = (e) => {
-        setEndValueRange(e.target.value)
-        setEndValueInput(e.target.value)
+        setEndValueRange(e.target.value);
+        setEndValueInput(e.target.value);
     }
 
     const fillColorRangeTrack = useCallback(() => {
@@ -53,38 +52,31 @@ const AddNewVoteTypeNone = (props) => {
     }, [startValueRange, endValueRange])
 
     useEffect(() => {
-        if (activeModalTypeQuestion === true) {
             if (parseInt(endValueRange.toString()) - parseInt(startValueRange.toString()) <= minGapRange) {
                 return setStartValueRange(parseInt(endValueRange.toString()) - minGapRange);
             }
             fillColorRangeTrack();
-        }
-    }, [endValueRange, startValueRange, minGapRange, fillColorRangeTrack, activeModalTypeQuestion])
+    }, [endValueRange, startValueRange, minGapRange, fillColorRangeTrack])
 
     useEffect(() => {
-        if (activeModalTypeQuestion === true) {
             if (parseInt(endValueRange.toString()) - parseInt(startValueRange.toString()) <= minGapRange) {
                 setEndValueRange(parseInt(startValueRange.toString()) + minGapRange)
             }
             fillColorRangeTrack();
-        }
-    }, [endValueRange, startValueRange, minGapRange, fillColorRangeTrack, activeModalTypeQuestion])
+    }, [endValueRange, startValueRange, minGapRange, fillColorRangeTrack])
 
-    const onCloseModal = () => {
-        setActiveModalTypeQuestion(false)
-    }
     return (
-        <div className={activeModalTypeQuestion ? "add-new-vote-type-none__container active" : "add-new-vote-type-none__container"}>
+        <div className="add-new-vote-type-none__container active">
             <div className="add-new-vote-type-none">
                 <div className="add-new-vote-type-none__title">
-                    <h3 className="add-new-vote-type-none__title-number-question">Вопрос #{questionsList.length + 1}</h3>
+                    <h3 className="add-new-vote-type-none__title-number-question">{constants.ADD_NEW_VOTE.QUESTION} #{questionsList.length + 1}</h3>
                     <img onClick={onCloseModal} className="add-new-vote-type-none__title-icon-close" src={iconCloseModal} alt={constants.GENERAL.ALT_ICON} />
                 </div>
-                <h5 className="add-new-vote-type-none__title-current-type-question">{selectedTypeQuestionBtn.nameQuestion}</h5>
+                <h5 className="add-new-vote-type-none__title-current-type-question">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_NONE}</h5>
                 <div className="add-new-vote-type-none__name-question">
                     <label className="add-new-vote-type-none__name-question-label">
                         {constants.ADD_NEW_VOTE.QUESTION_TYPE_NAME_QUESTION}
-                        <span className="add-new-vote__red-star">*</span>
+                        <span className="add-new-vote__red-star"> *</span>
                     </label>
                     <input className="add-new-vote-type-none__name-question-input"
                         type={'text'}
