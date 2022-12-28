@@ -117,6 +117,15 @@ const AddNewVote = (props) => {
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_SAME_POSITIONS}`, classNameBtn: "add-new-vote__select-type-vote-same_positions", typeQuestion: "samePositions" }
     ];
 
+    function editQuestion (question) {
+        onGetTypeQuestionBtn(question.template);
+    }
+
+    function deleteQuestion (question) {
+        const filteredArray = questionsList.filter(el => el.id !== question.id);
+        setQuestionsList(filteredArray);
+    }
+
     function questionModalClose() {
         setSelectedTypeQuestionBtn('');
     }
@@ -1411,7 +1420,16 @@ const AddNewVote = (props) => {
                 {activeQuestionBlock && (
                     <div className="add-new-vote__questions-block">
                         <div className="add-new-vote__questions-block-created-question">
-                            <AddNewVoteCreatedQuestion constants={constants} />
+                            {questionsList.map((question) => (
+                                <div key={question.id}>
+                                    <AddNewVoteCreatedQuestion
+                                        constants={constants}
+                                        question={question}
+                                        deleteQuestion={deleteQuestion}
+                                        editQuestion={editQuestion}
+                                    />
+                                </div>
+                            ))}
                         </div>
                         <div className="add-new-vote__questions">
                             <h3 className="add-new-vote__title-questions">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_TITLE}</h3>
