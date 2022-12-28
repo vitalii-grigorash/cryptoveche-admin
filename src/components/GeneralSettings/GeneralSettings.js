@@ -276,90 +276,172 @@ const GeneralSettings = (props) => {
     }
 
     return (
-        <div className="general-settings">
-            <h2 className="general-settings__heading">{constants.ORG_SETTINGS.GENERAL_SETTINGS}</h2>
-            <div className="general-settings__container">
-                <div className="general-settings__permissions-container">
-                    <div className="general-settings__checkbox-container" onClick={handleChangeObservers}>
-                        <div className={`general-settings__checkbox ${observers && 'general-settings__checkbox_active'}`} />
-                        <p className="general-settings__checkbox-text">{constants.ORG_SETTINGS.ADD_OBSERVERS}</p>
-                    </div>
-                    <div className="general-settings__checkbox-container" onClick={handleChangeCounters}>
-                        <div className={`general-settings__checkbox ${counters && 'general-settings__checkbox_active'}`} />
-                        <p className="general-settings__checkbox-text">{constants.ORG_SETTINGS.ADD_COUNTERS}</p>
-                    </div>
-                    <div className="general-settings__checkbox-container" onClick={handleChangeTemplates}>
-                        <div className={`general-settings__checkbox ${templates && 'general-settings__checkbox_active'}`} />
-                        <p className="general-settings__checkbox-text">{constants.ORG_SETTINGS.ADD_TEMPLATES}</p>
-                    </div>
-                    <div className="general-settings__checkbox-container" onClick={handleChangeInvalidBallots}>
-                        <div className={`general-settings__checkbox ${invalidBallots && 'general-settings__checkbox_active'}`} />
-                        <p className="general-settings__checkbox-text">{constants.ORG_SETTINGS.INVALID_BALLOTS}</p>
-                    </div>
-                    <div className="general-settings__checkbox-container" onClick={handleChangeProlong}>
-                        <div className={`general-settings__checkbox ${prolong && 'general-settings__checkbox_active'}`} />
-                        <p className="general-settings__checkbox-text">{constants.ORG_SETTINGS.PROLONG}</p>
-                    </div>
-                </div>
-                <div className="general-settings__additional-container">
-                    <div className="general-settings__option-container">
-                        <p className="general-settings__option-name">{constants.ORG_SETTINGS.STATISTIC}</p>
-                        <div className="general-settings__option-value-container" onClick={handleOpenMinutesOptions}>
-                            <p className="general-settings__option-value">{minutesOption.text}</p>
-                            <div className="general-settings__option-arrow" />
-                            <div className={`general-settings__options-dropdown-container ${isMinutesOptionsOpen && 'general-settings__options-dropdown-container_active'}`}>
-                                {minutesOptions.map((option) => (
-                                    <div key={option.value} className="general-settings__option-select-container" onClick={() => handleMinutesOptionSelect(option.value)}>
-                                        <p className="general-settings__option-select-value">{option.text}</p>
+            <>
+                {isOrgSuperAdmin ? (
+                    <div className="general-settings">
+                        <h2 className="general-settings__heading">{constants.ORG_SETTINGS.GENERAL_SETTINGS}</h2>
+                        <div className="general-settings__container">
+                            <div className="general-settings__permissions-container">
+                                <div className="general-settings__checkbox-container" onClick={handleChangeObservers}>
+                                    <div className={`general-settings__checkbox ${observers && 'general-settings__checkbox_active'}`} />
+                                    <p className="general-settings__checkbox-text">{constants.ORG_SETTINGS.ADD_OBSERVERS}</p>
+                                </div>
+                                <div className="general-settings__checkbox-container" onClick={handleChangeCounters}>
+                                    <div className={`general-settings__checkbox ${counters && 'general-settings__checkbox_active'}`} />
+                                    <p className="general-settings__checkbox-text">{constants.ORG_SETTINGS.ADD_COUNTERS}</p>
+                                </div>
+                                <div className="general-settings__checkbox-container" onClick={handleChangeTemplates}>
+                                    <div className={`general-settings__checkbox ${templates && 'general-settings__checkbox_active'}`} />
+                                    <p className="general-settings__checkbox-text">{constants.ORG_SETTINGS.ADD_TEMPLATES}</p>
+                                </div>
+                                <div className="general-settings__checkbox-container" onClick={handleChangeInvalidBallots}>
+                                    <div className={`general-settings__checkbox ${invalidBallots && 'general-settings__checkbox_active'}`} />
+                                    <p className="general-settings__checkbox-text">{constants.ORG_SETTINGS.INVALID_BALLOTS}</p>
+                                </div>
+                                <div className="general-settings__checkbox-container" onClick={handleChangeProlong}>
+                                    <div className={`general-settings__checkbox ${prolong && 'general-settings__checkbox_active'}`} />
+                                    <p className="general-settings__checkbox-text">{constants.ORG_SETTINGS.PROLONG}</p>
+                                </div>
+                            </div>
+                            <div className="general-settings__additional-container">
+                                <div className="general-settings__option-container">
+                                    <p className="general-settings__option-name">{constants.ORG_SETTINGS.STATISTIC}</p>
+                                    <div className="general-settings__option-value-container" onClick={handleOpenMinutesOptions}>
+                                        <p className="general-settings__option-value">{minutesOption.text}</p>
+                                        <div className="general-settings__option-arrow" />
+                                        <div className={`general-settings__options-dropdown-container ${isMinutesOptionsOpen && 'general-settings__options-dropdown-container_active'}`}>
+                                            {minutesOptions.map((option) => (
+                                                <div key={option.value} className="general-settings__option-select-container" onClick={() => handleMinutesOptionSelect(option.value)}>
+                                                    <p className="general-settings__option-select-value">{option.text}</p>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
-                                ))}
+                                </div>
+                                <div className="general-settings__option-container">
+                                    <p className="general-settings__option-name">{constants.ORG_SETTINGS.TIME_ZONE}</p>
+                                    <div className="general-settings__option-value-container" onClick={handleOpenTimeZoneOptions}>
+                                        <p className="general-settings__option-value">{utcOffset.LABEL}</p>
+                                        <div className="general-settings__option-arrow" />
+                                        <div className={`general-settings__options-dropdown-container ${isTimeZoneOptionsOpen && 'general-settings__options-dropdown-container_active'}`}>
+                                            {timeZone.map((option, index) => (
+                                                <div key={index} className="general-settings__option-select-container" onClick={() => setOffset(option.VALUE)}>
+                                                    <p className="general-settings__option-select-value">{option.LABEL}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="general-settings__input-container">
+                                    <p className="general-settings__input-heading">{constants.ORG_SETTINGS.SUPPORT_EMAIL}</p>
+                                    <input
+                                        type="text"
+                                        className="general-settings__input-email"
+                                        placeholder={constants.ORG_SETTINGS.SUPPORT_EMAIL_PLACEGOLDER}
+                                        onChange={email.onChange}
+                                        value={email.value}
+                                    />
+                                </div>
+                                <div className="general-settings__input-container">
+                                    <p className="general-settings__input-heading">{constants.ORG_SETTINGS.DESCRIPTION}</p>
+                                    <textarea
+                                        type="text"
+                                        className="general-settings__input-description"
+                                        placeholder={constants.ORG_SETTINGS.DESCRIPTION_PLACEGOLDER}
+                                        onChange={description.onChange}
+                                        value={description.value}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        {isSaveButtonActive && (
+                            <>
+                                <p className="general-settings__save-changes-error">{saveChangesErrorMessage}</p>
+                                <button className="general-settings__save-changes-button" onClick={onSaveChangesClick}>{saveButtonText}</button>
+                            </>
+                        )}
+                    </div>
+                ) : (
+                    <div className="general-settings">
+                        <h2 className="general-settings__heading">{constants.ORG_SETTINGS.GENERAL_SETTINGS}</h2>
+                        <div className="general-settings__container">
+                            <div className="general-settings__permissions-container">
+                                <div className="general-settings__checkbox-container-default">
+                                    <div className={`general-settings__checkbox-default ${observers && 'general-settings__checkbox_active-default'}`} />
+                                    <p className="general-settings__checkbox-text">{constants.ORG_SETTINGS.ADD_OBSERVERS}</p>
+                                </div>
+                                <div className="general-settings__checkbox-container-default">
+                                    <div className={`general-settings__checkbox-default ${counters && 'general-settings__checkbox_active-default'}`} />
+                                    <p className="general-settings__checkbox-text">{constants.ORG_SETTINGS.ADD_COUNTERS}</p>
+                                </div>
+                                <div className="general-settings__checkbox-container-default">
+                                    <div className={`general-settings__checkbox-default ${templates && 'general-settings__checkbox_active-default'}`} />
+                                    <p className="general-settings__checkbox-text">{constants.ORG_SETTINGS.ADD_TEMPLATES}</p>
+                                </div>
+                                <div className="general-settings__checkbox-container-default">
+                                    <div className={`general-settings__checkbox-default ${invalidBallots && 'general-settings__checkbox_active-default'}`} />
+                                    <p className="general-settings__checkbox-text">{constants.ORG_SETTINGS.INVALID_BALLOTS}</p>
+                                </div>
+                                <div className="general-settings__checkbox-container-default">
+                                    <div className={`general-settings__checkbox-default ${prolong && 'general-settings__checkbox_active-default'}`} />
+                                    <p className="general-settings__checkbox-text">{constants.ORG_SETTINGS.PROLONG}</p>
+                                </div>
+                            </div>
+                            <div className="general-settings__additional-container">
+                                <div className="general-settings__option-container">
+                                    <p className="general-settings__option-name">{constants.ORG_SETTINGS.STATISTIC}</p>
+                                    <div className="general-settings__option-value-container-default">
+                                        <p className="general-settings__option-value">{minutesOption.text}</p>
+                                        <div className="general-settings__option-arrow" />
+                                        <div className={`general-settings__options-dropdown-container ${isMinutesOptionsOpen && 'general-settings__options-dropdown-container_active'}`}>
+                                            {minutesOptions.map((option) => (
+                                                <div key={option.value} className="general-settings__option-select-container">
+                                                    <p className="general-settings__option-select-value">{option.text}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="general-settings__option-container">
+                                    <p className="general-settings__option-name">{constants.ORG_SETTINGS.TIME_ZONE}</p>
+                                    <div className="general-settings__option-value-container-default">
+                                        <p className="general-settings__option-value">{utcOffset.LABEL}</p>
+                                        <div className="general-settings__option-arrow" />
+                                        <div className={`general-settings__options-dropdown-container ${isTimeZoneOptionsOpen && 'general-settings__options-dropdown-container_active'}`}>
+                                            {timeZone.map((option, index) => (
+                                                <div key={index} className="general-settings__option-select-container" onClick={() => setOffset(option.VALUE)}>
+                                                    <p className="general-settings__option-select-value">{option.LABEL}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="general-settings__input-container">
+                                    <p className="general-settings__input-heading">{constants.ORG_SETTINGS.SUPPORT_EMAIL}</p>
+                                    <input
+                                        type="text"
+                                        className="general-settings__input-email"
+                                        placeholder={constants.ORG_SETTINGS.SUPPORT_EMAIL_PLACEGOLDER}
+                                        onChange={email.onChange}
+                                        value={email.value}
+                                        disabled={true}
+                                    />
+                                </div>
+                                <div className="general-settings__input-container">
+                                    <p className="general-settings__input-heading">{constants.ORG_SETTINGS.DESCRIPTION}</p>
+                                    <textarea
+                                        className="general-settings__input-description"
+                                        placeholder={constants.ORG_SETTINGS.DESCRIPTION_PLACEGOLDER}
+                                        onChange={description.onChange}
+                                        value={description.value}
+                                        disabled={true}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className="general-settings__option-container">
-                        <p className="general-settings__option-name">{constants.ORG_SETTINGS.TIME_ZONE}</p>
-                        <div className="general-settings__option-value-container" onClick={handleOpenTimeZoneOptions}>
-                            <p className="general-settings__option-value">{utcOffset.LABEL}</p>
-                            <div className="general-settings__option-arrow" />
-                            <div className={`general-settings__options-dropdown-container ${isTimeZoneOptionsOpen && 'general-settings__options-dropdown-container_active'}`}>
-                                {timeZone.map((option, index) => (
-                                    <div key={index} className="general-settings__option-select-container" onClick={() => setOffset(option.VALUE)}>
-                                        <p className="general-settings__option-select-value">{option.LABEL}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                    <div className="general-settings__input-container">
-                        <p className="general-settings__input-heading">{constants.ORG_SETTINGS.SUPPORT_EMAIL}</p>
-                        <input
-                            type="text"
-                            className="general-settings__input-email"
-                            placeholder={constants.ORG_SETTINGS.SUPPORT_EMAIL_PLACEGOLDER}
-                            onChange={email.onChange}
-                            value={email.value}
-                        />
-                    </div>
-                    <div className="general-settings__input-container">
-                        <p className="general-settings__input-heading">{constants.ORG_SETTINGS.DESCRIPTION}</p>
-                        <textarea
-                            type="text"
-                            className="general-settings__input-description"
-                            placeholder={constants.ORG_SETTINGS.DESCRIPTION_PLACEGOLDER}
-                            onChange={description.onChange}
-                            value={description.value}
-                        />
-                    </div>
-                </div>
-            </div>
-            {isSaveButtonActive && (
-                <>
-                    <p className="general-settings__save-changes-error">{saveChangesErrorMessage}</p>
-                    <button className="general-settings__save-changes-button" onClick={onSaveChangesClick}>{saveButtonText}</button>
-                </>
-            )}
-        </div>
+                )}
+            </>
     )
 }
-
 export default GeneralSettings;

@@ -246,103 +246,200 @@ const VoteSettings = (props) => {
     }
 
     return (
-        <div className="vote-settings">
-            <h2 className="vote-settings__heading">{constants.ORG_SETTINGS.VOTE_CONSTRUCOR}</h2>
-            <div className="vote-settings__container">
-                <div className="vote-settings__option-main-container">
-                    <div className="vote-settings__ckeckbox-container" onClick={handleShowTypeActive}>
-                        <div className={`vote-settings__ckeckbox ${showType && 'vote-settings__ckeckbox_active'}`} />
-                        <p className="vote-settings__ckeckbox-text">{constants.ORG_SETTINGS.VOTE_TYPE}</p>
-                    </div>
-                    <p className="vote-settings__default-state">{constants.ORG_SETTINGS.DEFAULT_STATE}</p>
-                    <div className="vote-settings__select-container" onClick={handleShowTypeOptionsOpen}>
-                        <p className="vote-settings__select-text">{defaultType === 'secret' ? constants.ORG_SETTINGS.SECRET_VOTE : constants.ORG_SETTINGS.OPEN_VOTE}</p>
-                        <div className="vote-settings__select-arrow" />
-                        <div className={`vote-settings__select-options-container ${isShowTypeOptionsOpen && 'vote-settings__select-options-container_active'}`}>
-                            <div className="vote-settings__option-container" onClick={() => onDefaultTypeSelectClick('open')}>
-                                <p className="vote-settings__option-value">{constants.ORG_SETTINGS.OPEN_VOTE}</p>
+        <>
+            {isOrgSuperAdmin ? (
+                <div className="vote-settings">
+                    <h2 className="vote-settings__heading">{constants.ORG_SETTINGS.VOTE_CONSTRUCOR}</h2>
+                    <div className="vote-settings__container">
+                        <div className="vote-settings__option-main-container">
+                            <div className="vote-settings__checkbox-container" onClick={handleShowTypeActive}>
+                                <div className={`vote-settings__checkbox ${showType && 'vote-settings__checkbox_active'}`} />
+                                <p className="vote-settings__checkbox-text">{constants.ORG_SETTINGS.VOTE_TYPE}</p>
                             </div>
-                            <div className="vote-settings__option-container" onClick={() => onDefaultTypeSelectClick('secret')}>
-                                <p className="vote-settings__option-value">{constants.ORG_SETTINGS.SECRET_VOTE}</p>
+                            <p className="vote-settings__default-state">{constants.ORG_SETTINGS.DEFAULT_STATE}</p>
+                            <div className="vote-settings__select-container" onClick={handleShowTypeOptionsOpen}>
+                                <p className="vote-settings__select-text">{defaultType === 'secret' ? constants.ORG_SETTINGS.SECRET_VOTE : constants.ORG_SETTINGS.OPEN_VOTE}</p>
+                                <div className="vote-settings__select-arrow" />
+                                <div className={`vote-settings__select-options-container ${isShowTypeOptionsOpen && 'vote-settings__select-options-container_active'}`}>
+                                    <div className="vote-settings__option-container" onClick={() => onDefaultTypeSelectClick('open')}>
+                                        <p className="vote-settings__option-value">{constants.ORG_SETTINGS.OPEN_VOTE}</p>
+                                    </div>
+                                    <div className="vote-settings__option-container" onClick={() => onDefaultTypeSelectClick('secret')}>
+                                        <p className="vote-settings__option-value">{constants.ORG_SETTINGS.SECRET_VOTE}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="vote-settings__option-main-container">
+                            <div className="vote-settings__checkbox-container" onClick={handleQuorumActive}>
+                                <div className={`vote-settings__checkbox ${quorum && 'vote-settings__checkbox_active'}`} />
+                                <p className="vote-settings__checkbox-text">{constants.ORG_SETTINGS.QUORUM}</p>
+                            </div>
+                            <p className="vote-settings__default-state">{constants.ORG_SETTINGS.DEFAULT_STATE}</p>
+                            <div className="vote-settings__select-container" onClick={handleQuorumOptionsOpen}>
+                                <p className="vote-settings__select-text">{selectedQuorumText}</p>
+                                <div className="vote-settings__select-arrow" />
+                                <div className={`vote-settings__select-options-container ${isQuorumOptionsOpen && 'vote-settings__select-options-container_active'}`}>
+                                    <div className="vote-settings__option-container" onClick={() => onDefaultQuorumSelectClick('51')}>
+                                        <p className="vote-settings__option-value">50% + 1</p>
+                                    </div>
+                                    <div className="vote-settings__option-container" onClick={() => onDefaultQuorumSelectClick('50')}>
+                                        <p className="vote-settings__option-value">50%</p>
+                                    </div>
+                                    <div className="vote-settings__option-container" onClick={() => onDefaultQuorumSelectClick('66')}>
+                                        <p className="vote-settings__option-value">2/3</p>
+                                    </div>
+                                    <div className="vote-settings__option-container" onClick={() => onDefaultQuorumSelectClick('0')}>
+                                        <p className="vote-settings__option-value">{constants.ORG_SETTINGS.QUORUM_ANY_VALUE}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="vote-settings__option-main-container">
+                            <div className="vote-settings__checkbox-container" onClick={handleReRegistrationActive}>
+                                <div className={`vote-settings__checkbox ${reRegistration && 'vote-settings__checkbox_active'}`} />
+                                <p className="vote-settings__checkbox-text">{constants.ORG_SETTINGS.CANCEL_REG}</p>
+                            </div>
+                            <p className="vote-settings__default-state">{constants.ORG_SETTINGS.DEFAULT_STATE}</p>
+                            <div className="vote-settings__select-container" onClick={handleReRegistrationOptionsOpen}>
+                                <p className="vote-settings__select-text">{defaultReRegistration === true ? constants.ORG_SETTINGS.ALLOW : constants.ORG_SETTINGS.PROHIBIT}</p>
+                                <div className="vote-settings__select-arrow" />
+                                <div className={`vote-settings__select-options-container ${isReRegistrationOptionsOpen && 'vote-settings__select-options-container_active'}`}>
+                                    <div className="vote-settings__option-container" onClick={() => onDefaultReRegistrationClick(true)}>
+                                        <p className="vote-settings__option-value">{constants.ORG_SETTINGS.ALLOW}</p>
+                                    </div>
+                                    <div className="vote-settings__option-container" onClick={() => onDefaultReRegistrationClick(false)}>
+                                        <p className="vote-settings__option-value">{constants.ORG_SETTINGS.PROHIBIT}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="vote-settings__option-main-container">
+                            <div className="vote-settings__checkbox-container" onClick={handleReVotingActive}>
+                                <div className={`vote-settings__checkbox ${reVoting && 'vote-settings__checkbox_active'}`} />
+                                <p className="vote-settings__checkbox-text">{constants.ORG_SETTINGS.CHANGE_VOTE}</p>
+                            </div>
+                            <p className="vote-settings__default-state">{constants.ORG_SETTINGS.DEFAULT_STATE}</p>
+                            <div className="vote-settings__select-container" onClick={handleReVotingOptionsOpen}>
+                                <p className="vote-settings__select-text">{defaultReVoting === true ? constants.ORG_SETTINGS.ALLOW : constants.ORG_SETTINGS.PROHIBIT}</p>
+                                <div className="vote-settings__select-arrow" />
+                                <div className={`vote-settings__select-options-container ${isReVotingOptionsOpen && 'vote-settings__select-options-container_active'}`}>
+                                    <div className="vote-settings__option-container" onClick={() => onDefaultReVotingClick(true)}>
+                                        <p className="vote-settings__option-value">{constants.ORG_SETTINGS.ALLOW}</p>
+                                    </div>
+                                    <div className="vote-settings__option-container" onClick={() => onDefaultReVotingClick(false)}>
+                                        <p className="vote-settings__option-value">{constants.ORG_SETTINGS.PROHIBIT}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="vote-settings__option-main-container">
+                            <div className="vote-settings__checkbox-container" onClick={handleCombinedTimeActive}>
+                                <div className={`vote-settings__checkbox ${combinedTime && 'vote-settings__checkbox_active'}`} />
+                                <p className="vote-settings__checkbox-text">{constants.ORG_SETTINGS.COMBINE_TIME}</p>
+                            </div>
+                        </div>
+                        {isSaveButtonActive && (
+                            <button className="vote-settings__save-button" onClick={saveChanges}>{constants.ORG_SETTINGS.BUTTON_SAVE_ADMINS_CHANGE}</button>
+                        )}
+                    </div>
+                </div>
+            ) : (
+                <div className="vote-settings">
+                    <h2 className="vote-settings__heading">{constants.ORG_SETTINGS.VOTE_CONSTRUCOR}</h2>
+                    <div className="vote-settings__container">
+                        <div className="vote-settings__option-main-container">
+                            <div className="vote-settings__checkbox-container-default">
+                                <div className={`vote-settings__checkbox-default ${showType && 'vote-settings__checkbox_active-default'}`} />
+                                <p className="vote-settings__checkbox-text">{constants.ORG_SETTINGS.VOTE_TYPE}</p>
+                            </div>
+                            <p className="vote-settings__default-state">{constants.ORG_SETTINGS.DEFAULT_STATE}</p>
+                            <div className="vote-settings__select-container-default">
+                                <p className="vote-settings__select-text">{defaultType === 'secret' ? constants.ORG_SETTINGS.SECRET_VOTE : constants.ORG_SETTINGS.OPEN_VOTE}</p>
+                                <div className="vote-settings__select-arrow" />
+                                <div className={`vote-settings__select-options-container ${isShowTypeOptionsOpen && 'vote-settings__select-options-container_active'}`}>
+                                    <div className="vote-settings__option-container">
+                                        <p className="vote-settings__option-value">{constants.ORG_SETTINGS.OPEN_VOTE}</p>
+                                    </div>
+                                    <div className="vote-settings__option-container">
+                                        <p className="vote-settings__option-value">{constants.ORG_SETTINGS.SECRET_VOTE}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="vote-settings__option-main-container">
+                            <div className="vote-settings__checkbox-container-default">
+                                <div className={`vote-settings__checkbox-default ${quorum && 'vote-settings__checkbox_active-default'}`} />
+                                <p className="vote-settings__checkbox-text">{constants.ORG_SETTINGS.QUORUM}</p>
+                            </div>
+                            <p className="vote-settings__default-state">{constants.ORG_SETTINGS.DEFAULT_STATE}</p>
+                            <div className="vote-settings__select-container-default">
+                                <p className="vote-settings__select-text">{selectedQuorumText}</p>
+                                <div className="vote-settings__select-arrow" />
+                                <div className={`vote-settings__select-options-container ${isQuorumOptionsOpen && 'vote-settings__select-options-container_active'}`}>
+                                    <div className="vote-settings__option-container">
+                                        <p className="vote-settings__option-value">50% + 1</p>
+                                    </div>
+                                    <div className="vote-settings__option-container">
+                                        <p className="vote-settings__option-value">50%</p>
+                                    </div>
+                                    <div className="vote-settings__option-container">
+                                        <p className="vote-settings__option-value">2/3</p>
+                                    </div>
+                                    <div className="vote-settings__option-container">
+                                        <p className="vote-settings__option-value">{constants.ORG_SETTINGS.QUORUM_ANY_VALUE}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="vote-settings__option-main-container">
+                            <div className="vote-settings__checkbox-container-default">
+                                <div className={`vote-settings__checkbox-default ${reRegistration && 'vote-settings__checkbox_active-default'}`} />
+                                <p className="vote-settings__checkbox-text">{constants.ORG_SETTINGS.CANCEL_REG}</p>
+                            </div>
+                            <p className="vote-settings__default-state">{constants.ORG_SETTINGS.DEFAULT_STATE}</p>
+                            <div className="vote-settings__select-container-default">
+                                <p className="vote-settings__select-text">{defaultReRegistration === true ? constants.ORG_SETTINGS.ALLOW : constants.ORG_SETTINGS.PROHIBIT}</p>
+                                <div className="vote-settings__select-arrow" />
+                                <div className={`vote-settings__select-options-container ${isReRegistrationOptionsOpen && 'vote-settings__select-options-container_active'}`}>
+                                    <div className="vote-settings__option-container">
+                                        <p className="vote-settings__option-value">{constants.ORG_SETTINGS.ALLOW}</p>
+                                    </div>
+                                    <div className="vote-settings__option-container">
+                                        <p className="vote-settings__option-value">{constants.ORG_SETTINGS.PROHIBIT}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="vote-settings__option-main-container">
+                            <div className="vote-settings__checkbox-container-default">
+                                <div className={`vote-settings__checkbox-default ${reVoting && 'vote-settings__checkbox_active-default'}`} />
+                                <p className="vote-settings__checkbox-text">{constants.ORG_SETTINGS.CHANGE_VOTE}</p>
+                            </div>
+                            <p className="vote-settings__default-state">{constants.ORG_SETTINGS.DEFAULT_STATE}</p>
+                            <div className="vote-settings__select-container-default">
+                                <p className="vote-settings__select-text">{defaultReVoting === true ? constants.ORG_SETTINGS.ALLOW : constants.ORG_SETTINGS.PROHIBIT}</p>
+                                <div className="vote-settings__select-arrow" />
+                                <div className={`vote-settings__select-options-container ${isReVotingOptionsOpen && 'vote-settings__select-options-container_active'}`}>
+                                    <div className="vote-settings__option-container">
+                                        <p className="vote-settings__option-value">{constants.ORG_SETTINGS.ALLOW}</p>
+                                    </div>
+                                    <div className="vote-settings__option-container">
+                                        <p className="vote-settings__option-value">{constants.ORG_SETTINGS.PROHIBIT}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="vote-settings__option-main-container">
+                            <div className="vote-settings__checkbox-container-default">
+                                <div className={`vote-settings__checkbox-default ${combinedTime && 'vote-settings__checkbox_active-default'}`} />
+                                <p className="vote-settings__checkbox-text">{constants.ORG_SETTINGS.COMBINE_TIME}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="vote-settings__option-main-container">
-                    <div className="vote-settings__ckeckbox-container" onClick={handleQuorumActive}>
-                        <div className={`vote-settings__ckeckbox ${quorum && 'vote-settings__ckeckbox_active'}`} />
-                        <p className="vote-settings__ckeckbox-text">{constants.ORG_SETTINGS.QUORUM}</p>
-                    </div>
-                    <p className="vote-settings__default-state">{constants.ORG_SETTINGS.DEFAULT_STATE}</p>
-                    <div className="vote-settings__select-container" onClick={handleQuorumOptionsOpen}>
-                        <p className="vote-settings__select-text">{selectedQuorumText}</p>
-                        <div className="vote-settings__select-arrow" />
-                        <div className={`vote-settings__select-options-container ${isQuorumOptionsOpen && 'vote-settings__select-options-container_active'}`}>
-                            <div className="vote-settings__option-container" onClick={() => onDefaultQuorumSelectClick('51')}>
-                                <p className="vote-settings__option-value">50% + 1</p>
-                            </div>
-                            <div className="vote-settings__option-container" onClick={() => onDefaultQuorumSelectClick('50')}>
-                                <p className="vote-settings__option-value">50%</p>
-                            </div>
-                            <div className="vote-settings__option-container" onClick={() => onDefaultQuorumSelectClick('66')}>
-                                <p className="vote-settings__option-value">2/3</p>
-                            </div>
-                            <div className="vote-settings__option-container" onClick={() => onDefaultQuorumSelectClick('0')}>
-                                <p className="vote-settings__option-value">{constants.ORG_SETTINGS.QUORUM_ANY_VALUE}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="vote-settings__option-main-container">
-                    <div className="vote-settings__ckeckbox-container" onClick={handleReRegistrationActive}>
-                        <div className={`vote-settings__ckeckbox ${reRegistration && 'vote-settings__ckeckbox_active'}`} />
-                        <p className="vote-settings__ckeckbox-text">{constants.ORG_SETTINGS.CANCEL_REG}</p>
-                    </div>
-                    <p className="vote-settings__default-state">{constants.ORG_SETTINGS.DEFAULT_STATE}</p>
-                    <div className="vote-settings__select-container" onClick={handleReRegistrationOptionsOpen}>
-                        <p className="vote-settings__select-text">{defaultReRegistration === true ? constants.ORG_SETTINGS.ALLOW : constants.ORG_SETTINGS.PROHIBIT}</p>
-                        <div className="vote-settings__select-arrow" />
-                        <div className={`vote-settings__select-options-container ${isReRegistrationOptionsOpen && 'vote-settings__select-options-container_active'}`}>
-                            <div className="vote-settings__option-container" onClick={() => onDefaultReRegistrationClick(true)}>
-                                <p className="vote-settings__option-value">{constants.ORG_SETTINGS.ALLOW}</p>
-                            </div>
-                            <div className="vote-settings__option-container" onClick={() => onDefaultReRegistrationClick(false)}>
-                                <p className="vote-settings__option-value">{constants.ORG_SETTINGS.PROHIBIT}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="vote-settings__option-main-container">
-                    <div className="vote-settings__ckeckbox-container" onClick={handleReVotingActive}>
-                        <div className={`vote-settings__ckeckbox ${reVoting && 'vote-settings__ckeckbox_active'}`} />
-                        <p className="vote-settings__ckeckbox-text">{constants.ORG_SETTINGS.CHANGE_VOTE}</p>
-                    </div>
-                    <p className="vote-settings__default-state">{constants.ORG_SETTINGS.DEFAULT_STATE}</p>
-                    <div className="vote-settings__select-container" onClick={handleReVotingOptionsOpen}>
-                        <p className="vote-settings__select-text">{defaultReVoting === true ? constants.ORG_SETTINGS.ALLOW : constants.ORG_SETTINGS.PROHIBIT}</p>
-                        <div className="vote-settings__select-arrow" />
-                        <div className={`vote-settings__select-options-container ${isReVotingOptionsOpen && 'vote-settings__select-options-container_active'}`}>
-                            <div className="vote-settings__option-container" onClick={() => onDefaultReVotingClick(true)}>
-                                <p className="vote-settings__option-value">{constants.ORG_SETTINGS.ALLOW}</p>
-                            </div>
-                            <div className="vote-settings__option-container" onClick={() => onDefaultReVotingClick(false)}>
-                                <p className="vote-settings__option-value">{constants.ORG_SETTINGS.PROHIBIT}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="vote-settings__option-main-container">
-                    <div className="vote-settings__ckeckbox-container" onClick={handleCombinedTimeActive}>
-                        <div className={`vote-settings__ckeckbox ${combinedTime && 'vote-settings__ckeckbox_active'}`} />
-                        <p className="vote-settings__ckeckbox-text">{constants.ORG_SETTINGS.COMBINE_TIME}</p>
-                    </div>
-                </div>
-                {isSaveButtonActive && (
-                    <button className="vote-settings__save-button" onClick={saveChanges}>{constants.ORG_SETTINGS.BUTTON_SAVE_ADMINS_CHANGE}</button>
-                )}
-            </div>
-        </div>
+            )}
+        </>
     )
 }
-
 export default VoteSettings;

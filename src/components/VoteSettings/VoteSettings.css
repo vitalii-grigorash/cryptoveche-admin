@@ -25,12 +25,17 @@
 .vote-settings__option-main-container:first-of-type {
     margin: 0 auto 0 0;
 }
-.vote-settings__ckeckbox-container {
+.vote-settings__checkbox-container {
     display: flex;
     margin: 0 auto 0 0;
     cursor: pointer;
 }
-.vote-settings__ckeckbox {
+.vote-settings__checkbox-container-default {
+    display: flex;
+    margin: 0 auto 0 0;
+    cursor: default;
+}
+.vote-settings__checkbox {
     background-image: url('../../img/checkbox-default.svg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -38,10 +43,21 @@
     height: 24px;
     margin: auto 16px auto 0;
 }
-.vote-settings__ckeckbox_active {
+.vote-settings__checkbox_active {
     background-image: url('../../img/checkbox-active.svg');
 }
-.vote-settings__ckeckbox-text {
+.vote-settings__checkbox-default {
+    background-image: url('../../img/checkbox-no-active-empty.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-width: 24px;
+    height: 24px;
+    margin: auto 16px auto 0;
+}
+.vote-settings__checkbox_active-default {
+    background-image: url('../../img/checkbox-no-active.svg');
+}
+.vote-settings__checkbox-text {
     font-weight: 400;
     font-size: 18px;
     line-height: 28px;
@@ -61,6 +77,12 @@
     margin: 8px auto 0 0;
     position: relative;
     cursor: pointer;
+}
+.vote-settings__select-container-default {
+    display: flex;
+    margin: 8px auto 0 0;
+    position: relative;
+    cursor: default;
 }
 .vote-settings__select-text {
     font-weight: 400;
