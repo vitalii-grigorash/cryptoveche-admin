@@ -304,6 +304,7 @@ export const constants = {
         ADD_NEW_VOTE_MAX_NUMBERS_MEMBERS : "Максимальное количество участников",
         ADD_NEW_VOTE_AFTER_CREATE_VOTE_AVAILABLE_LINK : "После создания голосования вам будет доступна пригласительная ссылка",
         ADD_NEW_VOTE_ADD_QUESTION_BTN: "Добавить вопрос",
+        SAVE_CHANGES: "Сохранить изменения",
         ADD_NEW_VOTE_ADD_ANOTHER_QUESTION_BTN: "ДОБАВИТЬ ЕЩЁ ВОПРОС",
         ADD_NEW_VOTE_SAVE_AS_TEMPLATE_BTN: "Сохранить как черновик",
         ADD_NEW_VOTE_ADD_VOTE_BTN: "Добавить голосование",
@@ -378,6 +379,9 @@ export const constants = {
         QUESTION_TITLE_ERROR: 'Заполните заголовок вопроса',
         QUESTION: 'Вопрос',
         QUESTIONS_ERR: 'Нет добавленных вопросов',
+        EVENT_LIMIT_ERR: 'Превышен лимит голосований для организации',
+        SOMETHING_WENT_WRONG_ERR: 'Что-то пошло не так...',
+        ROWS_ERR: 'Заполните все варианты ответа',
     },
     ORG_SETTINGS: {
         PLACEHOLDER: 'Введите название компании',

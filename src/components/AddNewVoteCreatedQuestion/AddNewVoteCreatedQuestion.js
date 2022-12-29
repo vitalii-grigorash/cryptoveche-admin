@@ -11,12 +11,9 @@ const AddNewVoteCreatedQuestion = (props) => {
         editQuestion
     } = props;
 
-    console.log(question);
-
     const [type, setType] = useState('');
 
     useEffect(() => {
-        // проверить на правильность названия template-ов
         if (question.template === 'ynq') {
             setType(constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_YNQ);
         } else if (question.template === 'none') {

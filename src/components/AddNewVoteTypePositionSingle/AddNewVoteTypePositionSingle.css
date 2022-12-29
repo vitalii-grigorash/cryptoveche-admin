@@ -178,6 +178,13 @@
     background: #FFFFFF;
     border: 1px solid #0084FE;
 }
+.add-new-vote-type-position-single__error-message {
+    font-weight: 300;
+    font-size: 0.80em;
+    line-height: 110%;
+    color: #FF4970;
+    margin: 0 auto 0.8em 0;
+}
 /*-----Адаптивная версия под мобилку----------------------------------------------------------------------------------*/
 @media (max-width: 500px) {
     .add-new-vote-type-position-single__container.active {
@@ -242,7 +249,19 @@
         margin: 0 8px 16px 8px;
     }
     .add-new-vote-type-position-single__add-button-block {
-        display: none;
+        width: 100%;
+    }
+    .add-new-vote-type-position-single__add-btn {
+        width: 100%;
+        height: 56px;
+        cursor: default;
+        font-size: 18px;
+        line-height: 22px;
+    }
+    .add-new-vote-type-position-single__add-btn:hover {
+        border: none;
+        background: #0084FE;
+        color: #FFFFFF;
     }
     .add-new-vote-type-position-single__name-question {
         gap: 16px;
@@ -406,5 +425,9 @@
         width: 9px;
         height: 9px;
     }
-
+    .add-new-vote-type-position-single__error-message {
+        font-size: 12px;
+        line-height: 16px;
+        margin: 0 auto 12px 0;
+    }
 }

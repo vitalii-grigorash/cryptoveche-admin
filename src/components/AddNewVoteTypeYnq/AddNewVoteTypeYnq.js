@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import iconCloseModal from "../../img/AddNewVoteQuestuionTypeIconCloseModal.svg";
 import AddMaterials from "../AddMaterials/AddMaterials";
 import { Validation } from '../../utils/Validation';
@@ -10,18 +10,30 @@ const AddNewVoteTypeYnq = (props) => {
         constants,
         requestHelper,
         questionsList,
-        addQuestion
+        addQuestion,
+        questionForEdit,
+        changeEditQuestion
     } = props;
 
     const questionTitle = Validation();
     const [materials, setMaterials] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
+    const [isEditMode, setEditMode] = useState(false);
 
     const rows = [
         { value: constants.ADD_NEW_VOTE.FOR },
         { value: constants.ADD_NEW_VOTE.AGAINST },
         { value: constants.ADD_NEW_VOTE.ABSTAIN }
     ]
+
+    useEffect(() => {
+        if (questionForEdit.id) {
+            questionTitle.setValue(questionForEdit.title);
+            setMaterials(questionForEdit.materials);
+            setEditMode(true);
+        }
+        // eslint-disable-next-line
+    }, [questionForEdit])
 
     function idGenerate(arr) {
         if (arr.length < 1) {
@@ -64,6 +76,14 @@ const AddNewVoteTypeYnq = (props) => {
         }
     }
 
+    function onClose() {
+        onCloseModal();
+        setErrorMessage('');
+        setMaterials([]);
+        questionTitle.setValue('');
+        setEditMode(false);
+    }
+
     function addNewQuestion() {
         const materialsForValidation = [];
         materials.forEach((material) => {
@@ -86,7 +106,7 @@ const AddNewVoteTypeYnq = (props) => {
         const isQuestionValid = questionValidation(materialsForValidation);
         if (isQuestionValid) {
             const question = {
-                id: idGenerate(questionsList),
+                id: isEditMode ? questionForEdit.id : idGenerate(questionsList),
                 template: "ynq",
                 title: questionTitle.value,
                 options: {
@@ -103,11 +123,12 @@ const AddNewVoteTypeYnq = (props) => {
                     pick_ge: -1
                 }
             }
-            addQuestion(question);
-            onCloseModal();
-            setErrorMessage('');
-            setMaterials([]);
-            questionTitle.setValue('');
+            if (isEditMode) {
+                changeEditQuestion(question);
+            } else {
+                addQuestion(question);
+            }
+            onClose();
         }
     }
 
@@ -169,8 +190,8 @@ const AddNewVoteTypeYnq = (props) => {
         <div className="add-new-vote-type-ynq__container active">
             <div className="add-new-vote-type-ynq">
                 <div className="add-new-vote-type-ynq__title">
-                    <h3 className="add-new-vote-type-ynq__title-number-question">{constants.ADD_NEW_VOTE.QUESTION} #{questionsList.length + 1}</h3>
-                    <img onClick={onCloseModal} className="add-new-vote-type-ynq__title-icon-close" src={iconCloseModal} alt={constants.GENERAL.ALT_ICON} />
+                    <h3 className="add-new-vote-type-ynq__title-number-question">{!isEditMode && `${constants.ADD_NEW_VOTE.QUESTION} #${questionsList.length + 1}`}</h3>
+                    <img onClick={onClose} className="add-new-vote-type-ynq__title-icon-close" src={iconCloseModal} alt={constants.GENERAL.ALT_ICON} />
                 </div>
                 <h5 className="add-new-vote-type-ynq__title-current-type-question">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_YNQ}</h5>
                 <div className="add-new-vote-type-ynq__name-question">
@@ -178,7 +199,8 @@ const AddNewVoteTypeYnq = (props) => {
                         {constants.ADD_NEW_VOTE.QUESTION_TYPE_NAME_QUESTION}
                         <span className="add-new-vote__red-star"> *</span>
                     </label>
-                    <input className="add-new-vote-type-ynq__name-question-input"
+                    <input
+                        className="add-new-vote-type-ynq__name-question-input"
                         type='text'
                         placeholder={constants.ADD_NEW_VOTE.QUESTION_TYPE_NAME_QUESTION_PLACEHOLDER_ENTER_YOUR_QUESTION}
                         name="question-title"
@@ -216,7 +238,7 @@ const AddNewVoteTypeYnq = (props) => {
                     </div>
                     <p className="add-new-vote-type-ynq__error-message">{errorMessage}</p>
                     <div className="add-new-vote-type-ynq__add-button-block">
-                        <button className="add-new-vote-type-ynq__add-btn" onClick={addNewQuestion}>{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_ADD_QUESTION_BTN}</button>
+                        <button className="add-new-vote-type-ynq__add-btn" onClick={addNewQuestion}>{isEditMode ? constants.ADD_NEW_VOTE.SAVE_CHANGES : constants.ADD_NEW_VOTE.ADD_NEW_VOTE_ADD_QUESTION_BTN}</button>
                     </div>
                 </div>
             </div>

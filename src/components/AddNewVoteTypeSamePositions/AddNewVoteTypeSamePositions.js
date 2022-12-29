@@ -19,7 +19,9 @@ const AddNewVoteTypeSamePositions = (props) => {
         deleteMaterial,
         requestHelper,
         questionsList,
-        addQuestion
+        addQuestion,
+        questionForEdit,
+        changeEditQuestion
     } = props;
 
     return (

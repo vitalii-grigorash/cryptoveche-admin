@@ -339,6 +339,7 @@ export const constants = {
         QUESTION_TYPE_RULES_SELECT_SELECT_INTERVAL_BEFORE: "До",
         QUESTION_TYPE_RULES_SELECT_SELECT_INTERVAL_ANSWER_OPTIONS: "вариантов ответов",
         QUESTION_TYPE_ADD_QUESTION_BTN: "Добавить вопрос",
+        SAVE_CHANGES: "Сохранить изменения",
         ADD_MATERIALS_VOTE_TITLE: "Добавить материалы к голосованию",
         ADD_MATERIALS_VOTE_TITLE_QUESTION_TYPE: "Добавить материалы к вопросу",
         ADD_MATERIALS_VOTE_PLACEHOLDER: "Заголовок вспомогательного материала",
@@ -378,6 +379,9 @@ export const constants = {
         QUESTION_TITLE_ERROR: 'Заполните заголовок вопроса',
         QUESTION: 'Вопрос',
         QUESTIONS_ERR: 'Нет добавленных вопросов',
+        EVENT_LIMIT_ERR: 'Превышен лимит голосований для организации',
+        SOMETHING_WENT_WRONG_ERR: 'Что-то пошло не так...',
+        ROWS_ERR: 'Заполните все варианты ответа',
     },
     ORG_SETTINGS: {
         PLACEHOLDER: 'Введите название компании',

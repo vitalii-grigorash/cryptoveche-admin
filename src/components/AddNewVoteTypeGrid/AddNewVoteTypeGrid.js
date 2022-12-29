@@ -18,7 +18,9 @@ const AddNewVoteTypeGrid = (props) => {
         deleteMaterial,
         requestHelper,
         questionsList,
-        addQuestion
+        addQuestion,
+        questionForEdit,
+        changeEditQuestion
     } = props;
 
     return (

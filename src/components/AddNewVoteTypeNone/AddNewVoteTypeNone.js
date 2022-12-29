@@ -21,7 +21,9 @@ const AddNewVoteTypeNone = (props) => {
         deleteMaterial,
         requestHelper,
         questionsList,
-        addQuestion
+        addQuestion,
+        questionForEdit,
+        changeEditQuestion
     } = props;
 
     const [activeRuleSelect, setActiveRuleSelect] = useState(false);

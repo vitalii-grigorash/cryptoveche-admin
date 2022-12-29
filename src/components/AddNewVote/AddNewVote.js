@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import GeneralTitleAllPages from "../GeneralTitleAllPages/GeneralTitleAllPages";
 import row_input_select_role from "../../img/Auth_icon_row_select_role.svg";
 import iconAddQuestionPlus from "../../img/AddNewVoteIconPlus.svg";
@@ -38,6 +38,7 @@ const AddNewVote = (props) => {
         requestHelper,
     } = props;
 
+    const navigate = useNavigate();
     const eventTitle = Validation();
     const votersListSearch = Validation();
     const countersListSearch = Validation();
@@ -70,6 +71,7 @@ const AddNewVote = (props) => {
     const [activeCompleteOneStep, setActiveCompleteOneStep] = useState(false);
     const [activeCompleteTwoStep, setActiveCompleteTwoStep] = useState(iconTwoStep);
     const [activeCompleteThreeStep, setActiveCompleteThreeStep] = useState(iconTwoStep);
+    const [addEventButtonText, setAddEventButtonText] = useState(constants.ADD_NEW_VOTE.ADD_NEW_VOTE_ADD_VOTE_BTN);
     const { pathname } = useLocation();
     const progressBarRef = useRef(null);
     const [selectedTypeQuestionBtn, setSelectedTypeQuestionBtn] = useState('');
@@ -104,30 +106,33 @@ const AddNewVote = (props) => {
     const [isCountersAddOpen, setCountersAddOpen] = useState(false);
     const [isObserversAddOpen, setObserversAddOpen] = useState(false);
     const [questionsList, setQuestionsList] = useState([]);
+    const [questionForEdit, setQuestionForEdit] = useState({});
 
     console.log(questionsList);
 
     const typeQuestionButtons = [
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_YNQ}`, classNameBtn: "add-new-vote__select-type-vote-ynq", typeQuestion: "ynq" },
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_NONE}`, classNameBtn: "add-new-vote__select-type-vote-none", typeQuestion: "none" },
-        { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_POSITION_SINGLE}`, classNameBtn: "add-new-vote__select-type-vote-position_single", typeQuestion: "positionSingle" },
+        { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_POSITION_SINGLE}`, classNameBtn: "add-new-vote__select-type-vote-position_single", typeQuestion: "position_single" },
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_GRID}`, classNameBtn: "add-new-vote__select-type-vote-grid", typeQuestion: "grid" },
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_RADIO_GRID}`, classNameBtn: "add-new-vote__select-type-vote-radio_grid", typeQuestion: "radioGrid" },
-        { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_POSITION_MULTIPLE}`, classNameBtn: "add-new-vote__select-type-vote-position_multiple", typeQuestion: "positionMultiple" },
+        { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_POSITION_MULTIPLE}`, classNameBtn: "add-new-vote__select-type-vote-position_multiple", typeQuestion: "position_multiple" },
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_SAME_POSITIONS}`, classNameBtn: "add-new-vote__select-type-vote-same_positions", typeQuestion: "samePositions" }
     ];
 
-    function editQuestion (question) {
+    function editQuestion(question) {
         onGetTypeQuestionBtn(question.template);
+        setQuestionForEdit(question);
     }
 
-    function deleteQuestion (question) {
+    function deleteQuestion(question) {
         const filteredArray = questionsList.filter(el => el.id !== question.id);
         setQuestionsList(filteredArray);
     }
 
     function questionModalClose() {
         setSelectedTypeQuestionBtn('');
+        setQuestionForEdit({});
     }
 
     function handleOpenCountersAdd() {
@@ -407,7 +412,7 @@ const AddNewVote = (props) => {
         const defaultDate = new Date(date);
         const datePlus = defaultDate.setHours(defaultDate.getHours() + 4);
         const newDate = new Date(datePlus);
-        return newDate.toISOString().slice(0, 16)
+        return newDate.toISOString().slice(0, 16);
     }
 
     function datePlusRegStart(date) {
@@ -721,16 +726,6 @@ const AddNewVote = (props) => {
         setGroupsDropDownActive(false);
     }
 
-    // const onShowSelectTypeQuestion = () => {
-    //     const getWightBlock = document.getElementById('addNewVoteWight').clientWidth;
-    //     if (getWightBlock > 491) {
-    //         setActiveTypeQuestionBnt(true);
-    //     } else {
-    //         setActiveModalTypeQuestion(true);
-    //         setActiveTypeQuestionBnt(true);
-    //     }
-    // }
-
     useEffect(() => {
         const getWightBlock = document.getElementById('addNewVoteWight').clientWidth;
         if (getWightBlock > 491 || activeModalTypeQuestion === false) {
@@ -753,25 +748,50 @@ const AddNewVote = (props) => {
         setQuestionsList([...questionsList, question]);
     }
 
-    function prepareYnq(question) {
-        const materials = [];
-        question.materials.forEach((material) => {
+    function changeEditQuestion(question) {
+        const filteredQuestions = questionsList.filter(questionFromList => questionFromList.id !== question.id);
+        filteredQuestions.push(question);
+        setQuestionsList(filteredQuestions);
+        setQuestionForEdit({});
+    }
+
+    function prepareMaterials(materials) {
+        const preparedMaterials = [];
+        materials.forEach((material) => {
             if (material.type === "link") {
                 const data = {
                     title: material.title,
                     type: material.type,
                     value: material.valueLink
                 }
-                materials.push(data);
+                preparedMaterials.push(data);
             } else {
                 const data = {
                     title: material.title,
                     type: material.type,
                     value: material.valueDoc
                 }
-                materials.push(data);
+                preparedMaterials.push(data);
             }
         })
+        return preparedMaterials;
+    }
+
+    function preparePositionSingle(question) {
+        const materials = prepareMaterials(question.materials);
+        const preparedQuestion = {
+            template: question.template,
+            title: question.title,
+            options: question.options,
+            materials: materials,
+            is_required_grid_rows: question.is_required_grid_rows,
+            rules: question.rules
+        }
+        return preparedQuestion;
+    }
+
+    function prepareYnq(question) {
+        const materials = prepareMaterials(question.materials);
         const preparedQuestion = {
             template: question.template,
             title: question.title,
@@ -788,6 +808,9 @@ const AddNewVote = (props) => {
         questionsList.forEach((question) => {
             if (question.template === "ynq") {
                 const preparedQuestion = prepareYnq(question);
+                questions.push(preparedQuestion);
+            } else if (question.template === "position_single") {
+                const preparedQuestion = preparePositionSingle(question);
                 questions.push(preparedQuestion);
             }
         })
@@ -884,6 +907,8 @@ const AddNewVote = (props) => {
     }
 
     function addEvent() {
+        setErrorMessage('');
+        setAddEventButtonText(constants.ORG_SETTINGS.BUTTON_LOADING);
         const date = {
             createdDate: new Date(),
             regStart: new Date(registrationStartTime),
@@ -971,6 +996,24 @@ const AddNewVote = (props) => {
                 users_groups: { group_name: {} }
             }
             console.log(body);
+            requestHelper(AddEvent.addNewEvent, body)
+                .then((data) => {
+                    if (data.status === 'ok') {
+                        navigate('/list-votes');
+                    } else {
+                        console.log(data);
+                        if (data.text === "exceptions.EventsLimitException: Events limit exceeded for org ") {
+                            setErrorMessage(constants.ADD_NEW_VOTE.EVENT_LIMIT_ERR);
+                            setAddEventButtonText(constants.ADD_NEW_VOTE.ADD_NEW_VOTE_ADD_VOTE_BTN);
+                        } else {
+                            setErrorMessage(constants.ADD_NEW_VOTE.SOMETHING_WENT_WRONG_ERR);
+                            setAddEventButtonText(constants.ADD_NEW_VOTE.ADD_NEW_VOTE_ADD_VOTE_BTN);
+                        }
+                    }
+                })
+                .catch((err) => {
+                    throw new Error(err.message);
+                })
         }
     }
 
@@ -1420,7 +1463,15 @@ const AddNewVote = (props) => {
                 {activeQuestionBlock && (
                     <div className="add-new-vote__questions-block">
                         <div className="add-new-vote__questions-block-created-question">
-                            {questionsList.map((question) => (
+                            {questionsList.sort(function (a, b) {
+                                const aId = a.id;
+                                const bId = b.id;
+                                if (aId < bId)
+                                    return -1
+                                if (aId > bId)
+                                    return 1
+                                return 0
+                            }).map((question) => (
                                 <div key={question.id}>
                                     <AddNewVoteCreatedQuestion
                                         constants={constants}
@@ -1458,6 +1509,8 @@ const AddNewVote = (props) => {
                                     requestHelper={requestHelper}
                                     questionsList={questionsList}
                                     addQuestion={addQuestion}
+                                    questionForEdit={questionForEdit}
+                                    changeEditQuestion={changeEditQuestion}
                                 />
                             }
                             {selectedTypeQuestionBtn === 'none' &&
@@ -1474,22 +1527,19 @@ const AddNewVote = (props) => {
                                     requestHelper={requestHelper}
                                     questionsList={questionsList}
                                     addQuestion={addQuestion}
+                                    questionForEdit={questionForEdit}
+                                    changeEditQuestion={changeEditQuestion}
                                 />
                             }
-                            {selectedTypeQuestionBtn === 'positionSingle' &&
+                            {selectedTypeQuestionBtn === 'position_single' &&
                                 <AddNewVoteTypePositionSingle
                                     onCloseModal={questionModalClose}
                                     constants={constants}
-                                    eventMaterials={eventMaterials}
-                                    addEmptyMaterial={addEmptyMaterial}
-                                    changeMaterialType={changeMaterialType}
-                                    linkInputChange={linkInputChange}
-                                    titleInputChange={titleInputChange}
-                                    changeDocLink={changeDocLink}
-                                    deleteMaterial={deleteMaterial}
                                     requestHelper={requestHelper}
                                     questionsList={questionsList}
                                     addQuestion={addQuestion}
+                                    questionForEdit={questionForEdit}
+                                    changeEditQuestion={changeEditQuestion}
                                 />
                             }
                             {selectedTypeQuestionBtn === 'grid' &&
@@ -1506,6 +1556,8 @@ const AddNewVote = (props) => {
                                     requestHelper={requestHelper}
                                     questionsList={questionsList}
                                     addQuestion={addQuestion}
+                                    questionForEdit={questionForEdit}
+                                    changeEditQuestion={changeEditQuestion}
                                 />
                             }
                             {selectedTypeQuestionBtn === 'radioGrid' &&
@@ -1522,22 +1574,19 @@ const AddNewVote = (props) => {
                                     requestHelper={requestHelper}
                                     questionsList={questionsList}
                                     addQuestion={addQuestion}
+                                    questionForEdit={questionForEdit}
+                                    changeEditQuestion={changeEditQuestion}
                                 />
                             }
-                            {selectedTypeQuestionBtn === 'positionMultiple' &&
+                            {selectedTypeQuestionBtn === 'position_multiple' &&
                                 <AddNewVoteTypePositionMultiple
                                     onCloseModal={questionModalClose}
                                     constants={constants}
-                                    eventMaterials={eventMaterials}
-                                    addEmptyMaterial={addEmptyMaterial}
-                                    changeMaterialType={changeMaterialType}
-                                    linkInputChange={linkInputChange}
-                                    titleInputChange={titleInputChange}
-                                    changeDocLink={changeDocLink}
-                                    deleteMaterial={deleteMaterial}
                                     requestHelper={requestHelper}
                                     questionsList={questionsList}
                                     addQuestion={addQuestion}
+                                    questionForEdit={questionForEdit}
+                                    changeEditQuestion={changeEditQuestion}
                                 />
                             }
                             {selectedTypeQuestionBtn === 'samePositions' &&
@@ -1554,6 +1603,8 @@ const AddNewVote = (props) => {
                                     requestHelper={requestHelper}
                                     questionsList={questionsList}
                                     addQuestion={addQuestion}
+                                    questionForEdit={questionForEdit}
+                                    changeEditQuestion={changeEditQuestion}
                                 />
                             }
                         </div>
@@ -1570,7 +1621,7 @@ const AddNewVote = (props) => {
                 <>
                     {pathname === '/add-new-vote' ? (
                         <div className="add-new-vote__add-vote-button-block">
-                            <button onClick={addEvent} className="add-new-vote-question-type__add-vote-btn">{constants.ADD_NEW_VOTE.ADD_NEW_VOTE_ADD_VOTE_BTN}</button>
+                            <button onClick={addEvent} className="add-new-vote-question-type__add-vote-btn">{addEventButtonText}</button>
                             <button
                                 className="add-new-vote-question-type__save-template-btn"
                                 onClick={saveTemplate}
