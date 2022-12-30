@@ -117,7 +117,7 @@ const AddNewVote = (props) => {
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_GRID}`, classNameBtn: "add-new-vote__select-type-vote-grid", typeQuestion: "grid" },
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_RADIO_GRID}`, classNameBtn: "add-new-vote__select-type-vote-radio_grid", typeQuestion: "radioGrid" },
         { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_POSITION_MULTIPLE}`, classNameBtn: "add-new-vote__select-type-vote-position_multiple", typeQuestion: "position_multiple" },
-        { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_SAME_POSITIONS}`, classNameBtn: "add-new-vote__select-type-vote-same_positions", typeQuestion: "samePositions" }
+        { nameBtn: `${constants.ADD_NEW_VOTE.ADD_NEW_VOTE_QUESTION_SAME_POSITIONS}`, classNameBtn: "add-new-vote__select-type-vote-same_positions", typeQuestion: "same_positions" }
     ];
 
     function editQuestion(question) {
@@ -777,6 +777,52 @@ const AddNewVote = (props) => {
         return preparedMaterials;
     }
 
+    function prepareSamePosition(question) {
+        const materials = prepareMaterials(question.materials);
+        const rows = [];
+        question.options.rows.forEach((row) => {
+            const preparedRow = {
+                value: row.value
+            }
+            rows.push(preparedRow);
+        })
+        const preparedQuestion = {
+            template: question.template,
+            title: question.title,
+            options: {
+                columns: question.options.columns,
+                rows: rows
+            },
+            materials: materials,
+            is_required_grid_rows: question.is_required_grid_rows,
+            rules: question.rules
+        }
+        return preparedQuestion;
+    }
+
+    function preparePositionMultiple(question) {
+        const materials = prepareMaterials(question.materials);
+        const rows = [];
+        question.options.rows.forEach((row) => {
+            const preparedRow = {
+                value: row.value
+            }
+            rows.push(preparedRow);
+        })
+        const preparedQuestion = {
+            template: question.template,
+            title: question.title,
+            options: {
+                columns: question.options.columns,
+                rows: rows
+            },
+            materials: materials,
+            is_required_grid_rows: question.is_required_grid_rows,
+            rules: question.rules
+        }
+        return preparedQuestion;
+    }
+
     function preparePositionSingle(question) {
         const materials = prepareMaterials(question.materials);
         const preparedQuestion = {
@@ -811,6 +857,12 @@ const AddNewVote = (props) => {
                 questions.push(preparedQuestion);
             } else if (question.template === "position_single") {
                 const preparedQuestion = preparePositionSingle(question);
+                questions.push(preparedQuestion);
+            } else if (question.template === "position_multiple") {
+                const preparedQuestion = preparePositionMultiple(question);
+                questions.push(preparedQuestion);
+            } else if (question.template === "same_positions") {
+                const preparedQuestion = prepareSamePosition(question);
                 questions.push(preparedQuestion);
             }
         })
@@ -1589,17 +1641,10 @@ const AddNewVote = (props) => {
                                     changeEditQuestion={changeEditQuestion}
                                 />
                             }
-                            {selectedTypeQuestionBtn === 'samePositions' &&
+                            {selectedTypeQuestionBtn === 'same_positions' &&
                                 <AddNewVoteTypeSamePositions
                                     onCloseModal={questionModalClose}
                                     constants={constants}
-                                    eventMaterials={eventMaterials}
-                                    addEmptyMaterial={addEmptyMaterial}
-                                    changeMaterialType={changeMaterialType}
-                                    linkInputChange={linkInputChange}
-                                    titleInputChange={titleInputChange}
-                                    changeDocLink={changeDocLink}
-                                    deleteMaterial={deleteMaterial}
                                     requestHelper={requestHelper}
                                     questionsList={questionsList}
                                     addQuestion={addQuestion}

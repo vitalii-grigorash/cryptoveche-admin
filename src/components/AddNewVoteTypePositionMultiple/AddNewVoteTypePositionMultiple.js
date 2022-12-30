@@ -4,7 +4,6 @@ import AddMaterials from "../AddMaterials/AddMaterials";
 import { Validation } from '../../utils/Validation';
 import iconPlus from "../../img/AddNewVoteQuestuionTypeIconPlus.svg";
 import iconBasket from "../../img/AddNewVoteQuestuionTypeIconBasket.svg";
-// import iconExcel from "../../img/AddNewVoteIconExcel.svg";
 
 const AddNewVoteTypePositionMultiple = (props) => {
 
@@ -18,7 +17,6 @@ const AddNewVoteTypePositionMultiple = (props) => {
         changeEditQuestion
     } = props;
 
-    // Сделать валидаю для пустых строк с ответами
     // Сделать preparePositionMultiple с материалами и строками
 
     const questionTitle = Validation();
@@ -46,6 +44,13 @@ const AddNewVoteTypePositionMultiple = (props) => {
         setRows([...rows, row]);
     }
 
+    function deleteRow(id) {
+        if (rows.length !== 1) {
+            const filteredArray = rows.filter(el => el.id !== id);
+            setRows(filteredArray);
+        }
+    }
+
     useEffect(() => {
         if (questionForEdit.id) {
             questionTitle.setValue(questionForEdit.title);
@@ -57,6 +62,26 @@ const AddNewVoteTypePositionMultiple = (props) => {
         }
         // eslint-disable-next-line
     }, [questionForEdit])
+
+    function rowsValidate() {
+        const rowsValidation = () => {
+            for (let val of rows) {
+                for (let key in val) {
+                    if (!val[key]) {
+                        return false;
+                    }
+                }
+            }
+        }
+        const isRowsValid = rowsValidation();
+        if (isRowsValid === false) {
+            setErrorMessage(constants.ADD_NEW_VOTE.ROWS_ERR);
+            return false;
+        } else {
+            setErrorMessage('');
+            return true;
+        }
+    }
 
     function materialsValidate(materials) {
         const materialsValidation = () => {
@@ -74,7 +99,7 @@ const AddNewVoteTypePositionMultiple = (props) => {
             return false;
         } else {
             setErrorMessage('');
-            return true;
+            return rowsValidate();
         }
     }
 
@@ -162,13 +187,6 @@ const AddNewVoteTypePositionMultiple = (props) => {
     function deleteMaterial(id) {
         const filteredArray = materials.filter(el => el.id !== id);
         setMaterials(filteredArray);
-    }
-
-    function deleteRow(id) {
-        if (rows.length !== 1) {
-            const filteredArray = rows.filter(el => el.id !== id);
-            setRows(filteredArray);
-        }
     }
 
     function changeMaterialType(id, type, isEvent) {
@@ -265,10 +283,6 @@ const AddNewVoteTypePositionMultiple = (props) => {
                             </div>
                         ))}
                     </div>
-                    {/* <div className="add-new-vote-type-position-multiple__import-excel-block">
-                        <img className="add-new-vote-type-position-multiple__icon-excel" src={iconExcel} alt={constants.GENERAL.ALT_ICON} />
-                        <p className="add-new-vote-type-position-multiple__import-excel-btn">{constants.ADD_NEW_VOTE.EXPAND_LIST_IMPORT_EXCEL}</p>
-                    </div> */}
                     <div className="add-new-vote-type-position-multiple__add-materials-vote">
                         <AddMaterials
                             constants={constants}
